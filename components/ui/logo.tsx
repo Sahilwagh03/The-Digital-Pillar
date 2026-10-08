@@ -35,11 +35,11 @@ export const Logo: React.FC<LogoProps> = ({
       <Image
         src="/logo-main.svg"
         alt="The Digital Pillar"
-        width={40}
-        height={40}
+        width={56}
+        height={56}
         priority={priority}
         className={cn(
-          "h-8 sm:h-9 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
+          "h-11 sm:h-10 md:h-11 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
           imageClassName,
           iconClassName
         )}
@@ -50,11 +50,11 @@ export const Logo: React.FC<LogoProps> = ({
         <Image
           src="/logo-text.svg"
           alt={alt}
-          width={150}
-          height={38}
+          width={180}
+          height={48}
           priority={priority}
           className={cn(
-            "h-5 sm:h-8 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
+            "h-8 sm:h-8.5 md:h-9 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
             theme === "light"
               ? "brightness-0 [filter:brightness(0)]"
               : "brightness-100 [filter:brightness(1)]",

@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/hero";
 import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { BrandsWeMoved } from "@/components/sections/brands-we-moved";
 import { About } from "@/components/sections/about";
+import { SelectedWork } from "@/components/sections/selected-work";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <WhyChooseUs />
       <BrandsWeMoved />
       <About />
+      <SelectedWork />
     </main>
   );
 }
