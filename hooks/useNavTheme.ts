@@ -27,12 +27,20 @@ export function useNavTheme({
 
     const evaluateTheme = () => {
       const sections = document.querySelectorAll<HTMLElement>("[data-nav-theme]");
+      const headerEl = document.querySelector<HTMLElement>("header");
+      
+      // Compute dynamic offset based on header midpoint or fallback to screen size
+      const checkOffset = headerEl
+        ? Math.max(20, headerEl.getBoundingClientRect().top + headerEl.offsetHeight / 2)
+        : window.innerWidth < 640
+        ? 36
+        : offset;
 
       if (sections.length > 0) {
         for (const section of sections) {
           const rect = section.getBoundingClientRect();
-          // Check if section encompasses the navbar offset line
-          if (rect.top <= offset && rect.bottom > offset) {
+          // Check if section encompasses the active navbar center line
+          if (rect.top <= checkOffset && rect.bottom > checkOffset) {
             const sectionTheme = section.getAttribute("data-nav-theme");
             if (sectionTheme === "light" || sectionTheme === "dark") {
               setTheme(sectionTheme);
@@ -41,9 +49,8 @@ export function useNavTheme({
           }
         }
       } else {
-        // Fallback: switch to light after scrolling past the first screen height
         const fallbackTheme: NavTheme =
-          window.scrollY > window.innerHeight - offset ? "light" : "dark";
+          window.scrollY > window.innerHeight - checkOffset ? "light" : "dark";
         setTheme(fallbackTheme);
       }
     };
@@ -62,10 +69,12 @@ export function useNavTheme({
     evaluateTheme();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
   }, [offset, defaultTheme]);

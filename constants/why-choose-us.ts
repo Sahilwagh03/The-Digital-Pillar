@@ -33,21 +33,21 @@ export const WHY_CHOOSE_US_CONTENT: WhyChooseUsContent = {
     "Great marketing is more than visibility—it's about creating lasting business impact. We combine strategy, creativity, and performance to help brands attract the right audience, increase conversions, and scale with confidence.",
   stats: {
     revenue: {
-      value: "50M+",
-      label: "Revenue generated for our clients",
+      value: "98%",
+      label: "Client retention rate across all services",
       years: ["2016", "2018", "2022", "2024", "2026"],
     },
     speed: {
-      value: "3x",
-      label: "Faster than other agencies",
+      value: "12x",
+      label: "Average revenue growth for our clients",
     },
     projects: {
-      value: "200+",
+      value: "250+",
       label: "Projects shipped worldwide, helping our clients achieve their goals",
     },
     ratingCard: {
       rating: "4.8/5",
-      value: "100+",
+      value: "250+",
       label: "Projects delivered with impact",
     },
   },

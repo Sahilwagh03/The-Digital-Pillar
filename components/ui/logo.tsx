@@ -55,7 +55,9 @@ export const Logo: React.FC<LogoProps> = ({
           priority={priority}
           className={cn(
             "h-5 sm:h-8 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
-            theme === "light" ? "brightness-0" : "brightness-100",
+            theme === "light"
+              ? "brightness-0 [filter:brightness(0)]"
+              : "brightness-100 [filter:brightness(1)]",
             imageClassName,
             textClassName
           )}

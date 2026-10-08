@@ -23,6 +23,7 @@ export function Hero() {
           fill
           priority
           quality={95}
+          sizes="100vw"
           className="object-cover object-[center_32%] select-none"
         />
 

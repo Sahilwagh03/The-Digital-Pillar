@@ -49,7 +49,7 @@ export const Button = React.forwardRef<
       secondary:
         "rounded-full bg-neutral-800 text-white hover:bg-neutral-700 font-primary active:scale-95",
       outline:
-        "rounded-full border border-white/20 bg-black/25 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/40 font-primary active:scale-95",
+        "rounded-full border border-white/20 bg-black/25 backdrop-blur-sm text-current hover:bg-white/10 hover:border-white/40 font-primary active:scale-95",
       ghost:
         "rounded-md hover:bg-white/10 text-neutral-300 hover:text-white font-primary",
       link: "text-white underline-offset-4 hover:underline p-0 h-auto font-secondary",

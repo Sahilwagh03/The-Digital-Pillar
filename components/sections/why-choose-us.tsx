@@ -17,7 +17,7 @@ export function WhyChooseUs() {
     <section
       id="why-choose-us"
       data-nav-theme="light"
-      className="relative w-full bg-white text-neutral-900 py-20 sm:py-28 lg:py-32"
+      className="relative w-full bg-white text-neutral-900 pt-20 sm:pt-28 lg:pt-32"
     >
       <Container size="lg">
         {/* Header Section */}
@@ -127,6 +127,7 @@ export function WhyChooseUs() {
               alt="Why Choose Us"
               fill
               quality={95}
+              sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover object-[center_20%] select-none"
             />
 
