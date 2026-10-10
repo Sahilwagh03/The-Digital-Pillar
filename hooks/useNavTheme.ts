@@ -37,10 +37,17 @@ export function useNavTheme({
         : offset;
 
       if (sections.length > 0) {
-        for (const section of sections) {
+        // Evaluate sections in reverse order so topmost overlay in DOM takes precedence
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
           const rect = section.getBoundingClientRect();
-          // Check if section encompasses the active navbar center line
-          if (rect.top <= checkOffset && rect.bottom > checkOffset) {
+          // Check if section encompasses the active navbar vertically and is horizontally visible under the nav
+          if (
+            rect.top <= checkOffset &&
+            rect.bottom > checkOffset &&
+            rect.right > (window.innerWidth < 640 ? 0 : window.innerWidth / 2) &&
+            rect.left < window.innerWidth
+          ) {
             const sectionTheme = section.getAttribute("data-nav-theme");
             if (sectionTheme === "light" || sectionTheme === "dark") {
               setTheme(sectionTheme);
