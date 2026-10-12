@@ -17,11 +17,11 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
     <section
       id="services"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white h-screen overflow-hidden flex items-center"
+      className="relative w-full bg-[#050505] text-white min-h-screen lg:h-screen lg:overflow-hidden flex items-center py-16 sm:py-20 lg:py-0"
     >
-      <Container size="full" className="w-full h-full max-w-[105rem] px-6 sm:px-10 lg:px-14 xl:px-20">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center h-full w-full">
-          <div className="w-full lg:w-[28%] xl:w-[26%] mb-8 lg:mb-0 shrink-0 pt-16 lg:pt-0 pr-6 lg:pr-10 xl:pr-14">
+      <Container size="full" className="w-full h-auto lg:h-full max-w-[105rem] px-6 sm:px-10 lg:px-14 xl:px-20">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center h-auto lg:h-full w-full">
+          <div className="w-full lg:w-[28%] xl:w-[26%] mb-8 lg:mb-0 shrink-0 pt-6 lg:pt-0">
             <div className="max-w-md">
               <span className="block text-xs sm:text-[0.8125rem] font-medium tracking-[0.25em] text-neutral-400 uppercase font-primary mb-4 sm:mb-6">
                 {tag}
@@ -39,11 +39,11 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
 
           <div
             ref={servicesContainerRef}
-            className="w-full lg:w-[72%] xl:w-[74%] relative border-l border-white/[0.08] h-full overflow-hidden"
+            className="w-full lg:w-[72%] xl:w-[74%] relative border-white/8 h-auto lg:h-full lg:overflow-hidden"
           >
             <div
               ref={servicesTrackRef}
-              className="flex flex-col pt-20 pb-20 lg:pt-24 lg:pb-24"
+              className="flex flex-col py-6 lg:pt-20 lg:pb-20 xl:pt-24 xl:pb-24"
             >
               {services.map((service) => (
                 <div
