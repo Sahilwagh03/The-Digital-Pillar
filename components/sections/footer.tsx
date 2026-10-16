@@ -82,6 +82,11 @@ export function Footer() {
                   >
                     {businessEnquiry.phone}
                   </a>
+                  {businessEnquiry.address && (
+                    <p className="text-xs sm:text-sm text-neutral-400 pt-0.5 leading-relaxed">
+                      {businessEnquiry.address}
+                    </p>
+                  )}
                 </div>
               </div>
 

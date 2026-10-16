@@ -9,6 +9,7 @@ export interface FooterContent {
     title: string;
     email: string;
     phone: string;
+    address?: string;
   };
   social: {
     title: string;
@@ -18,24 +19,24 @@ export interface FooterContent {
 }
 
 export const FOOTER_CONTENT: FooterContent = {
-  tagline: "Lets build work that inspires",
+  tagline: "Let's build work that inspires",
   headlineLine1: "Ready to build",
   headlineLine2: "something great?",
   ctaText: "START A COLLABORATION",
   ctaHref: "/contact",
-  handle: "@marvelousmedia.in",
+  handle: "@thedigitalpillar",
   businessEnquiry: {
     title: "BUSINESS ENQUIRY",
-    email: "marvelousmedia@gmail.com",
-    phone: "+91 9876543210",
+    email: "info@thedigitalpillar.com",
+    phone: "+91 93250 63728",
+    address: "320/9B FC Road, Deccan, Pune 411005",
   },
   social: {
     title: "SOCIAL",
     links: [
-      { label: "Linkedin", href: "https://linkedin.com" },
-      { label: "Facebook", href: "https://facebook.com" },
-      { label: "Dribble", href: "https://dribbble.com" },
-      { label: "Instagram", href: "https://instagram.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/thedigitalpillar/" },
+      { label: "Instagram", href: "https://www.instagram.com/thedigitalpillar/" },
+      { label: "Facebook", href: "https://www.facebook.com/thedigitalpillar" },
     ],
   },
   watermark: "THE DIGITAL PILLAR",
