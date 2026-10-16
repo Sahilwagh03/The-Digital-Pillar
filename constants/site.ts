@@ -2,7 +2,7 @@ import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "The Digital Pillar",
-  description: "Crafting digital experiences with precision, high performance, and modern design.",
+  description: "Pune's leading agency for digital marketing, branding, performance marketing, SEO, and web development.",
   url: "https://thedigitalpillar.com",
   navItems: [
     { label: "Home", href: "/" },
@@ -15,19 +15,17 @@ export const siteConfig: SiteConfig = {
     {
       title: "Solutions",
       items: [
-        { label: "Digital Strategy", href: "#" },
-        { label: "Web Development", href: "#" },
-        { label: "Product Design", href: "#" },
-        { label: "Cloud & DevOps", href: "#" },
+        { label: "Branding & Design", href: "#services" },
+        { label: "Influencer Marketing", href: "#services" },
+        { label: "Strategy & Growth", href: "#services" },
+        { label: "Web Development", href: "#services" },
       ],
     },
     {
       title: "Company",
       items: [
-        { label: "About Us", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "Press", href: "#" },
-        { label: "Contact", href: "#" },
+        { label: "About Us", href: "/about" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
     {
@@ -39,8 +37,8 @@ export const siteConfig: SiteConfig = {
     },
   ],
   socials: [
-    { platform: "Twitter/X", href: "https://twitter.com" },
-    { platform: "LinkedIn", href: "https://linkedin.com" },
-    { platform: "GitHub", href: "https://github.com" },
+    { platform: "Instagram", href: "https://www.instagram.com/thedigitalpillar/" },
+    { platform: "LinkedIn", href: "https://www.linkedin.com/company/thedigitalpillar/" },
+    { platform: "Facebook", href: "https://www.facebook.com/thedigitalpillar" },
   ],
 };

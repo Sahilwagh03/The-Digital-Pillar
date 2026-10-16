@@ -32,33 +32,33 @@ export const CLIENT_STORIES_CONTENT: ClientStoriesContent = {
   },
   stories: [
     {
-      id: "stichora",
-      brandName: "STICHORA",
+      id: "review-1",
+      brandName: "AFC ACADEMY",
       quote:
-        "Marvelous Media delivered exceptional video ads. The attention to detail and professionalism exceeded my expectations — exactly what I wanted.",
+        "Efficient, knowledgeable, & smooth experience. Highly recommended.",
       author: {
-        name: "Praful Joshi",
-        role: "D2C brand · Video ads",
+        name: "AFC Academy",
+        role: "Sports Academy · Growth & Digital Presence",
       },
     },
     {
-      id: "brand-2",
-      brandName: "BRAND 2",
+      id: "review-2",
+      brandName: "AISHWARYAM",
       quote:
-        "The creative direction and high-speed iteration completely revitalized our product launches. Outstanding impact and performance across all metrics.",
+        "Great communication and strong results. Would work with them again.",
       author: {
-        name: "Sarah Lin",
-        role: "E-Commerce · Growth Marketing",
+        name: "Aishwaryam",
+        role: "Real Estate · Brand Campaign",
       },
     },
     {
-      id: "brand-3",
-      brandName: "BRAND 3",
+      id: "review-3",
+      brandName: "BOOKAVIBE",
       quote:
-        "Working together felt like an extension of our in-house team. The speed, high fidelity, and consistency across all deliverables was unmatched.",
+        "Professional team with creative execution. Everything was smooth end-to-end.",
       author: {
-        name: "Marcus Vance",
-        role: "Tech Startup · Brand Identity",
+        name: "Bookavibe",
+        role: "Hospitality & Leisure · Performance Marketing",
       },
     },
     {
