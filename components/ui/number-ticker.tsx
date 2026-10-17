@@ -11,6 +11,8 @@ export interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
   direction?: "up" | "down";
   delay?: number;
   decimalPlaces?: number;
+  damping?: number;
+  stiffness?: number;
 }
 
 export function NumberTicker({
@@ -20,15 +22,17 @@ export function NumberTicker({
   delay = 0,
   className,
   decimalPlaces = 0,
+  damping = 60,
+  stiffness = 100,
   ...props
 }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? value : startValue);
   const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
+    damping,
+    stiffness,
   });
-  const isInView = useInView(ref, { once: true, margin: "0px" });
+  const isInView = useInView(ref, { once: false, margin: "0px" });
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null;
@@ -37,6 +41,8 @@ export function NumberTicker({
       timer = setTimeout(() => {
         motionValue.set(direction === "down" ? startValue : value);
       }, delay * 1000);
+    } else {
+      motionValue.set(direction === "down" ? value : startValue);
     }
 
     return () => {

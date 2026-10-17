@@ -3,6 +3,7 @@ import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/sections/footer";
+import { SmoothScroll } from "@/components/common/smooth-scroll";
 
 const familjenGrotesk = Familjen_Grotesk({
   variable: "--font-familjen-grotesk",
@@ -23,12 +24,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${familjenGrotesk.variable} h-full antialiased dark`}
+      className={`${familjenGrotesk.variable} antialiased dark`}
     >
       <body className="min-h-full flex flex-col font-primary bg-[#050505] text-white">
-        <Navbar />
-        {children}
-        <Footer />
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

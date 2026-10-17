@@ -223,7 +223,7 @@ export function SelectedWork() {
           className="relative w-full bg-white text-neutral-900 border-t border-neutral-200/80"
         >
           {/* Header */}
-          <div className="px-6 sm:px-10 pt-16 pb-12 sm:pt-24 sm:pb-16 text-center max-w-xl mx-auto">
+          <div className="px-6 sm:px-10 pt-20 pb-12 sm:pt-28 sm:pb-16 text-center max-w-xl mx-auto">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-950 leading-[1.12] sm:leading-[1.08] font-primary mb-6 sm:mb-8 text-balance">
               {headlineLine1}
               <br />
