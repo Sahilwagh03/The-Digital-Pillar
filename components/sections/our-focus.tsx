@@ -17,7 +17,7 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
     <section
       id="services"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white min-h-screen lg:h-screen lg:overflow-hidden flex items-center py-16 sm:py-20 lg:py-0"
+      className="relative w-full bg-[#050505] text-white min-h-screen lg:h-screen lg:overflow-hidden flex items-center py-20 sm:py-28 lg:py-0"
     >
       <Container size="full" className="w-full h-auto lg:h-full max-w-[105rem] px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex flex-col lg:flex-row items-start lg:items-center h-auto lg:h-full w-full">
