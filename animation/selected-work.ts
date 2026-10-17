@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.clearScrollMemory('manual');
 }
 
 export function useSelectedWorkAnimation() {
@@ -42,7 +43,14 @@ export function useSelectedWorkAnimation() {
         const servicesContainer = servicesContainerRef.current;
         if (!track || !pinnedContainer || !selectedWorkLayer) return;
 
-        const getScrollAmount = () => track.scrollWidth - window.innerWidth;
+        const PANELS_COUNT = 3;
+        const getExpectedScrollAmount = () => (PANELS_COUNT - 1) * window.innerWidth;
+        const getScrollAmount = () => {
+          if (track && track.scrollWidth > window.innerWidth) {
+            return track.scrollWidth - window.innerWidth;
+          }
+          return getExpectedScrollAmount();
+        };
         const getSlideDistance = () => window.innerWidth;
         const getServicesScrollDistance = () => {
           if (!servicesTrack || !servicesContainer) return 0;
@@ -67,7 +75,7 @@ export function useSelectedWorkAnimation() {
           );
         }
 
-        const scrollAmount = Math.max(1, getScrollAmount());
+        const scrollAmount = Math.max(getExpectedScrollAmount(), getScrollAmount());
         const slideDistance = Math.max(1, getSlideDistance());
         const servicesDistance = Math.max(1, getServicesScrollDistance());
 
