@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Container } from '@/components/ui/container';
 import { OUR_FOCUS_CONTENT } from '@/constants/our-focus';
 
@@ -46,8 +47,9 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
               className="flex flex-col py-6 lg:pt-20 lg:pb-20 xl:pt-24 xl:pb-24"
             >
               {services.map((service) => (
-                <div
+                <Link
                   key={service.id}
+                  href={`/services/${service.id}`}
                   className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 lg:py-12 border-b border-white/[0.08] px-4 sm:px-6 lg:px-10 xl:px-14 transition-colors duration-300 hover:bg-white/[0.02]"
                 >
                   <div className="flex items-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
@@ -82,7 +84,7 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                       ))}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
