@@ -18,18 +18,18 @@ export const MENU_EASE = "studioMenuEase";
 
 export const MENU_TIMINGS = {
   open: {
-    panelDuration: 0.65,
-    overlayDuration: 0.8,
-    listDuration: 0.75,
-    dividersDuration: 0.9,
-    indexesDuration: 0.65,
-    linksDuration: 0.85,
-    footerDuration: 0.7,
-    stagger: 0.08,
+    panelDuration: 0.55,
+    overlayDuration: 0.55,
+    listDuration: 0.6,
+    dividersDuration: 0.65,
+    indexesDuration: 0.55,
+    linksDuration: 0.6,
+    footerDuration: 0.5,
+    stagger: 0.05,
   },
   close: {
-    panelDuration: 0.65,
-    overlayDuration: 0.45,
+    panelDuration: 0.5,
+    overlayDuration: 0.4,
   },
 } as const;
 
@@ -100,7 +100,7 @@ export function useMenuAnimation({ isOpen, onClose }: UseMenuAnimationProps) {
       // Subtle upward movement of the items container
       .fromTo(
         listRef.current,
-        { yPercent: 40 },
+        { yPercent: 20 },
         { yPercent: 0, duration: open.listDuration, ease: MENU_EASE },
         "<"
       )
@@ -116,7 +116,20 @@ export function useMenuAnimation({ isOpen, onClose }: UseMenuAnimationProps) {
         },
         "<0.08"
       )
-      // Index numbers slide and fade up
+      // Large typography emerges upwards through overflow mask in sync with panel
+      .fromTo(
+        linksRef.current,
+        { yPercent: 105, autoAlpha: 0 },
+        {
+          yPercent: 0,
+          autoAlpha: 1,
+          duration: open.linksDuration,
+          stagger: open.stagger,
+          ease: MENU_EASE,
+        },
+        "<0.04"
+      )
+      // Index numbers slide and fade up in lockstep with the links
       .fromTo(
         indexesRef.current,
         { yPercent: 100, opacity: 0 },
@@ -127,27 +140,14 @@ export function useMenuAnimation({ isOpen, onClose }: UseMenuAnimationProps) {
           stagger: open.stagger,
           ease: MENU_EASE,
         },
-        "<0.08"
-      )
-      // Large typography emerges upwards through overflow mask
-      .fromTo(
-        linksRef.current,
-        { yPercent: 140, autoAlpha: 0 },
-        {
-          yPercent: 0,
-          autoAlpha: 1,
-          duration: open.linksDuration,
-          stagger: open.stagger,
-          ease: MENU_EASE,
-        },
-        "<0.1"
+        "<"
       )
       // Footer reveals at bottom
       .fromTo(
         footerRef.current,
-        { yPercent: 40, opacity: 0 },
+        { yPercent: 25, opacity: 0 },
         { yPercent: 0, opacity: 1, duration: open.footerDuration, ease: MENU_EASE },
-        "<0.15"
+        "<0.1"
       );
   }, []);
 
