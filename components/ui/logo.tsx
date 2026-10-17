@@ -16,6 +16,7 @@ export interface LogoProps {
   href?: string | null;
   showText?: boolean;
   theme?: NavTheme;
+  onClick?: () => void;
 }
 
 export const Logo: React.FC<LogoProps> = ({
@@ -28,6 +29,7 @@ export const Logo: React.FC<LogoProps> = ({
   href = "/",
   showText = true,
   theme = "dark",
+  onClick,
 }) => {
   const logoContent = (
     <div className="flex items-center gap-2">
@@ -70,6 +72,7 @@ export const Logo: React.FC<LogoProps> = ({
     return (
       <Link
         href={href}
+        onClick={onClick}
         className={cn(
           "inline-flex items-center transition-opacity hover:opacity-90 select-none",
           className
@@ -81,7 +84,10 @@ export const Logo: React.FC<LogoProps> = ({
   }
 
   return (
-    <div className={cn("inline-flex items-center select-none", className)}>
+    <div
+      onClick={onClick}
+      className={cn("inline-flex items-center select-none", className)}
+    >
       {logoContent}
     </div>
   );

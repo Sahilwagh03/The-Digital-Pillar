@@ -31,3 +31,28 @@ export const NAV_THEME_BUTTON_STYLES: Record<
     light: "border-neutral-900/25 bg-transparent text-neutral-950 hover:bg-neutral-900/10 hover:border-neutral-900/40 backdrop-blur-none",
   },
 } as const;
+
+export interface MenuItem {
+  index: string;
+  label: string;
+  href: string;
+}
+
+export const MENU_ITEMS: readonly MenuItem[] = [
+  {
+    index: "01",
+    label: "ABOUT",
+    href: "#about",
+  },
+  {
+    index: "02",
+    label: "CONTACT",
+    href: "#contact",
+  },
+  {
+    index: "03",
+    label: "SERVICES",
+    href: "#selected-services",
+  },
+] as const;
+
