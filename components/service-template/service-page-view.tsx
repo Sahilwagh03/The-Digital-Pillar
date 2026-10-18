@@ -54,8 +54,8 @@ export function ServicePageView({ data }: ServicePageViewProps) {
       <ServiceHero hero={data.hero} />
       <ServiceMarquee marquee={data.marquee} />
       <ServiceFeaturedWork featuredWork={data.featuredWork} />
-      <ServiceValueProposition valueProposition={data.valueProposition} />
       <ServiceFramework framework={data.framework} />
+      <ServiceValueProposition valueProposition={data.valueProposition} />
       <ServiceFaq faq={data.faq} />
     </main>
   );
