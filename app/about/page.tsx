@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AboutHero, AboutStats, OurValues } from "@/components/about";
+import { AboutHero, AboutStats, AboutTeam, OurValues } from "@/components/about";
 import { ServiceFramework } from "@/components/service-template/service-framework";
 import { ABOUT_FRAMEWORK_DATA } from "@/constants/about";
 
@@ -26,14 +26,16 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <AboutHero />
+      <OurValues />
       <ServiceFramework
         id="what-you-can-expect"
         framework={ABOUT_FRAMEWORK_DATA}
         ctaText="EXPLORE OUR SERVICES"
         ctaHref="/services"
       />
-      <OurValues />
+      <AboutTeam />
       <AboutStats />
     </main>
   );
 }
+

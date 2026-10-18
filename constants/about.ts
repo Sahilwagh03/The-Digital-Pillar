@@ -305,3 +305,68 @@ export const ABOUT_CTA_CONTENT = {
   },
 };
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  imageSrc: string;
+  imageAlt: string;
+  size?: "portrait" | "wide";
+}
+
+export interface AboutTeamData {
+  tag: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  members: TeamMember[];
+}
+
+export const ABOUT_TEAM_DATA: AboutTeamData = {
+  tag: "FAQ",
+  headlineLine1: "The Peoples behind",
+  headlineLine2: "your brands success",
+  members: [
+    {
+      id: "mehul-garud-1",
+      name: "Mehul Garud",
+      role: "Founder & CEO",
+      imageSrc: "/images/about/team-1.jpg",
+      imageAlt: "Mehul Garud - Founder & CEO",
+      size: "portrait",
+    },
+    {
+      id: "mehul-garud-2",
+      name: "Mehul Garud",
+      role: "Founder & CEO",
+      imageSrc: "/images/about/team-2.jpg",
+      imageAlt: "Mehul Garud - Founder & CEO",
+      size: "portrait",
+    },
+    {
+      id: "mehul-garud-3",
+      name: "Mehul Garud",
+      role: "Founder & CEO",
+      imageSrc: "/images/about/team-3.jpg",
+      imageAlt: "Mehul Garud - Founder & CEO",
+      size: "portrait",
+    },
+    {
+      id: "team-collab",
+      name: "Mehul Garud",
+      role: "Founder & CEO",
+      imageSrc: "/images/about/team-4-wide.jpg",
+      imageAlt: "The Digital Pillar Team - Strategy & Creative Session",
+      size: "wide",
+    },
+    {
+      id: "leadership-team",
+      name: "Mehul Garud",
+      role: "Founder & CEO",
+      imageSrc: "/images/about/team-5-wide.jpg",
+      imageAlt: "The Digital Pillar Studio Workspace & Collective",
+      size: "wide",
+    },
+  ],
+};
+
+
