@@ -158,20 +158,17 @@ export function useServiceFrameworkAnimation() {
         tl.to({}, { duration: 0.2 });
 
         // ---------------------------------------------------------------------
-        // PHASE 3: Step 03 -> Step 04 via Junction 3
+        // PHASE 3: Step 03 -> Step 04 via Junction 3 (Only if 4th step exists)
         // ---------------------------------------------------------------------
-        if (j3) {
+        const card4 = cardRefs.current[3];
+        const badge4 = cardBadgeRefs.current[3];
+        if (j3 && card4 && badge4) {
           tl.to(j3, {
             yPercent: 0,
             ease: "none",
             duration: 1.2,
           });
-        }
 
-        // Activate Card 04 as Junction 3 completes
-        const card4 = cardRefs.current[3];
-        const badge4 = cardBadgeRefs.current[3];
-        if (card4 && badge4) {
           tl.to(
             card4,
             {

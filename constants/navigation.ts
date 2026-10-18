@@ -42,17 +42,17 @@ export const MENU_ITEMS: readonly MenuItem[] = [
   {
     index: "01",
     label: "ABOUT",
-    href: "#about",
+    href: "/about",
   },
   {
     index: "02",
     label: "CONTACT",
-    href: "#contact",
+    href: "/contact",
   },
   {
     index: "03",
     label: "SERVICES",
-    href: "#selected-services",
+    href: "/services/personal-branding",
   },
 ] as const;
 
