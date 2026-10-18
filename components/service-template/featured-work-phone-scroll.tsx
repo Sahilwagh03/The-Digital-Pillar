@@ -295,24 +295,12 @@ export function FeaturedWorkPhoneScroll({
                             key={dIdx}
                             className="flex items-center gap-2 text-xs font-mono text-neutral-300 uppercase tracking-wider"
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#d95c27]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                             <span>{deliv}</span>
                           </div>
                         ))}
                       </div>
                     )}
-
-                    <div>
-                      <Link
-                        href={item.href || "/work"}
-                        className="group inline-flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-[0.2em] text-white uppercase font-primary"
-                      >
-                        <span className="border-b border-white/40 pb-1 group-hover:border-white transition-colors">
-                          Explore Case Study
-                        </span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Link>
-                    </div>
                   </div>
                 ))}
               </div>
@@ -374,16 +362,6 @@ export function FeaturedWorkPhoneScroll({
                         ))}
                       </div>
                     )}
-
-                    <Link
-                      href={items[activeStep].href || "/work"}
-                      className="group inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-white uppercase font-primary"
-                    >
-                      <span className="border-b border-white/40 pb-0.5">
-                        Explore Case Study
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </Link>
                   </div>
                 )}
               </div>
