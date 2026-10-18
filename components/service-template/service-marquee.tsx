@@ -33,7 +33,6 @@ export function ServiceMarquee({ marquee }: ServiceMarqueeProps) {
           </div>
         ))}
 
-        {/* Duplicate set for seamless infinite loop */}
         {items.map((_, i) => (
           <div
             key={`dup-${i}`}

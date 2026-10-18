@@ -4,6 +4,20 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     qualities: [75, 95],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+    ],
   },
   experimental: {
     agentFeedback: true,

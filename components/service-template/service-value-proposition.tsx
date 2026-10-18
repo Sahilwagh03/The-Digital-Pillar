@@ -20,18 +20,14 @@ export function ServiceValueProposition({
       className="relative w-full bg-[#050505] text-white pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 overflow-hidden"
     >
       <Container size="lg">
-        {/* Main Headline */}
         <div className="max-w-4xl mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] lg:text-[3.25rem] font-medium sm:font-semibold text-white tracking-tight leading-[1.18] font-primary">
             {headline}
           </h2>
         </div>
 
-        {/* 3 Value Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-6 lg:gap-8">
-          {/* Card 1: Ambient Warm Glow */}
           <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-gradient-to-br from-[#c85a28]/35 via-[#23120b] to-[#0c0806] shadow-xl transition-all duration-500 hover:border-white/20">
-            {/* Radial ambient glow */}
             <div
               className="absolute -top-12 -left-12 w-64 h-64 bg-[#e86f34]/40 blur-3xl rounded-full pointer-events-none transition-transform duration-700 ease-out group-hover:scale-125"
               aria-hidden="true"
@@ -41,7 +37,6 @@ export function ServiceValueProposition({
               aria-hidden="true"
             />
 
-            {/* Bottom Content */}
             <div className="relative z-10">
               <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-white font-primary leading-snug">
                 {card1.title}
@@ -54,9 +49,7 @@ export function ServiceValueProposition({
             </div>
           </div>
 
-          {/* Card 2: 3D Translucent Sculpted Glass */}
           <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-neutral-950 shadow-xl transition-all duration-500 hover:border-white/20">
-            {/* Image Artwork */}
             <Image
               src={card2.imageSrc}
               alt={card2.imageAlt}
@@ -65,13 +58,11 @@ export function ServiceValueProposition({
               className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
 
-            {/* Dark gradient to ensure text readability */}
             <div
               className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none"
               aria-hidden="true"
             />
 
-            {/* Bottom Content */}
             <div className="relative z-10">
               <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-white font-primary leading-snug">
                 {card2.title}
@@ -84,9 +75,7 @@ export function ServiceValueProposition({
             </div>
           </div>
 
-          {/* Card 3: Metrics & Avatars Stack */}
           <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden border border-white/10 bg-[#0e0e0e] shadow-xl transition-all duration-500 hover:border-white/20">
-            {/* Top Metric */}
             <div className="flex items-baseline gap-2.5">
               <span className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white font-primary">
                 {card3.metric}
@@ -96,19 +85,16 @@ export function ServiceValueProposition({
               </span>
             </div>
 
-            {/* Subtle card center texture / background glow */}
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/[0.02] rounded-full blur-2xl pointer-events-none"
               aria-hidden="true"
             />
 
-            {/* Bottom Label and Stacked Avatars */}
             <div className="relative z-10 flex items-center justify-between gap-4 pt-4 border-t border-white/[0.08]">
               <span className="text-sm sm:text-base font-medium tracking-tight text-neutral-200 font-primary">
                 {card3.title}
               </span>
 
-              {/* Overlapping Avatars */}
               <div className="flex items-center -space-x-3 shrink-0">
                 {card3.avatars.map((avatarSrc, idx) => (
                   <div

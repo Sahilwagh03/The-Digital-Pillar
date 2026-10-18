@@ -17,7 +17,6 @@ interface ServicePageViewProps {
 export function ServicePageView({ data }: ServicePageViewProps) {
   const lenis = useLenis();
 
-  // Guarantee that whenever a service page mounts or slug changes, scroll starts at top (0, 0)
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
@@ -52,22 +51,11 @@ export function ServicePageView({ data }: ServicePageViewProps) {
 
   return (
     <main className="min-h-screen flex flex-col bg-[#050505]">
-      {/* 1. Hero Section */}
       <ServiceHero hero={data.hero} />
-
-      {/* 2. Marquee Ticker */}
       <ServiceMarquee marquee={data.marquee} />
-
-      {/* 3. Value Proposition / Partner Highlights */}
-      <ServiceValueProposition valueProposition={data.valueProposition} />
-
-      {/* 4. Process / Framework */}
-      <ServiceFramework framework={data.framework} />
-
-      {/* 5. Featured Work Bento Grid */}
       <ServiceFeaturedWork featuredWork={data.featuredWork} />
-
-      {/* 6. FAQ Section (Light theme) */}
+      <ServiceValueProposition valueProposition={data.valueProposition} />
+      <ServiceFramework framework={data.framework} />
       <ServiceFaq faq={data.faq} />
     </main>
   );

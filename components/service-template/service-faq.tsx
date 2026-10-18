@@ -22,7 +22,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
     items,
   } = faq;
 
-  // First item open by default
   const [openId, setOpenId] = useState<string | null>(items[0]?.id || null);
 
   const toggleItem = (id: string) => {
@@ -37,7 +36,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
     >
       <Container size="lg">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-12 xl:gap-16 items-start">
-          {/* Left Column: Heading & Description */}
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-start">
             <span className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.05em] text-neutral-500 uppercase mb-4 sm:mb-6">
               {tag}
@@ -53,7 +51,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
             </p>
           </div>
 
-          {/* Right Column: Accordion List & Bottom CTA */}
           <div className="lg:col-span-8 xl:col-span-8 flex flex-col">
             <div className="w-full">
               {items.map((item) => {
@@ -63,7 +60,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                     key={item.id}
                     className="flex items-stretch border-b border-neutral-200/90 last:border-b-0 transition-colors"
                   >
-                    {/* Number Column */}
                     <div className="w-12 sm:w-16 lg:w-20 shrink-0 pt-5 sm:pt-6 lg:pt-7 pb-5 sm:pb-6 lg:pb-7 pr-3 sm:pr-5 lg:pr-6 border-r border-neutral-200/90 flex items-start">
                       <span
                         className={`text-sm sm:text-base lg:text-lg transition-colors duration-300 select-none ${
@@ -76,7 +72,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                       </span>
                     </div>
 
-                    {/* Content Column */}
                     <div className="flex-1 pl-5 sm:pl-7 lg:pl-10 pt-5 sm:pt-6 lg:pt-7 pb-5 sm:pb-6 lg:pb-7 pr-1 sm:pr-2">
                       <button
                         id={`faq-trigger-${item.id}`}
@@ -96,7 +91,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                           {item.question}
                         </span>
 
-                        {/* Animated Plus-to-Minus Icon */}
                         <span
                           className="relative w-4 h-4 mt-2 sm:mt-2.5 flex items-center justify-center shrink-0 text-neutral-900"
                           aria-hidden="true"
@@ -112,7 +106,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                         </span>
                       </button>
 
-                      {/* Smooth Collapsible Answer Container */}
                       <AnimatePresence initial={false}>
                         {isOpen && (
                           <motion.div
@@ -150,7 +143,6 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
               })}
             </div>
 
-            {/* Bottom Right CTA Link */}
             <div className="flex justify-end pt-8 sm:pt-12 lg:pt-14">
               <Link
                 href={ctaHref}

@@ -13,7 +13,7 @@ interface ServiceFrameworkProps {
 
 export function ServiceFramework({ framework }: ServiceFrameworkProps) {
   const { tag, headline, description, steps } = framework;
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [, setHoveredIndex] = useState<number | null>(null);
 
   const {
     containerRef,
@@ -25,12 +25,10 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
     registerMobileLine,
   } = useServiceFrameworkAnimation();
 
-  // Fallback default description if none provided
   const descText =
     description ||
     "Our systematic four-phase methodology engineers category authority from initial insight to omnipresent market execution. Together with our clients, we build enduring competitive advantage and achieve compounding online growth.";
 
-  // Split headline into lines if possible
   const headlineWords = headline.split(" ");
   const midIndex = Math.ceil(headlineWords.length / 2);
   const headlineLine1 = headlineWords.slice(0, midIndex).join(" ");
@@ -44,29 +42,22 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
     >
       <Container size="lg">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* ========================================================================= */}
-          {/* LEFT COLUMN: Eyebrow, Display Headline, Description, & CTA Link */}
-          {/* ========================================================================= */}
           <div className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-32 lg:pt-4">
             <div>
-              {/* Eyebrow Tag */}
               <span className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.2em] text-neutral-500 uppercase font-primary mb-4 sm:mb-6">
                 {tag || "OUR PROCESS"}
               </span>
 
-              {/* Large Display Headline */}
               <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-neutral-950 tracking-tight leading-[1.04] font-primary mb-6 sm:mb-8 text-balance">
                 <span className="block">{headlineLine1}</span>
                 <span className="block">{headlineLine2}</span>
               </h2>
 
-              {/* Body Description */}
               <p className="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed max-w-md font-primary mb-8 sm:mb-10">
                 {descText}
               </p>
             </div>
 
-            {/* CTA Link matching the screenshot */}
             <div>
               <Link
                 href="/contact"
@@ -78,34 +69,18 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
             </div>
           </div>
 
-          {/* ========================================================================= */}
-          {/* RIGHT COLUMN: Seamless Black Interlocking Cards with Scroll Fill          */}
-          {/* ========================================================================= */}
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
-            {/* Desktop / Tablet Staggered Layout */}
             <div
               ref={containerRef}
               className="hidden sm:block w-full max-w-[620px] relative"
             >
-              {/* Outer boundary wrapper */}
               <div className="relative w-full bg-[#f6f6f6] overflow-hidden">
-                {/* ------------------------------------------------------------- */}
-                {/* JUNCTION ANIMATION LAYER (z-10): Underneath the cutout masks  */}
-                {/* ------------------------------------------------------------- */}
                 <div className="absolute inset-0 pointer-events-none z-10">
-                  {/* 
-                    JUNCTION 1: Row 1 to Row 2
-                    Position: Center (50%, 25%)
-                    Direction: Top-Right (Step 01) -> Bottom-Left (Step 02)
-                  */}
                   <div
                     className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                     style={{ left: "50%", top: "25%" }}
                   >
-                    {/* Subtle empty track preview */}
                     <div className="absolute inset-0 bg-neutral-200/50" />
-
-                    {/* 45deg container: local Y axis points Top-Right -> Bottom-Left */}
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(45deg)" }}
@@ -114,25 +89,16 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                         ref={junction1FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        {/* Solid black fluid body */}
                         <div className="w-full h-full bg-[#0a0a0a]" />
                       </div>
                     </div>
                   </div>
 
-                  {/* 
-                    JUNCTION 2: Row 2 to Row 3
-                    Position: Center (50%, 50%)
-                    Direction: Top-Left (Step 02) -> Bottom-Right (Step 03)
-                  */}
                   <div
                     className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                     style={{ left: "50%", top: "50%" }}
                   >
-                    {/* Subtle empty track preview */}
                     <div className="absolute inset-0 bg-neutral-200/50" />
-
-                    {/* -45deg container: local Y axis points Top-Left -> Bottom-Right */}
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(-45deg)" }}
@@ -141,25 +107,16 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                         ref={junction2FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        {/* Solid black fluid body */}
                         <div className="w-full h-full bg-[#0a0a0a]" />
                       </div>
                     </div>
                   </div>
 
-                  {/* 
-                    JUNCTION 3: Row 3 to Row 4
-                    Position: Center (50%, 75%)
-                    Direction: Top-Right (Step 03) -> Bottom-Left (Step 04)
-                  */}
                   <div
                     className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                     style={{ left: "50%", top: "75%" }}
                   >
-                    {/* Subtle empty track preview */}
                     <div className="absolute inset-0 bg-neutral-200/50" />
-
-                    {/* 45deg container: local Y axis points Top-Right -> Bottom-Left */}
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(45deg)" }}
@@ -168,26 +125,17 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                         ref={junction3FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        {/* Solid black fluid body */}
                         <div className="w-full h-full bg-[#0a0a0a]" />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* ------------------------------------------------------------- */}
-                {/* FOREGROUND CARDS & CUTOUT FILLET MASKS (z-20)                 */}
-                {/* ------------------------------------------------------------- */}
                 <div className="grid grid-cols-2 gap-0 relative z-20">
-                  {/* ----------------------------------------------------------- */}
-                  {/* ROW 1: [Col 1: Empty Space] | [Col 2: Step 01 (Black Card)] */}
-                  {/* ----------------------------------------------------------- */}
-                  {/* Col 1, Row 1: White background block with rounded-br to carve black fillet */}
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                   </div>
 
-                  {/* Step 01 Card */}
                   {steps[0] && (
                     <div
                       ref={registerCard(0)}
@@ -214,10 +162,6 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                     </div>
                   )}
 
-                  {/* ----------------------------------------------------------- */}
-                  {/* ROW 2: [Col 1: Step 02 (Black Card)] | [Col 2: Empty Space] */}
-                  {/* ----------------------------------------------------------- */}
-                  {/* Step 02 Card */}
                   {steps[1] && (
                     <div
                       ref={registerCard(1)}
@@ -244,20 +188,14 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                     </div>
                   )}
 
-                  {/* Col 2, Row 2: White block with rounded-tl and rounded-bl carving both fillets */}
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-tl-[32px] rounded-bl-[32px] -mr-2 w-[calc(100%+10px)] h-full" />
                   </div>
 
-                  {/* ----------------------------------------------------------- */}
-                  {/* ROW 3: [Col 1: Empty Space] | [Col 2: Step 03 (Black Card)] */}
-                  {/* ----------------------------------------------------------- */}
-                  {/* Col 1, Row 3: White block with rounded-tr and rounded-br carving fillets */}
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-tr-[32px] rounded-br-[32px] -ml-2 w-[calc(100%+10px)] h-full" />
                   </div>
 
-                  {/* Step 03 Card */}
                   {steps[2] && (
                     <div
                       ref={registerCard(2)}
@@ -284,12 +222,8 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                     </div>
                   )}
 
-                  {/* ----------------------------------------------------------- */}
-                  {/* ROW 4: [Col 1: Step 04 (Black Card)] | [Col 2: Empty Space] */}
-                  {/* ----------------------------------------------------------- */}
                   {steps[3] && (
                     <>
-                      {/* Step 04 Card */}
                       <div
                         ref={registerCard(3)}
                         onMouseEnter={() => setHoveredIndex(3)}
@@ -314,7 +248,6 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                         </div>
                       </div>
 
-                      {/* Col 2, Row 4: White block with rounded-tl carving fillet */}
                       <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                         <div className="absolute inset-0 bg-[#f6f6f6] rounded-tl-[32px] -mr-2 -mb-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                       </div>
@@ -324,7 +257,6 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
               </div>
             </div>
 
-            {/* Mobile Stacked Cards Layout (< 640px) */}
             <div className="block sm:hidden w-full space-y-3">
               {steps.map((step, idx) => (
                 <div key={step.number} className="relative">
@@ -344,7 +276,6 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                     </div>
                   </div>
 
-                  {/* Connecting pipeline line to the next card on mobile */}
                   {idx < steps.length - 1 && (
                     <div className="flex justify-center my-2">
                       <div className="w-0.5 h-6 bg-neutral-300/60 overflow-hidden relative">
@@ -366,4 +297,3 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
 }
 
 export default ServiceFramework;
-

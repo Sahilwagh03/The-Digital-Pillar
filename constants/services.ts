@@ -1,3 +1,15 @@
+export type ServiceHeroMediaType = "image" | "video";
+
+export interface ServiceHeroMediaItem {
+  id?: string;
+  type?: ServiceHeroMediaType;
+  src: string;
+  alt?: string;
+  poster?: string;
+  width?: number;
+  height?: number;
+}
+
 export interface ServiceHeroData {
   titleLine1: string;
   titleLine2: string;
@@ -5,7 +17,30 @@ export interface ServiceHeroData {
   bannerImage: string;
   bannerAlt: string;
   tag?: string;
+  media?: ServiceHeroMediaItem[];
 }
+
+export const DEFAULT_SERVICE_HERO_MEDIA: ServiceHeroMediaItem[] = [
+  {
+    id: "hero-media-left",
+    type: "image",
+    src: "https://i.pinimg.com/1200x/6e/c7/e9/6ec7e93aada2d813a7e8dcfc4a0d3679.jpg",
+    alt: "Services Hero Editorial Portrait",
+  },
+  {
+    id: "hero-media-middle",
+    type: "video",
+    src: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+    poster: "https://i.pinimg.com/736x/2e/16/f6/2e16f648bce37594a027137d4aaa2ea2.jpg",
+    alt: "Services Hero Motion Reel",
+  },
+  {
+    id: "hero-media-right",
+    type: "image",
+    src: "https://i.pinimg.com/736x/ea/51/50/ea5150e1203e05d38def50bdce6b56f1.jpg",
+    alt: "Services Hero Brand Sculpture",
+  },
+];
 
 export interface ServiceMarqueeData {
   text: string;
@@ -48,17 +83,28 @@ export interface ServiceFrameworkData {
   steps: ServiceFrameworkStep[];
 }
 
+export type ServiceFeaturedWorkLayout = "bento" | "phone-scroll" | "cards-inline";
+
 export interface ServiceFeaturedWorkItem {
   id: string;
   title: string;
   category: string;
   imageSrc: string;
   imageAlt: string;
+  videoSrc?: string;
+  poster?: string;
   href?: string;
+  description?: string;
+  metric?: string;
+  metricLabel?: string;
+  client?: string;
+  deliverables?: string[];
   span?: "full" | "half" | "portrait";
 }
 
 export interface ServiceFeaturedWorkData {
+  layout?: ServiceFeaturedWorkLayout;
+  tag?: string;
   headline: string;
   subtitle: string;
   items: ServiceFeaturedWorkItem[];
@@ -109,6 +155,7 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
         "We craft magnetic personal brands that elevate industry leaders, founders, and executives into trusted category authorities.",
       bannerImage: "/images/service-template/hero-discs.jpg",
       bannerAlt: "Floating 3D glass discs and optics representing personal brand clarity",
+      media: DEFAULT_SERVICE_HERO_MEDIA,
     },
     marquee: {
       text: "PERSONAL BRANDING",
@@ -174,45 +221,67 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "cards-inline",
+      tag: "FEATURED PROFILES",
       headline: "Our featured work",
       subtitle:
-        "Explore how we've helped our clients transform their digital presence and command authority.",
+        "Explore how we've helped founders, executives, and leaders transform their personal presence and command authority.",
       items: [
         {
-          id: "stichora-stone",
-          title: "Stichora Monogram & Architectural Identity",
-          category: "Visual Identity / Craftsmanship",
-          imageSrc: "/stichora-stone.jpg",
-          imageAlt: "Engraved stone brandmark for Stichora",
-          href: "/work/stichora",
-          span: "full",
-        },
-        {
-          id: "stichora-mark",
-          title: "Heritage Emblem System",
-          category: "Brand Assets / Guidelines",
-          imageSrc: "/stichora.jpg",
-          imageAlt: "Stichora orange logo identity on dark background",
-          href: "/work/stichora",
-          span: "half",
-        },
-        {
-          id: "stichora-dark",
-          title: "Cinematic Executive Persona",
-          category: "Creative Direction / Photography",
+          id: "exec-stichora",
+          title: "Architecting an Executive Media Presence",
+          client: "Elena Vance • Founder, Stichora",
+          category: "Executive Authority",
+          metric: "+480K Audience",
+          metricLabel: "Executive Reach",
           imageSrc: "/stichora-dark.jpg",
-          imageAlt: "Atmospheric silhouette portrait with warm glow",
+          imageAlt: "Atmospheric silhouette portrait of Elena Vance",
+          videoSrc: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+          poster: "/stichora-dark.jpg",
           href: "/work/stichora",
-          span: "portrait",
+          description: "Engineered a commanding personal narrative that positioned the founder as the premier voice in luxury heritage fashion.",
+          deliverables: ["Keynote Narrative", "LinkedIn Engine", "Op-Ed Columns"],
         },
         {
-          id: "stichora-app",
-          title: "Private Client Digital Wardrobe",
-          category: "Digital Product / App UI",
-          imageSrc: "/stichora-app.jpg",
-          imageAlt: "3D app interface tiles for bespoke client portal",
+          id: "exec-venture",
+          title: "Venture Partner Thought Leadership & Deal Flow",
+          client: "Marcus Thorne • General Partner",
+          category: "Venture Capital",
+          metric: "$45M Deal Flow",
+          metricLabel: "Pipeline Impact",
+          imageSrc: "https://i.pinimg.com/1200x/6e/c7/e9/6ec7e93aada2d813a7e8dcfc4a0d3679.jpg",
+          imageAlt: "Portrait of venture capital founder",
           href: "/work/stichora",
-          span: "full",
+          description: "Built a magnetic editorial engine delivering proprietary investment theses to over 100K high-net-worth investors.",
+          deliverables: ["Substack Architecture", "Keynote Positioning", "Deal Flow Strategy"],
+        },
+        {
+          id: "exec-tech",
+          title: "Category Kingmaker: AI Founder Spotlight",
+          client: "Dr. Sarah Chen • AI Research Lead",
+          category: "DeepTech & AI",
+          metric: "Forbes 30U30",
+          metricLabel: "Global Recognition",
+          imageSrc: "https://i.pinimg.com/736x/2e/16/f6/2e16f648bce37594a027137d4aaa2ea2.jpg",
+          imageAlt: "Portrait of tech visionary",
+          videoSrc: "https://videos.pexels.com/video-files/4434246/4434246-sd_360_640_30fps.mp4",
+          poster: "https://i.pinimg.com/736x/2e/16/f6/2e16f648bce37594a027137d4aaa2ea2.jpg",
+          href: "/work/stichora",
+          description: "Crafted an untouchable technical narrative establishing category leadership ahead of a successful $30M Series B.",
+          deliverables: ["PR Placement", "Podcast Tour", "Institutional Media"],
+        },
+        {
+          id: "exec-lifestyle",
+          title: "Monetizing High-End Influence & Brand Ecosystem",
+          client: "Julian Moreau • Creative Director",
+          category: "Creative Leadership",
+          metric: "+320% Revenue",
+          metricLabel: "Direct Commercial Lift",
+          imageSrc: "https://i.pinimg.com/736x/ea/51/50/ea5150e1203e05d38def50bdce6b56f1.jpg",
+          imageAlt: "Portrait of creative director",
+          href: "/work/stichora",
+          description: "Transitioned an industry creative into an omnichannel media property with direct-to-consumer advisory partnerships.",
+          deliverables: ["Brand Identity", "Creator Monetization", "Digital Platform"],
         },
       ],
     },
@@ -343,6 +412,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "bento",
+      tag: "BRAND IDENTITY",
       headline: "Our featured work",
       subtitle:
         "A selection of brand transformations engineered for market longevity.",
@@ -681,6 +752,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "bento",
+      tag: "DIGITAL FLAGSHIPS",
       headline: "Our featured work",
       subtitle:
         "Digital flagship platforms built for visionary businesses across the globe.",
@@ -850,45 +923,56 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "phone-scroll",
+      tag: "PERFORMANCE REELS",
       headline: "Our featured work",
       subtitle:
-        "High-performance UGC assets engineered for TikTok, Reels, and Meta Ads.",
+        "High-performance UGC assets engineered for TikTok, Reels, and Meta Ads that stop the scroll and drive conversions.",
       items: [
         {
-          id: "stichora-stone",
-          title: "Bespoke Garment Unboxing & Story",
-          category: "UGC Video / Narrative",
-          imageSrc: "/stichora-stone.jpg",
-          imageAlt: "Engraved stone brandmark for Stichora",
+          id: "ugc-unboxing",
+          title: "Viral Unboxing & First-Impression Hook",
+          client: "Aura Skincare",
+          category: "Direct-Response UGC",
+          metric: "4.8M Views",
+          metricLabel: "TikTok Organic",
+          imageSrc: "/images/service-template/reels/reel-1.jpg",
+          imageAlt: "Aura Skincare unboxing reel",
+          videoSrc: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+          poster: "/images/service-template/reels/reel-1.jpg",
           href: "/work/stichora",
-          span: "full",
+          description: "Scripted a 3-second pattern interrupt hook that reversed standard unboxing drop-off, increasing average watch time by 280% across Meta Spark Ads.",
+          deliverables: ["Script Direction", "Creator Sourcing", "Fast-Paced Sound Design", "Paid Spark Ad Whitelisting"],
         },
         {
-          id: "stichora-mark",
-          title: "Customer Transformation Reels",
-          category: "Social Proof",
-          imageSrc: "/stichora.jpg",
-          imageAlt: "Stichora orange logo identity on dark background",
+          id: "ugc-transformation",
+          title: "Problem-Agitation Transformation Story",
+          client: "Solace Wellness",
+          category: "Problem-Solution Reel",
+          metric: "+340% ROAS",
+          metricLabel: "Meta Conversion Lift",
+          imageSrc: "/images/service-template/reels/reel-2.jpg",
+          imageAlt: "Solace Wellness transformation reel",
+          videoSrc: "https://videos.pexels.com/video-files/4434246/4434246-sd_360_640_30fps.mp4",
+          poster: "/images/service-template/reels/reel-2.jpg",
           href: "/work/stichora",
-          span: "half",
+          description: "Developed an unfiltered before-and-after storytelling format with dynamic captions and emotional creator testimonial, cutting customer acquisition cost in half.",
+          deliverables: ["Creator Angle Testing", "Hook Iterations (5x)", "Native Motion Graphics", "CPA Optimization"],
         },
         {
-          id: "stichora-dark",
-          title: "Behind-the-Scenes Atelier POV",
-          category: "Creator Spotlight",
-          imageSrc: "/stichora-dark.jpg",
-          imageAlt: "Atmospheric silhouette portrait with warm glow",
+          id: "ugc-lifestyle",
+          title: "Aesthetic POV & Daily Routine Integration",
+          client: "Verve Apparel",
+          category: "Lifestyle Social Proof",
+          metric: "18.2% CTR",
+          metricLabel: "Click-Through Rate",
+          imageSrc: "/images/service-template/reels/reel-3.jpg",
+          imageAlt: "Verve Apparel lifestyle reel",
+          videoSrc: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+          poster: "/images/service-template/reels/reel-3.jpg",
           href: "/work/stichora",
-          span: "portrait",
-        },
-        {
-          id: "stichora-app",
-          title: "Product Demo & Social Feature",
-          category: "Native Ad Creative",
-          imageSrc: "/stichora-app.jpg",
-          imageAlt: "3D app interface tiles for bespoke client portal",
-          href: "/work/stichora",
-          span: "full",
+          description: "Seamlessly integrated product into organic 'get ready with me' (GRWM) pacing, transforming authentic creator routines into high-performing commercial assets.",
+          deliverables: ["Micro-Influencer Casting", "Audio Trend Matching", "Native Reels Typography", "Conversion Retargeting"],
         },
       ],
     },
@@ -1188,6 +1272,8 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "bento",
+      tag: "EDITORIAL ARCHITECTURE",
       headline: "Our featured work",
       subtitle:
         "Narratives and editorial frameworks built for high-growth modern organizations.",
@@ -1357,45 +1443,56 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
     featuredWork: {
+      layout: "phone-scroll",
+      tag: "STUDIO REELS",
       headline: "Our featured work",
       subtitle:
-        "Cinematic brand films and high-tempo creator videos from our production studio.",
+        "Cinematic brand films and high-tempo creator videos from our production studio built for maximum engagement.",
       items: [
         {
-          id: "stichora-stone",
-          title: "Stichora Atelier Heritage Documentary",
-          category: "Brand Film / 4K",
-          imageSrc: "/stichora-stone.jpg",
-          imageAlt: "Engraved stone brandmark for Stichora",
-          href: "/work/stichora",
-          span: "full",
-        },
-        {
-          id: "stichora-mark",
+          id: "creator-brand-film",
           title: "High-Energy Product Reel Suite",
+          client: "Stichora Atelier",
           category: "Motion & Reels",
-          imageSrc: "/stichora.jpg",
+          metric: "2.4M Views",
+          metricLabel: "Reels Reach",
+          imageSrc: "/images/service-template/reels/reel-4.jpg",
           imageAlt: "Stichora orange logo identity on dark background",
+          videoSrc: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+          poster: "/images/service-template/reels/reel-4.jpg",
           href: "/work/stichora",
-          span: "half",
+          description: "Engineered high-tempo macro cuts with kinetic typography and customized spatial sound design that dominated feed attention.",
+          deliverables: ["Kinetic Motion", "4K Color Grade", "Spatial Audio Mastering", "Reels Pacing"],
         },
         {
-          id: "stichora-dark",
+          id: "creator-masterclass",
           title: "Moody Cinematic Masterclass Teaser",
+          client: "Apex Executive",
           category: "Lighting & Sound",
-          imageSrc: "/stichora-dark.jpg",
+          metric: "94% Retention",
+          metricLabel: "Watch Time Benchmark",
+          imageSrc: "/images/service-template/reels/reel-5.jpg",
           imageAlt: "Atmospheric silhouette portrait with warm glow",
+          videoSrc: "https://videos.pexels.com/video-files/4434246/4434246-sd_360_640_30fps.mp4",
+          poster: "/images/service-template/reels/reel-5.jpg",
           href: "/work/stichora",
-          span: "portrait",
+          description: "Utilized chiaroscuro film lighting and anamorphic lens emulation to capture a luxury aesthetic that commands visceral respect.",
+          deliverables: ["Cinema Camera Package", "Custom Soundscape", "Hook Engineering", "Multi-Format Cuts"],
         },
         {
-          id: "stichora-app",
+          id: "creator-3d",
           title: "3D Product Animation Teaser",
+          client: "Lumina Labs",
           category: "CGI & Motion",
-          imageSrc: "/stichora-app.jpg",
+          metric: "+410% Shares",
+          metricLabel: "Viral Coefficient",
+          imageSrc: "/images/service-template/reels/reel-6.jpg",
           imageAlt: "3D app interface tiles for bespoke client portal",
+          videoSrc: "https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4",
+          poster: "/images/service-template/reels/reel-6.jpg",
           href: "/work/stichora",
-          span: "full",
+          description: "Photorealistic 3D product rendering integrated into live-action footage, creating an impossible visual spectacle that catalyzed organic sharing.",
+          deliverables: ["Octane/Blender 3D", "Live-Action Composite", "Viral Audio Track", "Social Optimization"],
         },
       ],
     },
@@ -1673,6 +1770,7 @@ export function getServiceBySlug(rawSlug: string): ServiceData {
       subtitle: `We engineer bespoke ${formattedTitle} solutions that elevate industry leaders, founders, and ambitious brands into category authorities.`,
       bannerImage: "/images/service-template/hero-discs.jpg",
       bannerAlt: `Visual concept representing ${formattedTitle}`,
+      media: DEFAULT_SERVICE_HERO_MEDIA,
     },
     marquee: {
       text: formattedTitle.toUpperCase(),
@@ -1736,6 +1834,8 @@ export function getServiceBySlug(rawSlug: string): ServiceData {
       ],
     },
     featuredWork: {
+      layout: "bento",
+      tag: "PORTFOLIO HIGHLIGHTS",
       headline: "Our featured work",
       subtitle:
         "Explore how we've helped our clients transform their digital presence.",
