@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ServiceFrameworkData } from "@/constants/services";
+import { useServiceFrameworkAnimation } from "@/animation/service-framework";
 
 interface ServiceFrameworkProps {
   framework: ServiceFrameworkData;
@@ -13,6 +14,16 @@ interface ServiceFrameworkProps {
 export function ServiceFramework({ framework }: ServiceFrameworkProps) {
   const { tag, headline, description, steps } = framework;
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const {
+    containerRef,
+    junction1FillRef,
+    junction2FillRef,
+    junction3FillRef,
+    registerCard,
+    registerBadge,
+    registerMobileLine,
+  } = useServiceFrameworkAnimation();
 
   // Fallback default description if none provided
   const descText =
@@ -68,35 +79,126 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
           </div>
 
           {/* ========================================================================= */}
-          {/* RIGHT COLUMN: Seamless Black Interlocking Cards (Zero White Hairlines)    */}
+          {/* RIGHT COLUMN: Seamless Black Interlocking Cards with Scroll Fill          */}
           {/* ========================================================================= */}
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
             {/* Desktop / Tablet Staggered Layout */}
-            <div className="hidden sm:block w-full max-w-[620px] relative">
-              {/* 
-                Continuous solid black base container:
-                Guarantees that underneath all junctions and subpixel boundaries,
-                the background is 100% solid black (#0a0a0a). No white line or seam
-                can ever bleed through!
-              */}
-              <div className="relative w-full bg-[#0a0a0a] overflow-hidden">
-                <div className="grid grid-cols-2 gap-0 relative">
+            <div
+              ref={containerRef}
+              className="hidden sm:block w-full max-w-[620px] relative"
+            >
+              {/* Outer boundary wrapper */}
+              <div className="relative w-full bg-[#f6f6f6] overflow-hidden">
+                {/* ------------------------------------------------------------- */}
+                {/* JUNCTION ANIMATION LAYER (z-10): Underneath the cutout masks  */}
+                {/* ------------------------------------------------------------- */}
+                <div className="absolute inset-0 pointer-events-none z-10">
+                  {/* 
+                    JUNCTION 1: Row 1 to Row 2
+                    Position: Center (50%, 25%)
+                    Direction: Top-Right (Step 01) -> Bottom-Left (Step 02)
+                  */}
+                  <div
+                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
+                    style={{ left: "50%", top: "25%" }}
+                  >
+                    {/* Subtle empty track preview */}
+                    <div className="absolute inset-0 bg-neutral-200/50" />
+
+                    {/* 45deg container: local Y axis points Top-Right -> Bottom-Left */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                      style={{ transform: "rotate(45deg)" }}
+                    >
+                      <div
+                        ref={junction1FillRef}
+                        className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
+                      >
+                        {/* Solid black fluid body */}
+                        <div className="w-full h-full bg-[#0a0a0a]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 
+                    JUNCTION 2: Row 2 to Row 3
+                    Position: Center (50%, 50%)
+                    Direction: Top-Left (Step 02) -> Bottom-Right (Step 03)
+                  */}
+                  <div
+                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
+                    style={{ left: "50%", top: "50%" }}
+                  >
+                    {/* Subtle empty track preview */}
+                    <div className="absolute inset-0 bg-neutral-200/50" />
+
+                    {/* -45deg container: local Y axis points Top-Left -> Bottom-Right */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                      style={{ transform: "rotate(-45deg)" }}
+                    >
+                      <div
+                        ref={junction2FillRef}
+                        className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
+                      >
+                        {/* Solid black fluid body */}
+                        <div className="w-full h-full bg-[#0a0a0a]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 
+                    JUNCTION 3: Row 3 to Row 4
+                    Position: Center (50%, 75%)
+                    Direction: Top-Right (Step 03) -> Bottom-Left (Step 04)
+                  */}
+                  <div
+                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
+                    style={{ left: "50%", top: "75%" }}
+                  >
+                    {/* Subtle empty track preview */}
+                    <div className="absolute inset-0 bg-neutral-200/50" />
+
+                    {/* 45deg container: local Y axis points Top-Right -> Bottom-Left */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                      style={{ transform: "rotate(45deg)" }}
+                    >
+                      <div
+                        ref={junction3FillRef}
+                        className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
+                      >
+                        {/* Solid black fluid body */}
+                        <div className="w-full h-full bg-[#0a0a0a]" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ------------------------------------------------------------- */}
+                {/* FOREGROUND CARDS & CUTOUT FILLET MASKS (z-20)                 */}
+                {/* ------------------------------------------------------------- */}
+                <div className="grid grid-cols-2 gap-0 relative z-20">
                   {/* ----------------------------------------------------------- */}
                   {/* ROW 1: [Col 1: Empty Space] | [Col 2: Step 01 (Black Card)] */}
                   {/* ----------------------------------------------------------- */}
                   {/* Col 1, Row 1: White background block with rounded-br to carve black fillet */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden">
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                   </div>
 
                   {/* Step 01 Card */}
                   {steps[0] && (
                     <div
+                      ref={registerCard(0)}
                       onMouseEnter={() => setHoveredIndex(0)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between rounded-tr-3xl transition-colors duration-300 hover:bg-[#121212] group cursor-pointer z-10"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
                     >
-                      <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider">
+                      <span
+                        ref={registerBadge(0)}
+                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                      >
                         {steps[0].number}
                       </span>
                       <div>
@@ -118,11 +220,15 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                   {/* Step 02 Card */}
                   {steps[1] && (
                     <div
+                      ref={registerCard(1)}
                       onMouseEnter={() => setHoveredIndex(1)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between rounded-tl-3xl rounded-bl-2xl transition-colors duration-300 hover:bg-[#121212] group cursor-pointer z-10"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
                     >
-                      <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider">
+                      <span
+                        ref={registerBadge(1)}
+                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                      >
                         {steps[1].number}
                       </span>
                       <div>
@@ -139,7 +245,7 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                   )}
 
                   {/* Col 2, Row 2: White block with rounded-tl and rounded-bl carving both fillets */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden">
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-tl-[32px] rounded-bl-[32px] -mr-2 w-[calc(100%+10px)] h-full" />
                   </div>
 
@@ -147,18 +253,22 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                   {/* ROW 3: [Col 1: Empty Space] | [Col 2: Step 03 (Black Card)] */}
                   {/* ----------------------------------------------------------- */}
                   {/* Col 1, Row 3: White block with rounded-tr and rounded-br carving fillets */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden">
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#f6f6f6] rounded-tr-[32px] rounded-br-[32px] -ml-2 w-[calc(100%+10px)] h-full" />
                   </div>
 
                   {/* Step 03 Card */}
                   {steps[2] && (
                     <div
+                      ref={registerCard(2)}
                       onMouseEnter={() => setHoveredIndex(2)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between rounded-tr-2xl rounded-br-3xl transition-colors duration-300 hover:bg-[#121212] group cursor-pointer z-10"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
                     >
-                      <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider">
+                      <span
+                        ref={registerBadge(2)}
+                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                      >
                         {steps[2].number}
                       </span>
                       <div>
@@ -181,11 +291,15 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                     <>
                       {/* Step 04 Card */}
                       <div
+                        ref={registerCard(3)}
                         onMouseEnter={() => setHoveredIndex(3)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between rounded-tl-2xl rounded-bl-3xl transition-colors duration-300 hover:bg-[#121212] group cursor-pointer z-10"
+                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
                       >
-                        <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider">
+                        <span
+                          ref={registerBadge(3)}
+                          className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                        >
                           {steps[3].number}
                         </span>
                         <div>
@@ -201,7 +315,7 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
                       </div>
 
                       {/* Col 2, Row 4: White block with rounded-tl carving fillet */}
-                      <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden">
+                      <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                         <div className="absolute inset-0 bg-[#f6f6f6] rounded-tl-[32px] -mr-2 -mb-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                       </div>
                     </>
@@ -211,25 +325,36 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
             </div>
 
             {/* Mobile Stacked Cards Layout (< 640px) */}
-            <div className="block sm:hidden w-full space-y-4">
-              {steps.map((step) => (
-                <div
-                  key={step.number}
-                  className="bg-[#0a0a0a] text-white p-6 rounded-2xl flex flex-col justify-between min-h-[160px]"
-                >
-                  <span className="text-xs font-mono text-neutral-400 tracking-wider">
-                    {step.number}
-                  </span>
-                  <div className="mt-4">
-                    <h3 className="text-xl font-bold text-white font-primary tracking-tight">
-                      {step.title}
-                    </h3>
-                    {step.description && (
-                      <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-1.5">
-                        {step.description}
-                      </p>
-                    )}
+            <div className="block sm:hidden w-full space-y-3">
+              {steps.map((step, idx) => (
+                <div key={step.number} className="relative">
+                  <div className="bg-[#0a0a0a] text-white p-6 flex flex-col justify-between min-h-[160px]">
+                    <span className="text-xs font-mono text-neutral-400 tracking-wider">
+                      {step.number}
+                    </span>
+                    <div className="mt-4">
+                      <h3 className="text-xl font-bold text-white font-primary tracking-tight">
+                        {step.title}
+                      </h3>
+                      {step.description && (
+                        <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-1.5">
+                          {step.description}
+                        </p>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Connecting pipeline line to the next card on mobile */}
+                  {idx < steps.length - 1 && (
+                    <div className="flex justify-center my-2">
+                      <div className="w-0.5 h-6 bg-neutral-300/60 overflow-hidden relative">
+                        <div
+                          ref={registerMobileLine(idx)}
+                          className="w-full h-full bg-neutral-900"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -241,3 +366,4 @@ export function ServiceFramework({ framework }: ServiceFrameworkProps) {
 }
 
 export default ServiceFramework;
+
