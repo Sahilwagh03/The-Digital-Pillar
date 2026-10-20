@@ -82,3 +82,40 @@ export const contactCardVariants: Variants = {
     },
   },
 };
+
+export const contactHeroCardsContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+export const contactHeroCardVariants: Variants = {
+  hidden: { opacity: 0, y: 35, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.75,
+      ease: LUXURY_EASE,
+    },
+  },
+};
+
+export const contactHeroBadgeVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.75, y: 12 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      delay: 0.5,
+      ease: LUXURY_EASE,
+    },
+  },
+};

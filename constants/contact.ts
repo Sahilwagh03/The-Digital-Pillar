@@ -1,8 +1,21 @@
+export interface ContactHeroCardItem {
+  id: string;
+  src: string;
+  alt: string;
+  rotation: number;
+  yOffset: number;
+  badge?: {
+    text: string;
+    variant: "blue" | "green";
+  };
+}
+
 export interface ContactHeroData {
   tag: string;
   headline: string;
   description: string;
   backgroundImage: string;
+  cards: ContactHeroCardItem[];
 }
 
 export interface ContactFormCopy {
@@ -26,6 +39,57 @@ export const CONTACT_HERO_DATA: ContactHeroData = {
   description:
     "We collaborate with teams who value clarity, craft, and long-term thinking.",
   backgroundImage: "/images/contact/hero-eyes.jpg",
+  cards: [
+    {
+      id: "card-1",
+      src: "/stichora-app.jpg",
+      alt: "Stichora App UI Design",
+      rotation: -11,
+      yOffset: 20,
+    },
+    {
+      id: "card-2",
+      src: "/images/services/branding.jpg",
+      alt: "Brand Architecture & Identity",
+      rotation: -7,
+      yOffset: 10
+    },
+    {
+      id: "card-3",
+      src: "/images/about/value-02-creativity.png",
+      alt: "Creative Visual Architecture",
+      rotation: -3,
+      yOffset: 4,
+    },
+    {
+      id: "card-4",
+      src: "/stichora-stone.jpg",
+      alt: "Stichora 3D Stone Identity",
+      rotation: 0,
+      yOffset: 0,
+    },
+    {
+      id: "card-5",
+      src: "/images/services/content-strategy.jpg",
+      alt: "Content Strategy & Sprint",
+      rotation: 3.5,
+      yOffset: 4,
+    },
+    {
+      id: "card-6",
+      src: "/images/about/value-01-excellence.png",
+      alt: "Design Excellence & Caustics",
+      rotation: 7.5,
+      yOffset: 10,
+    },
+    {
+      id: "card-7",
+      src: "/images/services/creator-content.jpg",
+      alt: "Creator Content Studio",
+      rotation: 11.5,
+      yOffset: 20
+    },
+  ],
 };
 
 export const CONTACT_FORM_DATA: ContactFormCopy = {
