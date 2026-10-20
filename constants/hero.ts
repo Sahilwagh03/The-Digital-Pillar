@@ -27,9 +27,9 @@ export interface HeroScrollIndicator {
 }
 
 export const HERO_CONTENT: HeroContent = {
-  titleLine1: "Create the growth",
-  titleLine2: " your company is",
-  titleLine3: " capable of.",
+  titleLine1: "Create the",
+  titleLine2: " growth",
+  titleLine3: " your company is capable of.",
   description:
     "We are The Digital Pillar, a full-service marketing agency based in Pune. We work with believers & big dreamers to help them achieve their vision.",
   cta: {

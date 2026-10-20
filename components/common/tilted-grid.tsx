@@ -105,18 +105,18 @@ export type TiltedGridHeroProps = {
      * @default 4
      */
     speed?: number;
-    /** Tile height, as a percentage of the hero's height. @default 26 */
+    /** Tile height, as a percentage of the hero's height. @default 50 */
     tileHeight?: number;
-    /** Tile width divided by tile height. @default 16 / 9 */
+    /** Tile width divided by tile height. @default 2 / 3 */
     aspectRatio?: number;
-    /** Space between tiles, as a percentage of a tile's height. @default 6 */
+    /** Space between tiles, as a percentage of a tile's height. @default 8 */
     gap?: number;
-    /** Vertical centre of the row, as a percentage of the hero's height. @default 56 */
+    /** Vertical centre of the row, as a percentage of the hero's height. @default 55 */
     axis?: number;
     /**
      * How far the row has bent round by the frame's edge, in degrees. Higher
      * curls the ends harder toward the viewer. Clamped to 5–85.
-     * @default 80
+     * @default 75
      */
     curve?: number;
     /** Width of the fade at each end, as a percentage of the hero's width. @default 12 */
@@ -129,11 +129,11 @@ export type TiltedGridHeroProps = {
 export function TiltedGridHero({
     images,
     speed = 4,
-    tileHeight = 34,
-    aspectRatio = 16 / 9,
-    gap = 6,
-    axis = 48,
-    curve = 80,
+    tileHeight = 50,
+    aspectRatio = 2 / 3,
+    gap = 8,
+    axis = 55,
+    curve = 75,
     fade = 12,
     children,
     className,
@@ -270,8 +270,8 @@ export function TiltedGridHero({
                                     key={k}
                                     className={cn(
                                         "absolute top-0 overflow-hidden bg-muted",
-                                        k === 0 && "rounded-l-lg",
-                                        k === SLICES - 1 && "rounded-r-lg",
+                                        k === 0 && "rounded-l-2xl",
+                                        k === SLICES - 1 && "rounded-r-2xl",
                                     )}
                                     style={{
                                         // Every strip starts at the tile's centre and is turned
