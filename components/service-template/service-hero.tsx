@@ -17,7 +17,7 @@ export function ServiceHero({ hero }: ServiceHeroProps) {
       className="relative w-full bg-[#050505] text-white pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-20 overflow-hidden"
     >
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-[#d95c27]/10 blur-[130px] rounded-full pointer-events-none -z-0"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-[#fdbb11]/8 blur-[150px] rounded-full pointer-events-none -z-0"
         aria-hidden="true"
       />
 

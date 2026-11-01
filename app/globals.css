@@ -4,18 +4,15 @@
   --font-primary: var(--font-familjen-grotesk), "Familjen Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-secondary: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: var(--font-familjen-grotesk), "Familjen Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-brand: #fdbb11;
+  --color-brand-hover: #e5a70b;
+  --color-brand-glow: rgba(253, 187, 17, 0.25);
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #050505;
+  --foreground: #ededed;
 }
 
 body {
@@ -41,7 +38,6 @@ body::-webkit-scrollbar {
   height: 0 !important;
   background: transparent !important;
 }
-
 
 @keyframes marquee {
   0% {

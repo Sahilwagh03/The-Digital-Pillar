@@ -322,7 +322,7 @@ export interface AboutTeamData {
 }
 
 export const ABOUT_TEAM_DATA: AboutTeamData = {
-  tag: "FAQ",
+  tag: "OUR TEAM",
   headlineLine1: "The Peoples behind",
   headlineLine2: "your brands success",
   members: [

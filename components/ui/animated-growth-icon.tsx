@@ -53,7 +53,7 @@ export function AnimatedGrowthIcon({ className }: AnimatedGrowthIconProps) {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{ transformOrigin: "160px 44px" }}
-            className="stroke-neutral-900/60 group-hover:stroke-neutral-900/90 transition-colors duration-500"
+            className="stroke-neutral-700/60 group-hover:stroke-neutral-500 transition-colors duration-500"
           />
 
           {/* Middle ring (radius ~102) */}
@@ -72,7 +72,7 @@ export function AnimatedGrowthIcon({ className }: AnimatedGrowthIconProps) {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{ transformOrigin: "160px 44px" }}
-            className="stroke-neutral-900/35 group-hover:stroke-neutral-900/55 transition-colors duration-500"
+            className="stroke-white/15 group-hover:stroke-white/30 transition-colors duration-500"
           />
 
           {/* Outer ring (radius ~153) */}
@@ -91,7 +91,7 @@ export function AnimatedGrowthIcon({ className }: AnimatedGrowthIconProps) {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{ transformOrigin: "160px 44px" }}
-            className="stroke-neutral-900/20 group-hover:stroke-neutral-900/40 transition-colors duration-500"
+            className="stroke-neutral-800/80 group-hover:stroke-neutral-700 transition-colors duration-500"
           />
 
           {/* Central Lightning Bolt Icon */}
@@ -113,7 +113,7 @@ export function AnimatedGrowthIcon({ className }: AnimatedGrowthIconProps) {
             <path
               d="M152 45.9999C151.811 46.0006 151.625 45.9475 151.465 45.8469C151.305 45.7463 151.176 45.6023 151.095 45.4316C151.013 45.2609 150.981 45.0705 151.003 44.8826C151.026 44.6946 151.101 44.5169 151.22 44.3699L161.12 34.1699C161.194 34.0842 161.295 34.0263 161.407 34.0057C161.518 33.985 161.634 34.0029 161.734 34.0564C161.834 34.1099 161.913 34.1958 161.957 34.3C162.002 34.4042 162.01 34.5206 161.98 34.6299L160.06 40.6499C160.003 40.8014 159.984 40.9644 160.005 41.1249C160.025 41.2854 160.084 41.4386 160.176 41.5713C160.269 41.7041 160.392 41.8124 160.535 41.8871C160.679 41.9617 160.838 42.0004 161 41.9999H168C168.189 41.9993 168.375 42.0523 168.535 42.1529C168.695 42.2535 168.824 42.3976 168.905 42.5683C168.987 42.739 169.019 42.9293 168.996 43.1173C168.974 43.3052 168.899 43.483 168.78 43.6299L158.88 53.8299C158.806 53.9156 158.705 53.9736 158.593 53.9942C158.481 54.0148 158.366 53.9969 158.266 53.9434C158.166 53.8899 158.087 53.804 158.043 53.6998C157.998 53.5956 157.99 53.4793 158.02 53.3699L159.94 47.3499C159.997 47.1984 160.016 47.0354 159.995 46.8749C159.975 46.7144 159.916 46.5612 159.824 46.4285C159.731 46.2957 159.608 46.1874 159.465 46.1128C159.321 46.0381 159.162 45.9994 159 45.9999H152Z"
               fill="currentColor"
-              className="text-neutral-900 group-hover:text-black transition-colors duration-500"
+              className="text-[#fdbb11] group-hover:text-[#fdbb11] drop-shadow-[0_0_12px_rgba(253,187,17,0.7)] transition-colors duration-500"
             />
           </motion.g>
         </g>

@@ -119,12 +119,18 @@ export function ScrollStopper() {
   return (
     <section
       id="scroll-stopper"
-      data-nav-theme="light"
-      className="relative w-full bg-white text-neutral-900 py-10 sm:py-14 lg:py-16 overflow-hidden select-none border-t border-neutral-200/80 scroll-mt-20 sm:scroll-mt-24"
+      data-nav-theme="dark"
+      className="relative w-full bg-[#07070a] text-white py-10 sm:py-14 lg:py-16 overflow-hidden select-none border-t border-white/10 scroll-mt-20 sm:scroll-mt-24"
     >
+      {/* Subtle Gold Ambient Glow in 3D Stage */}
+      <div
+        className="absolute bottom-10 right-1/4 w-[350px] h-[250px] bg-[#fdbb11]/5 blur-[120px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
       <Container
         size="lg"
-        className="relative flex flex-col justify-between lg:min-h-175 xl:min-h-185"
+        className="relative flex flex-col justify-between lg:min-h-175 xl:min-h-185 z-10"
       >
         {/* Top Headline with Masked Reveals */}
         <motion.div
@@ -134,7 +140,7 @@ export function ScrollStopper() {
           viewport={{ once: false, margin: "-50px" }}
           className="relative z-30 pointer-events-none mb-4 lg:mb-0"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-neutral-950 leading-[1.03] font-primary pointer-events-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.03] font-primary pointer-events-auto">
             <span className="block overflow-hidden py-1">
               <motion.span
                 variants={scrollStopperTitleVariants}
@@ -210,7 +216,7 @@ export function ScrollStopper() {
           <div className="w-full md:max-w-sm lg:max-w-[380px] xl:max-w-[420px] pointer-events-none">
             <motion.p
               variants={scrollStopperDescVariants}
-              className="text-sm sm:text-[0.9375rem] lg:text-base text-neutral-700 font-primary leading-relaxed sm:leading-relaxed font-normal pointer-events-auto"
+              className="text-sm sm:text-[0.9375rem] lg:text-base text-neutral-400 font-primary leading-relaxed sm:leading-relaxed font-normal pointer-events-auto"
             >
               {description}
             </motion.p>
@@ -222,7 +228,7 @@ export function ScrollStopper() {
               className="group block text-left md:text-right"
               aria-label="Let's create something big"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-neutral-950 leading-[1.03] font-primary group-hover:text-neutral-700 transition-colors">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.03] font-primary group-hover:text-[#fdbb11] transition-colors">
                 <span className="block overflow-hidden py-0.5">
                   <motion.span
                     variants={scrollStopperCtaTitleVariants}

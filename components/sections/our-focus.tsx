@@ -18,13 +18,13 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
     <section
       id="services"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white min-h-screen lg:h-screen lg:overflow-hidden flex items-center py-20 sm:py-28 lg:py-0"
+      className="relative w-full bg-[#050505] text-white min-h-screen lg:h-screen lg:overflow-hidden flex items-center py-20 sm:py-28 lg:py-0 border-t border-white/[0.06]"
     >
       <Container size="full" className="w-full h-auto lg:h-full max-w-[105rem] px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex flex-col lg:flex-row items-start lg:items-center h-auto lg:h-full w-full">
           <div className="w-full lg:w-[28%] xl:w-[26%] mb-8 lg:mb-0 shrink-0 pt-6 lg:pt-0">
             <div className="max-w-md">
-              <span className="block text-xs sm:text-[0.8125rem] font-medium tracking-[0.25em] text-neutral-400 uppercase font-primary mb-4 sm:mb-6">
+              <span className="block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-4 sm:mb-6">
                 {tag}
               </span>
 
@@ -50,17 +50,17 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                 <Link
                   key={service.id}
                   href={`/services/${service.id}`}
-                  className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 lg:py-12 border-b border-white/[0.08] px-4 sm:px-6 lg:px-10 xl:px-14 transition-colors duration-300 hover:bg-white/[0.02]"
+                  className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 lg:py-12 border-b border-white/[0.08] px-4 sm:px-6 lg:px-10 xl:px-14 transition-colors duration-300 hover:bg-white/[0.03]"
                 >
                   <div className="flex items-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
                     <div className="relative -ml-[1px] flex items-center gap-2.5 text-neutral-400">
-                      <span className="w-1.5 h-1.5 rotate-45 bg-neutral-300 transition-transform duration-300 group-hover:scale-125 group-hover:bg-white" />
-                      <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider">
+                      <span className="w-1.5 h-1.5 rotate-45 bg-[#fdbb11] shadow-[0_0_8px_rgba(253,187,17,0.7)] transition-transform duration-300 group-hover:scale-125 group-hover:bg-[#fdbb11]" />
+                      <span className="text-xs sm:text-sm font-mono text-[#fdbb11]/80 tracking-wider">
                         {service.number}
                       </span>
                     </div>
 
-                    <div className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 lg:w-28 lg:h-28 rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-neutral-900 shadow-md">
+                    <div className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 lg:w-28 lg:h-28 rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-neutral-900 shadow-md group-hover:border-[#fdbb11]/40 transition-colors">
                       <Image
                         src={service.imageSrc}
                         alt={service.imageAlt}
@@ -70,7 +70,7 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                       />
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-medium tracking-tight text-white font-primary transition-colors duration-300 group-hover:text-white">
+                    <h3 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-medium tracking-tight text-white font-primary transition-colors duration-300 group-hover:text-[#fdbb11]">
                       {service.title}
                     </h3>
                   </div>

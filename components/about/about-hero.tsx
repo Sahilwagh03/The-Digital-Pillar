@@ -47,6 +47,12 @@ export function AboutHero() {
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none" />
       </div>
 
+      {/* Atmospheric Brand Glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#fdbb11]/8 blur-[150px] rounded-full pointer-events-none z-[1]"
+        aria-hidden="true"
+      />
+
       {/* Main Hero Content (Centered with Display Typography) */}
       <div className="relative z-10 flex-1 flex flex-col justify-center items-center w-full pt-28 sm:pt-36 pb-16 sm:pb-20">
         <Container size="lg" className="w-full flex flex-col items-center text-center">
@@ -59,7 +65,7 @@ export function AboutHero() {
             {/* Eyebrow Tag */}
             <motion.span
               variants={aboutHeroTagVariants}
-              className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.28em] text-neutral-300 uppercase font-primary mb-4 sm:mb-6"
+              className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.28em] text-[#fdbb11] uppercase font-primary mb-4 sm:mb-6 drop-shadow-[0_0_12px_rgba(253,187,17,0.3)]"
             >
               {tag}
             </motion.span>
@@ -98,14 +104,14 @@ export function AboutHero() {
       {/* Interactive Scroll Down Indicator */}
       <div className="relative z-10 pb-6 sm:pb-10 flex flex-col items-center justify-center shrink-0">
         <a
-          href="#what-you-can-expect"
+          href="#values"
           aria-label={scrollLabel}
           className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:-translate-y-0.5 active:scale-95"
         >
-          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white/80 transition-all duration-300 group-hover:border-white/60 group-hover:bg-white/10 group-hover:text-white group-hover:scale-105 shadow-lg">
+          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white/80 transition-all duration-300 group-hover:border-[#fdbb11]/70 group-hover:bg-[#fdbb11]/15 group-hover:text-[#fdbb11] group-hover:scale-105 shadow-lg group-hover:shadow-[0_0_20px_rgba(253,187,17,0.3)]">
             <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
           </div>
-          <span className="text-[0.6875rem] sm:text-xs text-neutral-300/80 tracking-widest uppercase font-medium">
+          <span className="text-[0.6875rem] sm:text-xs text-neutral-300/80 tracking-widest uppercase font-medium group-hover:text-[#fdbb11] transition-colors">
             {scrollLabel}
           </span>
         </a>

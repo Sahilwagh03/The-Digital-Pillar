@@ -27,7 +27,7 @@ export function Hero() {
         variants={heroGlowVariants}
         initial="hidden"
         animate="visible"
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-gradient-to-b from-amber-500/10 via-amber-400/5 to-transparent blur-[140px] rounded-full pointer-events-none -z-0"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-gradient-to-b from-[#fdbb11]/15 via-[#fdbb11]/5 to-transparent blur-[140px] rounded-full pointer-events-none -z-0"
         aria-hidden="true"
       />
 
@@ -47,7 +47,7 @@ export function Hero() {
                   className="block origin-bottom-left"
                 >
                   {HERO_CONTENT.titleLine1}
-                  <span className="text-amber-400 font-extrabold">
+                  <span className="text-[#fdbb11] font-extrabold drop-shadow-[0_0_24px_rgba(253,187,17,0.35)]">
                     {HERO_CONTENT.titleLine2}
                   </span>
                 </motion.span>
@@ -76,7 +76,7 @@ export function Hero() {
                 href={HERO_CONTENT.cta.href}
                 variant="primary"
                 size="md"
-                className="cursor-pointer font-semibold px-6 tracking-wide shadow-lg shadow-amber-500/10 hover:shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="cursor-pointer font-bold px-7 tracking-wide bg-[#fdbb11] text-black hover:bg-[#e5a70b] shadow-[0_0_25px_rgba(253,187,17,0.3)] hover:shadow-[0_0_35px_rgba(253,187,17,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
                 {HERO_CONTENT.cta.label}
               </Button>

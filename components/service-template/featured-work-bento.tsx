@@ -20,11 +20,17 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
       data-nav-theme="dark"
       className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
     >
-      <Container size="lg">
+      {/* Ambient Brand Glow */}
+      <div
+        className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-[#fdbb11]/5 blur-[160px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      <Container size="lg" className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 sm:pb-16 lg:pb-20">
           <div>
             {featuredWork.tag && (
-              <span className="block text-[11px] sm:text-xs font-semibold tracking-widest text-[#d95c27] uppercase font-primary mb-3">
+              <span className="block text-[11px] sm:text-xs font-semibold tracking-widest text-[#fdbb11] uppercase font-primary mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
                 {featuredWork.tag}
               </span>
             )}
@@ -40,7 +46,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
         <div className="flex flex-col gap-6 sm:gap-8">
           {topItem && (
-            <div className="group relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[580px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/20">
+            <div className="group relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[580px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(253,187,17,0.12)]">
               <Link href={topItem.href || "/work"} className="block w-full h-full relative">
                 <MediaCard
                   src={topItem.videoSrc || topItem.imageSrc}
@@ -67,7 +73,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
                     </h3>
                   </div>
 
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-[#fdbb11] group-hover:text-black group-hover:border-[#fdbb11] group-hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] transition-all duration-300">
                     <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
@@ -77,7 +83,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {midLeftItem && (
-              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/20">
+              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
                 <Link href={midLeftItem.href || "/work"} className="block w-full h-full relative">
                   <MediaCard
                     src={midLeftItem.videoSrc || midLeftItem.imageSrc}
@@ -103,7 +109,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
                       </h3>
                     </div>
 
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-[#fdbb11] group-hover:text-black group-hover:border-[#fdbb11] group-hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] transition-all duration-300">
                       <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                     </div>
                   </div>
@@ -112,7 +118,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
             )}
 
             {midRightItem && (
-              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/20">
+              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
                 <Link href={midRightItem.href || "/work"} className="block w-full h-full relative">
                   <MediaCard
                     src={midRightItem.videoSrc || midRightItem.imageSrc}
@@ -138,7 +144,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
                       </h3>
                     </div>
 
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-[#fdbb11] group-hover:text-black group-hover:border-[#fdbb11] group-hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] transition-all duration-300">
                       <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                     </div>
                   </div>
@@ -148,7 +154,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
           </div>
 
           {bottomItem && (
-            <div className="group relative w-full h-[260px] sm:h-[360px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/20">
+            <div className="group relative w-full h-[260px] sm:h-[360px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
               <Link href={bottomItem.href || "/work"} className="block w-full h-full relative">
                 <MediaCard
                   src={bottomItem.videoSrc || bottomItem.imageSrc}
@@ -174,7 +180,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
                     </h3>
                   </div>
 
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white shrink-0 group-hover:bg-[#fdbb11] group-hover:text-black group-hover:border-[#fdbb11] group-hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] transition-all duration-300">
                     <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                   </div>
                 </div>

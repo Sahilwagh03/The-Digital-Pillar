@@ -56,9 +56,9 @@ export function useServiceFrameworkAnimation() {
         cardBadgeRefs.current.forEach((badge, idx) => {
           if (!badge) return;
           if (idx === 0) {
-            gsap.set(badge, { color: "#ffffff" }); // Active white
+            gsap.set(badge, { color: "#000000" });
           } else {
-            gsap.set(badge, { color: "#737373" }); // Muted neutral
+            gsap.set(badge, { color: "#9ca3af" });
           }
         });
 
@@ -66,7 +66,7 @@ export function useServiceFrameworkAnimation() {
         cardRefs.current.forEach((card, idx) => {
           if (!card) return;
           if (idx !== 0) {
-            gsap.set(card, { opacity: 0.8 });
+            gsap.set(card, { opacity: 0.75 });
           }
         });
 
@@ -108,7 +108,7 @@ export function useServiceFrameworkAnimation() {
           tl.to(
             badge2,
             {
-              color: "#ffffff",
+              color: "#000000",
               duration: 0.3,
               ease: "power2.out",
             },
@@ -146,7 +146,7 @@ export function useServiceFrameworkAnimation() {
           tl.to(
             badge3,
             {
-              color: "#ffffff",
+              color: "#000000",
               duration: 0.3,
               ease: "power2.out",
             },
@@ -181,7 +181,7 @@ export function useServiceFrameworkAnimation() {
           tl.to(
             badge4,
             {
-              color: "#ffffff",
+              color: "#000000",
               duration: 0.3,
               ease: "power2.out",
             },

@@ -33,8 +33,14 @@ export function Footer() {
     <footer
       id="contact"
       data-nav-theme="dark"
-      className="relative w-full bg-[#0a0a0a] text-white pt-20 sm:pt-28 lg:pt-32 pb-2 sm:pb-3 lg:pb-4 overflow-hidden select-none"
+      className="relative w-full bg-[#07070a] text-white pt-20 sm:pt-28 lg:pt-32 pb-2 sm:pb-3 lg:pb-4 overflow-hidden select-none border-t border-white/10"
     >
+      {/* Subtle Ambient Gold Glow */}
+      <div
+        className="absolute bottom-10 right-10 w-[400px] h-[250px] bg-[#fdbb11]/5 blur-[130px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
       <Container size="lg" className="relative z-10">
         {/* Main Content: 2-Column Desktop Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-stretch mb-16 sm:mb-24 lg:mb-32">
@@ -96,10 +102,10 @@ export function Footer() {
             <motion.div variants={footerCtaVariants} className="mb-12 sm:mb-16 lg:mb-20">
               <Link
                 href={ctaHref}
-                className="group inline-flex items-center gap-2 pb-1 border-b border-white text-xs sm:text-[0.8125rem] font-semibold tracking-wider uppercase text-white hover:text-neutral-300 hover:border-neutral-300 transition-colors"
+                className="group inline-flex items-center gap-2 pb-1 border-b border-[#fdbb11] text-xs sm:text-[0.8125rem] font-semibold tracking-wider uppercase text-[#fdbb11] hover:text-white hover:border-white transition-colors"
               >
                 <span>{ctaText}</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1 text-[#fdbb11] group-hover:text-white" />
               </Link>
             </motion.div>
 
@@ -116,13 +122,13 @@ export function Footer() {
                 <div className="space-y-1.5 sm:space-y-2">
                   <a
                     href={`mailto:${businessEnquiry.email}`}
-                    className="block text-xs sm:text-sm text-white hover:text-neutral-300 transition-colors"
+                    className="block text-xs sm:text-sm text-white hover:text-[#fdbb11] transition-colors"
                   >
                     {businessEnquiry.email}
                   </a>
                   <a
                     href={`tel:${businessEnquiry.phone.replace(/\s+/g, "")}`}
-                    className="block text-xs sm:text-sm text-white hover:text-neutral-300 transition-colors"
+                    className="block text-xs sm:text-sm text-white hover:text-[#fdbb11] transition-colors"
                   >
                     {businessEnquiry.phone}
                   </a>
@@ -146,7 +152,7 @@ export function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-neutral-300 transition-colors"
+                      className="hover:text-[#fdbb11] transition-colors"
                     >
                       {link.label}
                     </a>
@@ -185,7 +191,7 @@ export function Footer() {
             x="50%"
             y="130"
             textAnchor="middle"
-            className="font-primary fill-white/[0.12] select-none uppercase"
+            className="font-primary fill-white/[0.08] select-none uppercase"
             style={{
               fontSize: "155px",
               fontWeight: 900,

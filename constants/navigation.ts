@@ -23,12 +23,12 @@ export const NAV_THEME_BUTTON_STYLES: Record<
   Record<NavTheme, string>
 > = {
   primary: {
-    dark: "bg-white text-neutral-950 hover:bg-neutral-100",
-    light: "bg-neutral-950 text-white hover:bg-neutral-800 shadow-sm",
+    dark: "bg-[#fdbb11] text-black font-bold hover:bg-[#e5a70b] shadow-[0_0_20px_rgba(253,187,17,0.35)]",
+    light: "bg-[#fdbb11] text-black font-bold hover:bg-[#e5a70b] shadow-sm",
   },
   outline: {
-    dark: "border-white/20 bg-transparent text-white hover:bg-white/10 hover:border-white/40 backdrop-blur-none",
-    light: "border-neutral-900/25 bg-transparent text-neutral-950 hover:bg-neutral-900/10 hover:border-neutral-900/40 backdrop-blur-none",
+    dark: "border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10 hover:border-[#fdbb11]/60 hover:text-[#fdbb11]",
+    light: "border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10 hover:border-[#fdbb11]/60 hover:text-[#fdbb11]",
   },
 } as const;
 
@@ -55,4 +55,3 @@ export const MENU_ITEMS: readonly MenuItem[] = [
     href: "/services/personal-branding",
   },
 ] as const;
-

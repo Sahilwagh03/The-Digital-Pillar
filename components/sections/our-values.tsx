@@ -65,10 +65,16 @@ export function OurValues({
         ref={pinnedRef}
         className="hidden lg:block w-full h-screen relative overflow-hidden bg-black"
       >
+        {/* Ambient Gold Glow */}
+        <div
+          className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[350px] bg-[#fdbb11]/5 blur-[160px] rounded-full pointer-events-none z-0"
+          aria-hidden="true"
+        />
+
         {/* TOP-LEFT: Tag & Heading (Pinned in place, aligned with top of center card) */}
         <div className="absolute top-[calc(50vh-160px)] lg:top-[calc(50vh-180px)] xl:top-[calc(50vh-196px)] left-8 sm:left-12 lg:left-16 xl:left-24 z-20 pointer-events-none">
           {activeTag ? (
-            <span className="block text-xs sm:text-[0.8125rem] font-medium tracking-[0.2em] text-neutral-400 uppercase font-primary mb-3 sm:mb-4">
+            <span className="block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-3 sm:mb-4 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
               {activeTag}
             </span>
           ) : null}
@@ -81,7 +87,7 @@ export function OurValues({
         <div className="absolute bottom-10 xl:bottom-14 left-8 sm:left-12 lg:left-16 xl:left-24 z-20 pointer-events-none select-none">
           <div className="flex items-center text-white font-bold font-primary leading-none tracking-tighter tabular-nums text-8xl sm:text-9xl xl:text-[10.5rem] 2xl:text-[12rem]">
             {/* The static 0 that remains as it is */}
-            <span className="inline-flex items-center justify-center leading-none">
+            <span className="inline-flex items-center justify-center leading-none text-white/90">
               0
             </span>
 
@@ -97,7 +103,7 @@ export function OurValues({
                   return (
                     <span
                       key={item.id}
-                      className="h-[1.25em] flex items-center justify-center leading-none select-none"
+                      className="h-[1.25em] flex items-center justify-center leading-none select-none text-white"
                     >
                       {digit}
                     </span>
@@ -140,7 +146,7 @@ export function OurValues({
                 key={item.id}
                 ref={registerCard(idx)}
                 onClick={() => scrollToIndex(idx)}
-                className="absolute inset-0 rounded-none overflow-hidden bg-neutral-900 select-none cursor-pointer"
+                className="absolute inset-0 rounded-none overflow-hidden bg-neutral-900 border border-white/10 select-none cursor-pointer transition-all duration-300 hover:border-[#fdbb11]/50"
                 style={{ willChange: "transform, opacity" }}
               >
                 <Image
@@ -166,7 +172,7 @@ export function OurValues({
             {/* Header */}
             <div>
               {activeTag ? (
-                <span className="inline-block text-xs font-medium tracking-[0.2em] text-neutral-400 uppercase font-primary mb-2">
+                <span className="inline-block text-xs font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-2 drop-shadow-[0_0_8px_rgba(253,187,17,0.3)]">
                   {activeTag}
                 </span>
               ) : null}
@@ -178,7 +184,7 @@ export function OurValues({
             {/* Mobile Carousel View */}
             <div className="relative w-full flex flex-col items-center">
               {/* Card Image */}
-              <div className="relative w-full max-w-[360px] aspect-[294/320] rounded-none overflow-hidden bg-neutral-900">
+              <div className="relative w-full max-w-[360px] aspect-[294/320] rounded-none overflow-hidden bg-neutral-900 border border-white/10">
                 <Image
                   src={items[mobileActiveIndex].imageSrc}
                   alt={items[mobileActiveIndex].imageAlt || items[mobileActiveIndex].title}
@@ -190,7 +196,7 @@ export function OurValues({
 
               {/* Number and Text Details */}
               <div className="w-full mt-6 flex flex-col items-start">
-                <span className="text-6xl sm:text-7xl font-bold text-white font-primary leading-none tracking-tighter">
+                <span className="text-6xl sm:text-7xl font-bold text-[#fdbb11] font-primary leading-none tracking-tighter drop-shadow-[0_0_15px_rgba(253,187,17,0.3)]">
                   {items[mobileActiveIndex].number}
                 </span>
 
@@ -205,7 +211,7 @@ export function OurValues({
               {/* Mobile Navigation Controls */}
               <div className="w-full flex items-center justify-between mt-8 pt-4 border-t border-neutral-800">
                 <div className="flex items-center gap-1.5 font-mono text-xs font-medium text-neutral-400">
-                  <span>{items[mobileActiveIndex].number}</span>
+                  <span className="text-[#fdbb11] font-bold">{items[mobileActiveIndex].number}</span>
                   <span>/</span>
                   <span>{String(total).padStart(2, "0")}</span>
                 </div>
@@ -215,7 +221,7 @@ export function OurValues({
                     type="button"
                     onClick={handleMobilePrev}
                     aria-label="Previous"
-                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
+                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:border-[#fdbb11]/50 hover:text-[#fdbb11] hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -223,7 +229,7 @@ export function OurValues({
                     type="button"
                     onClick={handleMobileNext}
                     aria-label="Next"
-                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
+                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:border-[#fdbb11]/50 hover:text-[#fdbb11] hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -238,4 +244,3 @@ export function OurValues({
 }
 
 export default OurValues;
-
