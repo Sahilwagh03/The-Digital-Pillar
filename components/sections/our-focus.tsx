@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
+import type { RefObject } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from '@/components/ui/container';
 import { OUR_FOCUS_CONTENT } from '@/constants/our-focus';
 
 interface OurFocusProps {
-  servicesContainerRef?: React.RefObject<HTMLDivElement | null>;
-  servicesTrackRef?: React.RefObject<HTMLDivElement | null>;
+  servicesContainerRef?: RefObject<HTMLDivElement | null>;
+  servicesTrackRef?: RefObject<HTMLDivElement | null>;
 }
 
 export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusProps = {}) {
@@ -60,7 +60,7 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                       </span>
                     </div>
 
-                    <div className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 lg:w-28 lg:h-28 rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-neutral-900 shadow-md group-hover:border-[#fdbb11]/40 transition-colors">
+                    <div className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 lg:w-28 lg:h-28 rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-neutral-900 shadow-md group-hover:border-white/30 transition-colors">
                       <Image
                         src={service.imageSrc}
                         alt={service.imageAlt}

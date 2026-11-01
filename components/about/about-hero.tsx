@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
@@ -99,22 +98,6 @@ export function AboutHero() {
             </motion.p>
           </motion.div>
         </Container>
-      </div>
-
-      {/* Interactive Scroll Down Indicator */}
-      <div className="relative z-10 pb-6 sm:pb-10 flex flex-col items-center justify-center shrink-0">
-        <a
-          href="#values"
-          aria-label={scrollLabel}
-          className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:-translate-y-0.5 active:scale-95"
-        >
-          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white/80 transition-all duration-300 group-hover:border-[#fdbb11]/70 group-hover:bg-[#fdbb11]/15 group-hover:text-[#fdbb11] group-hover:scale-105 shadow-lg group-hover:shadow-[0_0_20px_rgba(253,187,17,0.3)]">
-            <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-          </div>
-          <span className="text-[0.6875rem] sm:text-xs text-neutral-300/80 tracking-widest uppercase font-medium group-hover:text-[#fdbb11] transition-colors">
-            {scrollLabel}
-          </span>
-        </a>
       </div>
     </section>
   );

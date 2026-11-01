@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight, ChevronLeft, ChevronRight, TrendingUp, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -120,7 +120,7 @@ export function FeaturedWorkCardsInline({
           {items.map((item, idx) => (
             <div
               key={item.id || idx}
-              className="w-[300px] sm:w-[370px] lg:w-[410px] h-[520px] sm:h-[580px] shrink-0 rounded-3xl overflow-hidden relative group border border-white/10 bg-neutral-950 transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(253,187,17,0.15)] flex flex-col justify-between p-6 sm:p-8"
+              className="w-[300px] sm:w-[370px] lg:w-[410px] h-[520px] sm:h-[580px] shrink-0 rounded-3xl overflow-hidden relative group border border-white/10 bg-neutral-950 transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between p-6 sm:p-8"
             >
               <MediaCard
                 src={item.videoSrc || item.imageSrc}

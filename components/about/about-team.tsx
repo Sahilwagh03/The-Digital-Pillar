@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -105,7 +105,7 @@ export function AboutTeam({
                   ref={registerCard(idx)}
                   onClick={() => scrollToIndex(idx)}
                   className={cn(
-                    "group relative flex-shrink-0 h-[440px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] bg-neutral-950 overflow-hidden cursor-pointer select-none transition-all duration-300 border border-white/10 hover:border-[#fdbb11]/50 shadow-2xl",
+                    "group relative flex-shrink-0 h-[440px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] bg-neutral-950 overflow-hidden cursor-pointer select-none transition-all duration-300 border border-white/10 hover:border-white/30 shadow-2xl",
                     isWide
                       ? "w-[480px] sm:w-[560px] lg:w-[680px] xl:w-[780px] 2xl:w-[860px]"
                       : "w-[300px] sm:w-[340px] lg:w-[380px] xl:w-[420px] 2xl:w-[460px]"

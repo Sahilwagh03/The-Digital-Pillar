@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ServiceFeaturedWorkData } from "@/constants/services";
 import { FeaturedWorkBento } from "./featured-work-bento";
 import { FeaturedWorkPhoneScroll } from "./featured-work-phone-scroll";

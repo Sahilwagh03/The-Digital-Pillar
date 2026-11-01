@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -76,7 +75,7 @@ export function Hero() {
                 href={HERO_CONTENT.cta.href}
                 variant="primary"
                 size="md"
-                className="cursor-pointer font-bold px-7 tracking-wide bg-[#fdbb11] text-black hover:bg-[#e5a70b] shadow-[0_0_25px_rgba(253,187,17,0.3)] hover:shadow-[0_0_35px_rgba(253,187,17,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="cursor-pointer font-bold px-7 tracking-wide bg-[#fdbb11] text-black shadow-[0_0_25px_rgba(253,187,17,0.3)] hover:shadow-[0_0_35px_rgba(253,187,17,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
                 {HERO_CONTENT.cta.label}
               </Button>

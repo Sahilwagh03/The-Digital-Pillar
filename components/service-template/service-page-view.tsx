@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useLenis } from "lenis/react";
 import { ServiceData } from "@/constants/services";
 import { ServiceHero } from "./service-hero";

@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import Image from "next/image";
 
 export interface CardSpec {
@@ -21,7 +21,7 @@ interface StopperCardItemProps {
   setRef: (el: HTMLDivElement | null) => void;
 }
 
-export const StopperCardItem = React.memo(function StopperCardItem({
+export const StopperCardItem = memo(function StopperCardItem({
   card,
   idx,
   width,

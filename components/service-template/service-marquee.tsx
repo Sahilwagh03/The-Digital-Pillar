@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ServiceMarqueeData } from "@/constants/services";
 
 interface ServiceMarqueeProps {

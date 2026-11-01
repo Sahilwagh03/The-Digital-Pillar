@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { ServiceHeroData } from "@/constants/services";

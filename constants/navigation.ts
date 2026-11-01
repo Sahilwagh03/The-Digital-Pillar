@@ -23,12 +23,12 @@ export const NAV_THEME_BUTTON_STYLES: Record<
   Record<NavTheme, string>
 > = {
   primary: {
-    dark: "bg-[#fdbb11] text-black font-bold hover:bg-[#e5a70b] shadow-[0_0_20px_rgba(253,187,17,0.35)]",
-    light: "bg-[#fdbb11] text-black font-bold hover:bg-[#e5a70b] shadow-sm",
+    dark: "bg-[#fdbb11] text-black font-bold shadow-[0_0_20px_rgba(253,187,17,0.35)]",
+    light: "bg-black text-[#fdbb11] font-bold hover:bg-neutral-900 shadow-md",
   },
   outline: {
     dark: "border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10 hover:border-[#fdbb11]/60 hover:text-[#fdbb11]",
-    light: "border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10 hover:border-[#fdbb11]/60 hover:text-[#fdbb11]",
+    light: "border-black/20 bg-black/80 backdrop-blur-md text-white hover:bg-black hover:border-black/40",
   },
 } as const;
 

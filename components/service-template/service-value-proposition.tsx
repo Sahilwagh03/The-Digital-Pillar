@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { ServiceValuePropositionData } from "@/constants/services";
@@ -28,7 +27,7 @@ export function ServiceValueProposition({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-6 lg:gap-8">
           {/* Card 1: Amber Glow Gradient */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-gradient-to-br from-[#fdbb11]/30 via-[#1c1404] to-[#0c0a02] shadow-xl transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_0_35px_rgba(253,187,17,0.18)]">
+          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-gradient-to-br from-[#fdbb11]/30 via-[#1c1404] to-[#0c0a02] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_35px_rgba(0,0,0,0.5)]">
             <div
               className="absolute -top-12 -left-12 w-64 h-64 bg-[#fdbb11]/35 blur-3xl rounded-full pointer-events-none transition-transform duration-700 ease-out group-hover:scale-125"
               aria-hidden="true"
@@ -51,7 +50,7 @@ export function ServiceValueProposition({
           </div>
 
           {/* Card 2: Photo with Glass Overlay */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-neutral-950 shadow-xl transition-all duration-500 hover:border-[#fdbb11]/50">
+          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-neutral-950 shadow-xl transition-all duration-500 hover:border-white/30">
             <Image
               src={card2.imageSrc}
               alt={card2.imageAlt}
@@ -78,7 +77,7 @@ export function ServiceValueProposition({
           </div>
 
           {/* Card 3: Metrics & Avatars */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden border border-white/10 bg-[#0e0e14] shadow-xl transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_0_30px_rgba(253,187,17,0.12)]">
+          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden border border-white/10 bg-[#0e0e14] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <div className="flex items-baseline gap-2.5">
               <span className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fdbb11] font-primary drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">
                 {card3.metric}

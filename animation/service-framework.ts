@@ -66,7 +66,7 @@ export function useServiceFrameworkAnimation() {
         cardRefs.current.forEach((card, idx) => {
           if (!card) return;
           if (idx !== 0) {
-            gsap.set(card, { opacity: 0.75 });
+            gsap.set(card, { opacity: 0.8 });
           }
         });
 

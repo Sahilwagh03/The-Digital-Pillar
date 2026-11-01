@@ -1,4 +1,4 @@
-import React from "react";
+import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ export interface LogoProps {
   onClick?: () => void;
 }
 
-export const Logo: React.FC<LogoProps> = ({
+export const Logo: FC<LogoProps> = ({
   className,
   imageClassName,
   iconClassName,

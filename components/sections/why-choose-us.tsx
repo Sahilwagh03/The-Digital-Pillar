@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { motion, useInView } from "motion/react";
@@ -177,7 +177,7 @@ export function WhyChooseUs() {
           {/* Column 1: Revenue Generated & Bar Chart */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#fdbb11]/40 hover:shadow-[0_20px_40px_-15px_rgba(253,187,17,0.12)] group"
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
           >
             {/* Minimalist Bar Chart */}
             <AnimatedBarChart years={stats.revenue.years} />
@@ -204,7 +204,7 @@ export function WhyChooseUs() {
             {/* Top Card: 12x Speed */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#fdbb11]/40 hover:shadow-[0_20px_40px_-15px_rgba(253,187,17,0.12)] group"
+              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
             >
               {/* Subtle Ambient Gold Hover Gradient */}
               <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -233,7 +233,7 @@ export function WhyChooseUs() {
             {/* Bottom Card: 250+ Projects with Globe */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#fdbb11]/40 hover:shadow-[0_20px_40px_-15px_rgba(253,187,17,0.12)] group"
+              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
             >
               {/* Subtle Ambient Gold Hover Gradient */}
               <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -263,7 +263,7 @@ export function WhyChooseUs() {
           {/* Column 3: Photographic Image Card */}
           <motion.div
             variants={bentoCardVariants}
-            className="relative overflow-hidden rounded-2xl min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-white/10 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#fdbb11]/40 hover:shadow-[0_20px_40px_-15px_rgba(253,187,17,0.15)] group"
+            className="relative overflow-hidden rounded-2xl min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-white/10 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
           >
             {/* Background Image with Cinematic Hover Zoom */}
             <Image

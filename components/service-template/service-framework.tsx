@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -49,7 +49,7 @@ export function ServiceFramework({
     description !== undefined
       ? description
       : framework.description ||
-        "Our systematic methodology engineers category authority from initial insight to omnipresent market execution. Together with our clients, we build enduring competitive advantage and achieve compounding online growth.";
+      "Our systematic methodology engineers category authority from initial insight to omnipresent market execution. Together with our clients, we build enduring competitive advantage and achieve compounding online growth.";
 
   const activeCtaText = ctaText || "EXPLORE OUR PROCESS";
   const activeCtaHref = ctaHref || "/contact";
@@ -80,12 +80,6 @@ export function ServiceFramework({
         className
       )}
     >
-      {/* Ambient Brand Glow */}
-      <div
-        className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#fdbb11]/5 blur-[160px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
@@ -143,7 +137,7 @@ export function ServiceFramework({
                         ref={junction1FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        <div className="w-full h-full bg-white" />
+                        <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                       </div>
                     </div>
                   </div>
@@ -162,7 +156,7 @@ export function ServiceFramework({
                         ref={junction2FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        <div className="w-full h-full bg-white" />
+                        <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                       </div>
                     </div>
                   </div>
@@ -182,7 +176,7 @@ export function ServiceFramework({
                           ref={junction3FillRef}
                           className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                         >
-                          <div className="w-full h-full bg-white" />
+                          <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                         </div>
                       </div>
                     </div>
@@ -191,7 +185,7 @@ export function ServiceFramework({
 
                 {/* Cards Grid */}
                 <div className="grid grid-cols-2 gap-0 relative z-20">
-                  {/* Row 1 Col 1: Empty with rounded bottom-right */}
+                  {/* Row 1 Col 1: Empty with rounded bottom-right matching dark section background */}
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#07070a] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                   </div>
@@ -202,7 +196,7 @@ export function ServiceFramework({
                       ref={registerCard(0)}
                       onMouseEnter={() => setHoveredIndex(0)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white text-neutral-950 p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#fafafa] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(0)}
@@ -229,7 +223,7 @@ export function ServiceFramework({
                       ref={registerCard(1)}
                       onMouseEnter={() => setHoveredIndex(1)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white text-neutral-950 p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#fafafa] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(1)}
@@ -280,7 +274,7 @@ export function ServiceFramework({
                       ref={registerCard(2)}
                       onMouseEnter={() => setHoveredIndex(2)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white text-neutral-950 p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#fafafa] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(2)}
@@ -308,7 +302,7 @@ export function ServiceFramework({
                         ref={registerCard(3)}
                         onMouseEnter={() => setHoveredIndex(3)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white text-neutral-950 p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#fafafa] group cursor-pointer"
+                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                       >
                         <span
                           ref={registerBadge(3)}
@@ -341,7 +335,7 @@ export function ServiceFramework({
             <div className="block sm:hidden w-full space-y-3">
               {steps.map((step, idx) => (
                 <div key={step.number} className="relative">
-                  <div className="bg-white text-neutral-950 p-6 flex flex-col justify-between min-h-[160px] rounded-xl shadow-lg">
+                  <div className="bg-white text-neutral-950 p-6 flex flex-col justify-between min-h-[160px] rounded-xl shadow-xl">
                     <span className="text-xs font-mono text-neutral-950 font-bold tracking-wider">
                       {step.number}
                     </span>

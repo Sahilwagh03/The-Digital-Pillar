@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
@@ -32,12 +31,18 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      data-nav-theme="dark"
-      className="relative w-full bg-[#07070a] text-white pt-20 sm:pt-28 lg:pt-32 pb-2 sm:pb-3 lg:pb-4 overflow-hidden select-none border-t border-white/10"
+      data-nav-theme="light"
+      className="relative w-full bg-[#fdbb11] text-black pt-20 sm:pt-28 lg:pt-32 pb-2 sm:pb-3 lg:pb-4 overflow-hidden select-none border-t border-black/15"
     >
-      {/* Subtle Ambient Gold Glow */}
+      {/* Subtle Ambient Surface Highlight */}
       <div
-        className="absolute bottom-10 right-10 w-[400px] h-[250px] bg-[#fdbb11]/5 blur-[130px] rounded-full pointer-events-none -z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[350px] bg-white/20 blur-[130px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      {/* Architectural Dot Matrix Texture */}
+      <div
+        className="absolute inset-0 bg-[radial-gradient(#00000010_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none -z-0"
         aria-hidden="true"
       />
 
@@ -55,11 +60,11 @@ export function Footer() {
             <div>
               <motion.span
                 variants={footerTaglineVariants}
-                className="text-xs sm:text-sm text-neutral-400 font-primary block mb-5 sm:mb-7"
+                className="text-xs sm:text-sm text-black/75 font-primary block mb-5 sm:mb-7 font-bold tracking-wider uppercase"
               >
                 {tagline}
               </motion.span>
-              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-bold text-white tracking-tight leading-[1.04] font-primary">
+              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-black tracking-tight leading-[1.04] font-primary">
                 <span className="block overflow-hidden py-1">
                   <motion.span
                     variants={footerHeadlineVariants}
@@ -84,7 +89,7 @@ export function Footer() {
               variants={footerTaglineVariants}
               className="hidden lg:block pt-16 xl:pt-24"
             >
-              <span className="text-xs sm:text-sm text-neutral-500 font-primary">
+              <span className="text-xs sm:text-sm text-black/60 font-mono tracking-wider font-semibold">
                 {handle}
               </span>
             </motion.div>
@@ -102,10 +107,17 @@ export function Footer() {
             <motion.div variants={footerCtaVariants} className="mb-12 sm:mb-16 lg:mb-20">
               <Link
                 href={ctaHref}
-                className="group inline-flex items-center gap-2 pb-1 border-b border-[#fdbb11] text-xs sm:text-[0.8125rem] font-semibold tracking-wider uppercase text-[#fdbb11] hover:text-white hover:border-white transition-colors"
+                className="group relative overflow-hidden inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-black text-[#fdbb11] hover:text-black text-xs sm:text-[0.8125rem] font-bold tracking-wider uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.18)] active:scale-95 isolate"
               >
-                <span>{ctaText}</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1 text-[#fdbb11] group-hover:text-white" />
+                {/* Diagonal White Wipe Layer */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 -left-[30%] w-[160%] h-full bg-white -skew-x-12 -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 pointer-events-none -z-10"
+                />
+                <span className="relative z-10 inline-flex items-center gap-3">
+                  <span>{ctaText}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 text-[#fdbb11] group-hover:text-black" />
+                </span>
               </Link>
             </motion.div>
 
@@ -116,24 +128,24 @@ export function Footer() {
             >
               {/* Business Enquiry */}
               <div>
-                <h3 className="text-[11px] sm:text-xs font-medium tracking-wider uppercase text-neutral-500 mb-3 sm:mb-4">
+                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-black/60 mb-3 sm:mb-4">
                   {businessEnquiry.title}
                 </h3>
                 <div className="space-y-1.5 sm:space-y-2">
                   <a
                     href={`mailto:${businessEnquiry.email}`}
-                    className="block text-xs sm:text-sm text-white hover:text-[#fdbb11] transition-colors"
+                    className="block text-xs sm:text-sm text-black font-semibold hover:text-black/70 transition-colors"
                   >
                     {businessEnquiry.email}
                   </a>
                   <a
                     href={`tel:${businessEnquiry.phone.replace(/\s+/g, "")}`}
-                    className="block text-xs sm:text-sm text-white hover:text-[#fdbb11] transition-colors"
+                    className="block text-xs sm:text-sm text-black font-semibold hover:text-black/70 transition-colors"
                   >
                     {businessEnquiry.phone}
                   </a>
                   {businessEnquiry.address && (
-                    <p className="text-xs sm:text-sm text-neutral-400 pt-0.5 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium">
                       {businessEnquiry.address}
                     </p>
                   )}
@@ -142,17 +154,17 @@ export function Footer() {
 
               {/* Social */}
               <div>
-                <h3 className="text-[11px] sm:text-xs font-medium tracking-wider uppercase text-neutral-500 mb-3 sm:mb-4">
+                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-black/60 mb-3 sm:mb-4">
                   {social.title}
                 </h3>
-                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm text-white">
+                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm text-black font-semibold">
                   {social.links.map((link) => (
                     <a
                       key={link.label}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-[#fdbb11] transition-colors"
+                      className="hover:text-black/70 transition-colors"
                     >
                       {link.label}
                     </a>
@@ -163,7 +175,7 @@ export function Footer() {
 
             {/* Mobile Handle */}
             <motion.div variants={footerTaglineVariants} className="block lg:hidden pt-10">
-              <span className="text-xs sm:text-sm text-neutral-500 font-primary">
+              <span className="text-xs sm:text-sm text-black/60 font-mono tracking-wider font-semibold">
                 {handle}
               </span>
             </motion.div>
@@ -171,7 +183,7 @@ export function Footer() {
         </div>
       </Container>
 
-      {/* Giant Bottom Ghost Typography / Watermark - Full screen edge-to-edge */}
+      {/* Giant Bottom Ghost Typography / Watermark - Original flat edge-to-edge */}
       <motion.div
         variants={footerWatermarkVariants}
         initial="hidden"
@@ -191,7 +203,7 @@ export function Footer() {
             x="50%"
             y="130"
             textAnchor="middle"
-            className="font-primary fill-white/[0.08] select-none uppercase"
+            className="font-primary fill-black/[0.08] select-none uppercase"
             style={{
               fontSize: "155px",
               fontWeight: 900,

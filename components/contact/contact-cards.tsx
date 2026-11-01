@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { Headphones, Mail, MapPin, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";

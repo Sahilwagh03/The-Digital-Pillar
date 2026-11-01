@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Image from "next/image";
 import { ChevronDown, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -32,7 +32,7 @@ export function ContactFormSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<
+    e: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
@@ -40,7 +40,7 @@ export function ContactFormSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 

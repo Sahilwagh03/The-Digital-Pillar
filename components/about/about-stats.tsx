@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Container } from "@/components/ui/container";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { ABOUT_STATS_CONTENT } from "@/constants/about";
@@ -36,7 +35,7 @@ export function AboutStats() {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-[#0e0e15] rounded-2xl p-7 sm:p-8 border border-white/10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)] flex flex-col justify-between hover:-translate-y-1 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.15)] transition-all duration-300 group"
+              className="bg-[#0e0e15] rounded-2xl p-7 sm:p-8 border border-white/10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)] flex flex-col justify-between hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)] transition-all duration-300 group"
             >
               <div>
                 <div className="text-4xl sm:text-5xl font-bold tracking-tight text-[#fdbb11] font-primary flex items-baseline drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">

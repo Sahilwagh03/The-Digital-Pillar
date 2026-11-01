@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -46,7 +45,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
         <div className="flex flex-col gap-6 sm:gap-8">
           {topItem && (
-            <div className="group relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[580px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(253,187,17,0.12)]">
+            <div className="group relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[580px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
               <Link href={topItem.href || "/work"} className="block w-full h-full relative">
                 <MediaCard
                   src={topItem.videoSrc || topItem.imageSrc}
@@ -83,7 +82,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {midLeftItem && (
-              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
+              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
                 <Link href={midLeftItem.href || "/work"} className="block w-full h-full relative">
                   <MediaCard
                     src={midLeftItem.videoSrc || midLeftItem.imageSrc}
@@ -118,7 +117,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
             )}
 
             {midRightItem && (
-              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
+              <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
                 <Link href={midRightItem.href || "/work"} className="block w-full h-full relative">
                   <MediaCard
                     src={midRightItem.videoSrc || midRightItem.imageSrc}
@@ -154,7 +153,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
           </div>
 
           {bottomItem && (
-            <div className="group relative w-full h-[260px] sm:h-[360px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-[#fdbb11]/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(253,187,17,0.12)]">
+            <div className="group relative w-full h-[260px] sm:h-[360px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
               <Link href={bottomItem.href || "/work"} className="block w-full h-full relative">
                 <MediaCard
                   src={bottomItem.videoSrc || bottomItem.imageSrc}

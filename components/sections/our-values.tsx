@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -146,7 +146,7 @@ export function OurValues({
                 key={item.id}
                 ref={registerCard(idx)}
                 onClick={() => scrollToIndex(idx)}
-                className="absolute inset-0 rounded-none overflow-hidden bg-neutral-900 border border-white/10 select-none cursor-pointer transition-all duration-300 hover:border-[#fdbb11]/50"
+                className="absolute inset-0 rounded-none overflow-hidden bg-neutral-900 border border-white/10 select-none cursor-pointer transition-all duration-300 hover:border-white/30"
                 style={{ willChange: "transform, opacity" }}
               >
                 <Image

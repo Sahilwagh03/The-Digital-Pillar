@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "../ui/container";
 import { MENU_ITEMS, MenuItem } from "@/constants/navigation";
 import { FOOTER_CONTENT } from "@/constants/footer";

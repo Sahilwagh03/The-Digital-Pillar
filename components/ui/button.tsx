@@ -1,23 +1,24 @@
-import * as React from "react";
+import { forwardRef } from "react";
+import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { ButtonVariant, ButtonSize } from "@/types";
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   href?: string;
   target?: string;
   rel?: string;
   underline?: boolean;
-  iconBefore?: React.ReactNode;
-  iconAfter?: React.ReactNode;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  iconBefore?: ReactNode;
+  iconAfter?: ReactNode;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
 }
 
-export const Button = React.forwardRef<
+export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 >(
@@ -41,11 +42,11 @@ export const Button = React.forwardRef<
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+      "relative overflow-hidden group isolate inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
     const variantStyles: Record<NonNullable<ButtonProps["variant"]>, string> = {
       primary:
-        "rounded-full bg-white text-neutral-950 hover:bg-neutral-100 shadow-sm font-primary active:scale-95",
+        "rounded-full bg-[#fdbb11] text-black font-bold shadow-[0_0_20px_rgba(253,187,17,0.35)] font-primary active:scale-95",
       secondary:
         "rounded-full bg-neutral-800 text-white hover:bg-neutral-700 font-primary active:scale-95",
       outline:
@@ -77,17 +78,26 @@ export const Button = React.forwardRef<
 
     const content = (
       <>
-        {startIcon && (
-          <span className="inline-flex shrink-0 items-center justify-center">
-            {startIcon}
-          </span>
+        {/* Diagonal White Wipe Layer (Yellow to White to Yellow on hover) */}
+        {variant === "primary" && (
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 -left-[30%] w-[160%] h-full bg-white -skew-x-12 -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 pointer-events-none -z-10"
+          />
         )}
-        {children && <span>{children}</span>}
-        {endIcon && (
-          <span className="inline-flex shrink-0 items-center justify-center">
-            {endIcon}
-          </span>
-        )}
+        <span className="relative z-10 inline-flex items-center justify-center gap-2">
+          {startIcon && (
+            <span className="inline-flex shrink-0 items-center justify-center">
+              {startIcon}
+            </span>
+          )}
+          {children && <span>{children}</span>}
+          {endIcon && (
+            <span className="inline-flex shrink-0 items-center justify-center">
+              {endIcon}
+            </span>
+          )}
+        </span>
         {(underline || variant === "navbar") && (
           <span className="absolute -bottom-1 left-0 h-[0.1rem] w-0 bg-current transition-all duration-300 ease-out group-hover:w-full" />
         )}
@@ -100,7 +110,7 @@ export const Button = React.forwardRef<
           href={href}
           target={target}
           rel={rel}
-          ref={ref as React.Ref<HTMLAnchorElement>}
+          ref={ref as Ref<HTMLAnchorElement>}
           className={combinedClasses}
         >
           {content}
@@ -110,7 +120,7 @@ export const Button = React.forwardRef<
 
     return (
       <button
-        ref={ref as React.Ref<HTMLButtonElement>}
+        ref={ref as Ref<HTMLButtonElement>}
         type={type}
         className={combinedClasses}
         {...props}
