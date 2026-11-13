@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { motion, useInView } from "motion/react";
@@ -44,7 +44,7 @@ function AnimatedBarChart({ years }: { years: string[] }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: hoveredIdx !== null ? 1 : 0 }}
           transition={{ duration: 0.2 }}
-          className="text-[0.6875rem] font-mono font-medium text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded-full"
+          className="text-[0.6875rem] font-mono font-medium text-[#fdbb11] bg-neutral-900 border border-white/10 px-2 py-0.5 rounded-full"
         >
           {hoveredIdx !== null ? `${CHART_BAR_HEIGHTS[hoveredIdx]}%` : "100%"}
         </motion.span>
@@ -69,10 +69,10 @@ function AnimatedBarChart({ years }: { years: string[] }) {
                 className={cn(
                   "w-full rounded-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom",
                   isHovered
-                    ? "bg-neutral-950 scale-y-105"
+                    ? "bg-[#fdbb11] shadow-[0_0_14px_rgba(253,187,17,0.7)] scale-y-105"
                     : isMax
-                    ? "bg-neutral-900"
-                    : "bg-neutral-300/80 group-hover/bar:bg-neutral-700"
+                      ? "bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
+                      : "bg-neutral-800/80 group-hover/bar:bg-neutral-700"
                 )}
                 style={{
                   height: isInView ? `${heightPercent}%` : "0%",
@@ -81,7 +81,7 @@ function AnimatedBarChart({ years }: { years: string[] }) {
               />
               {isMax && (
                 <div
-                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-neutral-900 transition-opacity duration-700"
+                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#fdbb11] shadow-[0_0_6px_#fdbb11] transition-opacity duration-700"
                   style={{
                     opacity: isInView ? 1 : 0,
                     transitionDelay: `${idx * 16 + 250}ms`,
@@ -94,7 +94,7 @@ function AnimatedBarChart({ years }: { years: string[] }) {
       </div>
 
       {/* Timeline Labels */}
-      <div className="flex items-center justify-between mt-5 pt-3 border-t border-neutral-100 text-[0.7rem] sm:text-xs text-neutral-400 font-medium tracking-wider">
+      <div className="flex items-center justify-between mt-5 pt-3 border-t border-white/10 text-[0.7rem] sm:text-xs text-neutral-400 font-medium tracking-wider">
         {years.map((year, idx) => (
           <span key={idx}>{year}</span>
         ))}
@@ -114,8 +114,8 @@ export function WhyChooseUs() {
   return (
     <section
       id="why-choose-us"
-      data-nav-theme="light"
-      className="relative w-full bg-white text-neutral-900 pt-20 sm:pt-28 lg:pt-32"
+      data-nav-theme="dark"
+      className="relative w-full bg-[#07070a] text-white pt-15 sm:pt-28 lg:pt-32"
     >
       <Container size="lg">
         {/* Header Section with Orchestrated Staggered Reveals */}
@@ -130,7 +130,7 @@ export function WhyChooseUs() {
           <div className="lg:col-span-4">
             <motion.span
               variants={tagVariants}
-              className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.2em] text-neutral-500 uppercase"
+              className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase"
             >
               {tag}
             </motion.span>
@@ -138,7 +138,7 @@ export function WhyChooseUs() {
 
           {/* Headline & Description */}
           <div className="lg:col-span-8 flex flex-col items-start">
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-neutral-950 leading-[1.08] font-primary">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white leading-[1.08] font-primary">
               <span className="block overflow-hidden py-0.5">
                 <motion.span
                   variants={headlineLineVariants}
@@ -159,41 +159,147 @@ export function WhyChooseUs() {
 
             <motion.p
               variants={descriptionVariants}
-              className="mt-5 sm:mt-6 text-sm sm:text-base text-neutral-500 max-w-xl leading-relaxed font-normal"
+              className="mt-4 sm:mt-6 text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed font-normal"
             >
               {description}
             </motion.p>
           </div>
         </motion.div>
 
-        {/* 3-Column Bento Grid with Orchestrated Staggered Entrance */}
+        {/* Mobile Stats View: Numbers Only, No Graphs (sm:hidden) */}
+        <motion.div
+          variants={bentoGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-30px" }}
+          className="grid grid-cols-2 gap-3 sm:hidden"
+        >
+          {/* Mobile Card 1: Retention */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.revenue.number}
+                  damping={45}
+                  stiffness={120}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.revenue.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.revenue.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 2: Speed / Growth */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.speed.number}
+                  delay={0.1}
+                  damping={45}
+                  stiffness={120}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.speed.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.speed.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 3: Projects */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.projects.number}
+                  delay={0.15}
+                  damping={42}
+                  stiffness={165}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.projects.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.projects.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 4: Rating */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                  <NumberTicker
+                    value={stats.ratingCard.ratingNumber}
+                    decimalPlaces={1}
+                    delay={0.1}
+                    damping={45}
+                    stiffness={120}
+                    className="text-white dark:text-white tracking-tight"
+                  />
+                  <span className="text-[#fdbb11] text-xl font-bold">
+                    {stats.ratingCard.ratingSuffix}
+                  </span>
+                </h3>
+                <div className="flex text-[#fdbb11] gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-3 w-3 fill-[#fdbb11] text-[#fdbb11]" />
+                  ))}
+                </div>
+              </div>
+              <p className="text-[11px] text-neutral-400 mt-1 font-normal leading-snug">
+                {stats.ratingCard.label}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* 3-Column Bento Grid with Visuals & Graphs for Tablet & Desktop (hidden sm:grid) */}
         <motion.div
           variants={bentoGridVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, margin: "-40px" }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch"
+          className="hidden sm:grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch"
         >
           {/* Column 1: Revenue Generated & Bar Chart */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-neutral-200/90 bg-white p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-neutral-400 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.06)] group"
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
           >
             {/* Minimalist Bar Chart */}
             <AnimatedBarChart years={stats.revenue.years} />
 
             {/* Stat & Label */}
             <div className="pt-6">
-              <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950 font-primary flex items-baseline">
+              <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary flex items-baseline">
                 <NumberTicker
                   value={stats.revenue.number}
                   damping={45}
                   stiffness={120}
-                  className="text-neutral-950 dark:text-neutral-950 tracking-tight"
+                  className="text-white dark:text-white tracking-tight"
                 />
-                <span>{stats.revenue.suffix}</span>
+                <span className="text-[#fdbb11]">{stats.revenue.suffix}</span>
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
+              <p className="text-xs sm:text-sm text-neutral-400 mt-2 font-normal">
                 {stats.revenue.label}
               </p>
             </div>
@@ -204,27 +310,27 @@ export function WhyChooseUs() {
             {/* Top Card: 12x Speed */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-neutral-200/90 bg-white p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-neutral-400 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.06)] group"
+              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
             >
-              {/* Subtle Ambient Hover Gradient */}
-              <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-neutral-100/70 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {/* Subtle Ambient Gold Hover Gradient */}
+              <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="absolute top-0 right-0 w-36 h-36 sm:w-40 sm:h-40 pointer-events-none translate-x-1 -translate-y-1">
                 <AnimatedGrowthIcon className="w-full h-full" />
               </div>
 
               <div className="mt-auto z-10">
-                <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950 font-primary flex items-baseline">
+                <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary flex items-baseline">
                   <NumberTicker
                     value={stats.speed.number}
                     delay={0.1}
                     damping={45}
                     stiffness={120}
-                    className="text-neutral-950 dark:text-neutral-950 tracking-tight"
+                    className="text-white dark:text-white tracking-tight"
                   />
-                  <span>{stats.speed.suffix}</span>
+                  <span className="text-[#fdbb11]">{stats.speed.suffix}</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
+                <p className="text-xs sm:text-sm text-neutral-400 mt-2 font-normal">
                   {stats.speed.label}
                 </p>
               </div>
@@ -233,27 +339,27 @@ export function WhyChooseUs() {
             {/* Bottom Card: 250+ Projects with Globe */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-neutral-200/90 bg-white p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-neutral-400 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.06)] group"
+              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
             >
-              {/* Subtle Ambient Hover Gradient */}
-              <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-neutral-100/70 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {/* Subtle Ambient Gold Hover Gradient */}
+              <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="absolute top-0 right-0 w-36 h-36 sm:w-40 sm:h-40 pointer-events-none translate-x-1 -translate-y-1">
                 <AnimatedGlobeIcon className="w-full h-full" />
               </div>
 
               <div className="mt-auto z-10">
-                <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950 font-primary flex items-baseline">
+                <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary flex items-baseline">
                   <NumberTicker
                     value={stats.projects.number}
                     delay={0.15}
                     damping={42}
                     stiffness={165}
-                    className="text-neutral-950 dark:text-neutral-950 tracking-tight"
+                    className="text-white dark:text-white tracking-tight"
                   />
-                  <span>{stats.projects.suffix}</span>
+                  <span className="text-[#fdbb11]">{stats.projects.suffix}</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-500 mt-2 max-w-[260px] font-normal leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-[260px] font-normal leading-relaxed">
                   {stats.projects.label}
                 </p>
               </div>
@@ -263,7 +369,7 @@ export function WhyChooseUs() {
           {/* Column 3: Photographic Image Card */}
           <motion.div
             variants={bentoCardVariants}
-            className="relative overflow-hidden min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-neutral-200/90 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-neutral-400 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] group"
+            className="relative overflow-hidden rounded-2xl min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-white/10 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
           >
             {/* Background Image with Cinematic Hover Zoom */}
             <Image
@@ -276,7 +382,7 @@ export function WhyChooseUs() {
             />
 
             {/* Vignette Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/70 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/75 pointer-events-none" />
 
             {/* Top Bar: Logo & 4.8/5 Rating */}
             <div className="relative z-10 flex items-center justify-between w-full">
@@ -292,11 +398,11 @@ export function WhyChooseUs() {
                     stiffness={120}
                     className="text-white dark:text-white tracking-tight"
                   />
-                  <span>{stats.ratingCard.ratingSuffix}</span>
+                  <span className="text-[#fdbb11]">{stats.ratingCard.ratingSuffix}</span>
                 </span>
-                <div className="flex text-white gap-1 mt-1">
+                <div className="flex text-[#fdbb11] gap-1 mt-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-white text-white" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-[#fdbb11] text-[#fdbb11]" />
                   ))}
                 </div>
               </div>
@@ -312,9 +418,9 @@ export function WhyChooseUs() {
                   stiffness={165}
                   className="text-white dark:text-white tracking-tight"
                 />
-                <span>{stats.ratingCard.suffix}</span>
+                <span className="text-[#fdbb11]">{stats.ratingCard.suffix}</span>
               </h3>
-              <p className="text-xs sm:text-sm text-white/90 mt-1 font-normal">
+              <p className="text-xs sm:text-sm text-neutral-300 mt-1 font-normal">
                 {stats.ratingCard.label}
               </p>
             </div>

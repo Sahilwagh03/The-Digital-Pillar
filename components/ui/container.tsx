@@ -1,8 +1,8 @@
-import React from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
   size?: "default" | "sm" | "lg" | "full";
 }

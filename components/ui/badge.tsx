@@ -1,7 +1,7 @@
-import React from "react";
+import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "secondary" | "outline";
 }
 

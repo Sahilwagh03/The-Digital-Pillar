@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
@@ -23,9 +22,15 @@ export function About() {
     <section
       id="about"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-32 overflow-hidden"
+      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
     >
-      <Container size="lg">
+      {/* Subtle Ambient Gold Glow */}
+      <div
+        className="absolute bottom-10 left-10 w-[350px] h-[200px] bg-[#fdbb11]/5 blur-[120px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      <Container size="lg" className="relative z-10">
         {/* Top Grid: Tag & Masked Word-by-Word Headline */}
         <motion.div
           variants={aboutHeaderContainerVariants}
@@ -38,7 +43,7 @@ export function About() {
           <div className="lg:col-span-3 pt-1">
             <motion.span
               variants={aboutTagVariants}
-              className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.25em] text-neutral-400 uppercase font-primary"
+              className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary"
             >
               {tag}
             </motion.span>
@@ -76,12 +81,12 @@ export function About() {
 
           <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
             {/* Left Uppercase Statements with Masked Reveal */}
-            <div className="md:col-span-5 flex flex-col space-y-1.5 sm:space-y-2">
+            <div className="md:col-span-5 flex flex-col space-y-2 sm:space-y-2.5">
               {leftStatements.map((statement, idx) => (
                 <span key={idx} className="block overflow-hidden py-0.5">
                   <motion.span
                     variants={aboutStatementVariants}
-                    className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.18em] sm:tracking-[0.2em] text-neutral-400 uppercase font-primary"
+                    className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.18em] sm:tracking-[0.2em] text-neutral-400 uppercase font-primary hover:text-neutral-200 transition-colors"
                   >
                     {statement}
                   </motion.span>
@@ -101,12 +106,12 @@ export function About() {
               <motion.div variants={aboutCtaVariants}>
                 <Link
                   href={cta.href}
-                  className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-white uppercase font-primary"
+                  className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
                 >
-                  <span className="border-b border-white/60 pb-0.5 group-hover:border-white transition-colors">
+                  <span className="border-b border-[#fdbb11]/50 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
                     {cta.label}
                   </span>
-                  <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
                     &rarr;
                   </span>
                 </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight, ChevronLeft, ChevronRight, TrendingUp, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -56,14 +56,14 @@ export function FeaturedWorkCardsInline({
       className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
     >
       <div
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#d95c27]/10 blur-[160px] rounded-full pointer-events-none -z-0"
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#fdbb11]/8 blur-[160px] rounded-full pointer-events-none -z-0"
         aria-hidden="true"
       />
 
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-white/[0.06]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d95c27]/10 border border-[#d95c27]/30 text-[#d95c27] text-[11px] font-mono uppercase tracking-widest mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fdbb11]/10 border border-[#fdbb11]/30 text-[#fdbb11] text-[11px] font-mono uppercase tracking-widest mb-3 shadow-[0_0_12px_rgba(253,187,17,0.2)]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{tag}</span>
             </div>
@@ -79,7 +79,7 @@ export function FeaturedWorkCardsInline({
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono text-neutral-400 tracking-widest mr-2 select-none">
-                0{currentScrollIdx + 1} / 0{items.length}
+                <span className="text-[#fdbb11] font-bold">0{currentScrollIdx + 1}</span> / 0{items.length}
               </span>
 
               <button
@@ -88,7 +88,7 @@ export function FeaturedWorkCardsInline({
                 className={cn(
                   "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
                   canScrollLeft
-                    ? "hover:bg-white hover:text-black hover:border-white cursor-pointer"
+                    ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
                     : "opacity-30 cursor-not-allowed"
                 )}
                 aria-label="Previous card"
@@ -102,7 +102,7 @@ export function FeaturedWorkCardsInline({
                 className={cn(
                   "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
                   canScrollRight
-                    ? "hover:bg-white hover:text-black hover:border-white cursor-pointer"
+                    ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
                     : "opacity-30 cursor-not-allowed"
                 )}
                 aria-label="Next card"
@@ -120,7 +120,7 @@ export function FeaturedWorkCardsInline({
           {items.map((item, idx) => (
             <div
               key={item.id || idx}
-              className="w-[300px] sm:w-[370px] lg:w-[410px] h-[520px] sm:h-[580px] shrink-0 rounded-3xl overflow-hidden relative group border border-white/10 bg-neutral-950 transition-all duration-500 hover:border-white/25 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(217,92,39,0.15)] flex flex-col justify-between p-6 sm:p-8"
+              className="w-[300px] sm:w-[370px] lg:w-[410px] h-[520px] sm:h-[580px] shrink-0 rounded-3xl overflow-hidden relative group border border-white/10 bg-neutral-950 transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between p-6 sm:p-8"
             >
               <MediaCard
                 src={item.videoSrc || item.imageSrc}
@@ -143,7 +143,7 @@ export function FeaturedWorkCardsInline({
                 </span>
 
                 {item.metric && (
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#d95c27]/20 border border-[#d95c27]/40 text-[#d95c27] text-xs font-mono font-semibold backdrop-blur-md">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fdbb11]/15 border border-[#fdbb11]/35 text-[#fdbb11] text-xs font-mono font-semibold backdrop-blur-md shadow-[0_0_12px_rgba(253,187,17,0.25)]">
                     <TrendingUp className="w-3.5 h-3.5" />
                     <span>{item.metric}</span>
                   </div>
@@ -184,11 +184,11 @@ export function FeaturedWorkCardsInline({
                   href={item.href || "/work"}
                   className="flex items-center justify-between pt-3.5 border-t border-white/15 group/link"
                 >
-                  <span className="text-xs font-semibold tracking-wider text-white uppercase font-primary group-hover/link:text-[#d95c27] transition-colors">
+                  <span className="text-xs font-semibold tracking-wider text-white uppercase font-primary group-hover/link:text-[#fdbb11] transition-colors">
                     Explore Profile
                   </span>
 
-                  <div className="w-9 h-9 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover/link:bg-white group-hover/link:text-black group-hover/link:border-white transition-all duration-300">
+                  <div className="w-9 h-9 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover/link:bg-[#fdbb11] group-hover/link:text-black group-hover/link:border-[#fdbb11] group-hover/link:shadow-[0_0_15px_rgba(253,187,17,0.5)] transition-all duration-300">
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </div>
                 </Link>

@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -155,14 +153,14 @@ export function FeaturedWorkPhoneScroll({
       className="relative w-full bg-[#050505] text-white pt-20 sm:pt-28 pb-16 sm:pb-24 overflow-hidden border-t border-white/[0.06]"
     >
       <div
-        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-[#d95c27]/8 blur-[160px] rounded-full pointer-events-none -z-0"
+        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-[#fdbb11]/8 blur-[160px] rounded-full pointer-events-none -z-0"
         aria-hidden="true"
       />
 
       <Container size="lg" className="relative z-10 pb-10 sm:pb-14 border-b border-white/[0.06]">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="block text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-amber-400 uppercase font-primary mb-3">
+            <span className="block text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
               {tag}
             </span>
             <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.08] font-primary">
@@ -183,7 +181,7 @@ export function FeaturedWorkPhoneScroll({
         <Container size="lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 xl:gap-20 items-center min-h-[520px] lg:h-[calc(100vh-100px)] py-6 lg:py-0">
             <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-[210px] sm:w-[230px] lg:w-[250px] xl:w-[265px] h-[430px] sm:h-[470px] lg:h-[510px] xl:h-[540px] rounded-[42px] bg-neutral-950 p-2 sm:p-2.5 border-[4px] border-neutral-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(217,92,39,0.1)] ring-1 ring-white/10 shrink-0">
+              <div className="relative w-[210px] sm:w-[230px] lg:w-[250px] xl:w-[265px] h-[430px] sm:h-[470px] lg:h-[510px] xl:h-[540px] rounded-[42px] bg-neutral-950 p-2 sm:p-2.5 border-[4px] border-neutral-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(253,187,17,0.15)] ring-1 ring-white/10 shrink-0">
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-black rounded-full z-20 flex items-center justify-end pr-1.5 shadow-inner">
                   <div className="w-1.5 h-1.5 rounded-full bg-neutral-900 border border-neutral-700" />
                 </div>
@@ -230,7 +228,7 @@ export function FeaturedWorkPhoneScroll({
                   >
                     <div className="flex items-center justify-between gap-4 mb-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono font-semibold text-amber-400 tracking-[0.2em] uppercase">
+                        <span className="text-xs font-mono font-semibold text-[#fdbb11] tracking-[0.2em] uppercase">
                           {item.category}
                         </span>
                         {item.client && (
@@ -249,10 +247,10 @@ export function FeaturedWorkPhoneScroll({
                             key={sIdx}
                             onClick={() => handleStepClick(sIdx)}
                             className={cn(
-                              "px-2.5 py-1 text-[11px] font-mono rounded-full transition-all duration-300",
+                              "px-2.5 py-1 text-[11px] font-mono rounded-full transition-all duration-300 cursor-pointer",
                               activeStep === sIdx
-                                ? "bg-white text-black font-semibold scale-105"
-                                : "bg-white/5 text-neutral-500 hover:text-white"
+                                ? "bg-[#fdbb11] text-black font-bold scale-105 shadow-[0_0_12px_rgba(253,187,17,0.4)]"
+                                : "bg-white/5 text-neutral-400 hover:text-white"
                             )}
                           >
                             0{sIdx + 1}
@@ -263,12 +261,12 @@ export function FeaturedWorkPhoneScroll({
 
                     {item.metric && (
                       <div className="flex items-baseline gap-4 my-3 sm:my-5">
-                        <span className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white font-primary leading-none">
+                        <span className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#fdbb11] font-primary leading-none drop-shadow-[0_0_15px_rgba(253,187,17,0.35)]">
                           {item.metric}
                         </span>
                         {item.metricLabel && (
                           <div className="flex flex-col">
-                            <span className="text-xs sm:text-sm font-semibold text-amber-400 uppercase tracking-wider font-primary">
+                            <span className="text-xs sm:text-sm font-semibold text-neutral-200 uppercase tracking-wider font-primary">
                               {item.metricLabel}
                             </span>
                             <span className="text-[11px] text-neutral-400 font-mono tracking-wide">
@@ -295,7 +293,7 @@ export function FeaturedWorkPhoneScroll({
                             key={dIdx}
                             className="flex items-center gap-2 text-xs font-mono text-neutral-300 uppercase tracking-wider"
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#fdbb11] shadow-[0_0_6px_rgba(253,187,17,0.6)]" />
                             <span>{deliv}</span>
                           </div>
                         ))}
@@ -312,9 +310,9 @@ export function FeaturedWorkPhoneScroll({
                       key={sIdx}
                       onClick={() => handleStepClick(sIdx)}
                       className={cn(
-                        "px-3 py-1 text-xs font-mono rounded-full transition-all",
+                        "px-3 py-1 text-xs font-mono rounded-full transition-all cursor-pointer",
                         activeStep === sIdx
-                          ? "bg-[#d95c27] text-white font-semibold"
+                          ? "bg-[#fdbb11] text-black font-bold shadow-[0_0_12px_rgba(253,187,17,0.4)]"
                           : "bg-white/5 text-neutral-400 hover:text-white"
                       )}
                     >
@@ -325,17 +323,17 @@ export function FeaturedWorkPhoneScroll({
 
                 {items[activeStep] && (
                   <div>
-                    <span className="block text-xs font-mono font-semibold text-amber-400 tracking-widest uppercase mb-2">
+                    <span className="block text-xs font-mono font-semibold text-[#fdbb11] tracking-widest uppercase mb-2">
                       0{activeStep + 1} // {items[activeStep].category}
                     </span>
 
                     {items[activeStep].metric && (
                       <div className="flex items-baseline gap-3 my-3">
-                        <span className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary leading-none">
+                        <span className="text-4xl sm:text-5xl font-bold tracking-tight text-[#fdbb11] font-primary leading-none drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">
                           {items[activeStep].metric}
                         </span>
                         {items[activeStep].metricLabel && (
-                          <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider font-primary">
+                          <span className="text-xs font-semibold text-neutral-200 uppercase tracking-wider font-primary">
                             {items[activeStep].metricLabel}
                           </span>
                         )}
@@ -355,7 +353,7 @@ export function FeaturedWorkPhoneScroll({
                         {items[activeStep].deliverables.map((deliv, dIdx) => (
                           <span
                             key={dIdx}
-                            className="text-[11px] font-mono text-neutral-400 bg-white/5 px-2.5 py-1 rounded-md"
+                            className="text-[11px] font-mono text-neutral-300 bg-white/5 px-2.5 py-1 rounded-md"
                           >
                             {deliv}
                           </span>
@@ -372,3 +370,5 @@ export function FeaturedWorkPhoneScroll({
     </section>
   );
 }
+
+export default FeaturedWorkPhoneScroll;

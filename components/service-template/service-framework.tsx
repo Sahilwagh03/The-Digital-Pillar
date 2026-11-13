@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -49,7 +49,7 @@ export function ServiceFramework({
     description !== undefined
       ? description
       : framework.description ||
-        "Our systematic methodology engineers category authority from initial insight to omnipresent market execution. Together with our clients, we build enduring competitive advantage and achieve compounding online growth.";
+      "Our systematic methodology engineers category authority from initial insight to omnipresent market execution. Together with our clients, we build enduring competitive advantage and achieve compounding online growth.";
 
   const activeCtaText = ctaText || "EXPLORE OUR PROCESS";
   const activeCtaHref = ctaHref || "/contact";
@@ -74,30 +74,30 @@ export function ServiceFramework({
   return (
     <section
       id={id || "process"}
-      data-nav-theme="light"
+      data-nav-theme="dark"
       className={cn(
-        "relative w-full bg-[#f6f6f6] text-neutral-900 py-24 sm:py-32 lg:py-40 overflow-hidden select-none",
+        "relative w-full bg-[#07070a] text-white py-24 sm:py-32 lg:py-40 overflow-hidden select-none border-t border-white/10",
         className
       )}
     >
-      <Container size="lg">
+      <Container size="lg" className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
           <div className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-32 lg:pt-4">
             <div>
               {activeTag ? (
-                <span className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.2em] text-neutral-500 uppercase font-primary mb-4 sm:mb-6">
+                <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-4 sm:mb-6 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
                   {activeTag}
                 </span>
               ) : null}
 
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-neutral-950 tracking-tight leading-[1.04] font-primary mb-6 sm:mb-8 text-balance">
+              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-white tracking-tight leading-[1.04] font-primary mb-6 sm:mb-8 text-balance">
                 <span className="block">{headlineLine1}</span>
-                {headlineLine2 && <span className="block">{headlineLine2}</span>}
+                {headlineLine2 && <span className="block text-white/90">{headlineLine2}</span>}
               </h2>
 
               {activeDescription && (
-                <p className="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed max-w-md font-primary mb-8 sm:mb-10">
+                <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed max-w-md font-primary mb-8 sm:mb-10">
                   {activeDescription}
                 </p>
               )}
@@ -106,7 +106,7 @@ export function ServiceFramework({
             <div>
               <Link
                 href={activeCtaHref}
-                className="group inline-flex items-center gap-2 pb-1 border-b border-neutral-950 text-xs sm:text-[0.8125rem] font-semibold tracking-wider uppercase text-neutral-950 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
+                className="group inline-flex items-center gap-2 pb-1 border-b border-[#fdbb11] text-xs sm:text-[0.8125rem] font-semibold tracking-wider uppercase text-[#fdbb11] hover:text-[#e5a70b] hover:border-[#e5a70b] transition-colors"
               >
                 <span>{activeCtaText}</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -114,21 +114,21 @@ export function ServiceFramework({
             </div>
           </div>
 
-          {/* Right Column: Interlocking Animated Cards */}
+          {/* Right Column: Interlocking Animated White Sculptural Cards */}
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
             <div
               ref={containerRef}
               className="hidden sm:block w-full max-w-[620px] relative"
             >
-              <div className="relative w-full bg-[#f6f6f6] overflow-hidden">
-                {/* Diagonal Junction Overlays */}
+              <div className="relative w-full bg-[#07070a] overflow-hidden">
+                {/* Diagonal Junction Overlays (Matching White Card Fill) */}
                 <div className="absolute inset-0 pointer-events-none z-10">
                   {/* Junction 1: Step 01 -> Step 02 */}
                   <div
                     className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                     style={{ left: "50%", top: isThreeSteps ? "33.333%" : "25%" }}
                   >
-                    <div className="absolute inset-0 bg-neutral-200/50" />
+                    <div className="absolute inset-0 bg-[#07070a]" />
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(45deg)" }}
@@ -137,7 +137,7 @@ export function ServiceFramework({
                         ref={junction1FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        <div className="w-full h-full bg-[#0a0a0a]" />
+                        <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                       </div>
                     </div>
                   </div>
@@ -147,7 +147,7 @@ export function ServiceFramework({
                     className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                     style={{ left: "50%", top: isThreeSteps ? "66.666%" : "50%" }}
                   >
-                    <div className="absolute inset-0 bg-neutral-200/50" />
+                    <div className="absolute inset-0 bg-[#07070a]" />
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(-45deg)" }}
@@ -156,7 +156,7 @@ export function ServiceFramework({
                         ref={junction2FillRef}
                         className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                       >
-                        <div className="w-full h-full bg-[#0a0a0a]" />
+                        <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                       </div>
                     </div>
                   </div>
@@ -167,7 +167,7 @@ export function ServiceFramework({
                       className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
                       style={{ left: "50%", top: "75%" }}
                     >
-                      <div className="absolute inset-0 bg-neutral-200/50" />
+                      <div className="absolute inset-0 bg-[#07070a]" />
                       <div
                         className="absolute inset-0 flex items-center justify-center pointer-events-none"
                         style={{ transform: "rotate(45deg)" }}
@@ -176,7 +176,7 @@ export function ServiceFramework({
                           ref={junction3FillRef}
                           className="w-[180%] h-[200%] absolute flex flex-col justify-end pointer-events-none"
                         >
-                          <div className="w-full h-full bg-[#0a0a0a]" />
+                          <div className="w-full h-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                         </div>
                       </div>
                     </div>
@@ -185,9 +185,9 @@ export function ServiceFramework({
 
                 {/* Cards Grid */}
                 <div className="grid grid-cols-2 gap-0 relative z-20">
-                  {/* Row 1 Col 1: Empty with rounded bottom-right */}
+                  {/* Row 1 Col 1: Empty with rounded bottom-right matching dark section background */}
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 bg-[#f6f6f6] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
+                    <div className="absolute inset-0 bg-[#07070a] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                   </div>
 
                   {/* Row 1 Col 2: Step 0 (01) */}
@@ -196,20 +196,20 @@ export function ServiceFramework({
                       ref={registerCard(0)}
                       onMouseEnter={() => setHoveredIndex(0)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(0)}
-                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                        className="text-xs sm:text-sm font-mono tracking-wider font-bold transition-colors duration-300 text-neutral-950"
                       >
                         {steps[0].number}
                       </span>
                       <div>
-                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-tight font-primary leading-tight group-hover:text-amber-400 transition-colors">
+                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-neutral-950 tracking-tight font-primary leading-tight group-hover:text-neutral-700 transition-colors">
                           {steps[0].title}
                         </h3>
                         {steps[0].description ? (
-                          <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-2 line-clamp-2">
+                          <p className="text-xs text-neutral-600 font-primary leading-relaxed mt-2 line-clamp-2">
                             {steps[0].description}
                           </p>
                         ) : null}
@@ -223,20 +223,20 @@ export function ServiceFramework({
                       ref={registerCard(1)}
                       onMouseEnter={() => setHoveredIndex(1)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(1)}
-                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                        className="text-xs sm:text-sm font-mono tracking-wider font-bold transition-colors duration-300 text-neutral-950"
                       >
                         {steps[1].number}
                       </span>
                       <div>
-                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-tight font-primary leading-tight group-hover:text-amber-400 transition-colors">
+                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-neutral-950 tracking-tight font-primary leading-tight group-hover:text-neutral-700 transition-colors">
                           {steps[1].title}
                         </h3>
                         {steps[1].description ? (
-                          <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-2 line-clamp-2">
+                          <p className="text-xs text-neutral-600 font-primary leading-relaxed mt-2 line-clamp-2">
                             {steps[1].description}
                           </p>
                         ) : null}
@@ -248,7 +248,7 @@ export function ServiceFramework({
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div
                       className={cn(
-                        "absolute inset-0 bg-[#f6f6f6] -mr-2 w-[calc(100%+10px)] h-full",
+                        "absolute inset-0 bg-[#07070a] -mr-2 w-[calc(100%+10px)] h-full",
                         isThreeSteps
                           ? "rounded-tl-[32px] rounded-bl-[32px] rounded-br-[32px]"
                           : "rounded-tl-[32px] rounded-bl-[32px]"
@@ -260,7 +260,7 @@ export function ServiceFramework({
                   <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
                     <div
                       className={cn(
-                        "absolute inset-0 bg-[#f6f6f6] -ml-2 w-[calc(100%+10px)] h-full",
+                        "absolute inset-0 bg-[#07070a] -ml-2 w-[calc(100%+10px)] h-full",
                         isThreeSteps
                           ? "rounded-tr-[32px] rounded-tl-[32px]"
                           : "rounded-tr-[32px] rounded-br-[32px]"
@@ -274,20 +274,20 @@ export function ServiceFramework({
                       ref={registerCard(2)}
                       onMouseEnter={() => setHoveredIndex(2)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
+                      className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
                         ref={registerBadge(2)}
-                        className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                        className="text-xs sm:text-sm font-mono tracking-wider font-bold transition-colors duration-300 text-neutral-950"
                       >
                         {steps[2].number}
                       </span>
                       <div>
-                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-tight font-primary leading-tight group-hover:text-amber-400 transition-colors">
+                        <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-neutral-950 tracking-tight font-primary leading-tight group-hover:text-neutral-700 transition-colors">
                           {steps[2].title}
                         </h3>
                         {steps[2].description ? (
-                          <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-2 line-clamp-2">
+                          <p className="text-xs text-neutral-600 font-primary leading-relaxed mt-2 line-clamp-2">
                             {steps[2].description}
                           </p>
                         ) : null}
@@ -302,20 +302,20 @@ export function ServiceFramework({
                         ref={registerCard(3)}
                         onMouseEnter={() => setHoveredIndex(3)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-[#0a0a0a] text-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#121212] group cursor-pointer"
+                        className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                       >
                         <span
                           ref={registerBadge(3)}
-                          className="text-xs sm:text-sm font-mono tracking-wider transition-colors duration-300"
+                          className="text-xs sm:text-sm font-mono tracking-wider font-bold transition-colors duration-300 text-neutral-950"
                         >
                           {steps[3].number}
                         </span>
                         <div>
-                          <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-tight font-primary leading-tight group-hover:text-amber-400 transition-colors">
+                          <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold text-neutral-950 tracking-tight font-primary leading-tight group-hover:text-neutral-700 transition-colors">
                             {steps[3].title}
                           </h3>
                           {steps[3].description ? (
-                            <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-2 line-clamp-2">
+                            <p className="text-xs text-neutral-600 font-primary leading-relaxed mt-2 line-clamp-2">
                               {steps[3].description}
                             </p>
                           ) : null}
@@ -323,7 +323,7 @@ export function ServiceFramework({
                       </div>
 
                       <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                        <div className="absolute inset-0 bg-[#f6f6f6] rounded-tl-[32px] -mr-2 -mb-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
+                        <div className="absolute inset-0 bg-[#07070a] rounded-tl-[32px] -mr-2 -mb-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
                       </div>
                     </>
                   )}
@@ -335,16 +335,16 @@ export function ServiceFramework({
             <div className="block sm:hidden w-full space-y-3">
               {steps.map((step, idx) => (
                 <div key={step.number} className="relative">
-                  <div className="bg-[#0a0a0a] text-white p-6 flex flex-col justify-between min-h-[160px]">
-                    <span className="text-xs font-mono text-neutral-400 tracking-wider">
+                  <div className="bg-white text-neutral-950 p-6 flex flex-col justify-between min-h-[160px] rounded-xl shadow-xl">
+                    <span className="text-xs font-mono text-neutral-950 font-bold tracking-wider">
                       {step.number}
                     </span>
                     <div className="mt-4">
-                      <h3 className="text-xl font-bold text-white font-primary tracking-tight">
+                      <h3 className="text-xl font-bold text-neutral-950 font-primary tracking-tight">
                         {step.title}
                       </h3>
                       {step.description ? (
-                        <p className="text-xs text-neutral-400 font-primary leading-relaxed mt-1.5">
+                        <p className="text-xs text-neutral-600 font-primary leading-relaxed mt-1.5">
                           {step.description}
                         </p>
                       ) : null}
@@ -353,10 +353,10 @@ export function ServiceFramework({
 
                   {idx < steps.length - 1 && (
                     <div className="flex justify-center my-2">
-                      <div className="w-0.5 h-6 bg-neutral-300/60 overflow-hidden relative">
+                      <div className="w-0.5 h-6 bg-white/20 overflow-hidden relative">
                         <div
                           ref={registerMobileLine(idx)}
-                          className="w-full h-full bg-neutral-900"
+                          className="w-full h-full bg-white"
                         />
                       </div>
                     </div>

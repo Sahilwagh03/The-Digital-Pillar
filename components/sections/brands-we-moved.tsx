@@ -6,19 +6,19 @@ export function BrandsWeMoved() {
   return (
     <section
       id="brands-we-moved"
-      data-nav-theme="light"
-      className="relative w-full bg-white text-neutral-900 py-20 sm:py-28 lg:py-32 overflow-hidden"
+      data-nav-theme="dark"
+      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
     >
       <Container size="lg">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="text-xs sm:text-[0.8125rem] font-medium tracking-[0.25em] text-neutral-400 uppercase">
+          <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.25em] text-[#fdbb11] uppercase">
             BRANDS WE&apos;VE MOVED
           </span>
         </div>
 
         <div className="relative w-full overflow-hidden select-none">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-[#050505] via-[#050505]/90 to-transparent z-10" />
 
           <div className="animate-marquee flex w-max">
             <div className="flex shrink-0 items-center gap-12 sm:gap-16 md:gap-24 pr-12 sm:pr-16 md:pr-24">
@@ -32,7 +32,7 @@ export function BrandsWeMoved() {
                     alt={brand.name}
                     width={240}
                     height={90}
-                    className="max-h-16 sm:max-h-20 md:max-h-24 w-auto h-auto object-contain select-none grayscale hover:grayscale-0 opacity-80 hover:opacity-100 hover:scale-105 transition-transform duration-300"
+                    className="max-h-16 sm:max-h-20 md:max-h-24 w-auto h-auto object-contain select-none brightness-0 invert opacity-60 hover:opacity-100 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(253,187,17,0.35)] transition-all duration-300"
                   />
                 </div>
               ))}
@@ -52,7 +52,7 @@ export function BrandsWeMoved() {
                     alt={brand.name}
                     width={240}
                     height={90}
-                    className="max-h-16 sm:max-h-20 md:max-h-24 w-auto h-auto object-contain select-none grayscale hover:grayscale-0 opacity-80 hover:opacity-100 hover:scale-105 transition-transform duration-300"
+                    className="max-h-16 sm:max-h-20 md:max-h-24 w-auto h-auto object-contain select-none brightness-0 invert opacity-60 hover:opacity-100 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(253,187,17,0.35)] transition-all duration-300"
                   />
                 </div>
               ))}

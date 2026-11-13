@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ServiceMarqueeData } from "@/constants/services";
 
 interface ServiceMarqueeProps {
@@ -25,7 +24,7 @@ export function ServiceMarquee({ marquee }: ServiceMarqueeProps) {
               {marquee.text}
             </span>
             <span
-              className="text-2xl sm:text-4xl lg:text-5xl text-neutral-500 font-light select-none"
+              className="text-2xl sm:text-4xl lg:text-5xl text-[#fdbb11] font-light select-none drop-shadow-[0_0_8px_rgba(253,187,17,0.5)]"
               aria-hidden="true"
             >
               ×
@@ -42,7 +41,7 @@ export function ServiceMarquee({ marquee }: ServiceMarqueeProps) {
             <span className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold uppercase tracking-tight text-white font-primary whitespace-nowrap">
               {marquee.text}
             </span>
-            <span className="text-2xl sm:text-4xl lg:text-5xl text-neutral-500 font-light select-none">
+            <span className="text-2xl sm:text-4xl lg:text-5xl text-[#fdbb11] font-light select-none drop-shadow-[0_0_8px_rgba(253,187,17,0.5)]">
               ×
             </span>
           </div>

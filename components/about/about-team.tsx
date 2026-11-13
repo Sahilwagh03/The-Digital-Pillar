@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -63,10 +63,16 @@ export function AboutTeam({
         ref={pinnedRef}
         className="hidden lg:block w-full h-screen relative overflow-hidden bg-[#050505]"
       >
+        {/* Ambient Brand Glow */}
+        <div
+          className="absolute bottom-20 left-1/3 w-[500px] h-[300px] bg-[#fdbb11]/5 blur-[150px] rounded-full pointer-events-none z-0"
+          aria-hidden="true"
+        />
+
         {/* PINNED BOTTOM-LEFT HEADER: Stays fixed over sliding cards */}
         <div className="absolute bottom-16 xl:bottom-20 left-8 sm:left-12 lg:left-16 xl:left-24 z-20 pointer-events-none max-w-xl">
           {activeTag ? (
-            <span className="text-xs sm:text-[0.8125rem] font-medium tracking-[0.2em] text-neutral-400 uppercase font-primary mb-3 sm:mb-4 block">
+            <span className="text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-3 sm:mb-4 block drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
               {activeTag}
             </span>
           ) : null}
@@ -99,7 +105,7 @@ export function AboutTeam({
                   ref={registerCard(idx)}
                   onClick={() => scrollToIndex(idx)}
                   className={cn(
-                    "group relative flex-shrink-0 h-[440px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] bg-neutral-950 overflow-hidden cursor-pointer select-none transition-all duration-300 border border-white/5 hover:border-white/20",
+                    "group relative flex-shrink-0 h-[440px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] bg-neutral-950 overflow-hidden cursor-pointer select-none transition-all duration-300 border border-white/10 hover:border-white/30 shadow-2xl",
                     isWide
                       ? "w-[480px] sm:w-[560px] lg:w-[680px] xl:w-[780px] 2xl:w-[860px]"
                       : "w-[300px] sm:w-[340px] lg:w-[380px] xl:w-[420px] 2xl:w-[460px]"
@@ -126,7 +132,7 @@ export function AboutTeam({
                     <h3 className="text-xl sm:text-2xl xl:text-[1.65rem] font-bold font-primary text-white tracking-tight leading-snug drop-shadow-md">
                       {member.name}
                     </h3>
-                    <p className="text-xs sm:text-sm font-primary text-neutral-300 font-normal mt-0.5 tracking-wide">
+                    <p className="text-xs sm:text-sm font-primary text-[#fdbb11]/90 font-medium mt-0.5 tracking-wide">
                       {member.role}
                     </p>
                   </div>
@@ -146,7 +152,7 @@ export function AboutTeam({
             {/* Header */}
             <div>
               {activeTag ? (
-                <span className="inline-block text-xs font-medium tracking-[0.2em] text-neutral-400 uppercase font-primary mb-2.5">
+                <span className="inline-block text-xs font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-2.5 drop-shadow-[0_0_8px_rgba(253,187,17,0.3)]">
                   {activeTag}
                 </span>
               ) : null}
@@ -183,7 +189,7 @@ export function AboutTeam({
                   <h3 className="text-2xl font-bold font-primary text-white tracking-tight leading-snug">
                     {activeMobileMember.name}
                   </h3>
-                  <p className="text-sm font-primary text-neutral-300 font-normal mt-0.5">
+                  <p className="text-sm font-primary text-[#fdbb11]/90 font-medium mt-0.5">
                     {activeMobileMember.role}
                   </p>
                 </div>
@@ -197,7 +203,7 @@ export function AboutTeam({
                 )}
               >
                 <div className="flex items-center gap-1.5 font-mono text-xs font-medium text-neutral-400">
-                  <span>
+                  <span className="text-[#fdbb11] font-bold">
                     {String(mobileActiveIndex + 1).padStart(2, "0")}
                   </span>
                   <span>/</span>
@@ -214,7 +220,7 @@ export function AboutTeam({
                       className={cn(
                         "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
                         mobileActiveIndex === dotIdx
-                          ? "w-6 bg-white"
+                          ? "w-6 bg-[#fdbb11] shadow-[0_0_8px_rgba(253,187,17,0.7)]"
                           : "w-1.5 bg-neutral-700 hover:bg-neutral-500"
                       )}
                       aria-label={`Go to team member ${dotIdx + 1}`}
@@ -228,7 +234,7 @@ export function AboutTeam({
                     type="button"
                     onClick={handleMobilePrev}
                     aria-label="Previous team member"
-                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:bg-neutral-800 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:border-[#fdbb11]/50 hover:text-[#fdbb11] hover:bg-neutral-800 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -236,7 +242,7 @@ export function AboutTeam({
                     type="button"
                     onClick={handleMobileNext}
                     aria-label="Next team member"
-                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:bg-neutral-800 transition-all cursor-pointer"
+                    className="w-10 h-10 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-200 active:scale-95 hover:border-[#fdbb11]/50 hover:text-[#fdbb11] hover:bg-neutral-800 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>

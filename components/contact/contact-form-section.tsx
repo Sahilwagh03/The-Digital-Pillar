@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Image from "next/image";
 import { ChevronDown, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -32,7 +32,7 @@ export function ContactFormSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<
+    e: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
@@ -40,7 +40,7 @@ export function ContactFormSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -83,9 +83,15 @@ export function ContactFormSection() {
     <section
       id="contact-form"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-12 sm:py-16 lg:py-20"
+      className="relative w-full bg-[#050505] text-white py-12 sm:py-16 lg:py-20 border-t border-white/5"
     >
-      <Container size="lg">
+      {/* Ambient Brand Glow */}
+      <div
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-[#fdbb11]/5 blur-[160px] rounded-full pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      <Container size="lg" className="relative z-10">
         <motion.div
           variants={contactSectionVariants}
           initial="hidden"
@@ -105,17 +111,17 @@ export function ContactFormSection() {
             </p>
 
             {/* Team Collaborative Image */}
-            <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border border-neutral-800/80 bg-neutral-900">
+            <div className="relative w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-neutral-900 group">
               <Image
                 src={teamImage}
                 alt="The Digital Pillar team gathered around creative strategy session"
                 fill
                 quality={92}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center select-none transition-transform duration-700 hover:scale-[1.02]"
+                className="object-cover object-center select-none transition-transform duration-700 group-hover:scale-[1.02]"
               />
               {/* Subtle Atmospheric Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
             </div>
           </div>
 
@@ -131,8 +137,8 @@ export function ContactFormSection() {
                 className={cn(
                   "rounded-full px-5 py-2 text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer active:scale-95",
                   audience === "brands"
-                    ? "bg-white text-black shadow-md hover:bg-neutral-100"
-                    : "bg-transparent text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:text-white"
+                    ? "bg-[#fdbb11] text-black font-bold shadow-[0_0_20px_rgba(253,187,17,0.35)] hover:bg-[#e5a70b]"
+                    : "bg-transparent text-neutral-300 border border-neutral-700 hover:border-[#fdbb11]/50 hover:text-[#fdbb11]"
                 )}
               >
                 FOR BRANDS
@@ -143,8 +149,8 @@ export function ContactFormSection() {
                 className={cn(
                   "rounded-full px-5 py-2 text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer active:scale-95",
                   audience === "creator"
-                    ? "bg-white text-black shadow-md hover:bg-neutral-100"
-                    : "bg-transparent text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:text-white"
+                    ? "bg-[#fdbb11] text-black font-bold shadow-[0_0_20px_rgba(253,187,17,0.35)] hover:bg-[#e5a70b]"
+                    : "bg-transparent text-neutral-300 border border-neutral-700 hover:border-[#fdbb11]/50 hover:text-[#fdbb11]"
                 )}
               >
                 FOR CREATOR
@@ -169,7 +175,7 @@ export function ContactFormSection() {
                   placeholder="Jane Cooper"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all font-primary"
+                  className="w-full bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all font-primary"
                 />
               </div>
 
@@ -189,7 +195,7 @@ export function ContactFormSection() {
                   placeholder="Jane123@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all font-primary"
+                  className="w-full bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all font-primary"
                 />
               </div>
 
@@ -210,7 +216,7 @@ export function ContactFormSection() {
                     placeholder="Your Phone Number"
                     value={formData.contact}
                     onChange={handleChange}
-                    className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all font-primary"
+                    className="w-full bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all font-primary"
                   />
                 </div>
 
@@ -228,22 +234,22 @@ export function ContactFormSection() {
                       name="businessType"
                       value={formData.businessType}
                       onChange={handleChange}
-                      className="w-full appearance-none bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 pr-10 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all font-primary cursor-pointer"
+                      className="w-full appearance-none bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 pr-10 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all font-primary cursor-pointer"
                     >
-                      <option value="" className="bg-[#0a0a0a] text-neutral-500">
+                      <option value="" className="bg-[#0c0c14] text-neutral-500">
                         Select...
                       </option>
                       {BUSINESS_TYPES.map((type) => (
                         <option
                           key={type}
                           value={type}
-                          className="bg-[#111111] text-white"
+                          className="bg-[#111118] text-white"
                         >
                           {type}
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="w-4 h-4 text-neutral-500 pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
+                    <ChevronDown className="w-4 h-4 text-neutral-400 pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
                   </div>
                 </div>
               </div>
@@ -262,22 +268,22 @@ export function ContactFormSection() {
                     name="projectTimeline"
                     value={formData.projectTimeline}
                     onChange={handleChange}
-                    className="w-full appearance-none bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 pr-10 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all font-primary cursor-pointer"
+                    className="w-full appearance-none bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 pr-10 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all font-primary cursor-pointer"
                   >
-                    <option value="" className="bg-[#0a0a0a] text-neutral-500">
+                    <option value="" className="bg-[#0c0c14] text-neutral-500">
                       When do you want to start?
                     </option>
                     {PROJECT_TIMELINES.map((time) => (
                       <option
                         key={time}
                         value={time}
-                        className="bg-[#111111] text-white"
+                        className="bg-[#111118] text-white"
                       >
                         {time}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-4 h-4 text-neutral-500 pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
+                  <ChevronDown className="w-4 h-4 text-neutral-400 pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
                 </div>
               </div>
 
@@ -296,7 +302,7 @@ export function ContactFormSection() {
                   placeholder="Leave your message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30 transition-all resize-y min-h-[110px] font-primary"
+                  className="w-full bg-[#0c0c14] border border-white/10 rounded-md px-4 py-3 sm:py-3.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fdbb11] focus:ring-1 focus:ring-[#fdbb11]/30 transition-all resize-y min-h-[110px] font-primary"
                 />
               </div>
 
@@ -305,11 +311,11 @@ export function ContactFormSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-white border-b border-white pb-1 transition-all duration-300 hover:text-neutral-300 hover:border-neutral-300 active:scale-98 cursor-pointer disabled:opacity-50"
+                  className="group relative inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#fdbb11] border-b-2 border-[#fdbb11] pb-1 transition-all duration-300 hover:text-[#e5a70b] hover:border-[#e5a70b] active:scale-98 cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-[#fdbb11]" />
                       <span>SENDING...</span>
                     </>
                   ) : (
@@ -327,9 +333,9 @@ export function ContactFormSection() {
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
-                      className="flex items-center gap-2 text-xs text-emerald-400 font-medium"
+                      className="flex items-center gap-2 text-xs text-[#fdbb11] font-semibold"
                     >
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle2 className="w-4 h-4 text-[#fdbb11]" />
                       <span>Thank you! Your message has been sent successfully.</span>
                     </motion.div>
                   )}

@@ -1,13 +1,13 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type ReactNode } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import { SELECTED_WORK_CONTENT, FeaturedProject } from '@/constants/selected-work';
 import { useSelectedWorkAnimation } from '@/animation/selected-work';
 import { OurFocus } from '@/components/sections/our-focus';
 
-function WorkPanel({ children }: { children: React.ReactNode }) {
+function WorkPanel({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-screen w-screen shrink-0 items-center justify-center">
       {children}
@@ -28,7 +28,7 @@ function SelectedWorkIntro({ headlineLine1, headlineLine2, viewAllCta }: Selecte
   return (
     <div className="w-1/2 h-screen">
       <div className="flex flex-col justify-center items-center text-center w-full h-full py-20 px-10">
-        <h2 className="text-4xl sm:text-5xl lg:text-[3.65rem] font-bold tracking-tight text-neutral-950 leading-[1.08] font-primary mb-8 sm:mb-10 text-balance">
+        <h2 className="text-4xl sm:text-5xl lg:text-[3.65rem] font-bold tracking-tight text-white leading-[1.08] font-primary mb-8 sm:mb-10 text-balance">
           {headlineLine1}
           <br />
           {headlineLine2}
@@ -37,12 +37,12 @@ function SelectedWorkIntro({ headlineLine1, headlineLine2, viewAllCta }: Selecte
         <div>
           <Link
             href={viewAllCta.href}
-            className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-neutral-950 uppercase font-primary"
+            className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
           >
-            <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
+            <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
               {viewAllCta.label}
             </span>
-            <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+            <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
               &rarr;
             </span>
           </Link>
@@ -59,9 +59,15 @@ interface ProjectCardProps {
 const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, ref) => {
   return (
     <div className="w-1/2 h-screen">
-      <div className="flex flex-col justify-center py-20 px-20 w-full h-full border-l border-neutral-200/80">
+      <div className="flex flex-col justify-center py-20 px-20 w-full h-full border-l border-white/10">
         <div ref={ref} className="flex flex-col justify-center h-full w-full">
-          <div className="relative w-full h-full overflow-hidden mb-6 shadow-sm group cursor-pointer">
+          <Link
+            href={project.href}
+            data-cursor="view"
+            data-cursor-text="View"
+            aria-label={`View ${project.title} project`}
+            className="relative w-full h-full overflow-hidden mb-6 rounded-xl border border-white/10 shadow-lg group cursor-none bg-neutral-900 group-hover:border-white/30 transition-colors block"
+          >
             <Image
               src={project.imageSrc}
               alt={project.title}
@@ -70,30 +76,16 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
-          </div>
+          </Link>
 
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 font-primary mb-3">
+          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
             {project.title}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
-            <p className="sm:col-span-8 text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed font-primary">
+            <p className="sm:col-span-8 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary">
               {project.description}
             </p>
-
-            <div className="sm:col-span-4 flex sm:justify-end">
-              <Link
-                href={project.href}
-                className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-neutral-950 uppercase font-primary shrink-0"
-              >
-                <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
-                  {project.ctaLabel}
-                </span>
-                <span className="text-xs transition-transform duration-300 group-hover:translate-x-1">
-                  &rarr;
-                </span>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
@@ -116,9 +108,9 @@ interface SelectedWorkEndCtaProps {
 const SelectedWorkEndCta = forwardRef<HTMLDivElement, SelectedWorkEndCtaProps>(({ endCta }, ref) => {
   return (
     <div className="w-1/2 h-screen">
-      <div className="flex flex-col justify-center items-center text-center w-full h-full py-20 px-10 border-l border-neutral-200/80">
+      <div className="flex flex-col justify-center items-center text-center w-full h-full py-20 px-10 border-l border-white/10 bg-[#0c0c12]/40">
         <div ref={ref} className="flex flex-col justify-center items-center text-center w-full">
-          <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-neutral-950 leading-[1.18] font-primary mb-8 sm:mb-10 text-balance max-w-lg">
+          <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-white leading-[1.18] font-primary mb-8 sm:mb-10 text-balance max-w-lg">
             {endCta.headlineLine1}
             <br />
             {endCta.headlineLine2}
@@ -129,12 +121,12 @@ const SelectedWorkEndCta = forwardRef<HTMLDivElement, SelectedWorkEndCtaProps>((
           <div>
             <Link
               href={endCta.href}
-              className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-neutral-950 uppercase font-primary"
+              className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
             >
-              <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
+              <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
                 {endCta.ctaLabel}
               </span>
-              <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+              <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
                 &rarr;
               </span>
             </Link>
@@ -185,8 +177,8 @@ export function SelectedWork() {
         <section
           id="selected-work"
           ref={selectedWorkLayerRef}
-          data-nav-theme="light"
-          className="absolute inset-0 z-10 w-full h-screen bg-white text-neutral-900 border-t border-neutral-200/80 overflow-hidden"
+          data-nav-theme="dark"
+          className="absolute inset-0 z-10 w-full h-screen bg-[#08080c] text-white border-t border-white/10 overflow-hidden"
         >
           <div className="w-full h-full overflow-hidden">
             <div ref={trackRef} className="flex w-fit flex-nowrap">
@@ -219,12 +211,12 @@ export function SelectedWork() {
       <div className="block lg:hidden w-full">
         <section
           id="selected-work-mobile"
-          data-nav-theme="light"
-          className="relative w-full bg-white text-neutral-900 border-t border-neutral-200/80"
+          data-nav-theme="dark"
+          className="relative w-full bg-[#08080c] text-white border-t border-white/10"
         >
           {/* Header */}
           <div className="px-6 sm:px-10 pt-20 pb-12 sm:pt-28 sm:pb-16 text-center max-w-xl mx-auto">
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-950 leading-[1.12] sm:leading-[1.08] font-primary mb-6 sm:mb-8 text-balance">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.08] font-primary mb-6 sm:mb-8 text-balance">
               {headlineLine1}
               <br />
               {headlineLine2}
@@ -233,12 +225,12 @@ export function SelectedWork() {
             <div>
               <Link
                 href={viewAllCta.href}
-                className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-neutral-950 uppercase font-primary"
+                className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
               >
-                <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
+                <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
                   {viewAllCta.label}
                 </span>
-                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
                   &rarr;
                 </span>
               </Link>
@@ -250,9 +242,15 @@ export function SelectedWork() {
             {projects.map((project, idx) => (
               <article
                 key={project.id || idx}
-                className="mobile-work-card flex flex-col border-b border-neutral-200/80 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
+                className="mobile-work-card flex flex-col border-b border-white/10 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
               >
-                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-pointer bg-neutral-100">
+                <Link
+                  href={project.href}
+                  data-cursor="view"
+                  data-cursor-text="View"
+                  aria-label={`View ${project.title} project`}
+                  className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-none bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors block"
+                >
                   <Image
                     src={project.imageSrc}
                     alt={project.title}
@@ -261,26 +259,26 @@ export function SelectedWork() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 600px"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                </div>
+                </Link>
 
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 font-primary mb-3">
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
                   {project.title}
                 </h3>
 
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                  <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed font-primary max-w-lg">
+                  <p className="text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary max-w-lg">
                     {project.description}
                   </p>
 
                   <div className="shrink-0 pt-2 sm:pt-0">
                     <Link
                       href={project.href}
-                      className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-neutral-950 uppercase font-primary shrink-0"
+                      className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-[#fdbb11] uppercase font-primary shrink-0"
                     >
-                      <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
+                      <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
                         {project.ctaLabel}
                       </span>
-                      <span className="text-xs transition-transform duration-300 group-hover:translate-x-1">
+                      <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
                         &rarr;
                       </span>
                     </Link>
@@ -291,9 +289,9 @@ export function SelectedWork() {
           </div>
 
           {/* End CTA Card */}
-          <div className="mobile-work-card px-6 sm:px-10 py-16 sm:py-20 bg-neutral-50/80 border-t border-neutral-200/80 text-center">
+          <div className="mobile-work-card px-6 sm:px-10 py-16 sm:py-20 bg-[#0d0d14] border-t border-white/10 text-center">
             <div className="max-w-lg mx-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 leading-[1.2] font-primary mb-6 sm:mb-8 text-balance">
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-[1.2] font-primary mb-6 sm:mb-8 text-balance">
                 {endCta.headlineLine1}
                 <br />
                 {endCta.headlineLine2}
@@ -303,12 +301,12 @@ export function SelectedWork() {
 
               <Link
                 href={endCta.href}
-                className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-neutral-950 uppercase font-primary"
+                className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
               >
-                <span className="border-b border-neutral-950/60 pb-0.5 group-hover:border-neutral-950 transition-colors">
+                <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
                   {endCta.ctaLabel}
                 </span>
-                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
                   &rarr;
                 </span>
               </Link>

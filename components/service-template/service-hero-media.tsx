@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { MediaCard } from "@/components/ui/media-card";
 import { ServiceHeroMediaItem, DEFAULT_SERVICE_HERO_MEDIA } from "@/constants/services";
 import { cn } from "@/lib/utils";

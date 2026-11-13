@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { CONTACT_HERO_DATA, ContactHeroCardItem } from "@/constants/contact";
 import {
   contactHeroContainerVariants,
+  contactHeroTagVariants,
   contactHeroHeadlineVariants,
   contactHeroSubtitleVariants,
   contactHeroCardsContainerVariants,
@@ -23,10 +24,8 @@ function SpeechBubbleBadge({
   variant,
 }: {
   text: string;
-  variant: "blue" | "green";
+  variant?: "brand" | "blue" | "green";
 }) {
-  const isBlue = variant === "blue";
-
   return (
     <motion.div
       variants={contactHeroBadgeVariants}
@@ -34,25 +33,20 @@ function SpeechBubbleBadge({
       transition={{
         y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" },
       }}
-      className={cn(
-        "absolute -top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none",
-        isBlue ? "text-[#1D70F7]" : "text-[#4A9E7D]"
-      )}
+      className="absolute -top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none text-[#fdbb11]"
     >
       <div
         className={cn(
           "relative inline-flex items-center justify-center rounded-full px-3.5 py-1.5 sm:px-4 sm:py-1.5",
-          "text-white text-[11px] sm:text-xs md:text-[13px] font-semibold tracking-tight whitespace-nowrap leading-none",
-          isBlue
-            ? "bg-[#1D70F7] shadow-[0_8px_20px_-3px_rgba(29,112,247,0.45)]"
-            : "bg-[#4A9E7D] shadow-[0_8px_20px_-3px_rgba(74,158,125,0.45)]"
+          "text-black text-[11px] sm:text-xs md:text-[13px] font-bold tracking-tight whitespace-nowrap leading-none",
+          "bg-[#fdbb11] shadow-[0_8px_20px_-3px_rgba(253,187,17,0.55)]"
         )}
       >
         <span>{text}</span>
 
         {/* Crisp Downward Pointer Tail */}
         <svg
-          className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-2.5 fill-current overflow-visible"
+          className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-2.5 fill-[#fdbb11] overflow-visible"
           viewBox="0 0 14 10"
         >
           <path d="M0 0 L7 10 L14 0 Z" />
@@ -115,9 +109,9 @@ function FannedCard({
           "rounded-2xl sm:rounded-[1.35rem] lg:rounded-[1.5rem]",
           "w-[96px] xs:w-[120px] sm:w-[160px] md:w-[195px] lg:w-[225px] xl:w-[245px]",
           "aspect-square",
-          "bg-white ring-1 ring-black/[0.08]",
-          "shadow-[0_20px_45px_-8px_rgba(0,0,0,0.22),0_8px_18px_-4px_rgba(0,0,0,0.12)]",
-          "hover:shadow-[0_32px_65px_-12px_rgba(0,0,0,0.32)]"
+          "bg-neutral-900 ring-1 ring-white/10 hover:ring-[#fdbb11]/50",
+          "shadow-[0_20px_45px_-8px_rgba(0,0,0,0.8)]",
+          "hover:shadow-[0_32px_65px_-12px_rgba(0,0,0,0.95),0_0_30px_rgba(253,187,17,0.18)]"
         )}
       >
         <Image
@@ -130,27 +124,27 @@ function FannedCard({
         />
 
         {/* Subtle glass edge reflection */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-white/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-white/10 pointer-events-none" />
       </motion.div>
     </div>
   );
 }
 
 export function ContactHero() {
-  const { headline, description, cards } = CONTACT_HERO_DATA;
+  const { tag, headline, description, cards } = CONTACT_HERO_DATA;
 
   return (
     <section
       id="contact-hero"
-      data-nav-theme="light"
-      className="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#F8F8F9] text-neutral-950 pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-24 md:pb-28"
+      data-nav-theme="dark"
+      className="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050505] text-white pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-24 md:pb-28"
     >
-      {/* Soft Luminous Studio Radial Lighting */}
+      {/* Soft Luminous Studio Radial Lighting in Dark Amber */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 12%, rgba(255, 255, 255, 1) 0%, rgba(248, 248, 249, 0.8) 55%, rgba(238, 238, 241, 0.95) 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 12%, rgba(253, 187, 17, 0.08) 0%, rgba(5, 5, 5, 0.7) 50%, rgba(5, 5, 5, 1) 100%)",
         }}
       />
 
@@ -164,13 +158,22 @@ export function ContactHero() {
             animate="visible"
             className="flex flex-col items-center max-w-4xl mx-auto px-2 sm:px-4 w-full"
           >
+            {tag && (
+              <motion.span
+                variants={contactHeroTagVariants}
+                className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-3 sm:mb-4 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]"
+              >
+                {tag}
+              </motion.span>
+            )}
+
             {/* Headline with Masked Reveal Matching Home Hero Sizing */}
             <div className="overflow-hidden py-1 w-full flex justify-center">
               <motion.h1
                 variants={contactHeroHeadlineVariants}
-                className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-neutral-950 leading-[1.03] sm:leading-[1.06] font-primary text-center text-balance"
+                className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-white leading-[1.03] sm:leading-[1.06] font-primary text-center text-balance"
               >
-                Let&apos;s start something.
+                {headline}
               </motion.h1>
             </div>
 
@@ -178,7 +181,7 @@ export function ContactHero() {
             {description && (
               <motion.p
                 variants={contactHeroSubtitleVariants}
-                className="mt-2.5 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-neutral-500 font-normal leading-relaxed max-w-lg mx-auto font-primary text-center text-pretty px-2"
+                className="mt-2.5 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-neutral-400 font-normal leading-relaxed max-w-lg mx-auto font-primary text-center text-pretty px-2"
               >
                 {description}
               </motion.p>

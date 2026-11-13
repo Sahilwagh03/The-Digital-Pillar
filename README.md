@@ -1,5 +1,29 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Media Management (ImageKit + Private Google Drive)
+
+This project includes a media pipeline that migrates private Google Drive videos to ImageKit for public CDN delivery and optimized frame thumbnails, keeping original Google files private and avoiding Vercel serverless function timeouts.
+
+### Quick Start:
+1. **Configure credentials** in `.env.local` (see `.env.example`).
+2. **Run diagnostics**:
+   ```bash
+   npx tsx scripts/test-media-pipeline.ts
+   ```
+3. **Migrate a private Google Drive video**:
+   ```bash
+   npm run media:migrate -- https://drive.google.com/file/d/YOUR_FILE_ID/view --compress
+   ```
+4. **Use `<VideoPlayer>` or `<MediaImage>` in components**:
+   ```tsx
+   import { VideoPlayer } from "@/components/media/VideoPlayer";
+   import { videos } from "@/config/media/videos";
+
+   <VideoPlayer video={videos.projectDemo} />
+   ```
+
+For the complete guide, see [docs/MEDIA_MANAGEMENT.md](docs/MEDIA_MANAGEMENT.md).
+
 ## Getting Started
 
 First, run the development server:
