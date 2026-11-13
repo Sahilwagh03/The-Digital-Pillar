@@ -46,25 +46,6 @@ export const Logo: FC<LogoProps> = ({
           iconClassName
         )}
       />
-
-      {/* Brand Text */}
-      {showText && (
-        <Image
-          src="/logo-text.svg"
-          alt={alt}
-          width={180}
-          height={48}
-          priority={priority}
-          className={cn(
-            "h-8 sm:h-8.5 md:h-9 w-auto object-contain shrink-0 transition-all duration-300 ease-in-out",
-            theme === "light"
-              ? "brightness-0 [filter:brightness(0)]"
-              : "brightness-100 [filter:brightness(1)]",
-            imageClassName,
-            textClassName
-          )}
-        />
-      )}
     </div>
   );
 

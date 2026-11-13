@@ -158,8 +158,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Excellence",
       description:
         "We strive for excellence in everything we do. Whether it's providing top-quality products and services or delivering exceptional customer experiences, we always aim to exceed expectations.",
-      imageSrc: "/images/about/value-01-excellence.png",
-      imageAlt: "Excellence",
+      imageSrc: "/assets/star.svg",
+      imageAlt: "Excellence - 3D Isometric Star",
     },
     {
       id: "creativity",
@@ -167,8 +167,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Creativity",
       description:
         "We believe that creativity is the key to innovation and success. That's why we encourage our team to think outside the box, experiment with new ideas, and explore new possibilities.",
-      imageSrc: "/images/about/value-02-creativity.png",
-      imageAlt: "Creativity",
+      imageSrc: "/assets/bolt.svg",
+      imageAlt: "Creativity - 3D Isometric Energy Bolt",
     },
     {
       id: "partnership",
@@ -176,8 +176,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Partnership",
       description:
         "Collaboration is at the heart of what we do. We value partnerships and seek to build strong, lasting relationships with our clients, vendors, and other agencies.",
-      imageSrc: "/images/about/value-03-partnership.png",
-      imageAlt: "Partnership",
+      imageSrc: "/assets/network-node.svg",
+      imageAlt: "Partnership - 3D Isometric Network",
     },
     {
       id: "integrity",
@@ -185,8 +185,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Integrity",
       description:
         "We hold ourselves to the highest ethical standards and are committed to doing the right thing, even when no one is watching. Trust and transparency are fundamental to the way we operate.",
-      imageSrc: "/images/about/value-04-integrity.png",
-      imageAlt: "Integrity",
+      imageSrc: "/assets/verified-user.svg",
+      imageAlt: "Integrity - 3D Isometric Shield",
     },
     {
       id: "teamwork",
@@ -194,8 +194,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Teamwork",
       description:
         "We believe that great things are achieved through teamwork. We foster a culture of collaboration, communication, and mutual support, where every team member has a voice and is valued.",
-      imageSrc: "/images/about/value-05-teamwork.png",
-      imageAlt: "Teamwork",
+      imageSrc: "/assets/group-work.svg",
+      imageAlt: "Teamwork - 3D Isometric Team Ring",
     },
     {
       id: "tech-driven",
@@ -203,8 +203,8 @@ export const ABOUT_VALUES_DATA: ValuesSectionData = {
       title: "Tech-Driven",
       description:
         "We are passionate about technology and how it can transform businesses and industries. We leverage the latest tools and platforms to drive innovation, efficiency, and growth.",
-      imageSrc: "/images/about/value-06-tech-driven.png",
-      imageAlt: "Tech-Driven",
+      imageSrc: "/assets/rocket-launch.svg",
+      imageAlt: "Tech-Driven - 3D Isometric Rocket Launch",
     },
   ],
 };

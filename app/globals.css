@@ -60,3 +60,12 @@ body::-webkit-scrollbar {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Custom cursor pointer hiding over dedicated preview areas */
+@media (pointer: fine) {
+  [data-cursor="view"],
+  [data-cursor="view"] * {
+    cursor: none !important;
+  }
+}
+

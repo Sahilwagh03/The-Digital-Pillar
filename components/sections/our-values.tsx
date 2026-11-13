@@ -16,6 +16,55 @@ export interface OurValuesProps {
   className?: string;
 }
 
+const VALUE_ACCENTS: Record<string, { glow: string; color: string }> = {
+  excellence: { glow: "#FFC700", color: "#FFC700" },
+  creativity: { glow: "#FF5722", color: "#FF5722" },
+  partnership: { glow: "#E040FB", color: "#E040FB" },
+  integrity: { glow: "#00E676", color: "#00E676" },
+  teamwork: { glow: "#00D2FF", color: "#00D2FF" },
+  "tech-driven": { glow: "#A855F7", color: "#A855F7" },
+};
+
+function ValueCardVisual({ item, priority = false }: { item: ValueItem; priority?: boolean }) {
+  const isVectorAsset = item.imageSrc.startsWith("/assets/") || item.imageSrc.endsWith(".svg");
+  const accent = VALUE_ACCENTS[item.id] || { glow: "#FFC700", color: "#FFC700" };
+
+  if (!isVectorAsset) {
+    return (
+      <Image
+        src={item.imageSrc}
+        alt={item.imageAlt || item.title}
+        fill
+        priority={priority}
+        sizes="(max-width: 1024px) 300px, (max-width: 1440px) 360px, 400px"
+        className="object-cover pointer-events-none select-none"
+      />
+    );
+  }
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+      {/* Soft Ambient Background Glow (Subtle & Refined) */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 sm:w-52 sm:h-52 lg:w-60 lg:h-60 rounded-full blur-[55px] pointer-events-none opacity-20 group-hover:opacity-35 transition-opacity duration-500 will-change-transform"
+        style={{ backgroundColor: accent.glow }}
+      />
+
+      {/* 3D Isometric Logo Asset */}
+      <div className="relative w-[190px] h-[190px] sm:w-[220px] sm:h-[220px] lg:w-[250px] lg:h-[250px] xl:w-[270px] xl:h-[270px] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 pointer-events-none select-none">
+        <Image
+          src={item.imageSrc}
+          alt={item.imageAlt || item.title}
+          fill
+          priority={priority}
+          sizes="(max-width: 1024px) 240px, 300px"
+          className="object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.95)] pointer-events-none select-none"
+        />
+      </div>
+    </div>
+  );
+}
+
 export function OurValues({
   id = "values",
   tag,
@@ -34,7 +83,6 @@ export function OurValues({
     digitReelRef,
     registerCard,
     registerText,
-    registerNumber,
     scrollToIndex,
   } = useOurValuesAnimation(total);
 
@@ -146,17 +194,10 @@ export function OurValues({
                 key={item.id}
                 ref={registerCard(idx)}
                 onClick={() => scrollToIndex(idx)}
-                className="absolute inset-0 rounded-none overflow-hidden bg-neutral-900 border border-white/10 select-none cursor-pointer transition-all duration-300 hover:border-white/30"
+                className="absolute inset-0 select-none cursor-pointer flex items-center justify-center bg-transparent border-0 group"
                 style={{ willChange: "transform, opacity" }}
               >
-                <Image
-                  src={item.imageSrc}
-                  alt={item.imageAlt || item.title}
-                  fill
-                  priority={idx <= 1}
-                  sizes="(max-width: 1024px) 300px, (max-width: 1440px) 360px, 400px"
-                  className="object-cover pointer-events-none select-none"
-                />
+                <ValueCardVisual item={item} priority={idx <= 1} />
               </div>
             ))}
           </div>
@@ -183,20 +224,20 @@ export function OurValues({
 
             {/* Mobile Carousel View */}
             <div className="relative w-full flex flex-col items-center">
-              {/* Card Image */}
-              <div className="relative w-full max-w-[360px] aspect-[294/320] rounded-none overflow-hidden bg-neutral-900 border border-white/10">
-                <Image
-                  src={items[mobileActiveIndex].imageSrc}
-                  alt={items[mobileActiveIndex].imageAlt || items[mobileActiveIndex].title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 360px"
-                  className="object-cover"
-                />
+              {/* Value Visual (Logo & Glow) */}
+              <div className="relative w-full max-w-[360px] aspect-[294/320] flex items-center justify-center bg-transparent border-0">
+                <ValueCardVisual item={items[mobileActiveIndex]} priority={true} />
               </div>
 
               {/* Number and Text Details */}
               <div className="w-full mt-6 flex flex-col items-start">
-                <span className="text-6xl sm:text-7xl font-bold text-[#fdbb11] font-primary leading-none tracking-tighter drop-shadow-[0_0_15px_rgba(253,187,17,0.3)]">
+                <span
+                  className="text-6xl sm:text-7xl font-bold font-primary leading-none tracking-tighter transition-colors duration-300"
+                  style={{
+                    color: (VALUE_ACCENTS[items[mobileActiveIndex].id] || VALUE_ACCENTS.excellence).color,
+                    filter: `drop-shadow(0 0 15px ${(VALUE_ACCENTS[items[mobileActiveIndex].id] || VALUE_ACCENTS.excellence).glow}55)`,
+                  }}
+                >
                   {items[mobileActiveIndex].number}
                 </span>
 
@@ -211,7 +252,14 @@ export function OurValues({
               {/* Mobile Navigation Controls */}
               <div className="w-full flex items-center justify-between mt-8 pt-4 border-t border-neutral-800">
                 <div className="flex items-center gap-1.5 font-mono text-xs font-medium text-neutral-400">
-                  <span className="text-[#fdbb11] font-bold">{items[mobileActiveIndex].number}</span>
+                  <span
+                    style={{
+                      color: (VALUE_ACCENTS[items[mobileActiveIndex].id] || VALUE_ACCENTS.excellence).color,
+                    }}
+                    className="font-bold"
+                  >
+                    {items[mobileActiveIndex].number}
+                  </span>
                   <span>/</span>
                   <span>{String(total).padStart(2, "0")}</span>
                 </div>

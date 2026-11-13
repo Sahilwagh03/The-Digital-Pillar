@@ -32,6 +32,17 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# google & imagekit credentials
+google-service-account*.json
+credentials*.json
+token*.json
+service-account*.json
+
+# media pipeline scratch
+.tmp/
+tmp/
 
 # vercel
 .vercel

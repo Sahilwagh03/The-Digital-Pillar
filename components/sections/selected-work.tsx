@@ -61,7 +61,13 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
     <div className="w-1/2 h-screen">
       <div className="flex flex-col justify-center py-20 px-20 w-full h-full border-l border-white/10">
         <div ref={ref} className="flex flex-col justify-center h-full w-full">
-          <div className="relative w-full h-full overflow-hidden mb-6 rounded-xl border border-white/10 shadow-lg group cursor-pointer bg-neutral-900 group-hover:border-white/30 transition-colors">
+          <Link
+            href={project.href}
+            data-cursor="view"
+            data-cursor-text="View"
+            aria-label={`View ${project.title} project`}
+            className="relative w-full h-full overflow-hidden mb-6 rounded-xl border border-white/10 shadow-lg group cursor-none bg-neutral-900 group-hover:border-white/30 transition-colors block"
+          >
             <Image
               src={project.imageSrc}
               alt={project.title}
@@ -70,7 +76,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
-          </div>
+          </Link>
 
           <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
             {project.title}
@@ -80,20 +86,6 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
             <p className="sm:col-span-8 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary">
               {project.description}
             </p>
-
-            <div className="sm:col-span-4 flex sm:justify-end">
-              <Link
-                href={project.href}
-                className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-[#fdbb11] uppercase font-primary shrink-0"
-              >
-                <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
-                  {project.ctaLabel}
-                </span>
-                <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
-                  &rarr;
-                </span>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
@@ -252,7 +244,13 @@ export function SelectedWork() {
                 key={project.id || idx}
                 className="mobile-work-card flex flex-col border-b border-white/10 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
               >
-                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-pointer bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors">
+                <Link
+                  href={project.href}
+                  data-cursor="view"
+                  data-cursor-text="View"
+                  aria-label={`View ${project.title} project`}
+                  className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-none bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors block"
+                >
                   <Image
                     src={project.imageSrc}
                     alt={project.title}
@@ -261,7 +259,7 @@ export function SelectedWork() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 600px"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                </div>
+                </Link>
 
                 <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
                   {project.title}

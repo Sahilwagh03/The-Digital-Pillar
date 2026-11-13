@@ -1,3 +1,13 @@
+export interface ClientVideoStory {
+  id: string;
+  name: string;
+  role: string;
+  company?: string;
+  thumbnail: string;
+  videoUrl?: string;
+  quote: string;
+}
+
 export interface ClientStory {
   id: string;
   brandName: string;
@@ -10,26 +20,84 @@ export interface ClientStory {
 }
 
 export interface ClientStoriesContent {
+  tag: string;
   title: string;
+  description: string;
   descriptionLines: string[];
   cta: {
     label: string;
     href: string;
   };
+  videoStories: ClientVideoStory[];
   stories: ClientStory[];
 }
 
 export const CLIENT_STORIES_CONTENT: ClientStoriesContent = {
+  tag: "CLIENT STORIES",
   title: "Client Stories",
+  description:
+    "Great work is built through partnership. Watch what founders, creators, and brands say about working with us.",
   descriptionLines: [
-    "Great work is build through",
-    "partnership, Here's what",
-    "our clients say",
+    "Great work is built through",
+    "partnership. Here's what",
+    "our clients say.",
   ],
   cta: {
     label: "BECOME A CLIENT",
     href: "/contact",
   },
+  videoStories: [
+    {
+      id: "story-1",
+      name: "Nilanjan",
+      role: "Founder & Creative Director",
+      company: "Studio Craft",
+      thumbnail: "/images/client-stories/nilanjan.jpg",
+      videoUrl: "/videos/client-testimonial.mp4",
+      quote:
+        "The Digital Pillar transformed our content strategy end to end. The results spoke for themselves within weeks.",
+    },
+    {
+      id: "story-2",
+      name: "Aaun",
+      role: "Co-Founder & CEO",
+      company: "SaaSify Global",
+      thumbnail: "/images/client-stories/aaun.jpg",
+      videoUrl: "/videos/client-testimonial.mp4",
+      quote:
+        "Flawless communication, rapid turnaround, and reels that actually converted into high-ticket inbound clients.",
+    },
+    {
+      id: "story-3",
+      name: "Dev",
+      role: "Growth Lead & Creator",
+      company: "Nexus Media",
+      thumbnail: "/images/client-stories/dev.jpg",
+      videoUrl: "/videos/client-testimonial.mp4",
+      quote:
+        "They don't just edit videos—they engineer high-retention content that consistently beats the algorithm.",
+    },
+    {
+      id: "story-4",
+      name: "Shreya",
+      role: "Head of Marketing",
+      company: "Aura Lifestyle",
+      thumbnail: "/images/client-stories/shreya.jpg",
+      videoUrl: "/videos/client-testimonial.mp4",
+      quote:
+        "Our engagement skyrocketed by 300% after our first month of collaborating. Truly unmatched production value.",
+    },
+    {
+      id: "story-5",
+      name: "Marcus",
+      role: "E-Commerce Founder",
+      company: "Velocity Brands",
+      thumbnail: "/images/client-stories/marcus.jpg",
+      videoUrl: "/videos/client-testimonial.mp4",
+      quote:
+        "The highest ROI partner investment we made this year. High performance, premium aesthetics, and true strategic depth.",
+    },
+  ],
   stories: [
     {
       id: "review-1",

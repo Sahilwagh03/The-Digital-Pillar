@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/sections/footer";
 import { SmoothScroll } from "@/components/common/smooth-scroll";
+import { CustomCursor } from "@/components/common/custom-cursor";
 
 const familjenGrotesk = Familjen_Grotesk({
   variable: "--font-familjen-grotesk",
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${familjenGrotesk.variable} antialiased dark`}
     >
       <body className="min-h-full flex flex-col font-primary bg-[#050505] text-white">
+        <CustomCursor />
         <SmoothScroll>
           <Navbar />
           {children}

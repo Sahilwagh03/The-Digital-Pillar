@@ -7,6 +7,8 @@ export interface HeroContent {
   titleLine1: string;
   titleLine2: string;
   titleLine3: string;
+  rotatingWords: string[];
+  rotationIntervalMs?: number;
   description: string;
   cta: {
     label: string;
@@ -28,8 +30,17 @@ export interface HeroScrollIndicator {
 
 export const HERO_CONTENT: HeroContent = {
   titleLine1: "Create the",
-  titleLine2: " growth",
-  titleLine3: " your company is capable of.",
+  titleLine2: "growth",
+  titleLine3: "your company is capable of.",
+  rotatingWords: [
+    "growth",
+    "impact",
+    "authority",
+    "presence",
+    "scale",
+    "revenue",
+  ],
+  rotationIntervalMs: 2600,
   description:
     "We are The Digital Pillar, a full-service marketing agency based in Pune. We work with believers & big dreamers to help them achieve their vision.",
   cta: {

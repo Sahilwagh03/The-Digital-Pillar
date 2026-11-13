@@ -71,8 +71,8 @@ function AnimatedBarChart({ years }: { years: string[] }) {
                   isHovered
                     ? "bg-[#fdbb11] shadow-[0_0_14px_rgba(253,187,17,0.7)] scale-y-105"
                     : isMax
-                    ? "bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
-                    : "bg-neutral-800/80 group-hover/bar:bg-neutral-700"
+                      ? "bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
+                      : "bg-neutral-800/80 group-hover/bar:bg-neutral-700"
                 )}
                 style={{
                   height: isInView ? `${heightPercent}%` : "0%",
@@ -115,7 +115,7 @@ export function WhyChooseUs() {
     <section
       id="why-choose-us"
       data-nav-theme="dark"
-      className="relative w-full bg-[#07070a] text-white pt-20 sm:pt-28 lg:pt-32"
+      className="relative w-full bg-[#07070a] text-white pt-15 sm:pt-28 lg:pt-32"
     >
       <Container size="lg">
         {/* Header Section with Orchestrated Staggered Reveals */}
@@ -159,20 +159,126 @@ export function WhyChooseUs() {
 
             <motion.p
               variants={descriptionVariants}
-              className="mt-5 sm:mt-6 text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed font-normal"
+              className="mt-4 sm:mt-6 text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed font-normal"
             >
               {description}
             </motion.p>
           </div>
         </motion.div>
 
-        {/* 3-Column Bento Grid with Orchestrated Staggered Entrance */}
+        {/* Mobile Stats View: Numbers Only, No Graphs (sm:hidden) */}
+        <motion.div
+          variants={bentoGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-30px" }}
+          className="grid grid-cols-2 gap-3 sm:hidden"
+        >
+          {/* Mobile Card 1: Retention */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.revenue.number}
+                  damping={45}
+                  stiffness={120}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.revenue.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.revenue.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 2: Speed / Growth */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.speed.number}
+                  delay={0.1}
+                  damping={45}
+                  stiffness={120}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.speed.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.speed.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 3: Projects */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                <NumberTicker
+                  value={stats.projects.number}
+                  delay={0.15}
+                  damping={42}
+                  stiffness={165}
+                  className="text-white dark:text-white tracking-tight"
+                />
+                <span className="text-[#fdbb11]">{stats.projects.suffix}</span>
+              </h3>
+              <p className="text-[11px] text-neutral-400 mt-1.5 font-normal leading-snug">
+                {stats.projects.label}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile Card 4: Rating */}
+          <motion.div
+            variants={bentoCardVariants}
+            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
+                  <NumberTicker
+                    value={stats.ratingCard.ratingNumber}
+                    decimalPlaces={1}
+                    delay={0.1}
+                    damping={45}
+                    stiffness={120}
+                    className="text-white dark:text-white tracking-tight"
+                  />
+                  <span className="text-[#fdbb11] text-xl font-bold">
+                    {stats.ratingCard.ratingSuffix}
+                  </span>
+                </h3>
+                <div className="flex text-[#fdbb11] gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-3 w-3 fill-[#fdbb11] text-[#fdbb11]" />
+                  ))}
+                </div>
+              </div>
+              <p className="text-[11px] text-neutral-400 mt-1 font-normal leading-snug">
+                {stats.ratingCard.label}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* 3-Column Bento Grid with Visuals & Graphs for Tablet & Desktop (hidden sm:grid) */}
         <motion.div
           variants={bentoGridVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, margin: "-40px" }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch"
+          className="hidden sm:grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch"
         >
           {/* Column 1: Revenue Generated & Bar Chart */}
           <motion.div

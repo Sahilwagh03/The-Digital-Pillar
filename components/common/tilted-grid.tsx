@@ -26,12 +26,12 @@ import { cn } from "@/lib/utils";
 // Strips per tile. Each is a few degrees of arc, too little to read as a
 // facet; fewer starts to show corners along the top and bottom edges. A
 // tight curve wraps a tile round a wide arc, so it needs this many.
-const SLICES = 16;
+const SLICES = 24;
 
 // Camera distance from the screen, as a multiple of the cylinder's radius.
 // Just past the axis, so the ends come right up to the lens and swell; much
 // further back and the row flattens out however tight the cylinder.
-const CAMERA = 1.6;
+const CAMERA = 2.0;
 
 /**
  * Cylinder radius, as a share of the hero's width, that puts the frame's
