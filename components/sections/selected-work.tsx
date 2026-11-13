@@ -3,7 +3,7 @@
 import { forwardRef, type ReactNode } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
-import { SELECTED_WORK_CONTENT, FeaturedProject } from '@/constants/selected-work';
+import { SELECTED_WORK_CONTENT, FeaturedProject, SelectedWorkContent } from '@/constants/selected-work';
 import { useSelectedWorkAnimation } from '@/animation/selected-work';
 import { OurFocus } from '@/components/sections/our-focus';
 
@@ -96,13 +96,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
 ProjectCard.displayName = 'ProjectCard';
 
 interface SelectedWorkEndCtaProps {
-  endCta: {
-    headlineLine1: string;
-    headlineLine2: string;
-    headlineLine3: string;
-    ctaLabel: string;
-    href: string;
-  };
+  endCta: SelectedWorkContent['endCta'];
 }
 
 const SelectedWorkEndCta = forwardRef<HTMLDivElement, SelectedWorkEndCtaProps>(({ endCta }, ref) => {
@@ -124,7 +118,7 @@ const SelectedWorkEndCta = forwardRef<HTMLDivElement, SelectedWorkEndCtaProps>((
               className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
             >
               <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
-                {endCta.ctaLabel}
+                {endCta.ctaLabel || "VIEW ALL WORK"}
               </span>
               <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
                 &rarr;
@@ -304,7 +298,7 @@ export function SelectedWork() {
                 className="group inline-flex items-center gap-2.5 text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary"
               >
                 <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
-                  {endCta.ctaLabel}
+                  {endCta.ctaLabel || "VIEW ALL WORK"}
                 </span>
                 <span className="text-sm transition-transform duration-300 group-hover:translate-x-1.5 text-[#fdbb11]">
                   &rarr;
