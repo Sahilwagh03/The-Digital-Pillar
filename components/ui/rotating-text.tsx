@@ -99,12 +99,6 @@ export function RotatingText({
           {currentWord}
         </motion.span>
       </AnimatePresence>
-
-      {/* Subtle Micro-Underline Bloom on Hover */}
-      <span
-        className="absolute bottom-0.5 left-0 w-full h-[2px] bg-[#fdbb11]/0 group-hover/rotate:bg-[#fdbb11]/80 rounded-full transition-all duration-300 transform scale-x-0 group-hover/rotate:scale-x-100 origin-center pointer-events-none"
-        aria-hidden="true"
-      />
     </span>
   );
 }
