@@ -70,13 +70,13 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
     setPlayingStoryId(null);
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
-  }, []);
+  }, [setPlayingStoryId, setIsTransitioning, setCurrentIndex]);
 
   // Manual next button: advances and resets the auto-scroll timer
   const handleNext = useCallback(() => {
     advanceNext();
     setTimerResetKey((prev) => prev + 1);
-  }, [advanceNext]);
+  }, [advanceNext, setTimerResetKey]);
 
   // Manual prev button: retreats and resets the auto-scroll timer
   const handlePrev = useCallback(() => {
@@ -90,7 +90,7 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
     setTimerResetKey((prev) => prev + 1);
-  }, []);
+  }, [setPlayingStoryId, setIsTransitioning, setCurrentIndex, setTimerResetKey]);
 
   // Bulletproof infinite loop normalization:
   // When sliding passes the middle set boundary, silently snap back without animation
@@ -260,6 +260,7 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
                     fill
                     sizes="(max-width: 640px) 310px, (max-width: 1024px) 45vw, 360px"
                     priority={idx >= middleOffset && idx < middleOffset + 3}
+                    unoptimized={story.thumbnail.startsWith("http")}
                     className={`object-cover transition-transform duration-700 pointer-events-none select-none ${
                       isPlaying ? "opacity-0" : "opacity-100 group-hover:scale-105"
                     }`}

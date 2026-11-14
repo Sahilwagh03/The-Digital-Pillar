@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Container } from "../ui/container";
 import { MENU_ITEMS, MenuItem } from "@/constants/navigation";
 import { FOOTER_CONTENT } from "@/constants/footer";
@@ -17,11 +16,7 @@ export function FullScreenMenu({
   onClose,
   items = MENU_ITEMS,
 }: FullScreenMenuProps) {
-  const [currentYear, setCurrentYear] = useState<number | string>(2026);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = 2026;
 
   const {
     wrapRef,

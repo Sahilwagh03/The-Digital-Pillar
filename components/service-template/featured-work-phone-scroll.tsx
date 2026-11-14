@@ -324,7 +324,7 @@ export function FeaturedWorkPhoneScroll({
                 {items[activeStep] && (
                   <div>
                     <span className="block text-xs font-mono font-semibold text-[#fdbb11] tracking-widest uppercase mb-2">
-                      0{activeStep + 1} // {items[activeStep].category}
+                      0{activeStep + 1} {"//"} {items[activeStep].category}
                     </span>
 
                     {items[activeStep].metric && (

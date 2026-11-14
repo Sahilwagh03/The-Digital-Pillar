@@ -21,11 +21,24 @@ import { cn } from "@/lib/utils";
  */
 function SpeechBubbleBadge({
   text,
-  variant,
+  variant = "brand",
 }: {
   text: string;
   variant?: "brand" | "blue" | "green";
 }) {
+  const isBlue = variant === "blue";
+  const isGreen = variant === "green";
+  const bgClass = isBlue
+    ? "bg-blue-500 shadow-[0_8px_20px_-3px_rgba(59,130,246,0.55)] text-white"
+    : isGreen
+    ? "bg-emerald-500 shadow-[0_8px_20px_-3px_rgba(16,185,129,0.55)] text-white"
+    : "bg-[#fdbb11] shadow-[0_8px_20px_-3px_rgba(253,187,17,0.55)] text-black";
+  const fillClass = isBlue
+    ? "fill-blue-500"
+    : isGreen
+    ? "fill-emerald-500"
+    : "fill-[#fdbb11]";
+
   return (
     <motion.div
       variants={contactHeroBadgeVariants}
@@ -33,20 +46,23 @@ function SpeechBubbleBadge({
       transition={{
         y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="absolute -top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none text-[#fdbb11]"
+      className="absolute -top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none"
     >
       <div
         className={cn(
           "relative inline-flex items-center justify-center rounded-full px-3.5 py-1.5 sm:px-4 sm:py-1.5",
-          "text-black text-[11px] sm:text-xs md:text-[13px] font-bold tracking-tight whitespace-nowrap leading-none",
-          "bg-[#fdbb11] shadow-[0_8px_20px_-3px_rgba(253,187,17,0.55)]"
+          "text-[11px] sm:text-xs md:text-[13px] font-bold tracking-tight whitespace-nowrap leading-none",
+          bgClass
         )}
       >
         <span>{text}</span>
 
         {/* Crisp Downward Pointer Tail */}
         <svg
-          className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-2.5 fill-[#fdbb11] overflow-visible"
+          className={cn(
+            "absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-2.5 overflow-visible",
+            fillClass
+          )}
           viewBox="0 0 14 10"
         >
           <path d="M0 0 L7 10 L14 0 Z" />

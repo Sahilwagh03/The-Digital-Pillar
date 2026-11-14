@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { getServiceBySlug, getAllServiceSlugs } from "@/constants/services";
 import { ServicePageView } from "@/components/service-template/service-page-view";
 
-export const instant = false;
-
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

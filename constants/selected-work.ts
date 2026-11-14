@@ -1,3 +1,5 @@
+import videos from "@/config/media/videos";
+
 export interface FeaturedProject {
   id: string;
   title: string;
@@ -34,43 +36,43 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
   },
   featuredProject: {
     id: "stichora-film",
-    title: "Stichora",
+    title: "Stichora Atelier",
     description:
       "A tailoring house that needed to look as premium as its garments. We handled the brand film end to end — direction, motion, sound — then built a reel engine to keep it showing up in the feed.",
-    imageSrc: "/stichora.jpg",
-    href: "/work/stichora"
+    imageSrc: videos.armaniExchange?.thumbnailUrl || "/stichora.jpg",
+    href: "/work/stichora",
   },
   projects: [
     {
       id: "stichora-film",
-      title: "Stichora",
+      title: "Stichora Atelier",
       description:
         "A tailoring house that needed to look as premium as its garments. We handled the brand film end to end — direction, motion, sound — then built a reel engine to keep it showing up in the feed.",
-      imageSrc: "/stichora.jpg",
+      imageSrc: videos.saareeReel0120May?.thumbnailUrl || "/stichora.jpg",
       href: "/work/stichora",
     },
     {
-      id: "stichora-stone",
-      title: "Stichora",
+      id: "marbella-resort",
+      title: "Marbella Luxury Resorts",
       description:
-        "Carving an identity in stone and fabric. We crafted the bespoke monogram, architectural branding, and physical customer touchpoints to reflect heritage craftsmanship.",
-      imageSrc: "/stichora-stone.jpg",
+        "Bespoke hospitality storytelling that captures Mediterranean architecture, sunrise palettes, and world-class guest experiences.",
+      imageSrc: videos.marbella01?.thumbnailUrl || "/stichora-stone.jpg",
       href: "/work/stichora",
     },
     {
-      id: "stichora-dark",
-      title: "Stichora",
+      id: "benne-bae",
+      title: "Benne Bae Foodstudio",
       description:
-        "High-contrast aesthetics paired with sleek dark-mode accents. We designed an immersive design language and cinematic digital assets that elevate the brand's online presence.",
-      imageSrc: "/stichora-dark.jpg",
+        "Cinematic culinary reels and appetite-appeal direction that created overnight viral momentum for a boutique dining destination.",
+      imageSrc: videos.benneBaeFoodstudio?.thumbnailUrl || "/stichora-dark.jpg",
       href: "/work/stichora",
     },
     {
-      id: "stichora-app",
-      title: "Stichora",
+      id: "paradise-real-estate",
+      title: "Paradise Punawale",
       description:
-        "A bespoke digital wardrobe and private client portal. Seamlessly connecting high-profile clients to master tailors with real-time consultations and appointment management.",
-      imageSrc: "/stichora-app.jpg",
+        "Architectural visual systems and high-tempo walkthroughs designed to engage high-net-worth property buyers and drive qualified inquiries.",
+      imageSrc: videos.paradisePunawale?.thumbnailUrl || "/stichora-app.jpg",
       href: "/work/stichora",
     },
   ],

@@ -73,6 +73,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
               alt={project.title}
               fill
               quality={95}
+              unoptimized={project.imageSrc.startsWith("http")}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
