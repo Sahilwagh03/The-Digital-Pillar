@@ -163,6 +163,383 @@ function formatBytes(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
+interface ProcessSingleVideoParams {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  drive: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  imagekit: any;
+  fileId: string;
+  fileName: string;
+  fileSize: number;
+  customTitle?: string;
+  customKey?: string;
+  parentFolderName?: string;
+  relativePath?: string;
+  existingKeys?: Set<string>;
+  thumbnailTime: number;
+  compress: boolean;
+  folder: string;
+  tmpDir: string;
+}
+
+interface ProcessSingleVideoResult {
+  registryKey: string;
+  displayTitle: string;
+  uploadedVideoUrl: string;
+  uploadedThumbnailUrl: string;
+  registrySnippet: string;
+}
+
+interface ScannedVideo {
+  id: string;
+  name: string;
+  size: number;
+  mimeType: string;
+  parentFolderName: string;
+  relativePath: string;
+}
+
+/**
+ * Reads existing TypeScript keys from config/media/videos.ts to prevent key collisions
+ */
+function getExistingRegistryKeys(): Set<string> {
+  const configPath = path.resolve(process.cwd(), "src/config/media/videos.ts");
+  const keys = new Set<string>();
+  if (fs.existsSync(configPath)) {
+    const content = fs.readFileSync(configPath, "utf-8");
+    const matches = content.matchAll(/^\s+([a-zA-Z0-9_-]+):\s*\{/gm);
+    for (const m of matches) {
+      keys.add(m[1]);
+    }
+  }
+  return keys;
+}
+
+/**
+ * Generates a unique, collision-free camelCase registry key
+ */
+function generateUniqueRegistryKey(baseKey: string, existingKeys?: Set<string>): string {
+  if (!existingKeys) return baseKey;
+  let key = baseKey;
+  let counter = 1;
+  while (existingKeys.has(key)) {
+    key = `${baseKey}${++counter}`;
+  }
+  existingKeys.add(key);
+  return key;
+}
+
+/**
+ * Recursively scans Google Drive folders, collecting all video files and skipping specified folders
+ */
+async function scanDriveFolderRecursively(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  drive: any,
+  folderId: string,
+  folderName: string,
+  skipFolders: string[] = [],
+  currentPath: string = "",
+  visited: Set<string> = new Set()
+): Promise<ScannedVideo[]> {
+  if (visited.has(folderId)) return [];
+  visited.add(folderId);
+
+  const results: ScannedVideo[] = [];
+  let pageToken: string | undefined = undefined;
+
+  do {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const listRes: any = await drive.files.list({
+      q: `'${folderId}' in parents and trashed = false`,
+      fields: "nextPageToken, files(id, name, mimeType, size)",
+      supportsAllDrives: true,
+      includeItemsFromAllDrives: true,
+      pageSize: 100,
+      pageToken,
+    });
+
+    const items = listRes.data.files || [];
+
+    for (const item of items) {
+      if (item.mimeType === "application/vnd.google-apps.folder") {
+        const subName = item.name || "Untitled Folder";
+        const isSkipped = skipFolders.some(
+          (skip) => skip && subName.toLowerCase().includes(skip.toLowerCase())
+        );
+
+        const displaySubPath = currentPath ? `${currentPath}/${subName}` : subName;
+
+        if (isSkipped) {
+          console.log(`   ⏭️  [Skipping Folder] "${displaySubPath}" (matches skip rule: "${skipFolders.join(", ")}")`);
+          continue;
+        }
+
+        console.log(`   📁 Scanning subfolder: "${displaySubPath}"...`);
+        const subResults = await scanDriveFolderRecursively(
+          drive,
+          item.id!,
+          subName,
+          skipFolders,
+          displaySubPath,
+          visited
+        );
+        results.push(...subResults);
+      } else {
+        const isVideo =
+          (item.mimeType && item.mimeType.startsWith("video/")) ||
+          /\.(mp4|mov|webm|m4v|mkv|avi)$/i.test(item.name || "");
+
+        if (isVideo) {
+          const displayPath = currentPath ? `${currentPath}/${item.name}` : (item.name || item.id);
+          results.push({
+            id: item.id!,
+            name: item.name || `drive-video-${item.id}.mp4`,
+            size: parseInt(item.size || "0", 10),
+            mimeType: item.mimeType || "video/mp4",
+            parentFolderName: folderName,
+            relativePath: displayPath,
+          });
+        }
+      }
+    }
+
+    pageToken = listRes.data.nextPageToken || undefined;
+  } while (pageToken);
+
+  return results;
+}
+
+async function processSingleVideo(
+  params: ProcessSingleVideoParams
+): Promise<ProcessSingleVideoResult | null> {
+  const {
+    drive,
+    imagekit,
+    fileId,
+    fileName,
+    fileSize,
+    customTitle,
+    customKey,
+    parentFolderName,
+    existingKeys,
+    thumbnailTime,
+    compress,
+    folder,
+    tmpDir,
+  } = params;
+
+  // 1. Download private video to temporary working directory
+  const rawVideoPath = path.join(tmpDir, `raw-${fileId}.mp4`);
+  console.log(`\n[Download] Streaming private file from Google Drive: ${fileName}...`);
+
+  const destStream = fs.createWriteStream(rawVideoPath);
+  let downloadedBytes = 0;
+  let lastLoggedPercent = -1;
+
+  const downloadRes = await drive.files.get(
+    { fileId, alt: "media", supportsAllDrives: true },
+    { responseType: "stream" }
+  );
+
+  await new Promise<void>((resolve, reject) => {
+    downloadRes.data
+      .on("data", (chunk: Buffer) => {
+        downloadedBytes += chunk.length;
+        if (fileSize > 0) {
+          const percent = Math.floor((downloadedBytes / fileSize) * 100);
+          if (percent !== lastLoggedPercent && percent % 10 === 0) {
+            process.stdout.write(
+              `  Progress: ${percent}% (${formatBytes(downloadedBytes)} / ${formatBytes(fileSize)})\r`
+            );
+            lastLoggedPercent = percent;
+          }
+        }
+      })
+      .on("error", (err: Error) => {
+        reject(new Error(`Drive download stream failed: ${err.message}`));
+      })
+      .pipe(destStream)
+      .on("finish", () => {
+        console.log(`\n  Download complete: ${formatBytes(downloadedBytes)}`);
+        resolve();
+      })
+      .on("error", (err: Error) => {
+        reject(new Error(`File write failed: ${err.message}`));
+      });
+  });
+
+  let finalVideoPath = rawVideoPath;
+
+  // 2. Optional FFmpeg Web Compression
+  if (compress && ffmpegPath) {
+    const compressedVideoPath = path.join(tmpDir, `compressed-${fileId}.mp4`);
+    console.log("\n[FFmpeg] Compressing video to web-optimized MP4 (H.264, 720p/1080p, faststart)...");
+    try {
+      await execFileAsync(ffmpegPath, [
+        "-y",
+        "-i",
+        rawVideoPath,
+        "-c:v",
+        "libx264",
+        "-crf",
+        "26",
+        "-preset",
+        "fast",
+        "-vf",
+        "scale='min(1080,iw)':-2",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        "-movflags",
+        "+faststart",
+        compressedVideoPath,
+      ]);
+
+      const compressedSize = fs.statSync(compressedVideoPath).size;
+      console.log(
+        `  Compressed Size: ${formatBytes(compressedSize)} (Saved ${(
+          100 -
+          (compressedSize / (fileSize || 1)) * 100
+        ).toFixed(1)}%)`
+      );
+      finalVideoPath = compressedVideoPath;
+    } catch (err: unknown) {
+      console.warn(
+        `[Warning] Compression pass encountered an error, falling back to original: ${(err as Error).message}`
+      );
+      finalVideoPath = rawVideoPath;
+    }
+  }
+
+  // 3. Generate Thumbnail with FFmpeg
+  const thumbPath = path.join(tmpDir, `thumb-${fileId}.jpg`);
+  let hasCustomThumb = false;
+
+  if (ffmpegPath) {
+    console.log(`\n[FFmpeg] Extracting thumbnail frame at ${thumbnailTime}s...`);
+    try {
+      await execFileAsync(ffmpegPath, [
+        "-y",
+        "-ss",
+        thumbnailTime.toString(),
+        "-i",
+        finalVideoPath,
+        "-vframes",
+        "1",
+        "-q:v",
+        "2",
+        thumbPath,
+      ]);
+      if (fs.existsSync(thumbPath)) {
+        console.log(`  Thumbnail generated: ${formatBytes(fs.statSync(thumbPath).size)}`);
+        hasCustomThumb = true;
+      }
+    } catch (thumbErr: unknown) {
+      console.warn(`[Warning] FFmpeg thumbnail extraction failed: ${(thumbErr as Error).message}`);
+    }
+  }
+
+  // 4. Upload Assets to ImageKit
+  const sanitizedBase = fileName
+    .replace(/\.[^/.]+$/, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  const videoFileName = `${sanitizedBase}-${Date.now().toString().slice(-4)}.mp4`;
+  const thumbFileName = `${sanitizedBase}-thumb.jpg`;
+
+  const folderTag = parentFolderName
+    ? parentFolderName.toLowerCase().replace(/[^a-z0-9_-]/g, "-")
+    : "";
+
+  // Upload Thumbnail
+  let uploadedThumbnailUrl = "";
+  if (hasCustomThumb) {
+    console.log(`\n[ImageKit Upload] Uploading thumbnail to ${folder}/thumbnails...`);
+    const thumbBuffer = fs.readFileSync(thumbPath);
+    const thumbUploadRes = await imagekit.upload({
+      file: thumbBuffer,
+      fileName: thumbFileName,
+      folder: `${folder}/thumbnails`,
+      tags: ["drive-migration", "thumbnail", sanitizedBase, ...(folderTag ? [folderTag] : [])],
+    });
+    uploadedThumbnailUrl = thumbUploadRes.url;
+    console.log(`  Thumbnail URL: ${uploadedThumbnailUrl}`);
+  }
+
+  // Upload Video
+  console.log(`\n[ImageKit Upload] Uploading video to ${folder}/videos...`);
+  const videoBuffer = fs.readFileSync(finalVideoPath);
+  const videoUploadRes = await imagekit.upload({
+    file: videoBuffer,
+    fileName: videoFileName,
+    folder: `${folder}/videos`,
+    tags: ["drive-migration", "video", sanitizedBase, ...(folderTag ? [folderTag] : [])],
+  });
+
+  const uploadedVideoUrl = videoUploadRes.url;
+  console.log(`  Video URL: ${uploadedVideoUrl}`);
+
+  if (!uploadedThumbnailUrl) {
+    uploadedThumbnailUrl = `${uploadedVideoUrl}/ik-thumbnail.jpg?tr=so-1,f-auto`;
+    console.log(`  Defaulting to ImageKit CDN thumbnail: ${uploadedThumbnailUrl}`);
+  }
+
+  // 5. Output Result & Registry Entry
+  let baseKey =
+    customKey ||
+    sanitizedBase.replace(/-([a-z])/g, (_, g) => g.toUpperCase()).replace(/[^a-zA-Z0-9]/g, "");
+
+  // Ensure key starts with a valid JavaScript identifier character (not a number)
+  if (/^[0-9]/.test(baseKey)) {
+    const prefix = folderTag ? folderTag.replace(/[^a-zA-Z]/g, "") : "video";
+    baseKey = `${prefix || "video"}${baseKey}`;
+  }
+
+  const registryKey = generateUniqueRegistryKey(baseKey, existingKeys);
+
+  const displayTitle =
+    customTitle ||
+    (parentFolderName && parentFolderName.toLowerCase() !== "videos"
+      ? `${parentFolderName} - ${fileName
+          .replace(/\.[^/.]+$/, "")
+          .replace(/[-_]+/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase())}`
+      : fileName
+          .replace(/\.[^/.]+$/, "")
+          .replace(/[-_]+/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase()));
+
+  const registrySnippet = `
+  ${registryKey}: {
+    id: "${registryKey}",
+    title: "${displayTitle}",
+    videoUrl: "${uploadedVideoUrl}",
+    thumbnailUrl: "${uploadedThumbnailUrl}",
+    aspectRatio: "9:16",
+    tags: ["drive-migrated"${folderTag ? `, "${folderTag}"` : ""}],
+  },`;
+
+  // Clean up temporary local files for this video to save disk space
+  try {
+    if (fs.existsSync(rawVideoPath)) fs.unlinkSync(rawVideoPath);
+    if (finalVideoPath !== rawVideoPath && fs.existsSync(finalVideoPath)) fs.unlinkSync(finalVideoPath);
+    if (fs.existsSync(thumbPath)) fs.unlinkSync(thumbPath);
+  } catch {
+    // Ignore cleanup error
+  }
+
+  return {
+    registryKey,
+    displayTitle,
+    uploadedVideoUrl,
+    uploadedThumbnailUrl,
+    registrySnippet,
+  };
+}
+
 /**
  * Main Migration Controller
  */
@@ -178,6 +555,7 @@ async function runMigration() {
   let thumbnailTime = 1.5;
   let compress = false;
   let folder = process.env.IMAGEKIT_DEFAULT_FOLDER || "/the-digital-pillar";
+  let skipFolders: string[] = ["resorts"]; // Default skips "resorts" as requested
 
   // Parse CLI flags
   for (let i = 0; i < args.length; i++) {
@@ -192,6 +570,9 @@ async function runMigration() {
       compress = true;
     } else if (arg === "--folder" && args[i + 1]) {
       folder = args[++i];
+    } else if ((arg === "--skip" || arg === "--skip-folder") && args[i + 1]) {
+      const customSkips = args[++i].split(",").map((s) => s.trim().toLowerCase());
+      skipFolders = Array.from(new Set([...skipFolders, ...customSkips]));
     } else if (!arg.startsWith("--") && !driveInput) {
       driveInput = arg;
     }
@@ -209,24 +590,165 @@ async function runMigration() {
   }
 
   console.log(`[Drive Target] Identified File ID: ${fileId}`);
+  console.log(`[Skip Rule] Configured folders to skip: ${skipFolders.map((s) => `"${s}"`).join(", ")}`);
 
   // Setup working directory for scratch downloads
   const tmpDir = path.resolve(process.cwd(), ".tmp", `migration-${Date.now()}`);
   fs.mkdirSync(tmpDir, { recursive: true });
+
+  const existingKeys = getExistingRegistryKeys();
+  const configPath = path.resolve(process.cwd(), "src/config/media/videos.ts");
+  const existingConfigContent = fs.existsSync(configPath) ? fs.readFileSync(configPath, "utf-8") : "";
 
   try {
     // 1. Authenticate Drive & ImageKit
     const drive = await getAuthenticatedDriveClient();
     const imagekit = getImageKitClient();
 
-    // 2. Fetch File Metadata from Drive
-    console.log("[Drive Query] Fetching private file metadata...");
-    const metaRes = await drive.files.get({
-      fileId,
-      fields: "id, name, mimeType, size, videoMediaMetadata",
-      supportsAllDrives: true,
-    });
+    // 2. Fetch Target Metadata from Drive with friendly error handling
+    console.log("[Drive Query] Inspecting Google Drive target...");
+    let metaRes;
+    try {
+      metaRes = await drive.files.get({
+        fileId,
+        fields: "id, name, mimeType, size, videoMediaMetadata",
+        supportsAllDrives: true,
+      });
+    } catch (err: unknown) {
+      const gErr = err as { message?: string; code?: number };
+      if (gErr.message?.includes("File not found") || gErr.code === 404) {
+        console.error(`\n❌ [Google Drive Access Error] Folder/File "${fileId}" was not found or is inaccessible!`);
+        console.error("\n👉 You need to share this folder with your Service Account email:");
+        console.error("   media-migrator@excellent-range-286717.iam.gserviceaccount.com\n");
+        console.error("Steps:");
+        console.error(`  1. Open: https://drive.google.com/drive/folders/${fileId}`);
+        console.error("  2. Click 'Share' (top right).");
+        console.error("  3. Paste: media-migrator@excellent-range-286717.iam.gserviceaccount.com");
+        console.error("  4. Set role to 'Viewer' and click 'Send'.");
+        console.error("  5. Re-run this migration command.\n");
+        process.exit(1);
+      }
+      throw err;
+    }
 
+    const isFolder =
+      metaRes.data.mimeType === "application/vnd.google-apps.folder" ||
+      driveInput.includes("/folders/");
+
+    if (isFolder) {
+      const rootFolderName = metaRes.data.name || fileId;
+      console.log(`\n📁 Identified Google Drive Folder: "${rootFolderName}"`);
+      console.log(`[Drive Query] Recursively scanning subfolders for video files (skipping: ${skipFolders.join(", ")})...`);
+
+      const scannedVideos = await scanDriveFolderRecursively(
+        drive,
+        fileId,
+        rootFolderName,
+        skipFolders
+      );
+
+      if (scannedVideos.length === 0) {
+        console.log("\n⚠️  No video files found to migrate inside this folder hierarchy.");
+        console.log("   (Either all subfolders were skipped or they contained no video files).");
+        return;
+      }
+
+      console.log(`\n✅ Found ${scannedVideos.length} total video(s) across subfolders:\n`);
+      scannedVideos.forEach((v, idx) => {
+        const isAlreadyInConfig = existingConfigContent.includes(v.id);
+        console.log(
+          `   ${idx + 1}. [${v.parentFolderName}] ${v.name} (${formatBytes(v.size)}) ${
+            isAlreadyInConfig ? "⚡ (Already in videos.ts)" : ""
+          }`
+        );
+      });
+
+      if (!compress) {
+        const answer = await askQuestion(
+          "\nWould you like to compress videos to web-optimized 1080p/720p MP4 before upload? (Y/n): "
+        );
+        if (answer.toLowerCase() !== "n") {
+          compress = true;
+        }
+      }
+
+      const allRegistrySnippets: string[] = [];
+      let migratedCount = 0;
+
+      for (let idx = 0; idx < scannedVideos.length; idx++) {
+        const video = scannedVideos[idx];
+
+        // Skip if already in videos.ts
+        if (existingConfigContent.includes(video.id)) {
+          console.log(`\n⏭️  Skipping [${idx + 1}/${scannedVideos.length}]: "${video.name}" (already in videos.ts)`);
+          continue;
+        }
+
+        console.log(`\n=======================================================`);
+        console.log(`  Processing [${idx + 1}/${scannedVideos.length}]: ${video.name} (from "${video.parentFolderName}")`);
+        console.log(`=======================================================`);
+
+        try {
+          const result = await processSingleVideo({
+            drive,
+            imagekit,
+            fileId: video.id,
+            fileName: video.name,
+            fileSize: video.size,
+            parentFolderName: video.parentFolderName,
+            relativePath: video.relativePath,
+            existingKeys,
+            thumbnailTime,
+            compress,
+            folder,
+            tmpDir,
+          });
+
+          if (result) {
+            allRegistrySnippets.push(result.registrySnippet);
+            migratedCount++;
+          }
+        } catch (videoErr: unknown) {
+          const vErr = videoErr as Error;
+          console.error(`\n❌ Error migrating "${video.name}":`, vErr?.message || String(videoErr));
+          console.log("   Continuing with next video...");
+        }
+      }
+
+      console.log("\n=======================================================");
+      console.log(`  MIGRATION FINISHED! (${migratedCount} videos uploaded) 🎉`);
+      console.log("=======================================================");
+
+      if (allRegistrySnippets.length > 0) {
+        console.log("\nRegistry entries ready for 'src/config/media/videos.ts':\n");
+        console.log(allRegistrySnippets.join("\n"));
+
+        const appendAnswer = await askQuestion(
+          "\nWould you like to automatically append these entries to 'src/config/media/videos.ts'? (y/N): "
+        );
+
+        if (appendAnswer.toLowerCase() === "y") {
+          if (fs.existsSync(configPath)) {
+            let content = fs.readFileSync(configPath, "utf-8");
+            const closingIndex = content.lastIndexOf("};");
+            if (closingIndex !== -1) {
+              content =
+                content.slice(0, closingIndex) +
+                `\n  // Migrated from Google Drive Folder: ${fileId}` +
+                allRegistrySnippets.join("") +
+                "\n" +
+                content.slice(closingIndex);
+              fs.writeFileSync(configPath, content, "utf-8");
+              console.log(`[Success] Appended ${migratedCount} entries to ${configPath}`);
+            }
+          }
+        }
+      }
+
+      return;
+    }
+
+    // Single File Mode
     const fileName = metaRes.data.name || `drive-video-${fileId}.mp4`;
     const mimeType = metaRes.data.mimeType || "video/mp4";
     const fileSize = parseInt(metaRes.data.size || "0", 10);
@@ -248,208 +770,57 @@ async function runMigration() {
       }
     }
 
-    // 3. Download private video to temporary working directory
-    const rawVideoPath = path.join(tmpDir, `raw-${fileId}.mp4`);
-    console.log(`\n[Download] Streaming private file from Google Drive...`);
+    const singleResult = await processSingleVideo({
+      drive,
+      imagekit,
+      fileId,
+      fileName,
+      fileSize,
+      customTitle,
+      customKey,
+      existingKeys,
+      thumbnailTime,
+      compress,
+      folder,
+      tmpDir,
+    });
 
-    const destStream = fs.createWriteStream(rawVideoPath);
-    let downloadedBytes = 0;
-    let lastLoggedPercent = -1;
+    if (singleResult) {
+      console.log("\n=======================================================");
+      console.log("  MIGRATION SUCCESSFUL! 🎉");
+      console.log("=======================================================\n");
 
-    const downloadRes = await drive.files.get(
-      { fileId, alt: "media", supportsAllDrives: true },
-      { responseType: "stream" }
-    );
+      console.log("TypeScript registry entry ready for 'src/config/media/videos.ts':\n");
+      console.log(singleResult.registrySnippet);
+      console.log("\nUsage in your components:");
+      console.log(`  import { VideoPlayer } from "@/components/media/VideoPlayer";`);
+      console.log(`  import { videos } from "@/config/media/videos";`);
+      console.log(`  <VideoPlayer video={videos.${singleResult.registryKey}} />\n`);
 
-    await new Promise<void>((resolve, reject) => {
-      downloadRes.data
-        .on("data", (chunk: Buffer) => {
-          downloadedBytes += chunk.length;
-          if (fileSize > 0) {
-            const percent = Math.floor((downloadedBytes / fileSize) * 100);
-            if (percent !== lastLoggedPercent && percent % 10 === 0) {
-              process.stdout.write(`  Progress: ${percent}% (${formatBytes(downloadedBytes)} / ${formatBytes(fileSize)})\r`);
-              lastLoggedPercent = percent;
-            }
+      const appendAnswer = await askQuestion(
+        "Would you like to automatically append this entry to 'src/config/media/videos.ts'? (y/N): "
+      );
+
+      if (appendAnswer.toLowerCase() === "y") {
+        const configPath = path.resolve(process.cwd(), "src/config/media/videos.ts");
+        if (fs.existsSync(configPath)) {
+          let content = fs.readFileSync(configPath, "utf-8");
+          const closingIndex = content.lastIndexOf("};");
+          if (closingIndex !== -1) {
+            content =
+              content.slice(0, closingIndex) +
+              `\n  // Migrated from Google Drive: ${fileId}` +
+              singleResult.registrySnippet +
+              "\n" +
+              content.slice(closingIndex);
+            fs.writeFileSync(configPath, content, "utf-8");
+            console.log(`[Success] Appended to ${configPath}`);
           }
-        })
-        .on("error", (err: Error) => {
-          reject(new Error(`Drive download stream failed: ${err.message}`));
-        })
-        .pipe(destStream)
-        .on("finish", () => {
-          console.log(`\n  Download complete: ${formatBytes(downloadedBytes)}`);
-          resolve();
-        })
-        .on("error", (err: Error) => {
-          reject(new Error(`File write failed: ${err.message}`));
-        });
-    });
-
-    let finalVideoPath = rawVideoPath;
-
-    // 4. Optional FFmpeg Web Compression
-    if (compress && ffmpegPath) {
-      const compressedVideoPath = path.join(tmpDir, `compressed-${fileId}.mp4`);
-      console.log("\n[FFmpeg] Compressing video to web-optimized MP4 (H.264, 720p/1080p, faststart)...");
-      try {
-        await execFileAsync(ffmpegPath, [
-          "-y",
-          "-i",
-          rawVideoPath,
-          "-c:v",
-          "libx264",
-          "-crf",
-          "26",
-          "-preset",
-          "fast",
-          "-vf",
-          "scale='min(1080,iw)':-2",
-          "-c:a",
-          "aac",
-          "-b:a",
-          "128k",
-          "-movflags",
-          "+faststart",
-          compressedVideoPath,
-        ]);
-
-        const compressedSize = fs.statSync(compressedVideoPath).size;
-        console.log(`  Compressed Size: ${formatBytes(compressedSize)} (Saved ${(100 - (compressedSize / fileSize) * 100).toFixed(1)}%)`);
-        finalVideoPath = compressedVideoPath;
-      } catch (err: unknown) {
-        console.warn(`[Warning] Compression pass encountered an error, falling back to original: ${(err as Error).message}`);
-        finalVideoPath = rawVideoPath;
-      }
-    }
-
-    // 5. Generate Thumbnail with FFmpeg
-    const thumbPath = path.join(tmpDir, `thumb-${fileId}.jpg`);
-    let hasCustomThumb = false;
-
-    if (ffmpegPath) {
-      console.log(`\n[FFmpeg] Extracting thumbnail frame at ${thumbnailTime}s...`);
-      try {
-        await execFileAsync(ffmpegPath, [
-          "-y",
-          "-ss",
-          thumbnailTime.toString(),
-          "-i",
-          finalVideoPath,
-          "-vframes",
-          "1",
-          "-q:v",
-          "2",
-          thumbPath,
-        ]);
-        if (fs.existsSync(thumbPath)) {
-          console.log(`  Thumbnail generated: ${formatBytes(fs.statSync(thumbPath).size)}`);
-          hasCustomThumb = true;
-        }
-      } catch (thumbErr: unknown) {
-        console.warn(`[Warning] FFmpeg thumbnail extraction failed: ${(thumbErr as Error).message}`);
-      }
-    }
-
-    // 6. Upload Assets to ImageKit
-    const sanitizedBase = fileName
-      .replace(/\.[^/.]+$/, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9_-]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-
-    const videoFileName = `${sanitizedBase}-${Date.now().toString().slice(-4)}.mp4`;
-    const thumbFileName = `${sanitizedBase}-thumb.jpg`;
-
-    // Upload Thumbnail
-    let uploadedThumbnailUrl = "";
-    if (hasCustomThumb) {
-      console.log(`\n[ImageKit Upload] Uploading thumbnail to ${folder}/thumbnails...`);
-      const thumbBuffer = fs.readFileSync(thumbPath);
-      const thumbUploadRes = await imagekit.upload({
-        file: thumbBuffer,
-        fileName: thumbFileName,
-        folder: `${folder}/thumbnails`,
-        tags: ["drive-migration", "thumbnail", sanitizedBase],
-      });
-      uploadedThumbnailUrl = thumbUploadRes.url;
-      console.log(`  Thumbnail URL: ${uploadedThumbnailUrl}`);
-    }
-
-    // Upload Video
-    console.log(`\n[ImageKit Upload] Uploading video to ${folder}/videos...`);
-    const videoBuffer = fs.readFileSync(finalVideoPath);
-    const videoUploadRes = await imagekit.upload({
-      file: videoBuffer,
-      fileName: videoFileName,
-      folder: `${folder}/videos`,
-      tags: ["drive-migration", "video", sanitizedBase],
-    });
-
-    const uploadedVideoUrl = videoUploadRes.url;
-    console.log(`  Video URL: ${uploadedVideoUrl}`);
-
-    // If no custom thumbnail was generated, use ImageKit native video thumbnail URL
-    if (!uploadedThumbnailUrl) {
-      uploadedThumbnailUrl = `${uploadedVideoUrl}/ik-thumbnail.jpg?tr=so-1,f-auto`;
-      console.log(`  Defaulting to ImageKit CDN thumbnail: ${uploadedThumbnailUrl}`);
-    }
-
-    // 7. Output Result & Registry Entry
-    const registryKey =
-      customKey ||
-      sanitizedBase.replace(/-([a-z])/g, (_, g) => g.toUpperCase()).replace(/[^a-zA-Z0-9]/g, "");
-
-    const displayTitle =
-      customTitle ||
-      fileName
-        .replace(/\.[^/.]+$/, "")
-        .replace(/[-_]+/g, " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase());
-
-    console.log("\n=======================================================");
-    console.log("  MIGRATION SUCCESSFUL! 🎉");
-    console.log("=======================================================\n");
-
-    const registrySnippet = `
-  ${registryKey}: {
-    id: "${registryKey}",
-    title: "${displayTitle}",
-    videoUrl: "${uploadedVideoUrl}",
-    thumbnailUrl: "${uploadedThumbnailUrl}",
-    aspectRatio: "9:16",
-    tags: ["drive-migrated"],
-  },`;
-
-    console.log("TypeScript registry entry ready for 'src/config/media/videos.ts':\n");
-    console.log(registrySnippet);
-    console.log("\nUsage in your components:");
-    console.log(`  import { VideoPlayer } from "@/components/media/VideoPlayer";`);
-    console.log(`  import { videos } from "@/config/media/videos";`);
-    console.log(`  <VideoPlayer video={videos.${registryKey}} />\n`);
-
-    // Optionally append directly to src/config/media/videos.ts
-    const appendAnswer = await askQuestion(
-      "Would you like to automatically append this entry to 'src/config/media/videos.ts'? (y/N): "
-    );
-
-    if (appendAnswer.toLowerCase() === "y") {
-      const configPath = path.resolve(process.cwd(), "src/config/media/videos.ts");
-      if (fs.existsSync(configPath)) {
-        let content = fs.readFileSync(configPath, "utf-8");
-        const closingIndex = content.lastIndexOf("};");
-        if (closingIndex !== -1) {
-          content =
-            content.slice(0, closingIndex) +
-            `\n  // Migrated from Google Drive: ${fileId}` +
-            registrySnippet +
-            "\n" +
-            content.slice(closingIndex);
-          fs.writeFileSync(configPath, content, "utf-8");
-          console.log(`[Success] Appended to ${configPath}`);
         }
       }
     }
+
+
   } finally {
     // 8. Guaranteed Temporary Files Cleanup
     try {

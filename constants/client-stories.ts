@@ -1,3 +1,5 @@
+import videos from "@/config/media/videos";
+
 export interface ClientVideoStory {
   id: string;
   name: string;
@@ -49,53 +51,73 @@ export const CLIENT_STORIES_CONTENT: ClientStoriesContent = {
   videoStories: [
     {
       id: "story-1",
-      name: "Nilanjan",
-      role: "Founder & Creative Director",
+      name: "Studio Craft",
+      role: "Creative Direction & Reels",
       company: "Studio Craft",
-      thumbnail: "/images/client-stories/nilanjan.jpg",
-      videoUrl: "/videos/client-testimonial.mp4",
+      thumbnail: videos.marbella01?.thumbnailUrl || "/images/client-stories/nilanjan.jpg",
+      videoUrl: videos.marbella01?.videoUrl || "/videos/client-testimonial.mp4",
       quote:
         "The Digital Pillar transformed our content strategy end to end. The results spoke for themselves within weeks.",
     },
     {
       id: "story-2",
-      name: "Aaun",
-      role: "Co-Founder & CEO",
+      name: "Founder Journey",
+      role: "Executive & Personal Branding",
       company: "SaaSify Global",
-      thumbnail: "/images/client-stories/aaun.jpg",
-      videoUrl: "/videos/client-testimonial.mp4",
+      thumbnail: videos.reel7LaunchPlanningFab14?.thumbnailUrl || "/images/client-stories/aaun.jpg",
+      videoUrl: videos.reel7LaunchPlanningFab14?.videoUrl || "/videos/client-testimonial.mp4",
       quote:
         "Flawless communication, rapid turnaround, and reels that actually converted into high-ticket inbound clients.",
     },
     {
       id: "story-3",
-      name: "Dev",
-      role: "Growth Lead & Creator",
-      company: "Nexus Media",
-      thumbnail: "/images/client-stories/dev.jpg",
-      videoUrl: "/videos/client-testimonial.mp4",
+      name: "Armani Exchange",
+      role: "Commercial Fashion Campaign",
+      company: "Armani Exchange",
+      thumbnail: videos.armaniExchange?.thumbnailUrl || "/images/client-stories/dev.jpg",
+      videoUrl: videos.armaniExchange?.videoUrl || "/videos/client-testimonial.mp4",
       quote:
         "They don't just edit videos—they engineer high-retention content that consistently beats the algorithm.",
     },
     {
       id: "story-4",
-      name: "Shreya",
-      role: "Head of Marketing",
-      company: "Aura Lifestyle",
-      thumbnail: "/images/client-stories/shreya.jpg",
-      videoUrl: "/videos/client-testimonial.mp4",
+      name: "Product Motion",
+      role: "Energy & DTC Campaign",
+      company: "Nexus Media",
+      thumbnail: videos.productEnergy?.thumbnailUrl || "/images/client-stories/shreya.jpg",
+      videoUrl: videos.productEnergy?.videoUrl || "/videos/client-testimonial.mp4",
       quote:
         "Our engagement skyrocketed by 300% after our first month of collaborating. Truly unmatched production value.",
     },
     {
       id: "story-5",
-      name: "Marcus",
-      role: "E-Commerce Founder",
-      company: "Velocity Brands",
-      thumbnail: "/images/client-stories/marcus.jpg",
-      videoUrl: "/videos/client-testimonial.mp4",
+      name: "Food & Hospitality",
+      role: "QSR & Cloud Kitchen Launch",
+      company: "Benne Bae Foodstudio",
+      thumbnail: videos.benneBaeFoodstudio?.thumbnailUrl || "/images/client-stories/marcus.jpg",
+      videoUrl: videos.benneBaeFoodstudio?.videoUrl || "/videos/client-testimonial.mp4",
       quote:
         "The highest ROI partner investment we made this year. High performance, premium aesthetics, and true strategic depth.",
+    },
+    {
+      id: "story-6",
+      name: "Luxury Living",
+      role: "Architectural Showcase",
+      company: "Paradise Punawale",
+      thumbnail: videos.paradisePunawale?.thumbnailUrl || videos.marbella02?.thumbnailUrl || "/images/client-stories/nilanjan.jpg",
+      videoUrl: videos.paradisePunawale?.videoUrl || videos.marbella02?.videoUrl || "/videos/client-testimonial.mp4",
+      quote:
+        "Cinematic drone sweeps and precision framing that brought serious buyers through the door before launch.",
+    },
+    {
+      id: "story-7",
+      name: "NextGen AI UGC",
+      role: "Algorithmic Ad Suite",
+      company: "QOVA AI Media",
+      thumbnail: videos.aQovaAiEditsBatch4?.thumbnailUrl || "/images/client-stories/shreya.jpg",
+      videoUrl: videos.aQovaAiEditsBatch4?.videoUrl || "/videos/client-testimonial.mp4",
+      quote:
+        "Unbelievable turnaround and testing speed. Our paid social ROAS jumped immediately after integrating these edits.",
     },
   ],
   stories: [

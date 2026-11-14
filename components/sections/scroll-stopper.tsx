@@ -175,7 +175,7 @@ export function ThreeCardsShowcase() {
               Honestly
             </span>
             <span className="block text-white/90 text-[10px] sm:text-xs md:text-sm italic font-serif leading-tight drop-shadow-md">
-              I've tried so many
+              I&apos;ve tried so many
             </span>
           </div>
         </motion.div>
@@ -217,7 +217,7 @@ export function ScrollStopperRotatingWheel() {
   const cardElementsRef = useRef<(HTMLDivElement | null)[]>([]);
   const { cardWidth, cardHeight, radius } = useRingDimensions(totalCards);
 
-  const rotationRef = useRingAnimation({
+  useRingAnimation({
     totalCards,
     radius,
     cardElementsRef,
@@ -249,7 +249,7 @@ export function ScrollStopperRotatingWheel() {
             style={{ transformStyle: "preserve-3d" }}
           >
             {CARDS.map((card, idx) => {
-              const angle = (idx * 360) / totalCards + rotationRef.current;
+              const angle = (idx * 360) / totalCards - 30;
               return (
                 <StopperCardItem
                   key={card.id}

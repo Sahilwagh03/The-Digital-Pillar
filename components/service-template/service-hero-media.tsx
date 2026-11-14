@@ -31,11 +31,15 @@ export function ServiceHeroMedia({
             )}
           >
             <MediaCard
-              type={item.type}
+              type={item.type || "video"}
               src={item.src}
               alt={item.alt || `${title} Hero Showcase ${index + 1}`}
               poster={item.poster}
-              priority={index === 1}
+              priority
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-35 sm:h-45 md:h-60 lg:h-120"
               mediaClassName="w-full h-35 sm:h-45 md:h-60 lg:h-120 object-cover"
             />

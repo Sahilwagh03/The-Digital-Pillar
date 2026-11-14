@@ -1,3 +1,5 @@
+import videos from "@/config/media/videos";
+
 export interface HeroAvatar {
   src: string;
   alt: string;
@@ -48,16 +50,16 @@ export const HERO_CONTENT: HeroContent = {
     href: "/contact",
   },
   images: [
-    { src: "/stichora-app.jpg", alt: "Stichora App Showcase" },
-    { src: "/stichora-dark.jpg", alt: "Stichora Dark UI Design" },
-    { src: "/why-choose-us.jpg", alt: "Why Choose Us Campaign" },
-    { src: "/stichora-stone.jpg", alt: "Stichora Brand Identity" },
-    { src: "/images/services/branding.jpg", alt: "Brand Design Services" },
-    { src: "/images/services/web-design.jpg", alt: "Web Design and Development" },
-    { src: "/images/services/content-strategy.jpg", alt: "Content Strategy & Growth" },
-    { src: "/images/services/social-media.jpg", alt: "Social Media Marketing" },
-    { src: "/images/about/hero-team.jpg", alt: "Agency Creative Team" },
-    { src: "/hero-bg.jpg", alt: "The Digital Pillar Hero Concept" },
+    { src: videos.armaniExchange?.thumbnailUrl || "/stichora-app.jpg", alt: "Armani Exchange Campaign" },
+    { src: videos.marbella01?.thumbnailUrl || "/stichora-dark.jpg", alt: "Marbella Resort Showcase" },
+    { src: videos.benneBaeFoodstudio?.thumbnailUrl || "/why-choose-us.jpg", alt: "Benne Bae Foodstudio" },
+    { src: videos.productEnergy?.thumbnailUrl || "/stichora-stone.jpg", alt: "Energy Drink DTC Commercial" },
+    { src: videos.paradisePunawale?.thumbnailUrl || "/images/services/branding.jpg", alt: "Paradise Punawale Luxury Living" },
+    { src: videos.saareeReel0120May?.thumbnailUrl || "/images/services/web-design.jpg", alt: "Heritage Fashion Production" },
+    { src: videos.aQovaAiEditsBatch4?.thumbnailUrl || "/images/services/content-strategy.jpg", alt: "NextGen AI UGC Suite" },
+    { src: videos.reel7LaunchPlanningFab14?.thumbnailUrl || "/images/services/social-media.jpg", alt: "Executive Authority Engine" },
+    { src: videos.kj11?.thumbnailUrl || "/images/about/hero-team.jpg", alt: "KJ Product Showcase" },
+    { src: videos.ela01?.thumbnailUrl || "/hero-bg.jpg", alt: "Ela Editorial Fashion Reel" },
   ],
 };
 

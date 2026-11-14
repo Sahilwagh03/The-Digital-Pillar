@@ -49,6 +49,15 @@ export function MediaCard({
     return (
       <div className={cn("relative w-full h-full overflow-hidden bg-neutral-900", className)}>
         <video
+          ref={(el) => {
+            if (el) {
+              el.defaultMuted = true;
+              el.muted = true;
+              if (autoPlay && el.paused) {
+                el.play().catch(() => {});
+              }
+            }
+          }}
           src={src}
           poster={poster}
           autoPlay={autoPlay}
@@ -65,7 +74,8 @@ export function MediaCard({
     );
   }
 
-  const finalImageSrc = isVideo && videoError && poster ? poster : src;
+  const fallbackPlaceholder = "/images/services/social-media.jpg";
+  const finalImageSrc = (isVideo && videoError && poster) ? poster : (src || poster || fallbackPlaceholder);
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden bg-neutral-900", className)}>
@@ -75,6 +85,7 @@ export function MediaCard({
         width={width}
         height={height}
         priority={priority}
+        unoptimized={finalImageSrc.startsWith("http")}
         className={cn("w-full h-full object-cover", mediaClassName)}
       />
     </div>
