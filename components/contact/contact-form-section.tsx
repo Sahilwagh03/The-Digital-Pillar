@@ -83,14 +83,8 @@ export function ContactFormSection() {
     <section
       id="contact-form"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-12 sm:py-16 lg:py-20 border-t border-white/5"
+      className="relative w-full bg-transparent text-white py-12 sm:py-16 lg:py-20 border-t border-white/5"
     >
-      {/* Ambient Brand Glow */}
-      <div
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[350px] bg-[#fdbb11]/5 blur-[160px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         <motion.div
           variants={contactSectionVariants}

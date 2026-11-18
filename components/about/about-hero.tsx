@@ -26,7 +26,7 @@ export function AboutHero() {
     <section
       id="about-hero"
       data-nav-theme="dark"
-      className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#070707] text-white"
+      className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-transparent text-white"
     >
       {/* Background Cinematic Photo with Atmospheric Gradients */}
       <div className="absolute inset-0 z-0">
@@ -37,20 +37,9 @@ export function AboutHero() {
           priority
           quality={95}
           sizes="100vw"
-          className="object-cover object-[center_35%] select-none pointer-events-none scale-100 transition-transform duration-1000 ease-out"
+          className="object-cover object-[center_35%] select-none pointer-events-none scale-100 transition-transform duration-1000 ease-out opacity-45"
         />
-
-        {/* Cinematic Vignettes & Contrast Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/75 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/90 via-black/35 to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none" />
       </div>
-
-      {/* Atmospheric Brand Glow */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#fdbb11]/8 blur-[150px] rounded-full pointer-events-none z-[1]"
-        aria-hidden="true"
-      />
 
       {/* Main Hero Content (Centered with Display Typography) */}
       <div className="relative z-10 flex-1 flex flex-col justify-center items-center w-full pt-28 sm:pt-36 pb-16 sm:pb-20">

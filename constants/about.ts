@@ -296,7 +296,7 @@ export const ABOUT_CTA_CONTENT = {
   description:
     "Whether you're starting from scratch or ready to scale to the next tier, let's explore how we can accelerate your trajectory.",
   primaryCta: {
-    label: "Let's Talk",
+    label: "Work With Us",
     href: "/contact",
   },
   secondaryCta: {

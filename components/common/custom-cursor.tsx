@@ -160,12 +160,12 @@ export function CustomCursor() {
       ? isView
         ? "rgba(0, 0, 0, 0.45)"
         : "rgba(0, 0, 0, 0.32)"
-      : "transparent"
+      : "rgba(0, 0, 0, 0)"
     : isGlass
     ? isView
       ? "rgba(255, 255, 255, 0.42)"
       : "rgba(255, 255, 255, 0.4)"
-    : "transparent";
+    : "rgba(255, 255, 255, 0)";
 
   const borderWidth = isGlass ? (isView ? 1.5 : 1) : 0;
 
@@ -187,11 +187,13 @@ export function CustomCursor() {
       aria-hidden="true"
     >
       <motion.div
+        initial={false}
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
+          borderStyle: "solid",
           backdropFilter: isGlass
             ? isView
               ? "blur(14px) saturate(180%)"
@@ -220,7 +222,7 @@ export function CustomCursor() {
           mass: 0.12,
         }}
         className={`rounded-full flex items-center justify-center will-change-transform ${
-          isGlass ? "border backdrop-blur-md" : ""
+          isGlass ? "backdrop-blur-md" : ""
         }`}
       >
         <AnimatePresence mode="wait">

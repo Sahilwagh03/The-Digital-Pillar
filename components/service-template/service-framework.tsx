@@ -76,7 +76,7 @@ export function ServiceFramework({
       id={id || "process"}
       data-nav-theme="dark"
       className={cn(
-        "relative w-full bg-[#07070a] text-white py-24 sm:py-32 lg:py-40 overflow-hidden select-none border-t border-white/10",
+        "relative w-full bg-transparent text-white py-24 sm:py-32 lg:py-40 overflow-hidden select-none border-t border-white/10",
         className
       )}
     >
@@ -120,15 +120,30 @@ export function ServiceFramework({
               ref={containerRef}
               className="hidden sm:block w-full max-w-[620px] relative"
             >
-              <div className="relative w-full bg-[#07070a] overflow-hidden">
+              <div className="relative w-full overflow-hidden">
+                {/* SVG Definitions for Mathematical Curved Fillet Junctions (100% Transparent Background Compatible) */}
+                <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
+                  <defs>
+                    <clipPath id="framework-junction-1" clipPathUnits="userSpaceOnUse">
+                      <path d="M 56 0 L 112 0 L 112 56 L 88 56 A 32 32 0 0 0 56 88 L 56 112 L 0 112 L 0 56 L 24 56 A 32 32 0 0 0 56 24 Z" />
+                    </clipPath>
+                    <clipPath id="framework-junction-2" clipPathUnits="userSpaceOnUse">
+                      <path d="M 0 0 L 56 0 L 56 24 A 32 32 0 0 0 88 56 L 112 56 L 112 112 L 56 112 L 56 88 A 32 32 0 0 0 24 56 L 0 56 Z" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
                 {/* Diagonal Junction Overlays (Matching White Card Fill) */}
                 <div className="absolute inset-0 pointer-events-none z-10">
                   {/* Junction 1: Step 01 -> Step 02 */}
                   <div
-                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
-                    style={{ left: "50%", top: isThreeSteps ? "33.333%" : "25%" }}
+                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none [clip-path:url(#framework-junction-1)]"
+                    style={{
+                      left: "50%",
+                      top: isThreeSteps ? "33.333%" : "25%",
+                      clipPath: "url(#framework-junction-1)",
+                    }}
                   >
-                    <div className="absolute inset-0 bg-[#07070a]" />
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(45deg)" }}
@@ -144,10 +159,13 @@ export function ServiceFramework({
 
                   {/* Junction 2: Step 02 -> Step 03 */}
                   <div
-                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
-                    style={{ left: "50%", top: isThreeSteps ? "66.666%" : "50%" }}
+                    className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none [clip-path:url(#framework-junction-2)]"
+                    style={{
+                      left: "50%",
+                      top: isThreeSteps ? "66.666%" : "50%",
+                      clipPath: "url(#framework-junction-2)",
+                    }}
                   >
-                    <div className="absolute inset-0 bg-[#07070a]" />
                     <div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       style={{ transform: "rotate(-45deg)" }}
@@ -164,10 +182,13 @@ export function ServiceFramework({
                   {/* Junction 3: Step 03 -> Step 04 (Only when 4+ steps exist) */}
                   {!isThreeSteps && steps[3] && (
                     <div
-                      className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none"
-                      style={{ left: "50%", top: "75%" }}
+                      className="absolute w-28 h-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none [clip-path:url(#framework-junction-1)]"
+                      style={{
+                        left: "50%",
+                        top: "75%",
+                        clipPath: "url(#framework-junction-1)",
+                      }}
                     >
-                      <div className="absolute inset-0 bg-[#07070a]" />
                       <div
                         className="absolute inset-0 flex items-center justify-center pointer-events-none"
                         style={{ transform: "rotate(45deg)" }}
@@ -185,10 +206,8 @@ export function ServiceFramework({
 
                 {/* Cards Grid */}
                 <div className="grid grid-cols-2 gap-0 relative z-20">
-                  {/* Row 1 Col 1: Empty with rounded bottom-right matching dark section background */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 bg-[#07070a] rounded-br-[32px] -ml-2 -mt-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
-                  </div>
+                  {/* Row 1 Col 1: Empty */}
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] pointer-events-none bg-transparent" />
 
                   {/* Row 1 Col 2: Step 0 (01) */}
                   {steps[0] && (
@@ -244,29 +263,11 @@ export function ServiceFramework({
                     </div>
                   )}
 
-                  {/* Row 2 Col 2: Empty with rounded corners */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                    <div
-                      className={cn(
-                        "absolute inset-0 bg-[#07070a] -mr-2 w-[calc(100%+10px)] h-full",
-                        isThreeSteps
-                          ? "rounded-tl-[32px] rounded-bl-[32px] rounded-br-[32px]"
-                          : "rounded-tl-[32px] rounded-bl-[32px]"
-                      )}
-                    />
-                  </div>
+                  {/* Row 2 Col 2: Empty */}
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] pointer-events-none bg-transparent" />
 
-                  {/* Row 3 Col 1: Empty with rounded corners */}
-                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                    <div
-                      className={cn(
-                        "absolute inset-0 bg-[#07070a] -ml-2 w-[calc(100%+10px)] h-full",
-                        isThreeSteps
-                          ? "rounded-tr-[32px] rounded-tl-[32px]"
-                          : "rounded-tr-[32px] rounded-br-[32px]"
-                      )}
-                    />
-                  </div>
+                  {/* Row 3 Col 1: Empty */}
+                  <div className="relative h-[210px] md:h-[230px] lg:h-[250px] pointer-events-none bg-transparent" />
 
                   {/* Row 3 Col 2: Step 2 (03) */}
                   {steps[2] && (
@@ -322,9 +323,8 @@ export function ServiceFramework({
                         </div>
                       </div>
 
-                      <div className="relative h-[210px] md:h-[230px] lg:h-[250px] overflow-hidden pointer-events-none">
-                        <div className="absolute inset-0 bg-[#07070a] rounded-tl-[32px] -mr-2 -mb-2 w-[calc(100%+10px)] h-[calc(100%+10px)]" />
-                      </div>
+                      {/* Row 4 Col 2: Empty */}
+                      <div className="relative h-[210px] md:h-[230px] lg:h-[250px] pointer-events-none bg-transparent" />
                     </>
                   )}
                 </div>

@@ -39,7 +39,7 @@ export function Navbar() {
 
             {/* Actions */}
             <div className="flex items-center gap-3 pointer-events-auto">
-              {/* Contact Button ("Let's Talk") */}
+              {/* Contact Button ("Work With Us") */}
               <Button
                 href="/contact"
                 variant="primary"
@@ -53,7 +53,7 @@ export function Navbar() {
                   isMenuOpen && "opacity-0 pointer-events-none -translate-x-2"
                 )}
               >
-                Let&apos;s Talk
+                Work With Us
               </Button>
 
               {/* Rolling Menu / Close Button */}

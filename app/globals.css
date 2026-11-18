@@ -11,12 +11,16 @@
 }
 
 :root {
-  --background: #050505;
+  --background: #07080d;
   --foreground: #ededed;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(ellipse 85% 60% at 50% 0%, rgba(28, 36, 61, 0.45) 0%, rgba(19, 25, 43, 0.22) 40%, rgba(7, 8, 13, 0) 75%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(24, 32, 55, 0.3) 0%, rgba(7, 8, 13, 0) 60%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-inter-tight), "Inter Tight", var(--font-inter), "Inter", system-ui, sans-serif;
 }

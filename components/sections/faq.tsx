@@ -38,7 +38,7 @@ export function FAQ() {
     <section
       id="faq"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-10 sm:pt-14 lg:pt-16 pb-20 sm:pb-28 lg:pb-32 border-t border-white/10 overflow-hidden scroll-mt-20 sm:scroll-mt-24"
+      className="relative w-full bg-transparent text-white pt-10 sm:pt-14 lg:pt-16 pb-20 sm:pb-28 lg:pb-32 border-t border-white/10 overflow-hidden scroll-mt-20 sm:scroll-mt-24"
     >
       {/* Subtle Ambient Gold Glow */}
       <div

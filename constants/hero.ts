@@ -49,7 +49,7 @@ export const HERO_CONTENT: HeroContent = {
   mobileDescription:
     "Full-service marketing agency in Pune helping ambitious brands scale.",
   cta: {
-    label: "START A PROJECT",
+    label: "BOOK A DEMO",
     href: "/contact",
   },
   images: [

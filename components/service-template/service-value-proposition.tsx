@@ -16,7 +16,7 @@ export function ServiceValueProposition({
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 overflow-hidden border-t border-white/5"
+      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 overflow-hidden border-t border-white/5"
     >
       <Container size="lg">
         <div className="max-w-4xl mb-12 sm:mb-16 lg:mb-20">

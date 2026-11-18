@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { SCROLL_STOPPER_CONTENT } from "@/constants/scroll-stopper";
+import videos from "@/config/media/videos";
 import { useRingDimensions } from "@/hooks/useRingDimensions";
 import { useRingAnimation } from "@/hooks/useRingAnimation";
 import { StopperCardItem, CardSpec } from "./scroll-stopper-card";
@@ -28,11 +29,12 @@ const SHOW_ROTATING_WHEEL = false;
 const CARDS: CardSpec[] = [
   {
     id: "c1",
-    image: "/images/scroll-stopper/you-know.jpg",
-    alt: "YOU KNOW Reel",
+    image:
+      videos.saareeReel0220May?.thumbnailUrl ||
+      "/images/services/fashion.jpg",
+    alt: "Fashion & Luxury Couture Reel",
     type: "reel",
-    caption: "YOU KNOW",
-    captionColor: "white",
+    caption: "FASHION",
   },
   {
     id: "c2",
@@ -42,19 +44,21 @@ const CARDS: CardSpec[] = [
   },
   {
     id: "c3",
-    image: "/images/scroll-stopper/belly-fat.jpg",
-    alt: "Fitness UGC Reel",
+    image:
+      videos.elements?.thumbnailUrl ||
+      "/images/services/food-beverage.jpg",
+    alt: "Food & Beverage Gastronomy Reel",
     type: "reel",
-    caption: "Struggling\nwith belly fat",
-    captionColor: "red",
+    caption: "F&B",
   },
   {
     id: "c4",
-    image: "/images/scroll-stopper/honestly.jpg",
-    alt: "Honestly Reel",
+    image:
+      videos.paradisePunawale?.thumbnailUrl ||
+      "/images/services/real-estate.jpg",
+    alt: "Real Estate Architecture Tour",
     type: "reel",
-    caption: "Honestly...",
-    captionColor: "white",
+    caption: "REAL ESTATE",
   },
   {
     id: "c5",
@@ -109,12 +113,22 @@ const CARDS: CardSpec[] = [
 
 /**
  * 3-Card Fanned Showcase Component
- * Simple, clean UI code rendering three distinct reel cards in a fanned layout:
- * - Left Card: tilted left (~-12°) with existing /images/scroll-stopper/belly-fat.jpg
- * - Center Card: elevated upright hero (0°) with existing /images/scroll-stopper/honestly.jpg
- * - Right Card: tilted right (~+12°) with existing /images/scroll-stopper/you-know.jpg
+ * Showcases multi-category creative excellence across three distinct high-impact verticals:
+ * - Left Card: Fashion & Couture (Heritage Silk Saaree)
+ * - Center Card: Food & Beverage (Elements Gastronomy & Mixology)
+ * - Right Card: Real Estate (Penthouse Sky Terrace Living)
  */
 export function ThreeCardsShowcase() {
+  const leftImage =
+    videos.saareeReel0220May?.thumbnailUrl ||
+    "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/thumbnails/saaree-reel-02--20-may-thumb_dIPOROmA7.jpg";
+  const centerImage =
+    videos.elements?.thumbnailUrl ||
+    "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/thumbnails/elements-thumb_ZIs6pJHAv.jpg";
+  const rightImage =
+    videos.paradisePunawale?.thumbnailUrl ||
+    "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/thumbnails/paradise-punawale-thumb_ZoDjwMHhD.jpg";
+
   return (
     <motion.div
       variants={scrollStopperStageVariants}
@@ -130,76 +144,79 @@ export function ThreeCardsShowcase() {
       />
 
       <div className="relative flex items-center justify-center">
-        {/* Left Card - Tilted Left & Slightly Below */}
+        {/* Left Card - Fashion & Couture */}
         <motion.div
           whileHover={{ scale: 1.05, rotate: -6, y: -4, zIndex: 30 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative -rotate-[13deg] translate-y-4 sm:translate-y-6 md:translate-y-7 lg:translate-y-8 -mr-6 sm:-mr-10 md:-mr-14 lg:-mr-16 z-10 w-[135px] sm:w-[195px] md:w-[235px] lg:w-[260px] aspect-[9/13] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0c0c14] border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] cursor-pointer select-none group"
         >
-          <Image
-            src="/images/scroll-stopper/belly-fat.jpg"
-            alt="Fitness Reel"
-            fill
-            sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
-            priority
-            className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-3 sm:bottom-4 md:bottom-5 px-2.5 sm:px-3 text-center pointer-events-none">
-            <span className="block text-red-500 font-extrabold text-[11px] sm:text-xs md:text-sm leading-tight drop-shadow-md">
-              Struggling
-            </span>
-            <span className="block text-white font-bold text-[10px] sm:text-xs md:text-[13px] leading-tight drop-shadow-md">
-              with belly fat
-            </span>
-          </div>
+          <Link href="/services/fashion" className="block w-full h-full relative" aria-label="Explore Fashion Films">
+            <Image
+              src={leftImage}
+              alt="Fashion & Couture Film"
+              fill
+              sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
+              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+            />
+            {/* Category Pill */}
+            <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-[#fdbb11] border border-white/10 shadow-sm">
+                Fashion
+              </span>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+          </Link>
         </motion.div>
 
-        {/* Center Card - Hero Upright (Same size as Left and Right cards) */}
+        {/* Center Card - Food & Beverage & Gastronomy */}
         <motion.div
           whileHover={{ scale: 1.05, y: -6, zIndex: 30 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative rotate-0 z-20 w-[135px] sm:w-[195px] md:w-[235px] lg:w-[260px] aspect-[9/13] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0c0c14] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85)] cursor-pointer select-none group"
         >
-          <Image
-            src="/images/scroll-stopper/honestly.jpg"
-            alt="Honestly Reel"
-            fill
-            sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
-            priority
-            className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-3 sm:bottom-5 px-3 text-center pointer-events-none">
-            <span className="block text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl tracking-tight leading-tight drop-shadow-md">
-              Honestly
-            </span>
-            <span className="block text-white/90 text-[10px] sm:text-xs md:text-sm italic font-serif leading-tight drop-shadow-md">
-              I&apos;ve tried so many
-            </span>
-          </div>
+          <Link href="/services/food-beverage" className="block w-full h-full relative" aria-label="Explore Food & Beverage Films">
+            <Image
+              src={centerImage}
+              alt="Food & Beverage Mixology - Elements Gastronomy"
+              fill
+              sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
+              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+            />
+            {/* Category Pill */}
+            <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-[#fdbb11] border border-white/10 shadow-sm">
+                F&B
+              </span>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+          </Link>
         </motion.div>
 
-        {/* Right Card - Tilted Right & Slightly Below */}
+        {/* Right Card - Real Estate & Architectural Living */}
         <motion.div
           whileHover={{ scale: 1.05, rotate: 6, y: -4, zIndex: 30 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative rotate-[13deg] translate-y-4 sm:translate-y-6 md:translate-y-7 lg:translate-y-8 -ml-6 sm:-ml-10 md:-ml-14 lg:-ml-16 z-10 w-[135px] sm:w-[195px] md:w-[235px] lg:w-[260px] aspect-[9/13] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0c0c14] border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] cursor-pointer select-none group"
         >
-          <Image
-            src="/images/scroll-stopper/you-know.jpg"
-            alt="Street Creator Reel"
-            fill
-            sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
-            priority
-            className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-3 sm:bottom-4 md:bottom-5 px-2.5 sm:px-3 text-center pointer-events-none">
-            <span className="block text-white font-extrabold text-[10px] sm:text-xs md:text-[13px] tracking-wider uppercase leading-tight drop-shadow-md">
-              YOU KNOW
-            </span>
-          </div>
+          <Link href="/services/real-estate" className="block w-full h-full relative" aria-label="Explore Real Estate Media">
+            <Image
+              src={rightImage}
+              alt="Real Estate Architectural Living Tour"
+              fill
+              sizes="(max-width: 640px) 135px, (max-width: 768px) 195px, 260px"
+              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+            />
+            {/* Category Pill */}
+            <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-[#fdbb11] border border-white/10 shadow-sm">
+                Real Estate
+              </span>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+          </Link>
         </motion.div>
       </div>
     </motion.div>
@@ -280,7 +297,7 @@ export function ScrollStopper() {
     <section
       id="scroll-stopper"
       data-nav-theme="dark"
-      className="relative w-full bg-[#07070a] text-white py-10 sm:py-14 lg:py-16 overflow-hidden select-none border-t border-white/10 scroll-mt-20 sm:scroll-mt-24"
+      className="relative w-full bg-transparent text-white py-10 sm:py-14 lg:py-16 overflow-hidden select-none border-t border-white/10 scroll-mt-20 sm:scroll-mt-24"
     >
       {/* Subtle Gold Ambient Glow in Stage */}
       <div

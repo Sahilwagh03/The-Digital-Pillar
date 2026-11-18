@@ -3,12 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useMotionTemplate,
-} from "motion/react";
+import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { RotatingText } from "@/components/ui/rotating-text";
@@ -21,23 +16,42 @@ import {
   heroSubtitleVariants,
   heroCtaVariants,
   heroGridVariants,
-  heroGlowVariants,
 } from "@/animation/hero";
 
+// Curated grid cell boxes placed with exact mathematical alignment to the 56px SVG grid
+const HERO_GRID_BOXES = [
+  // Mobile & Small Screen Accents (Kept within safe margins)
+  { k: -3, m: 2, opacity: 0.35, delay: 0.8, duration: 6.2, className: "sm:hidden" },
+  { k: -3, m: 4, opacity: 0.45, delay: 0.0, duration: 6.0, className: "sm:hidden" },
+  { k: 2, m: 3, opacity: 0.45, delay: 1.5, duration: 6.5, className: "sm:hidden" },
+  { k: 2, m: 5, opacity: 0.35, delay: 2.2, duration: 7.0, className: "sm:hidden" },
+
+  // Left Flank (Tablet, Laptop & Desktop)
+  { k: -6, m: 3, opacity: 0.38, delay: 0.5, duration: 7.2, className: "hidden sm:block" },
+  { k: -7, m: 4, opacity: 0.52, delay: 1.2, duration: 6.8, className: "hidden sm:block" },
+  { k: -8, m: 5, opacity: 0.42, delay: 2.0, duration: 7.5, className: "hidden sm:block" },
+  { k: -5, m: 6, opacity: 0.35, delay: 1.0, duration: 8.0, className: "hidden sm:block" },
+  { k: -9, m: 2, opacity: 0.32, delay: 2.4, duration: 8.2, className: "hidden lg:block" },
+  { k: -11, m: 2, opacity: 0.28, delay: 3.1, duration: 8.8, className: "hidden xl:block" },
+  { k: -12, m: 4, opacity: 0.44, delay: 0.4, duration: 6.5, className: "hidden xl:block" },
+  { k: -14, m: 3, opacity: 0.28, delay: 1.8, duration: 8.5, className: "hidden 2xl:block" },
+
+  // Right Flank (Tablet, Laptop & Desktop)
+  { k: 5, m: 3, opacity: 0.38, delay: 1.4, duration: 7.4, className: "hidden sm:block" },
+  { k: 6, m: 4, opacity: 0.52, delay: 0.6, duration: 7.0, className: "hidden sm:block" },
+  { k: 7, m: 5, opacity: 0.42, delay: 2.6, duration: 7.6, className: "hidden sm:block" },
+  { k: 4, m: 6, opacity: 0.35, delay: 1.7, duration: 8.2, className: "hidden sm:block" },
+  { k: 8, m: 2, opacity: 0.32, delay: 3.0, duration: 8.5, className: "hidden lg:block" },
+  { k: 10, m: 3, opacity: 0.44, delay: 1.8, duration: 6.6, className: "hidden lg:block" },
+  { k: 11, m: 2, opacity: 0.28, delay: 2.3, duration: 8.6, className: "hidden xl:block" },
+  { k: 13, m: 4, opacity: 0.28, delay: 0.9, duration: 8.4, className: "hidden 2xl:block" },
+
+  // Top Ambient Accents (Subtle above headline)
+  { k: -2, m: 1, opacity: 0.25, delay: 3.4, duration: 9.0, className: "hidden md:block" },
+  { k: 1, m: 1, opacity: 0.25, delay: 2.8, duration: 9.2, className: "hidden md:block" },
+];
+
 export function Hero() {
-  // Micro-interaction: Interactive Smooth Mouse Spotlight on Background
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const smoothX = useSpring(mouseX, { damping: 25, stiffness: 140, mass: 0.1 });
-  const smoothY = useSpring(mouseY, { damping: 25, stiffness: 140, mass: 0.1 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
-
   const handleScrollDown = () => {
     const target =
       document.getElementById("values") ||
@@ -57,26 +71,71 @@ export function Hero() {
     <section
       id="hero"
       data-nav-theme="dark"
-      onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-[#070707] pt-16 sm:pt-20 pb-2 sm:pb-4"
+      className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-transparent pt-16 sm:pt-20 pb-2 sm:pb-4"
     >
-      {/* Ambient Cinematic Golden Glow */}
-      <motion.div
-        variants={heroGlowVariants}
-        initial="hidden"
-        animate="visible"
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[300px] sm:h-[400px] bg-gradient-to-b from-[#fdbb11]/15 via-[#fdbb11]/5 to-transparent blur-[140px] rounded-full pointer-events-none -z-0"
+      {/* Box Design: Unified Blueprint Grid & Perfectly Nested Floating Glass Cells */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden select-none [mask-image:radial-gradient(ellipse_95%_80%_at_50%_35%,black_45%,transparent_95%)]"
         aria-hidden="true"
-      />
+      >
+        <svg
+          className="absolute inset-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="hero-grid-pattern"
+              width="56"
+              height="56"
+              patternUnits="userSpaceOnUse"
+              x="50%"
+              y="0"
+            >
+              <path
+                d="M 56 0 H 0 V 56"
+                fill="none"
+                stroke="rgba(255, 255, 255, 0.13)"
+                strokeWidth="1"
+              />
+            </pattern>
+          </defs>
 
-      {/* Micro-interaction: Dynamic Ambient Spotlight that follows cursor */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-[1] transition-opacity duration-700 hidden sm:block"
-        style={{
-          background: useMotionTemplate`radial-gradient(550px circle at ${smoothX}px ${smoothY}px, rgba(253, 187, 17, 0.08), transparent 75%)`,
-        }}
-        aria-hidden="true"
-      />
+          {/* 1. Base Blueprint Grid Fill */}
+          <rect width="100%" height="100%" fill="url(#hero-grid-pattern)" />
+
+          {/* 2. Highlighted Boxes Locked Into The Exact Same SVG Coordinate System */}
+          <svg x="50%" y="0" className="overflow-visible">
+            {HERO_GRID_BOXES.map((box, idx) => (
+              <motion.rect
+                key={idx}
+                x={box.k * 56 + 3}
+                y={box.m * 56 + 3}
+                width={50}
+                height={50}
+                rx={12}
+                fill={`rgba(255, 255, 255, ${(box.opacity * 0.18).toFixed(3)})`}
+                stroke={`rgba(255, 255, 255, ${(box.opacity * 0.4).toFixed(3)})`}
+                strokeWidth="1"
+                initial={{ opacity: box.opacity * 0.8 }}
+                animate={{
+                  opacity: [
+                    box.opacity * 0.7,
+                    box.opacity * 1.25,
+                    box.opacity * 0.7,
+                  ],
+                }}
+                transition={{
+                  duration: box.duration,
+                  delay: box.delay,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className={box.className}
+              />
+            ))}
+          </svg>
+        </svg>
+      </div>
 
       <div className="relative z-10 flex flex-col w-full flex-1 justify-center">
         <Container size="lg" className="w-full flex flex-col items-center gap-2.5 sm:gap-3.5 text-center relative z-20">

@@ -22,7 +22,7 @@ export function About() {
     <section
       id="about"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
     >
       {/* Subtle Ambient Gold Glow */}
       <div
