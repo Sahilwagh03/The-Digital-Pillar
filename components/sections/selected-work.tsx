@@ -28,7 +28,7 @@ function SelectedWorkIntro({ headlineLine1, headlineLine2, viewAllCta }: Selecte
   return (
     <div className="w-1/2 h-screen">
       <div className="flex flex-col justify-center items-center text-center w-full h-full py-20 px-10">
-        <h2 className="text-4xl sm:text-5xl lg:text-[3.65rem] font-bold tracking-tight text-white leading-[1.08] font-primary mb-8 sm:mb-10 text-balance">
+        <h2 className="text-4xl sm:text-5xl lg:text-[3.65rem] font-bold tracking-tight text-white leading-[1.14] font-primary mb-8 sm:mb-10 text-balance pb-1">
           {headlineLine1}
           <br />
           {headlineLine2}
@@ -57,12 +57,16 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, ref) => {
+  const isExternal = project.href.startsWith("http");
+
   return (
     <div className="w-1/2 h-screen">
       <div className="flex flex-col justify-center py-20 px-20 w-full h-full border-l border-white/10">
         <div ref={ref} className="flex flex-col justify-center h-full w-full">
           <Link
             href={project.href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             data-cursor="view"
             data-cursor-text="View"
             aria-label={`View ${project.title} project`}
@@ -80,7 +84,14 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
           </Link>
 
           <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
-            {project.title}
+            <Link
+              href={project.href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="hover:text-[#fdbb11] transition-colors"
+            >
+              {project.title}
+            </Link>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
@@ -211,7 +222,7 @@ export function SelectedWork() {
         >
           {/* Header */}
           <div className="px-6 sm:px-10 pt-20 pb-12 sm:pt-28 sm:pb-16 text-center max-w-xl mx-auto">
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.08] font-primary mb-6 sm:mb-8 text-balance">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.14] sm:leading-[1.16] font-primary mb-6 sm:mb-8 text-balance pb-1">
               {headlineLine1}
               <br />
               {headlineLine2}
@@ -234,53 +245,69 @@ export function SelectedWork() {
 
           {/* Vertical List of Projects */}
           <div className="px-6 sm:px-10 pb-16 sm:pb-24 max-w-2xl mx-auto space-y-12 sm:space-y-16">
-            {projects.map((project, idx) => (
-              <article
-                key={project.id || idx}
-                className="mobile-work-card flex flex-col border-b border-white/10 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
-              >
-                <Link
-                  href={project.href}
-                  data-cursor="view"
-                  data-cursor-text="View"
-                  aria-label={`View ${project.title} project`}
-                  className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-none bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors block"
+            {projects.map((project, idx) => {
+              const isExternal = project.href.startsWith("http");
+
+              return (
+                <article
+                  key={project.id || idx}
+                  className="mobile-work-card flex flex-col border-b border-white/10 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
                 >
-                  <Image
-                    src={project.imageSrc}
-                    alt={project.title}
-                    fill
-                    quality={95}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 600px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                </Link>
+                  <Link
+                    href={project.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    data-cursor="view"
+                    data-cursor-text="View"
+                    aria-label={`View ${project.title} project`}
+                    className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-none bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors block"
+                  >
+                    <Image
+                      src={project.imageSrc}
+                      alt={project.title}
+                      fill
+                      quality={95}
+                      unoptimized={project.imageSrc.startsWith("http")}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 600px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </Link>
 
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
-                  {project.title}
-                </h3>
-
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                  <p className="text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary max-w-lg">
-                    {project.description}
-                  </p>
-
-                  <div className="shrink-0 pt-2 sm:pt-0">
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
                     <Link
                       href={project.href}
-                      className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-[#fdbb11] uppercase font-primary shrink-0"
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="hover:text-[#fdbb11] transition-colors"
                     >
-                      <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
-                        {project.ctaLabel}
-                      </span>
-                      <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
-                        &rarr;
-                      </span>
+                      {project.title}
                     </Link>
+                  </h3>
+
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <p className="text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary max-w-lg">
+                      {project.description}
+                    </p>
+
+                    <div className="shrink-0 pt-2 sm:pt-0">
+                      <Link
+                        href={project.href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-[#fdbb11] uppercase font-primary shrink-0"
+                      >
+                        <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
+                          {project.ctaLabel || "VIEW CASE STUDY"}
+                        </span>
+                        <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
+                          &rarr;
+                        </span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
 
           {/* End CTA Card */}

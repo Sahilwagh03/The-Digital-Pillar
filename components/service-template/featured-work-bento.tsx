@@ -33,7 +33,7 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
                 {featuredWork.tag}
               </span>
             )}
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.08] font-primary">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.14] font-primary pb-1">
               {headline}
             </h2>
           </div>
@@ -46,7 +46,12 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
         <div className="flex flex-col gap-6 sm:gap-8">
           {topItem && (
             <div className="group relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[580px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-              <Link href={topItem.href || "/work"} className="block w-full h-full relative">
+              <Link
+                href={topItem.href || "/work"}
+                data-cursor="view"
+                data-cursor-text="View"
+                className="block w-full h-full relative"
+              >
                 <MediaCard
                   src={topItem.videoSrc || topItem.imageSrc}
                   type={topItem.videoSrc ? "video" : "image"}
@@ -83,7 +88,12 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {midLeftItem && (
               <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-                <Link href={midLeftItem.href || "/work"} className="block w-full h-full relative">
+                <Link
+                  href={midLeftItem.href || "/work"}
+                  data-cursor="view"
+                  data-cursor-text="View"
+                  className="block w-full h-full relative"
+                >
                   <MediaCard
                     src={midLeftItem.videoSrc || midLeftItem.imageSrc}
                     type={midLeftItem.videoSrc ? "video" : "image"}
@@ -118,7 +128,12 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
             {midRightItem && (
               <div className="group relative w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-                <Link href={midRightItem.href || "/work"} className="block w-full h-full relative">
+                <Link
+                  href={midRightItem.href || "/work"}
+                  data-cursor="view"
+                  data-cursor-text="View"
+                  className="block w-full h-full relative"
+                >
                   <MediaCard
                     src={midRightItem.videoSrc || midRightItem.imageSrc}
                     type={midRightItem.videoSrc ? "video" : "image"}
@@ -154,7 +169,12 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
 
           {bottomItem && (
             <div className="group relative w-full h-[260px] sm:h-[360px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer transition-all duration-500 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-              <Link href={bottomItem.href || "/work"} className="block w-full h-full relative">
+              <Link
+                href={bottomItem.href || "/work"}
+                data-cursor="view"
+                data-cursor-text="View"
+                className="block w-full h-full relative"
+              >
                 <MediaCard
                   src={bottomItem.videoSrc || bottomItem.imageSrc}
                   type={bottomItem.videoSrc ? "video" : "image"}

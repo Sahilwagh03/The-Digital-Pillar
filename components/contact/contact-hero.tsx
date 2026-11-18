@@ -184,10 +184,10 @@ export function ContactHero() {
             )}
 
             {/* Headline with Masked Reveal Matching Home Hero Sizing */}
-            <div className="overflow-hidden py-1 w-full flex justify-center">
+            <div className="overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4 w-full flex justify-center">
               <motion.h1
                 variants={contactHeroHeadlineVariants}
-                className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-white leading-[1.03] sm:leading-[1.06] font-primary text-center text-balance"
+                className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.15] font-primary text-center text-balance"
               >
                 {headline}
               </motion.h1>

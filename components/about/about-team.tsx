@@ -76,7 +76,7 @@ export function AboutTeam({
               {activeTag}
             </span>
           ) : null}
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-bold text-white tracking-[-0.03em] leading-[0.98] font-primary select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-bold text-white tracking-[-0.03em] leading-[1.12] font-primary select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] pb-1">
             {activeHeadlineLine1}
             <br />
             {activeHeadlineLine2}
@@ -156,7 +156,7 @@ export function AboutTeam({
                   {activeTag}
                 </span>
               ) : null}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] font-primary">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.14] font-primary pb-1">
                 {activeHeadlineLine1}
                 <br />
                 {activeHeadlineLine2}

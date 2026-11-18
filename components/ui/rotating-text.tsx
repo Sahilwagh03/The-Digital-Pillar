@@ -45,7 +45,7 @@ export function RotatingText({
 
   return (
     <span
-      className="inline-block relative overflow-hidden py-1 -my-1 align-baseline cursor-pointer group/rotate select-none transition-transform duration-200 active:scale-95"
+      className="inline-block relative overflow-hidden pt-1 pb-4 -mt-1 -mb-4 align-baseline cursor-pointer group/rotate select-none transition-transform duration-200 active:scale-95"
       style={{ perspective: "1000px" }}
       aria-live="polite"
       aria-atomic="true"

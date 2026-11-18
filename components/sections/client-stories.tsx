@@ -37,13 +37,13 @@ export function ClientStories() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 sm:mb-12"
         >
           {/* Main Title & Eyebrow */}
-          <div className="lg:col-span-6 overflow-hidden py-1">
+          <div className="lg:col-span-6 overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
             <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-3">
               {tag}
             </span>
             <motion.h2
               variants={clientStoriesTitleVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-tight text-white leading-[1.05] font-primary origin-bottom-left"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.14] font-primary origin-bottom-left"
             >
               {title}
             </motion.h2>

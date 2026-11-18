@@ -70,8 +70,8 @@ export function AboutHero() {
             </motion.span>
 
             {/* Display Headline with Masked Reveal */}
-            <h1 className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-white leading-[1.03] sm:leading-[1.08] font-primary text-balance">
-              <span className="block overflow-hidden py-1">
+            <h1 className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.15] font-primary text-balance">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={aboutHeroHeadlineVariants}
                   className="block origin-bottom-center"
@@ -79,7 +79,7 @@ export function AboutHero() {
                   {headlineLine1}
                 </motion.span>
               </span>
-              <span className="block overflow-hidden py-1">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={aboutHeroHeadlineVariants}
                   className="block origin-bottom-center"

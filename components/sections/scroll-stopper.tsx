@@ -300,8 +300,8 @@ export function ScrollStopper() {
           viewport={{ once: false, margin: "-50px" }}
           className="relative z-30 pointer-events-none mb-4 lg:mb-0"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.03] font-primary pointer-events-auto">
-            <span className="block overflow-hidden py-1">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.14] font-primary pointer-events-auto">
+            <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
               <motion.span
                 variants={scrollStopperTitleVariants}
                 className="block origin-bottom-left"
@@ -309,7 +309,7 @@ export function ScrollStopper() {
                 {topHeadline.line1}
               </motion.span>
             </span>
-            <span className="block overflow-hidden py-1">
+            <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
               <motion.span
                 variants={scrollStopperTitleVariants}
                 className="block origin-bottom-left"
@@ -350,8 +350,8 @@ export function ScrollStopper() {
               className="group block text-left md:text-right"
               aria-label="Let's create something big"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.03] font-primary group-hover:text-[#fdbb11] transition-colors">
-                <span className="block overflow-hidden py-0.5">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.14] font-primary group-hover:text-[#fdbb11] transition-colors">
+                <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span
                     variants={scrollStopperCtaTitleVariants}
                     className="block origin-bottom-right"
@@ -359,7 +359,7 @@ export function ScrollStopper() {
                     {bottomHeadline.line1}
                   </motion.span>
                 </span>
-                <span className="block overflow-hidden py-0.5">
+                <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span
                     variants={scrollStopperCtaTitleVariants}
                     className="block origin-bottom-right"

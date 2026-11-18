@@ -163,7 +163,7 @@ export function FeaturedWorkPhoneScroll({
             <span className="block text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
               {tag}
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.08] font-primary">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.14] font-primary pb-1">
               {headline}
             </h2>
           </div>

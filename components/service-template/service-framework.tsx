@@ -91,7 +91,7 @@ export function ServiceFramework({
                 </span>
               ) : null}
 
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-white tracking-tight leading-[1.04] font-primary mb-6 sm:mb-8 text-balance">
+              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-white tracking-tight leading-[1.14] font-primary mb-6 sm:mb-8 text-balance pb-1">
                 <span className="block">{headlineLine1}</span>
                 {headlineLine2 && <span className="block text-white/90">{headlineLine2}</span>}
               </h2>

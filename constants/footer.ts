@@ -10,6 +10,7 @@ export interface FooterContent {
     email: string;
     phone: string;
     address?: string;
+    mapUrl?: string;
   };
   social: {
     title: string;
@@ -28,8 +29,10 @@ export const FOOTER_CONTENT: FooterContent = {
   businessEnquiry: {
     title: "BUSINESS ENQUIRY",
     email: "info@thedigitalpillar.com",
-    phone: "+91 93250 63728",
-    address: "320/9B FC Road, Deccan, Pune 411005",
+    phone: "+91 7770010286",
+    address:
+      "Flat No - 107, 4th Floor, Sai Malhar, Swastik Colony, Cummins College Rd, near Daate Mandav wale, Karvenagar, Pune, Maharashtra 411052",
+    mapUrl: "https://maps.app.goo.gl/2fgWmwCWv5YskkeA9",
   },
   social: {
     title: "SOCIAL",

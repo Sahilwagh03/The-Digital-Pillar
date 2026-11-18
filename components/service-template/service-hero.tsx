@@ -28,7 +28,7 @@ export function ServiceHero({ hero }: ServiceHeroProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex-1"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] font-bold text-white tracking-tight leading-[1.02] font-primary">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] font-bold text-white tracking-tight leading-[1.12] font-primary pb-1">
               <span className="block">{hero.titleLine1}</span>
               <span className="block text-white/95">{hero.titleLine2}</span>
             </h1>

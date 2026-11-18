@@ -103,7 +103,7 @@ export function ContactFormSection() {
           {/* LEFT COLUMN: Heading, Intro & Team Photography                    */}
           {/* ================================================================ */}
           <div className="lg:col-span-6 flex flex-col justify-start">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.08] font-primary mb-4 sm:mb-5">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.14] font-primary mb-4 sm:mb-5 pb-1">
               {headline}
             </h2>
             <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed max-w-lg mb-8 sm:mb-12 font-primary">
