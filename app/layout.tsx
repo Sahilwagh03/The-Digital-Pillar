@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/sections/footer";
 import { SmoothScroll } from "@/components/common/smooth-scroll";
 import { CustomCursor } from "@/components/common/custom-cursor";
+import { WhatsAppButton } from "@/components/common/whatsapp-button";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -68,6 +69,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <WhatsAppButton />
           </div>
         </SmoothScroll>
       </body>
