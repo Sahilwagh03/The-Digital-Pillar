@@ -138,8 +138,8 @@ export function WhyChooseUs() {
 
           {/* Headline & Description */}
           <div className="lg:col-span-8 flex flex-col items-start">
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white leading-[1.08] font-primary">
-              <span className="block overflow-hidden py-0.5">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white leading-[1.14] font-primary">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={headlineLineVariants}
                   className="block origin-bottom-left"
@@ -147,7 +147,7 @@ export function WhyChooseUs() {
                   {headlineLine1}
                 </motion.span>
               </span>
-              <span className="block overflow-hidden py-0.5">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={headlineLineVariants}
                   className="block origin-bottom-left"

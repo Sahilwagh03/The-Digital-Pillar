@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Familjen_Grotesk } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/sections/footer";
 import { SmoothScroll } from "@/components/common/smooth-scroll";
 import { CustomCursor } from "@/components/common/custom-cursor";
 
-const familjenGrotesk = Familjen_Grotesk({
-  variable: "--font-familjen-grotesk",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -38,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${familjenGrotesk.variable} antialiased dark`}
+      className={`${interTight.variable} ${inter.variable} antialiased dark`}
     >
       <body className="min-h-full flex flex-col font-primary bg-[#050505] text-white">
         <CustomCursor />

@@ -38,25 +38,27 @@ export function CustomCursor() {
   const [cursorText, setCursorText] = useState("View");
   const [isVisible, setIsVisible] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const [isFooter, setIsFooter] = useState(false);
 
   // Exact pointer coordinates
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth trailing spring physics for the single full yellow dot
+  // Smooth trailing spring physics for the cursor circle
   const cursorX = useSpring(mouseX, { damping: 24, stiffness: 300, mass: 0.12 });
   const cursorY = useSpring(mouseY, { damping: 24, stiffness: 300, mass: 0.12 });
 
   useEffect(() => {
     if (!isFinePointer) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      setIsVisible(true);
-
-      const target = e.target as HTMLElement | null;
+    const evaluateTarget = (target: HTMLElement | null) => {
       if (!target) return;
+
+      // Check whether pointer is currently inside the footer section
+      const inFooter = Boolean(
+        target.closest("footer, #contact, [data-nav-theme='light']")
+      );
+      setIsFooter(inFooter);
 
       // 1. Check for custom "view" cursor trigger (e.g. Work section image)
       const viewElement = target.closest<HTMLElement>('[data-cursor="view"]');
@@ -73,9 +75,9 @@ export function CustomCursor() {
         return;
       }
 
-      // 3. Check for interactive elements (links, buttons, inputs)
+      // 3. Check for interactive elements (links, buttons, inputs, cards)
       const interactive = target.closest<HTMLElement>(
-        'a, button, [role="button"], input, textarea, select, [data-cursor="hover"]'
+        'a, button, [role="button"], input, textarea, select, [data-cursor="hover"], .cursor-pointer'
       );
       if (interactive) {
         setCursorType("hover");
@@ -84,6 +86,21 @@ export function CustomCursor() {
 
       // 4. Default idle cursor
       setCursorType("default");
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      setIsVisible(true);
+      evaluateTarget(e.target as HTMLElement | null);
+    };
+
+    const handleScroll = () => {
+      const x = mouseX.get();
+      const y = mouseY.get();
+      if (x < 0 || y < 0) return;
+      const el = document.elementFromPoint(x, y) as HTMLElement | null;
+      if (el) evaluateTarget(el);
     };
 
     const handleMouseDown = () => setIsPressed(true);
@@ -96,6 +113,7 @@ export function CustomCursor() {
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
     document.documentElement.addEventListener("mouseenter", handleMouseEnter);
@@ -103,6 +121,7 @@ export function CustomCursor() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
@@ -115,37 +134,84 @@ export function CustomCursor() {
   const isView = cursorType === "view";
   const isHover = cursorType === "hover";
   const isHidden = cursorType === "hidden" || !isVisible;
+  const isGlass = isView || isHover;
 
-  // Single full yellow circle sizing:
-  // default: 18px solid yellow dot
-  // hover: 38px expanded yellow circle
-  // view: 96px big yellow circle displaying "View ↗"
-  const size = isView ? 96 : isHover ? 38 : 18;
+  // Circle Sizing (sleek, refined scale):
+  // - default: 13px solid circle (yellow on dark background, black in yellow footer)
+  // - hover: 28px slightly expanded glassmorphic lens
+  // - view: 68px compact glassmorphic circle with "View ↗"
+  const size = isView ? 68 : isHover ? 28 : 13;
+
+  // Background, border & shadow computed styles
+  const backgroundColor = isFooter
+    ? isGlass
+      ? isView
+        ? "rgba(0, 0, 0, 0.22)"
+        : "rgba(0, 0, 0, 0.16)"
+      : "#000000"
+    : isGlass
+    ? isView
+      ? "rgba(18, 18, 24, 0.58)"
+      : "rgba(255, 255, 255, 0.15)"
+    : "#fdbb11";
+
+  const borderColor = isFooter
+    ? isGlass
+      ? isView
+        ? "rgba(0, 0, 0, 0.45)"
+        : "rgba(0, 0, 0, 0.32)"
+      : "transparent"
+    : isGlass
+    ? isView
+      ? "rgba(255, 255, 255, 0.42)"
+      : "rgba(255, 255, 255, 0.4)"
+    : "transparent";
+
+  const borderWidth = isGlass ? (isView ? 1.5 : 1) : 0;
+
+  const boxShadow = isFooter
+    ? isGlass
+      ? isView
+        ? "0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.08)"
+        : "0 4px 16px rgba(0, 0, 0, 0.15), inset 0 0 6px rgba(0, 0, 0, 0.08)"
+      : "0 0 10px rgba(0, 0, 0, 0.35)"
+    : isGlass
+    ? isView
+      ? "0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 20px rgba(253, 187, 17, 0.2)"
+      : "0 6px 20px rgba(0, 0, 0, 0.28), inset 0 0 8px rgba(255, 255, 255, 0.2), 0 0 12px rgba(253, 187, 17, 0.25)"
+    : "0 0 12px rgba(253, 187, 17, 0.6)";
 
   return (
     <div
       className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden select-none"
       aria-hidden="true"
     >
-      {/* Single Full Yellow Dot / Morphing Big "View" Circle */}
       <motion.div
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
+          backdropFilter: isGlass
+            ? isView
+              ? "blur(14px) saturate(180%)"
+              : "blur(10px) saturate(160%)"
+            : "none",
+          WebkitBackdropFilter: isGlass
+            ? isView
+              ? "blur(14px) saturate(180%)"
+              : "blur(10px) saturate(160%)"
+            : "none",
         }}
         animate={{
           width: size,
           height: size,
-          scale: isHidden ? 0 : isPressed ? (isView ? 0.94 : 0.8) : 1,
+          scale: isHidden ? 0 : isPressed ? (isView ? 0.94 : 0.82) : 1,
           opacity: isHidden ? 0 : 1,
-          backgroundColor: "#fdbb11",
-          boxShadow: isView
-            ? "0 0 45px rgba(253, 187, 17, 0.7)"
-            : isHover
-            ? "0 0 24px rgba(253, 187, 17, 0.6)"
-            : "0 0 16px rgba(253, 187, 17, 0.55)",
+          backgroundColor,
+          borderColor,
+          borderWidth,
+          boxShadow,
         }}
         transition={{
           type: "spring",
@@ -153,7 +219,9 @@ export function CustomCursor() {
           stiffness: isView ? 260 : 320,
           mass: 0.12,
         }}
-        className="rounded-full bg-[#fdbb11] flex items-center justify-center will-change-transform shadow-lg"
+        className={`rounded-full flex items-center justify-center will-change-transform ${
+          isGlass ? "border backdrop-blur-md" : ""
+        }`}
       >
         <AnimatePresence mode="wait">
           {isView && (
@@ -163,10 +231,16 @@ export function CustomCursor() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.5, rotate: 15 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-0.5 text-black font-extrabold uppercase font-mono tracking-widest text-[11px] sm:text-xs select-none"
+              className={`flex items-center gap-1 font-extrabold uppercase font-mono tracking-wider text-[10px] select-none ${
+                isFooter ? "text-black" : "text-white"
+              }`}
             >
               <span>{cursorText}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              <ArrowUpRight
+                className={`w-3 h-3 stroke-[2.5] ${
+                  isFooter ? "text-black" : "text-[#fdbb11]"
+                }`}
+              />
             </motion.div>
           )}
         </AnimatePresence>

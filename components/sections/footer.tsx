@@ -64,8 +64,8 @@ export function Footer() {
               >
                 {tagline}
               </motion.span>
-              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-black tracking-tight leading-[1.04] font-primary">
-                <span className="block overflow-hidden py-1">
+              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-black tracking-tight leading-[1.12] sm:leading-[1.14] font-primary">
+                <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span
                     variants={footerHeadlineVariants}
                     className="block origin-bottom-left"
@@ -73,7 +73,7 @@ export function Footer() {
                     {headlineLine1}
                   </motion.span>
                 </span>
-                <span className="block overflow-hidden py-1">
+                <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span
                     variants={footerHeadlineVariants}
                     className="block origin-bottom-left"
@@ -145,9 +145,23 @@ export function Footer() {
                     {businessEnquiry.phone}
                   </a>
                   {businessEnquiry.address && (
-                    <p className="text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium">
-                      {businessEnquiry.address}
-                    </p>
+                    businessEnquiry.mapUrl ? (
+                      <a
+                        href={businessEnquiry.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium hover:text-black transition-colors"
+                      >
+                        <span>{businessEnquiry.address}</span>
+                        <span className="inline-block ml-1 text-black/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[11px]">
+                          ↗
+                        </span>
+                      </a>
+                    ) : (
+                      <p className="text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium">
+                        {businessEnquiry.address}
+                      </p>
+                    )
                   )}
                 </div>
               </div>

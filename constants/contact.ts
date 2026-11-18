@@ -148,13 +148,13 @@ export const CONTACT_CARDS_DATA: ContactCardItem[] = [
     icon: "headphones",
     title: "Call us",
     description:
-      "Call us at +91 93250 63728 for direct support. Available Mon – Sat, 10:00 AM – 7:00 PM.",
+      "Call us at +91 7770010286 for direct support. Available Mon – Sat, 10:00 AM – 7:00 PM.",
     ctaText: "CALL US",
-    ctaHref: "tel:+919325063728",
+    ctaHref: "tel:+917770010286",
   },
   {
     id: "email",
-    icon: "headphones",
+    icon: "mail",
     title: "Email us",
     description:
       "Reach us at info@thedigitalpillar.com for detailed consultations or service requests.",
@@ -166,9 +166,9 @@ export const CONTACT_CARDS_DATA: ContactCardItem[] = [
     icon: "map-pin",
     title: "Office address",
     description:
-      "320/9B FC Road, Deccan, Pune, Maharashtra 411005, India.",
+      "Flat No - 107, 4th Floor, Sai Malhar, Swastik Colony, Cummins College Rd, near Daate Mandav wale, Karvenagar, Pune, Maharashtra 411052",
     ctaText: "VISIT US",
-    ctaHref: "https://maps.google.com/?q=320/9B+FC+Road,+Deccan,+Pune,+Maharashtra+411005",
+    ctaHref: "https://maps.app.goo.gl/2fgWmwCWv5YskkeA9",
   },
 ];
 

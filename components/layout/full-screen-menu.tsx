@@ -84,10 +84,10 @@ export function FullScreenMenu({
                     </div>
 
                     {/* Large menu label on right */}
-                    <div className="overflow-hidden flex-1 text-right">
+                    <div className="overflow-hidden flex-1 text-right pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                       <span
                         ref={setLinkRef(index)}
-                        className="inline-block text-[clamp(2.25rem,7.5vh,3.5rem)] md:text-[clamp(4.5rem,6.5vw,7.5rem)] lg:text-[clamp(5.5rem,7.8vw,9rem)] xl:text-[clamp(6.5rem,8.5vw,10.5rem)] font-bold uppercase tracking-tight leading-[0.9] font-primary transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:-translate-x-3 sm:group-hover/item:-translate-x-6 text-white group-hover/item:text-[#fdbb11]"
+                        className="inline-block text-[clamp(2.25rem,7.5vh,3.5rem)] md:text-[clamp(4.5rem,6.5vw,7.5rem)] lg:text-[clamp(5.5rem,7.8vw,9rem)] xl:text-[clamp(6.5rem,8.5vw,10.5rem)] font-bold uppercase tracking-tight leading-[0.98] font-primary transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:-translate-x-3 sm:group-hover/item:-translate-x-6 text-white group-hover/item:text-[#fdbb11]"
                       >
                         {item.label}
                       </span>

@@ -51,11 +51,11 @@ export function About() {
 
           {/* Headline Display Text with Word-by-Word Reveal */}
           <div className="lg:col-span-9">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.14] font-primary text-balance">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-bold tracking-tight text-white leading-[1.14] sm:leading-[1.18] font-primary text-balance pb-1">
               {words.map((word, idx) => (
                 <span
                   key={idx}
-                  className="inline-block overflow-hidden py-0.5 mr-[0.25em] last:mr-0 align-top"
+                  className="inline-block overflow-hidden pt-0.5 pb-2 -mb-2 mr-[0.25em] last:mr-0 align-top"
                 >
                   <motion.span
                     variants={aboutWordVariants}
@@ -83,7 +83,7 @@ export function About() {
             {/* Left Uppercase Statements with Masked Reveal */}
             <div className="md:col-span-5 flex flex-col space-y-2 sm:space-y-2.5">
               {leftStatements.map((statement, idx) => (
-                <span key={idx} className="block overflow-hidden py-0.5">
+                <span key={idx} className="block overflow-hidden pt-0.5 pb-1.5 -mb-1.5">
                   <motion.span
                     variants={aboutStatementVariants}
                     className="inline-block text-xs sm:text-[0.8125rem] font-medium tracking-[0.18em] sm:tracking-[0.2em] text-neutral-400 uppercase font-primary hover:text-neutral-200 transition-colors"

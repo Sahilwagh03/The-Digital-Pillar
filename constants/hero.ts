@@ -12,6 +12,7 @@ export interface HeroContent {
   rotatingWords: string[];
   rotationIntervalMs?: number;
   description: string;
+  mobileDescription?: string;
   cta: {
     label: string;
     href: string;
@@ -45,6 +46,8 @@ export const HERO_CONTENT: HeroContent = {
   rotationIntervalMs: 2600,
   description:
     "We are The Digital Pillar, a full-service marketing agency based in Pune. We work with believers & big dreamers to help them achieve their vision.",
+  mobileDescription:
+    "Full-service marketing agency in Pune helping ambitious brands scale.",
   cta: {
     label: "START A PROJECT",
     href: "/contact",

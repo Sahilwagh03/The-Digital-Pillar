@@ -47,7 +47,7 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
               {tag}
             </span>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-white leading-[1.05] font-primary mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-white leading-[1.14] font-primary mb-4 sm:mb-6 pb-1">
               <span className="block">{headlineLine1}</span>
               {headlineLine2 && <span className="block text-white/90">{headlineLine2}</span>}
             </h2>

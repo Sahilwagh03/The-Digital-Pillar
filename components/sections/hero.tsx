@@ -58,7 +58,7 @@ export function Hero() {
       id="hero"
       data-nav-theme="dark"
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-[#070707] pt-20 sm:pt-24 pb-4 sm:pb-8"
+      className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-[#070707] pt-16 sm:pt-20 pb-2 sm:pb-4"
     >
       {/* Ambient Cinematic Golden Glow */}
       <motion.div
@@ -79,20 +79,20 @@ export function Hero() {
       />
 
       <div className="relative z-10 flex flex-col w-full flex-1 justify-center">
-        <Container size="lg" className="w-full flex flex-col items-center gap-3 sm:gap-4 text-center relative z-20">
+        <Container size="lg" className="w-full flex flex-col items-center gap-2.5 sm:gap-3.5 text-center relative z-20">
           <motion.div
             variants={heroContainerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-3 sm:gap-4 text-center items-center max-w-4xl px-2"
+            className="flex flex-col gap-2.5 sm:gap-3.5 text-center items-center max-w-4xl px-2"
           >
 
             {/* 2. Masked Headline Lines Reveal with Rotating Text (Hover Pause & Click Cycle) */}
-            <h1 className="text-[2.75rem] xs:text-[3.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold tracking-tight text-white leading-[1.03] sm:leading-[1.06] font-primary text-balance">
-              <span className="block overflow-hidden py-0.5">
+            <h1 className="text-[2.25rem] xs:text-[2.65rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.65rem] font-bold tracking-tight text-white leading-[1.14] sm:leading-[1.14] font-primary text-balance">
+              <span className="block overflow-hidden pt-0.5 pb-2 sm:pb-3 -mb-2 sm:-mb-3">
                 <motion.span
                   variants={heroHeadlineLineVariants}
-                  className="inline-flex flex-wrap items-baseline justify-center gap-x-2.5 sm:gap-x-3.5 origin-bottom-left"
+                  className="inline-flex flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-3.5 origin-bottom-left"
                 >
                   <span>{HERO_CONTENT.titleLine1}</span>
                   <RotatingText
@@ -103,7 +103,7 @@ export function Hero() {
                   />
                 </motion.span>
               </span>
-              <span className="block overflow-hidden py-0.5">
+              <span className="block overflow-hidden pt-0.5 pb-2 sm:pb-3 -mb-2 sm:-mb-3">
                 <motion.span
                   variants={heroHeadlineLineVariants}
                   className="block origin-bottom-left"
@@ -116,43 +116,44 @@ export function Hero() {
             {/* 3. Subtitle / Description */}
             <motion.p
               variants={heroSubtitleVariants}
-              className="text-[0.8125rem] xs:text-sm sm:text-base text-zinc-400 sm:text-zinc-300/80 w-full max-w-xl leading-relaxed font-primary font-normal text-pretty"
+              className="text-xs xs:text-[13px] sm:text-[0.9375rem] text-zinc-400 sm:text-zinc-300/80 w-full max-w-xs xs:max-w-sm sm:max-w-lg leading-relaxed font-primary font-normal text-pretty"
             >
-              {HERO_CONTENT.description}
+              <span className="hidden sm:inline">{HERO_CONTENT.description}</span>
+              <span className="sm:hidden">{HERO_CONTENT.mobileDescription || HERO_CONTENT.description}</span>
             </motion.p>
 
             {/* 4. Action Stack: Magnetic CTA Button + Stacked Social Proof Pill */}
             <motion.div
               variants={heroCtaVariants}
-              className="pt-1 flex flex-col items-center gap-3 sm:gap-3.5 relative z-20"
+              className="pt-0.5 flex flex-col items-center gap-2 sm:gap-3 relative z-20"
             >
               {/* Magnetic CTA Button with Shimmer Sweep */}
               <Magnetic strength={0.25}>
                 <Button
                   href={HERO_CONTENT.cta.href}
                   variant="primary"
-                  size="md"
-                  className="relative overflow-hidden cursor-pointer font-bold px-8 py-3.5 tracking-wide bg-[#fdbb11] text-black shadow-[0_0_25px_rgba(253,187,17,0.3)] hover:shadow-[0_0_40px_rgba(253,187,17,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 group/btn font-primary"
+                  size="none"
+                  className="relative overflow-hidden cursor-pointer font-bold h-9 sm:h-11 px-4 sm:px-7 text-xs sm:text-sm tracking-wide bg-[#fdbb11] text-black rounded-full shadow-[0_0_20px_rgba(253,187,17,0.25)] hover:shadow-[0_0_40px_rgba(253,187,17,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 group/btn font-primary"
                 >
                   {/* Micro-interaction: Light sweep shimmer on hover */}
                   <span
                     className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 -translate-x-[200%] group-hover/btn:translate-x-[350%] transition-transform duration-1000 ease-out pointer-events-none"
                     aria-hidden="true"
                   />
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-1.5 sm:gap-2">
                     <span>{HERO_CONTENT.cta.label}</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   </span>
                 </Button>
               </Magnetic>
 
               {/* Social Proof Trust Indicator Centered Below Button */}
-              <div className="flex items-center gap-2.5 px-3 py-1 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-sm select-none group/trust transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]">
-                <div className="flex items-center -space-x-1.5 group-hover/trust:-space-x-0.5 transition-all duration-300">
+              <div className="flex items-center justify-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm select-none max-w-full group/trust transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]">
+                <div className="flex items-center -space-x-1 sm:-space-x-1.5 group-hover/trust:-space-x-0.5 transition-all duration-300 shrink-0">
                   {HERO_SOCIAL_PROOF.avatars.slice(0, 4).map((avatar, idx) => (
                     <div
                       key={idx}
-                      className="relative w-5 h-5 rounded-full overflow-hidden ring-1.5 ring-black"
+                      className="relative w-4 h-4 sm:w-5 sm:h-5 rounded-full overflow-hidden ring-1 sm:ring-1.5 ring-black shrink-0"
                     >
                       <Image
                         src={avatar.src}
@@ -164,16 +165,17 @@ export function Hero() {
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center gap-1.5 text-left text-[11px] leading-none">
-                  <div className="flex items-center text-[#fdbb11] text-[9px] tracking-tight">
+                <div className="flex items-center gap-1 sm:gap-1.5 text-left text-[10px] sm:text-[11px] leading-tight sm:leading-none whitespace-nowrap">
+                  <div className="flex items-center text-[#fdbb11] text-[8px] sm:text-[9px] tracking-tight shrink-0">
                     {"★★★★★"}
                   </div>
-                  <span className="font-semibold text-white tracking-tight">
+                  <span className="font-semibold text-white tracking-tight shrink-0">
                     {HERO_SOCIAL_PROOF.rating}
                   </span>
-                  <span className="text-neutral-500 font-normal">·</span>
-                  <span className="text-neutral-400 font-normal">
-                    {HERO_SOCIAL_PROOF.label}
+                  <span className="text-neutral-500 font-normal shrink-0">·</span>
+                  <span className="text-neutral-300 sm:text-neutral-400 font-normal">
+                    <span className="sm:hidden">120+ brands</span>
+                    <span className="hidden sm:inline">{HERO_SOCIAL_PROOF.label}</span>
                   </span>
                 </div>
               </div>
@@ -186,13 +188,13 @@ export function Hero() {
           variants={heroGridVariants}
           initial="hidden"
           animate="visible"
-          className="w-full -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20 relative"
+          className="w-full -mt-10 sm:-mt-14 md:-mt-18 lg:-mt-22 relative"
         >
           <TiltedGridHero
             images={HERO_CONTENT.images}
             tileHeight={50}
             aspectRatio={2 / 3}
-            axis={55}
+            axis={48}
             curve={55}
             gap={10}
             className="h-[340px] xs:h-[380px] sm:h-[440px] md:h-[500px] lg:h-[540px] w-full"

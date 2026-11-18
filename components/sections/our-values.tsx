@@ -126,7 +126,7 @@ export function OurValues({
               {activeTag}
             </span>
           ) : null}
-          <h2 className="text-3xl sm:text-4xl xl:text-[2.75rem] font-bold text-white tracking-tight leading-[1.05] font-primary whitespace-nowrap">
+          <h2 className="text-3xl sm:text-4xl xl:text-[2.75rem] font-bold text-white tracking-tight leading-[1.14] font-primary whitespace-nowrap pb-1">
             {activeHeading}
           </h2>
         </div>

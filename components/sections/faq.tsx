@@ -65,8 +65,8 @@ export function FAQ() {
             </motion.span>
 
             {/* Headline with Masked Reveals */}
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-white leading-[1.05] font-primary mb-4 sm:mb-6">
-              <span className="block overflow-hidden py-1">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-white leading-[1.12] sm:leading-[1.15] font-primary mb-4 sm:mb-6">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={faqHeadlineVariants}
                   className="block origin-bottom-left"
@@ -74,7 +74,7 @@ export function FAQ() {
                   {headlineLine1}
                 </motion.span>
               </span>
-              <span className="block overflow-hidden py-1">
+              <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                 <motion.span
                   variants={faqHeadlineVariants}
                   className="block origin-bottom-left"

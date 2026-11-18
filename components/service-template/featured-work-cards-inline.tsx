@@ -67,7 +67,7 @@ export function FeaturedWorkCardsInline({
               <Sparkles className="w-3.5 h-3.5" />
               <span>{tag}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.08] font-primary">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.14] font-primary pb-1">
               {headline}
             </h2>
           </div>

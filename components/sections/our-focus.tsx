@@ -28,7 +28,7 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                 {tag}
               </span>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.08] font-primary mb-6">
+              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-white leading-[1.14] font-primary mb-6 pb-1">
                 {title}
               </h2>
 
@@ -54,7 +54,6 @@ export function OurFocus({ servicesContainerRef, servicesTrackRef }: OurFocusPro
                 >
                   <div className="flex items-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
                     <div className="relative -ml-[1px] flex items-center gap-2.5 text-neutral-400">
-                      <span className="w-1.5 h-1.5 rotate-45 bg-[#fdbb11] shadow-[0_0_8px_rgba(253,187,17,0.7)] transition-transform duration-300 group-hover:scale-125 group-hover:bg-[#fdbb11]" />
                       <span className="text-xs sm:text-sm font-mono text-[#fdbb11]/80 tracking-wider">
                         {service.number}
                       </span>
