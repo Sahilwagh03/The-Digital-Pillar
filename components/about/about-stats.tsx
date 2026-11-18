@@ -11,14 +11,8 @@ export function AboutStats() {
     <section
       id="impact"
       data-nav-theme="dark"
-      className="relative w-full bg-[#07070a] text-white py-20 sm:py-28 lg:py-32 border-t border-white/10 overflow-hidden"
+      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-32 border-t border-white/10 overflow-hidden"
     >
-      {/* Ambient Brand Glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#fdbb11]/5 blur-[150px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         {/* Header Block */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16 sm:mb-20">

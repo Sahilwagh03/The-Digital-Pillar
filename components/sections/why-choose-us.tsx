@@ -44,7 +44,7 @@ function AnimatedBarChart({ years }: { years: string[] }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: hoveredIdx !== null ? 1 : 0 }}
           transition={{ duration: 0.2 }}
-          className="text-[0.6875rem] font-mono font-medium text-[#fdbb11] bg-neutral-900 border border-white/10 px-2 py-0.5 rounded-full"
+          className="text-[0.6875rem] font-mono font-medium text-[#fdbb11] bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-0.5 rounded-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]"
         >
           {hoveredIdx !== null ? `${CHART_BAR_HEIGHTS[hoveredIdx]}%` : "100%"}
         </motion.span>
@@ -72,7 +72,7 @@ function AnimatedBarChart({ years }: { years: string[] }) {
                     ? "bg-[#fdbb11] shadow-[0_0_14px_rgba(253,187,17,0.7)] scale-y-105"
                     : isMax
                       ? "bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
-                      : "bg-neutral-800/80 group-hover/bar:bg-neutral-700"
+                      : "bg-white/15 group-hover/bar:bg-white/25 backdrop-blur-sm"
                 )}
                 style={{
                   height: isInView ? `${heightPercent}%` : "0%",
@@ -115,7 +115,7 @@ export function WhyChooseUs() {
     <section
       id="why-choose-us"
       data-nav-theme="dark"
-      className="relative w-full bg-[#07070a] text-white pt-15 sm:pt-28 lg:pt-32"
+      className="relative w-full bg-transparent text-white pt-15 sm:pt-28 lg:pt-32 overflow-hidden"
     >
       <Container size="lg">
         {/* Header Section with Orchestrated Staggered Reveals */}
@@ -177,7 +177,7 @@ export function WhyChooseUs() {
           {/* Mobile Card 1: Retention */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+            className="border border-white/[0.14] bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl rounded-2xl p-4 flex flex-col justify-between shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_10px_25px_-8px_rgba(0,0,0,0.6)] relative overflow-hidden"
           >
             <div>
               <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
@@ -198,7 +198,7 @@ export function WhyChooseUs() {
           {/* Mobile Card 2: Speed / Growth */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+            className="border border-white/[0.14] bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl rounded-2xl p-4 flex flex-col justify-between shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_10px_25px_-8px_rgba(0,0,0,0.6)] relative overflow-hidden"
           >
             <div>
               <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
@@ -220,7 +220,7 @@ export function WhyChooseUs() {
           {/* Mobile Card 3: Projects */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+            className="border border-white/[0.14] bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl rounded-2xl p-4 flex flex-col justify-between shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_10px_25px_-8px_rgba(0,0,0,0.6)] relative overflow-hidden"
           >
             <div>
               <h3 className="text-3xl font-bold tracking-tight text-white font-primary flex items-baseline">
@@ -242,7 +242,7 @@ export function WhyChooseUs() {
           {/* Mobile Card 4: Rating */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between"
+            className="border border-white/[0.14] bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl rounded-2xl p-4 flex flex-col justify-between shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_10px_25px_-8px_rgba(0,0,0,0.6)] relative overflow-hidden"
           >
             <div>
               <div className="flex items-center justify-between mb-1">
@@ -283,13 +283,16 @@ export function WhyChooseUs() {
           {/* Column 1: Revenue Generated & Bar Chart */}
           <motion.div
             variants={bentoCardVariants}
-            className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
+            className="relative overflow-hidden border border-white/[0.14] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between min-h-[26rem] sm:min-h-[29rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/35 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),inset_0_0_20px_0_rgba(255,255,255,0.02),0_20px_40px_-15px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_28px_60px_-15px_rgba(0,0,0,0.85),0_0_35px_rgba(253,187,17,0.12)] group"
           >
+            {/* Top Gloss Specular Highlight */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent" />
+
             {/* Minimalist Bar Chart */}
             <AnimatedBarChart years={stats.revenue.years} />
 
             {/* Stat & Label */}
-            <div className="pt-6">
+            <div className="pt-6 relative z-10">
               <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary flex items-baseline">
                 <NumberTicker
                   value={stats.revenue.number}
@@ -310,8 +313,11 @@ export function WhyChooseUs() {
             {/* Top Card: 12x Speed */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
+              className="relative overflow-hidden border border-white/[0.14] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/35 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),inset_0_0_20px_0_rgba(255,255,255,0.02),0_20px_40px_-15px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_28px_60px_-15px_rgba(0,0,0,0.85),0_0_35px_rgba(253,187,17,0.12)] group"
             >
+              {/* Top Gloss Specular Highlight */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent" />
+
               {/* Subtle Ambient Gold Hover Gradient */}
               <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -339,8 +345,11 @@ export function WhyChooseUs() {
             {/* Bottom Card: 250+ Projects with Globe */}
             <motion.div
               variants={bentoCardVariants}
-              className="border border-white/10 bg-[#0d0d12]/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
+              className="relative overflow-hidden border border-white/[0.14] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden flex-1 min-h-[12.5rem] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/35 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),inset_0_0_20px_0_rgba(255,255,255,0.02),0_20px_40px_-15px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_28px_60px_-15px_rgba(0,0,0,0.85),0_0_35px_rgba(253,187,17,0.12)] group"
             >
+              {/* Top Gloss Specular Highlight */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent" />
+
               {/* Subtle Ambient Gold Hover Gradient */}
               <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#fdbb11]/10 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -369,7 +378,7 @@ export function WhyChooseUs() {
           {/* Column 3: Photographic Image Card */}
           <motion.div
             variants={bentoCardVariants}
-            className="relative overflow-hidden rounded-2xl min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-white/10 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group"
+            className="relative overflow-hidden rounded-2xl sm:rounded-3xl min-h-[26rem] sm:min-h-[29rem] flex flex-col justify-between p-7 sm:p-9 border border-white/[0.16] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_20px_40px_-15px_rgba(0,0,0,0.8)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/40 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_28px_60px_-15px_rgba(0,0,0,0.95)] group"
           >
             {/* Background Image with Cinematic Hover Zoom */}
             <Image
@@ -386,9 +395,11 @@ export function WhyChooseUs() {
 
             {/* Top Bar: Logo & 4.8/5 Rating */}
             <div className="relative z-10 flex items-center justify-between w-full">
-              <Logo className="brightness-110" />
+              <div className="p-2 sm:p-2.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]">
+                <Logo className="brightness-110" />
+              </div>
 
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-end px-3 py-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]">
                 <span className="text-xl sm:text-2xl font-bold text-white font-primary flex items-baseline tracking-tight">
                   <NumberTicker
                     value={stats.ratingCard.ratingNumber}
@@ -409,7 +420,7 @@ export function WhyChooseUs() {
             </div>
 
             {/* Bottom Bar: 250+ Projects Completed */}
-            <div className="relative z-10 mt-auto">
+            <div className="relative z-10 mt-auto p-4 sm:p-5 rounded-2xl bg-black/45 backdrop-blur-md border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]">
               <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-primary flex items-baseline">
                 <NumberTicker
                   value={stats.ratingCard.number}

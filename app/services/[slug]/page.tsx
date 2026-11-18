@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getServiceBySlug, getAllServiceSlugs } from "@/constants/services";
 import { ServicePageView } from "@/components/service-template/service-page-view";
 
@@ -32,9 +33,17 @@ export function generateStaticParams() {
   return getAllServiceSlugs().map((slug) => ({ slug }));
 }
 
-export default async function ServicePage({ params }: PageProps) {
+async function ServiceContent({ params }: PageProps) {
   const { slug } = await params;
   const serviceData = getServiceBySlug(slug);
 
   return <ServicePageView data={serviceData} />;
+}
+
+export default function ServicePage(props: PageProps) {
+  return (
+    <Suspense fallback={null}>
+      <ServiceContent {...props} />
+    </Suspense>
+  );
 }

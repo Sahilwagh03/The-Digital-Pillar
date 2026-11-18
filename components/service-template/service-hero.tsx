@@ -13,13 +13,8 @@ export function ServiceHero({ hero }: ServiceHeroProps) {
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-20 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-20 overflow-hidden"
     >
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-[#fdbb11]/8 blur-[150px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-8 sm:pb-12 lg:pb-14">
           <motion.div

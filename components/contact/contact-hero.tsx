@@ -153,17 +153,8 @@ export function ContactHero() {
     <section
       id="contact-hero"
       data-nav-theme="dark"
-      className="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050505] text-white pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-24 md:pb-28"
+      className="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-center items-center overflow-hidden bg-transparent text-white pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-24 md:pb-28"
     >
-      {/* Soft Luminous Studio Radial Lighting in Dark Amber */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 70% at 50% 12%, rgba(253, 187, 17, 0.08) 0%, rgba(5, 5, 5, 0.7) 50%, rgba(5, 5, 5, 1) 100%)",
-        }}
-      />
-
       {/* Main Content Area */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 sm:gap-12 md:gap-14">
         {/* Top Headline Block */}

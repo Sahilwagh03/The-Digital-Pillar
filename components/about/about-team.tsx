@@ -52,7 +52,7 @@ export function AboutTeam({
       ref={sectionRef}
       data-nav-theme="dark"
       className={cn(
-        "relative w-full bg-[#050505] text-white select-none overflow-clip",
+        "relative w-full bg-transparent text-white select-none overflow-clip",
         className
       )}
     >
@@ -61,7 +61,7 @@ export function AboutTeam({
       {/* ==================================================================== */}
       <div
         ref={pinnedRef}
-        className="hidden lg:block w-full h-screen relative overflow-hidden bg-[#050505]"
+        className="hidden lg:block w-full h-screen relative overflow-hidden bg-transparent"
       >
         {/* Ambient Brand Glow */}
         <div
@@ -146,7 +146,7 @@ export function AboutTeam({
       {/* ==================================================================== */}
       {/* MOBILE & TABLET RESPONSIVE VIEW (< 1024px)                           */}
       {/* ==================================================================== */}
-      <div className="block lg:hidden w-full py-16 sm:py-24 bg-[#050505]">
+      <div className="block lg:hidden w-full py-16 sm:py-24 bg-transparent">
         <Container size="lg">
           <div className="flex flex-col gap-8">
             {/* Header */}

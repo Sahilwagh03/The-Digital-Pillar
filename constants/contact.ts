@@ -60,7 +60,7 @@ export const CONTACT_HERO_DATA: ContactHeroData = {
       rotation: -7,
       yOffset: 10,
       badge: {
-        text: "Let's Talk",
+        text: "Work With Us",
         variant: "brand",
       },
     },
@@ -100,7 +100,7 @@ export const CONTACT_HERO_DATA: ContactHeroData = {
       rotation: 7.5,
       yOffset: 10,
       badge: {
-        text: "Start a Project",
+        text: "Book a Demo",
         variant: "brand",
       },
     },

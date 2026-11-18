@@ -12,7 +12,7 @@ export function ServiceMarquee({ marquee }: ServiceMarqueeProps) {
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] py-8 sm:py-12 lg:py-14 overflow-hidden border-y border-white/[0.08] select-none"
+      className="relative w-full bg-transparent py-8 sm:py-12 lg:py-14 overflow-hidden border-y border-white/[0.08] select-none"
     >
       <div className="flex w-max animate-marquee gap-8 sm:gap-14 lg:gap-16 items-center">
         {items.map((_, i) => (

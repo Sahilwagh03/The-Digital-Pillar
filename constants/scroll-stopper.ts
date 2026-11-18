@@ -1,3 +1,5 @@
+import videos from "@/config/media/videos";
+
 export interface ScrollStopperCard {
   id: string;
   image: string;
@@ -36,10 +38,10 @@ export const SCROLL_STOPPER_CONTENT: ScrollStopperContent = {
   cards: [
     {
       id: "card-1",
-      image: "/images/services/creator-content.jpg",
-      alt: "Creator Content Reel",
-      caption: "YOU KNOW",
-      captionStyle: "white",
+      image:
+        videos.saareeReel0220May?.thumbnailUrl ||
+        "/images/services/fashion.jpg",
+      alt: "Fashion & Luxury Couture Reel",
     },
     {
       id: "card-2",
@@ -49,17 +51,17 @@ export const SCROLL_STOPPER_CONTENT: ScrollStopperContent = {
     },
     {
       id: "card-3",
-      image: "/images/services/ugc.jpg",
-      alt: "Fitness & Wellness",
-      caption: "Struggling with belly fat",
-      captionStyle: "red",
+      image:
+        videos.elements?.thumbnailUrl ||
+        "/images/services/food-beverage.jpg",
+      alt: "Food & Beverage Gastronomy Reel",
     },
     {
       id: "card-4",
-      image: "/images/services/influencer-marketing.jpg",
-      alt: "Direct to Camera",
-      caption: "Honestly...",
-      captionStyle: "white",
+      image:
+        videos.paradisePunawale?.thumbnailUrl ||
+        "/images/services/real-estate.jpg",
+      alt: "Real Estate Architecture Tour",
     },
     {
       id: "card-5",

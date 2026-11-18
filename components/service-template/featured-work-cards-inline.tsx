@@ -53,13 +53,8 @@ export function FeaturedWorkCardsInline({
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
     >
-      <div
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#fdbb11]/8 blur-[160px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-white/[0.06]">
           <div>

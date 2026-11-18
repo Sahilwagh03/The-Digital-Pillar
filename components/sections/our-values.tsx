@@ -102,7 +102,7 @@ export function OurValues({
       ref={sectionRef}
       data-nav-theme="dark"
       className={cn(
-        "relative w-full bg-black text-white select-none",
+        "relative w-full bg-transparent text-white select-none",
         className
       )}
     >
@@ -111,7 +111,7 @@ export function OurValues({
       {/* ==================================================================== */}
       <div
         ref={pinnedRef}
-        className="hidden lg:block w-full h-screen relative overflow-hidden bg-black"
+        className="hidden lg:block w-full h-screen relative overflow-hidden bg-transparent"
       >
         {/* Ambient Gold Glow */}
         <div
@@ -207,7 +207,7 @@ export function OurValues({
       {/* ==================================================================== */}
       {/* MOBILE & TABLET FALLBACK (< 1024px)                                  */}
       {/* ==================================================================== */}
-      <div className="block lg:hidden w-full py-16 sm:py-24 bg-black">
+      <div className="block lg:hidden w-full py-16 sm:py-24 bg-transparent">
         <Container size="lg">
           <div className="flex flex-col gap-8">
             {/* Header */}

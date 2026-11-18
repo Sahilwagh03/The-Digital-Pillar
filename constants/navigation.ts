@@ -4,7 +4,7 @@ import { NavActionItem, NavTheme } from "@/types";
 export const NAV_ACTIONS: readonly NavActionItem[] = [
   {
     id: "contact",
-    label: "Let's Talk",
+    label: "Work With Us",
     href: "/contact",
     variant: "primary",
     hideOnMobile: true,

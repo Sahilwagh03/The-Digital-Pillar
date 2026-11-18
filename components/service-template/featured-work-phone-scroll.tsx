@@ -150,13 +150,8 @@ export function FeaturedWorkPhoneScroll({
     <section
       ref={sectionRef}
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-20 sm:pt-28 pb-16 sm:pb-24 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 pb-16 sm:pb-24 overflow-hidden border-t border-white/[0.06]"
     >
-      <div
-        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-[#fdbb11]/8 blur-[160px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10 pb-10 sm:pb-14 border-b border-white/[0.06]">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>

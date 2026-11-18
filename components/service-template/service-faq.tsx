@@ -32,14 +32,8 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
     <section
       id="faq"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 border-t border-white/10 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 border-t border-white/10 overflow-hidden"
     >
-      {/* Subtle Ambient Gold Glow */}
-      <div
-        className="absolute bottom-10 right-10 w-[350px] h-[250px] bg-[#fdbb11]/5 blur-[120px] rounded-full pointer-events-none -z-0"
-        aria-hidden="true"
-      />
-
       <Container size="lg" className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-12 xl:gap-16 items-start">
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-start">

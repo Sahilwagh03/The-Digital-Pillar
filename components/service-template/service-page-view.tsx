@@ -50,7 +50,7 @@ export function ServicePageView({ data }: ServicePageViewProps) {
   }, [lenis, data.slug]);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#050505]">
+    <main className="min-h-screen flex flex-col bg-transparent">
       <ServiceHero hero={data.hero} />
       <ServiceMarquee marquee={data.marquee} />
       <ServiceFeaturedWork featuredWork={data.featuredWork} />

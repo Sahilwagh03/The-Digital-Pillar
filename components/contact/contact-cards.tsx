@@ -28,7 +28,7 @@ export function ContactCards() {
     <section
       id="contact-info-cards"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white pt-8 sm:pt-12 pb-20 sm:pb-28 lg:pb-36 border-t border-white/5"
+      className="relative w-full bg-transparent text-white pt-8 sm:pt-12 pb-20 sm:pb-28 lg:pb-36 border-t border-white/5"
     >
       <Container size="lg">
         <motion.div

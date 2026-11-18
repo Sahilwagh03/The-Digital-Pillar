@@ -164,7 +164,7 @@ export function SelectedWork() {
     <div
       ref={sectionRef}
       id="selected-work-wrapper"
-      className="relative w-full bg-[#050505]"
+      className="relative w-full bg-transparent"
     >
       {/* ============================================================ */}
       {/* DESKTOP VIEW (lg: 1024px+): Pinned horizontal showcase & reveal */}
@@ -184,7 +184,7 @@ export function SelectedWork() {
           id="selected-work"
           ref={selectedWorkLayerRef}
           data-nav-theme="dark"
-          className="absolute inset-0 z-10 w-full h-screen bg-[#08080c] text-white border-t border-white/10 overflow-hidden"
+          className="absolute inset-0 z-10 w-full h-screen bg-[#080b12] text-white border-t border-white/10 overflow-hidden"
         >
           <div className="w-full h-full overflow-hidden">
             <div ref={trackRef} className="flex w-fit flex-nowrap">
@@ -218,7 +218,7 @@ export function SelectedWork() {
         <section
           id="selected-work-mobile"
           data-nav-theme="dark"
-          className="relative w-full bg-[#08080c] text-white border-t border-white/10"
+          className="relative w-full bg-transparent text-white border-t border-white/10"
         >
           {/* Header */}
           <div className="px-6 sm:px-10 pt-20 pb-12 sm:pt-28 sm:pb-16 text-center max-w-xl mx-auto">
@@ -311,7 +311,7 @@ export function SelectedWork() {
           </div>
 
           {/* End CTA Card */}
-          <div className="mobile-work-card px-6 sm:px-10 py-16 sm:py-20 bg-[#0d0d14] border-t border-white/10 text-center">
+          <div className="mobile-work-card px-6 sm:px-10 py-16 sm:py-20 bg-[#0c101c] border-t border-white/10 text-center">
             <div className="max-w-lg mx-auto">
               <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-[1.2] font-primary mb-6 sm:mb-8 text-balance">
                 {endCta.headlineLine1}

@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <main
       data-nav-theme="dark"
-      className="relative min-h-[75vh] sm:min-h-[80vh] bg-[#050505] text-white flex flex-col justify-center overflow-hidden pt-20 pb-12 sm:pt-28 sm:pb-16"
+      className="relative min-h-[75vh] sm:min-h-[80vh] bg-transparent text-white flex flex-col justify-center overflow-hidden pt-20 pb-12 sm:pt-28 sm:pb-16"
     >
       {/* Background Architectural Grid Pattern */}
       <div

@@ -7,7 +7,7 @@ export function BrandsWeMoved() {
     <section
       id="brands-we-moved"
       data-nav-theme="dark"
-      className="relative w-full bg-[#050505] text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
     >
       <Container size="lg">
         <div className="text-center mb-8 sm:mb-12">
@@ -16,10 +16,7 @@ export function BrandsWeMoved() {
           </span>
         </div>
 
-        <div className="relative w-full overflow-hidden select-none">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-[#050505] via-[#050505]/90 to-transparent z-10" />
-
+        <div className="relative w-full overflow-hidden select-none [mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]">
           <div className="animate-marquee flex w-max">
             <div className="flex shrink-0 items-center gap-12 sm:gap-16 md:gap-24 pr-12 sm:pr-16 md:pr-24">
               {PARTNER_BRANDS.map((brand, idx) => (
