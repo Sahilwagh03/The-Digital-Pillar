@@ -1,6 +1,7 @@
 export interface FeaturedProject {
   id: string;
   title: string;
+  category?: string;
   description: string;
   imageSrc: string;
   href: string;
@@ -34,7 +35,8 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
   },
   featuredProject: {
     id: "manish-pinjani-personal-branding",
-    title: "Manish Pinjani — Personal Branding",
+    category: "PERSONAL BRAND",
+    title: "Manish Pinjani",
     description:
       "0 to 100K followers in 6 months for Times Restaurateur of the Year 2026. Built an organic personal brand and content engine that established industry authority across Pune.",
     imageSrc:
@@ -45,7 +47,8 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
   projects: [
     {
       id: "manish-pinjani-personal-branding",
-      title: "Manish Pinjani — Personal Branding",
+      category: "PERSONAL BRAND",
+      title: "Manish Pinjani",
       description:
         "0 to 100K followers in 6 months for Times Restaurateur of the Year 2026. Built an organic personal brand and content engine that established industry authority across Pune.",
       imageSrc:
@@ -55,7 +58,8 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
     },
     {
       id: "rmh-foods-growth",
-      title: "RMH Foods — Hospitality Scale",
+      category: "HOSPITALITY SCALE",
+      title: "RMH Foods",
       description:
         "Scaled 5+ dining destinations including Chulbul Kebabs, Chulbul Dhaba, and Lehza Veg Divine to 3X revenue with viral culinary storytelling and high-impact local performance marketing.",
       imageSrc:
@@ -65,7 +69,8 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
     },
     {
       id: "pune-real-estate-performance",
-      title: "Pune Real Estate — Performance Acquisition",
+      category: "PERFORMANCE ACQUISITION",
+      title: "Pune Real Estate",
       description:
         "Generated 100 qualified leads and closed 35 high-ticket property deals in just 3 months across 4 premium projects covering 75K+ sq.ft in Pune.",
       imageSrc:
@@ -75,6 +80,7 @@ export const SELECTED_WORK_CONTENT: SelectedWorkContent = {
     },
     {
       id: "paradise-real-estate",
+      category: "LUXURY REAL ESTATE",
       title: "Paradise Punawale",
       description:
         "Architectural visual systems and high-tempo walkthroughs designed to engage high-net-worth property buyers and drive qualified inquiries.",

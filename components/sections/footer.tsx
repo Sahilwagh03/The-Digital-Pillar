@@ -32,23 +32,23 @@ export function Footer() {
     <footer
       id="contact"
       data-nav-theme="dark"
-      className="relative w-full bg-[#07080d] text-white pt-20 sm:pt-28 lg:pt-32 pb-4 sm:pb-6 overflow-hidden select-none border-t border-white/10"
+      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-32 pb-4 sm:pb-6 overflow-hidden select-none"
     >
-      {/* Top Atmospheric Gradient Blending seamlessly with Page */}
+      {/* Ambient Atmospheric Depth Glow centered behind Footer content for seamless blending */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(28,36,61,0.55)_0%,rgba(19,25,43,0.25)_45%,transparent_100%)] pointer-events-none -z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] max-w-6xl h-[650px] bg-[radial-gradient(ellipse_75%_55%_at_50%_50%,rgba(28,36,61,0.45)_0%,rgba(19,25,43,0.15)_50%,transparent_80%)] pointer-events-none -z-0"
         aria-hidden="true"
       />
 
-      {/* Subtle Ambient Brand Glow */}
+      {/* Subtle Warm Brand Glow centered behind CTA */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[280px] bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(253,187,17,0.08)_0%,transparent_80%)] blur-2xl pointer-events-none -z-0"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[320px] bg-[radial-gradient(ellipse_60%_45%_at_50%_50%,rgba(253,187,17,0.06)_0%,transparent_75%)] blur-3xl pointer-events-none -z-0"
         aria-hidden="true"
       />
 
-      {/* Architectural Dot Matrix Texture */}
+      {/* Architectural Dot Matrix Texture with Smooth Vertical Fade */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none -z-0"
+        className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)] pointer-events-none -z-0"
         aria-hidden="true"
       />
 
@@ -219,11 +219,19 @@ export function Footer() {
           aria-hidden="true"
           preserveAspectRatio="none"
         >
+          <defs>
+            <linearGradient id="footerWatermarkWhiteGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.42" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.08" />
+            </linearGradient>
+          </defs>
           <text
             x="50%"
             y="130"
             textAnchor="middle"
-            className="font-primary fill-white/[0.04] select-none uppercase"
+            fill="url(#footerWatermarkWhiteGradient)"
+            className="font-primary select-none uppercase"
             style={{
               fontSize: "155px",
               fontWeight: 900,
