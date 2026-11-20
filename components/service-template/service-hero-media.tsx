@@ -40,8 +40,8 @@ export function ServiceHeroMedia({
               loop
               muted
               playsInline
-              className="w-full h-35 sm:h-45 md:h-60 lg:h-120"
-              mediaClassName="w-full h-35 sm:h-45 md:h-60 lg:h-120 object-cover"
+              className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[560px]"
+              mediaClassName="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[560px] object-cover"
             />
           </div>
         );

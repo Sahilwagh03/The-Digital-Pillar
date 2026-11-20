@@ -52,6 +52,6 @@ export const MENU_ITEMS: readonly MenuItem[] = [
   {
     index: "03",
     label: "SERVICES",
-    href: "/services/personal-branding",
+    href: "/services",
   },
 ] as const;

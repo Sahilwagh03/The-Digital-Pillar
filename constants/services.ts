@@ -144,6 +144,151 @@ export interface ServiceData {
   faq: ServiceFaqData;
 }
 
+
+export interface CoreServiceSummary {
+  id: string;
+  number: string;
+  slug: string;
+  title: string;
+  tag: string;
+  shortDescription: string;
+  fullDescription: string;
+  deliverables: string[];
+  imageSrc: string;
+  imageAlt: string;
+  metric?: string;
+  metricLabel?: string;
+}
+
+export const CORE_SERVICES: CoreServiceSummary[] = [
+  {
+    id: "performance-marketing",
+    number: "01",
+    slug: "performance-marketing",
+    title: "Performance Marketing",
+    tag: "GROWTH & ATTRIBUTION",
+    shortDescription: "Data-driven acquisition, conversion rate optimization, and scalable ROI engines.",
+    fullDescription: "We engineer hyper-targeted acquisition funnels that transform ad clicks into predictable revenue. Combining real-time attribution modeling, ruthless creative testing, and multi-channel bid management.",
+    deliverables: ["Full-Funnel CRO", "Attribution Modeling", "CAC Reduction", "Revenue Tracking"],
+    imageSrc: "/images/services/paid-ads.jpg",
+    imageAlt: "Performance Marketing & Funnel Optimization",
+    metric: "+240%",
+    metricLabel: "Average ROAS Lift",
+  },
+  {
+    id: "content-creation",
+    number: "02",
+    slug: "content-creation",
+    title: "Content Creation",
+    tag: "STUDIO & CINEMA",
+    shortDescription: "Cinema-grade video production, commercial motion, and brand storytelling.",
+    fullDescription: "High-retention studio production tailored for omnichannel distribution. From high-fashion lookbooks to mouth-watering culinary films and kinetic product reels.",
+    deliverables: ["Cinema Production", "Post-Production & VFX", "Sound Design", "Platform-Native Formats"],
+    imageSrc: "/images/services/creator-content.jpg",
+    imageAlt: "High-Impact Content Creation",
+    metric: "10M+",
+    metricLabel: "Organic Views Delivered",
+  },
+  {
+    id: "social-media",
+    number: "03",
+    slug: "social-media",
+    title: "Social Media Marketing",
+    tag: "ATTENTION & COMMUNITY",
+    shortDescription: "Viral distribution systems, culture-first community building, and brand authority.",
+    fullDescription: "We transform dormant social feeds into magnetic authority channels. Our organic distribution engines capture algorithmic momentum and turn casual scrollers into loyal advocates.",
+    deliverables: ["Editorial Calendars", "Algorithmic Growth", "Community Engagement", "Trend Hacking"],
+    imageSrc: "/images/services/social-media.jpg",
+    imageAlt: "Social Media Marketing Strategy",
+    metric: "0 to 100K",
+    metricLabel: "Follower Acceleration",
+  },
+  {
+    id: "ugc",
+    number: "04",
+    slug: "ugc",
+    title: "UGC Videos / AI UGC",
+    tag: "AUTHENTIC & HYPER-CREATIVE",
+    shortDescription: "High-converting UGC ads, micro-creator network, and generative AI video assets.",
+    fullDescription: "Authentic, relatable creator videos coupled with next-generation AI workflows that systematically drive down customer acquisition costs while maintaining genuine human trust.",
+    deliverables: ["Hook Testing Suites", "Creator Network Sourcing", "Generative AI Iterations", "High-CTR Ad Edits"],
+    imageSrc: "/images/services/ugc.jpg",
+    imageAlt: "UGC & AI UGC Production",
+    metric: "3.8X",
+    metricLabel: "Higher Ad CTR",
+  },
+  {
+    id: "web-design",
+    number: "05",
+    slug: "web-design",
+    title: "Web Design & Development",
+    tag: "DIGITAL EXPERIENCES",
+    shortDescription: "Bespoke digital architecture, interactive 3D motion, and high-conversion storefronts.",
+    fullDescription: "Websites that feel alive. We craft fast, responsive, and aesthetically commanding digital platforms engineered for conversion, seamless user journeys, and maximum brand prestige.",
+    deliverables: ["Next.js & React Apps", "Design Systems", "E-Commerce Architecture", "Interactive WebGL/Motion"],
+    imageSrc: "/images/services/web-design.jpg",
+    imageAlt: "Modern Web Design & Digital Products",
+    metric: "99/100",
+    metricLabel: "PageSpeed Score",
+  },
+  {
+    id: "content-strategy",
+    number: "06",
+    slug: "content-strategy",
+    title: "Content Strategy",
+    tag: "DIRECTION & ARCHITECTURE",
+    shortDescription: "Category authority roadmaps, audience positioning, and omni-channel blueprints.",
+    fullDescription: "Content without strategy is noise. We map comprehensive narrative pillars, competitor differentiation, and audience psychographics to ensure every asset compounds your market stance.",
+    deliverables: ["Brand Narrative Pillars", "Competitor Teardowns", "Distribution Blueprints", "Omnichannel KPIs"],
+    imageSrc: "/images/services/content-strategy.jpg",
+    imageAlt: "Content Strategy & Market Positioning",
+    metric: "3.2X",
+    metricLabel: "Engagement Multiplier",
+  },
+  {
+    id: "creator-management",
+    number: "07",
+    slug: "creator-management",
+    title: "Creator Management",
+    tag: "TALENT & INFLUENCER PR",
+    shortDescription: "Strategic creator partnerships, contract negotiations, and seamless campaign execution.",
+    fullDescription: "Connecting visionary brands with high-affinity digital creators. We handle end-to-end talent scouting, deliverables vetting, usage rights, and campaign performance tracking.",
+    deliverables: ["Talent Sourcing & Vetting", "Contract & Usage Rights", "Creative Briefs & Oversight", "ROI & Reach Tracking"],
+    imageSrc: "/images/services/influencer-marketing.jpg",
+    imageAlt: "Creator & Influencer Management",
+    metric: "250+",
+    metricLabel: "Vetted Creator Roster",
+  },
+  {
+    id: "meta-google-ads",
+    number: "08",
+    slug: "meta-google-ads",
+    title: "Meta & Google Ads",
+    tag: "PAID MEDIA DOMINANCE",
+    shortDescription: "Hyper-targeted Meta Ads (Instagram/Facebook) and high-intent Google Search/Shopping campaigns.",
+    fullDescription: "Precision media buying that captures high-intent customers and scales proven winners. We deploy custom audiences, dynamic creative optimization, and deep search intent funnels.",
+    deliverables: ["Meta Ads Architecture", "Google Search & Shopping", "Audience Retargeting", "Budget Pacing & Scaling"],
+    imageSrc: "/images/services/paid-ads.jpg",
+    imageAlt: "Meta and Google Ads Scaling",
+    metric: "4.5X",
+    metricLabel: "Target ROAS Delivered",
+  },
+  {
+    id: "ai-automations",
+    number: "09",
+    slug: "ai-automations",
+    title: "AI Automations",
+    tag: "INTELLIGENT SYSTEMS",
+    shortDescription: "Autonomous lead routing, custom AI workflows, smart CRM integrations, and operational velocity.",
+    fullDescription: "We engineer autonomous AI agents and automated workflows that eliminate friction, capture leads within seconds, and connect your entire marketing and sales tech stack.",
+    deliverables: ["Autonomous Lead Nurturing", "Custom CRM Pipelines", "AI Agent Integrations", "Generative Workflow Automation"],
+    imageSrc: "/why-choose-us.jpg",
+    imageAlt: "AI Automations & Intelligent Infrastructure",
+    metric: "10X",
+    metricLabel: "Operational Efficiency",
+  },
+];
+
 export const SERVICES_DATA: Record<string, ServiceData> = {
   "personal-branding": {
     slug: "personal-branding",
@@ -3212,6 +3357,878 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       ],
     },
   },
+
+  "performance-marketing": {
+    slug: "performance-marketing",
+    name: "Performance Marketing",
+    metaTitle: "Performance Marketing & Growth Acquisition | The Digital Pillar",
+    metaDescription:
+      "Full-funnel acquisition, relentless creative testing, and multi-channel attribution that accelerates scalable revenue.",
+    hero: {
+      tag: "SERVICE // PERFORMANCE MARKETING",
+      titleLine1: "Performance marketing",
+      titleLine2: "& Growth Engine",
+      subtitle:
+        "We engineer high-ROI paid media funnels combining scientific creative testing with algorithmic media buying to scale revenue profitably.",
+      bannerImage: "/images/service-template/hero-discs.jpg",
+      bannerAlt: "Precision optics representing performance marketing clarity",
+      media: [
+        {
+          id: "pm-hero-left",
+          type: "video",
+          src: videos.productEnergy?.videoUrl || "",
+          poster: videos.productEnergy?.thumbnailUrl || "/images/services/paid-ads.jpg",
+          alt: "Kinetic Motion Ad Showcase",
+        },
+        {
+          id: "pm-hero-middle",
+          type: "video",
+          src: videos.gQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.gQovaAiEditsBatch4?.thumbnailUrl || "",
+          alt: "High-ROAS Direct Response Ad",
+        },
+        {
+          id: "pm-hero-right",
+          type: "video",
+          src: videos.lQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.lQovaAiEditsBatch4?.thumbnailUrl || "/images/services/ugc.jpg",
+          alt: "Performance Creative Showcase",
+        },
+      ],
+    },
+    marquee: {
+      text: "PERFORMANCE MARKETING",
+      repeat: 6,
+    },
+    valueProposition: {
+      headline:
+        "We scale customer acquisition through scientific creative iteration, predictive budgeting, and full-funnel optimization.",
+      card1: {
+        title: "designing meaningful experiences & content",
+        description: "Relentless creative testing with over 50+ fresh ad variations deployed every month.",
+      },
+      card2: {
+        title: "Direction and Strategy",
+        description: "Full-funnel attribution, custom pixel tracking, and predictive LTV modeling.",
+        imageSrc: "/images/service-template/card-glass.jpg",
+        imageAlt: "Organic sculpted glass artwork",
+      },
+      card3: {
+        metric: "+240%",
+        metricLabel: "Attributed ROAS",
+        title: "Growth Delivered",
+        avatars: [
+          "/avatars/avatar-1.jpg",
+          "/avatars/avatar-2.jpg",
+          "/avatars/avatar-3.jpg",
+          "/avatars/avatar-4.jpg",
+        ],
+      },
+    },
+    framework: {
+      tag: "OUR METHODOLOGY",
+      headline: "Engineered for profitable scale",
+      description:
+        "Our systematic 4-phase framework turns paid advertising from an unpredictable expense into a reliable growth machine.",
+      imageSrc: "/images/service-template/framework-discs.jpg",
+      imageAlt: "Four tiered floating discs representing Discover, Define, Design, and Deliver",
+      steps: [
+        {
+          number: "01",
+          title: "Audit & Baseline",
+          description: "Analyzing historical ad spend, tracking pixels, customer cohorts, and unit economics.",
+        },
+        {
+          number: "02",
+          title: "Creative Architecture",
+          description: "Scripting and producing high-converting visual assets engineered for click-through and hold rates.",
+        },
+        {
+          number: "03",
+          title: "Algorithmic Media Buying",
+          description: "Structuring high-liquidity campaigns with predictive bidding and audience targeting.",
+        },
+        {
+          number: "04",
+          title: "Attribution & Scale",
+          description: "Allocating capital aggressively into proven winner ads while continually testing new hooks.",
+        },
+      ],
+    },
+    featuredWork: {
+      layout: "bento",
+      tag: "PERFORMANCE CASE STUDIES",
+      headline: "Campaigns that deliver compounding ROI",
+      subtitle: "Explore high-growth acquisition sprints built for ambitious lifestyle and DTC brands.",
+      items: [
+        {
+          id: "pm-work-1",
+          title: "Pune Real Estate Performance Engine",
+          category: "HIGH-TICKET ACQUISITION",
+          imageSrc: "/images/selected-work/paradise-real-estate.jpg",
+          imageAlt: "Real Estate Acquisition Campaign",
+          videoSrc: videos.paradisePunawale?.videoUrl,
+          poster: videos.paradisePunawale?.thumbnailUrl,
+          href: "/services/real-estate",
+          description: "Generated 100 qualified leads and closed 35 high-ticket property deals in 3 months.",
+        },
+        {
+          id: "pm-work-2",
+          title: "Hospitality Multi-Location Scale",
+          category: "LOCAL PERFORMANCE",
+          imageSrc: "/images/selected-work/benne-bae.jpg",
+          imageAlt: "RMH Foods Dining Growth",
+          videoSrc: videos.reelNo3?.videoUrl,
+          poster: videos.reelNo3?.thumbnailUrl,
+          href: "/services/restaurant",
+          description: "Scaled dining destinations across Pune with 3X revenue lift and localized footfall campaigns.",
+        },
+        {
+          id: "pm-work-3",
+          title: "DTC Kinetic Product Ad Suite",
+          category: "E-COMMERCE ROAS",
+          imageSrc: "/stichora-stone.jpg",
+          imageAlt: "Kinetic Product Commercial",
+          videoSrc: videos.productEnergy?.videoUrl,
+          poster: videos.productEnergy?.thumbnailUrl,
+          href: "/services/products",
+          description: "Direct-response video hooks that drove 4.2X ROAS on top-of-funnel cold audiences.",
+        },
+        {
+          id: "pm-work-4",
+          title: "Luxury Destination Booking Engine",
+          category: "RETARGETING & CONVERSION",
+          imageSrc: "/images/selected-work/marbella-resort.jpg",
+          imageAlt: "Marbella Resort Showcase",
+          videoSrc: videos.marbella01?.videoUrl,
+          poster: videos.marbella01?.thumbnailUrl,
+          href: "/services/resorts",
+          description: "Full-funnel campaign capturing high-net-worth travelers and driving direct resort bookings.",
+        },
+      ],
+    },
+    faq: {
+      tag: "FAQ",
+      headlineLine1: "Performance,",
+      headlineLine2: "Demystified.",
+      description: "Everything you need to know about scaling paid acquisition with The Digital Pillar.",
+      ctaText: "SCALE YOUR AD SPEND",
+      ctaHref: "/contact",
+      items: [
+        {
+          id: "faq-pm-1",
+          number: "01",
+          question: "What ad channels do you specialize in?",
+          answer: "We specialize in Meta (Instagram & Facebook), Google Ads (Search, Performance Max, YouTube, Shopping), and LinkedIn Ads for B2B brands.",
+        },
+        {
+          id: "faq-pm-2",
+          number: "02",
+          question: "How do you approach creative production for ads?",
+          answer: "Creative is the ultimate targeting lever. We produce 20-50+ native video cuts, UGC variants, and static assets every month to prevent ad fatigue and continuously discover winning hooks.",
+        },
+        {
+          id: "faq-pm-3",
+          number: "03",
+          question: "What minimum ad budget is recommended?",
+          answer: "We typically recommend starting with a minimum media spend of ₹1,00,000 to ₹3,00,000 ($1,500 - $4,000) per month to allow sufficient data density for machine-learning algorithms to optimize efficiently.",
+        },
+        {
+          id: "faq-pm-4",
+          number: "04",
+          question: "How do you handle attribution in a post-iOS 14.5 world?",
+          answer: "We deploy first-party server-side tracking (Conversions API), UTM parameter frameworks, and blended MER (Marketing Efficiency Ratio) dashboards for transparent, unskewed reporting.",
+        },
+        {
+          id: "faq-pm-5",
+          number: "05",
+          question: "How fast can we launch campaigns?",
+          answer: "Following our initial strategy alignment and tracking audit, first creative assets and campaigns go live within 7 to 10 business days.",
+        },
+      ],
+    },
+  },
+
+  "content-creation": {
+    slug: "content-creation",
+    name: "Content Creation",
+    metaTitle: "Content Creation & Studio Production | The Digital Pillar",
+    metaDescription:
+      "Cinema-grade video production, editorial lookbooks, and high-retention digital cuts tailored for ambitious brands.",
+    hero: {
+      tag: "SERVICE // CONTENT CREATION",
+      titleLine1: "Content creation",
+      titleLine2: "& Cinema Studio",
+      subtitle:
+        "We produce cinema-grade visual assets, commercial motion films, and viral short-form cuts that capture attention and build lasting brand authority.",
+      bannerImage: "/images/service-template/hero-discs.jpg",
+      bannerAlt: "Prismatic lenses representing high-end cinema production",
+      media: [
+        {
+          id: "cc-hero-left",
+          type: "video",
+          src: videos.ela01?.videoUrl || "",
+          poster: videos.ela01?.thumbnailUrl || "/images/services/creator-content.jpg",
+          alt: "High-Fashion Editorial Production",
+        },
+        {
+          id: "cc-hero-middle",
+          type: "video",
+          src: videos.armaniExchange?.videoUrl || "",
+          poster: videos.armaniExchange?.thumbnailUrl || "",
+          alt: "Armani Exchange Commercial Reel",
+        },
+        {
+          id: "cc-hero-right",
+          type: "video",
+          src: videos.saareeReel0120May?.videoUrl || "",
+          poster: videos.saareeReel0120May?.thumbnailUrl || "/images/services/creator-content.jpg",
+          alt: "Heritage Apparel Film",
+        },
+      ],
+    },
+    marquee: {
+      text: "CONTENT CREATION STUDIO",
+      repeat: 6,
+    },
+    valueProposition: {
+      headline:
+        "We produce visual storytelling that elevates your brand perception from commodity to industry prestige.",
+      card1: {
+        title: "designing meaningful experiences & content",
+        description: "Cinema cameras, precision lighting, and bespoke sound design crafted for modern social feeds.",
+      },
+      card2: {
+        title: "Direction and Strategy",
+        description: "Every frame is storyboarded with clear retention mechanics and brand identity guidelines.",
+        imageSrc: "/images/service-template/card-glass.jpg",
+        imageAlt: "Organic sculpted glass artwork",
+      },
+      card3: {
+        metric: "10M+",
+        metricLabel: "Views Delivered",
+        title: "Reach Delivered",
+        avatars: [
+          "/avatars/avatar-1.jpg",
+          "/avatars/avatar-2.jpg",
+          "/avatars/avatar-3.jpg",
+          "/avatars/avatar-4.jpg",
+        ],
+      },
+    },
+    framework: {
+      tag: "OUR PRODUCTION PROCESS",
+      headline: "From concept to viral distribution",
+      description:
+        "Our end-to-end studio pipeline ensures flawless visual quality, frictionless shoots, and rapid turnaround.",
+      imageSrc: "/images/service-template/framework-discs.jpg",
+      imageAlt: "Four tiered floating discs representing Discover, Define, Design, and Deliver",
+      steps: [
+        {
+          number: "01",
+          title: "Concept & Moodboarding",
+          description: "Scriptwriting, visual moodboards, casting, and location scouting tailored to your brand archetype.",
+        },
+        {
+          number: "02",
+          title: "Principal Photography",
+          description: "High-end cinema capture using industry-grade cameras, lighting rigs, and professional creative direction.",
+        },
+        {
+          number: "03",
+          title: "Post-Production & Sound",
+          description: "Color grading, sound design, motion graphics, and platform-optimized aspect ratio cuts.",
+        },
+        {
+          number: "04",
+          title: "Omnichannel Delivery",
+          description: "Delivering batch-ready short-form reels, commercial cuts, and high-resolution stills ready for deployment.",
+        },
+      ],
+    },
+    featuredWork: {
+      layout: "cards-inline",
+      tag: "STUDIO REEL HIGHLIGHTS",
+      headline: "Selected production showcases",
+      subtitle: "Explore high-aesthetic films produced across fashion, dining, architecture, and luxury consumer goods.",
+      items: [
+        {
+          id: "cc-work-1",
+          title: "Armani Exchange Showcase",
+          category: "COMMERCIAL CAMPAIGN",
+          imageSrc: "/stichora-app.jpg",
+          imageAlt: "Armani Exchange Campaign",
+          videoSrc: videos.armaniExchange?.videoUrl,
+          poster: videos.armaniExchange?.thumbnailUrl,
+          client: "Armani Exchange",
+          deliverables: ["Cinema Direction", "Social Cuts", "Color Grading"],
+        },
+        {
+          id: "cc-work-2",
+          title: "Benne Bae Foodstudio",
+          category: "CULINARY CINEMA",
+          imageSrc: "/why-choose-us.jpg",
+          imageAlt: "Benne Bae Foodstudio",
+          videoSrc: videos.benneBaeFoodstudio?.videoUrl,
+          poster: videos.benneBaeFoodstudio?.thumbnailUrl,
+          client: "Benne Bae",
+          deliverables: ["Macro Food Capture", "Sound Design", "Viral Cuts"],
+        },
+        {
+          id: "cc-work-3",
+          title: "Ela Editorial Fashion Lookbook",
+          category: "COUTURE LOOKBOOK",
+          imageSrc: "/hero-bg.jpg",
+          imageAlt: "Ela Editorial Fashion",
+          videoSrc: videos.ela01?.videoUrl,
+          poster: videos.ela01?.thumbnailUrl,
+          client: "Ela",
+          deliverables: ["Runway Direction", "Editorial Stills", "Motion Kits"],
+        },
+        {
+          id: "cc-work-4",
+          title: "Energy Drink Commercial Motion",
+          category: "KINETIC PRODUCT",
+          imageSrc: "/stichora-stone.jpg",
+          imageAlt: "Energy Drink Commercial",
+          videoSrc: videos.productEnergy?.videoUrl,
+          poster: videos.productEnergy?.thumbnailUrl,
+          client: "DTC Energy",
+          deliverables: ["Macro Visuals", "VFX Effects", "Hook Variants"],
+        },
+      ],
+    },
+    faq: {
+      tag: "FAQ",
+      headlineLine1: "Production,",
+      headlineLine2: "Clarified.",
+      description: "Everything you need to know about our studio and video production capabilities.",
+      ctaText: "BOOK A PRODUCTION SPRINT",
+      ctaHref: "/contact",
+      items: [
+        {
+          id: "faq-cc-1",
+          number: "01",
+          question: "Can your team travel for on-location shoots?",
+          answer: "Yes. While our headquarters and studios are in Pune, our production crews regularly travel nationwide for brand campaigns, property walkthroughs, and resort shoots.",
+        },
+        {
+          id: "faq-cc-2",
+          number: "02",
+          question: "How many content pieces do we receive per shoot?",
+          answer: "Our standard full-day production packages yield between 15 to 30 high-retention short-form reels, 50+ high-res editorial stills, and 1-2 flagship commercial brand films.",
+        },
+        {
+          id: "faq-cc-3",
+          number: "03",
+          question: "What is your typical turnaround time from shoot to delivery?",
+          answer: "First review cuts are delivered within 5 to 7 business days following the shoot. Revisions and final mastered files are typically wrapped within 10 days.",
+        },
+        {
+          id: "faq-cc-4",
+          number: "04",
+          question: "Do you provide scripting and talent casting?",
+          answer: "Yes. Our team handles complete pre-production including concept ideation, retention-optimized scripting, actor/model casting, and shot planning.",
+        },
+      ],
+    },
+  },
+
+  "creator-management": {
+    slug: "creator-management",
+    name: "Creator Management",
+    metaTitle: "Creator Management & Influencer PR | The Digital Pillar",
+    metaDescription:
+      "Strategic creator collaborations, talent sourcing, contract negotiations, and high-impact influencer campaigns.",
+    hero: {
+      tag: "SERVICE // CREATOR MANAGEMENT",
+      titleLine1: "Creator management",
+      titleLine2: "& Influencer PR",
+      subtitle:
+        "We connect visionary brands with high-affinity digital creators, orchestrating authentic collaborations that drive immense reach, cultural clout, and measurable revenue.",
+      bannerImage: "/images/service-template/hero-discs.jpg",
+      bannerAlt: "Prismatic lenses representing creator network alignment",
+      media: [
+        {
+          id: "cm-hero-left",
+          type: "video",
+          src: videos.bQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.bQovaAiEditsBatch4?.thumbnailUrl || "/images/services/influencer-marketing.jpg",
+          alt: "Creator Collaboration Reel",
+        },
+        {
+          id: "cm-hero-middle",
+          type: "video",
+          src: videos.reel2HinjewadiChulbulSurpriseVisitFab14?.videoUrl || "",
+          poster: videos.reel2HinjewadiChulbulSurpriseVisitFab14?.thumbnailUrl || "",
+          alt: "Creator Live Store Visit Reel",
+        },
+        {
+          id: "cm-hero-right",
+          type: "video",
+          src: videos.aQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.aQovaAiEditsBatch4?.thumbnailUrl || "/images/services/ugc.jpg",
+          alt: "High-Impact Creator Campaign",
+        },
+      ],
+    },
+    marquee: {
+      text: "CREATOR MANAGEMENT & INFLUENCER PR",
+      repeat: 6,
+    },
+    valueProposition: {
+      headline:
+        "Leverage the trust of digital creators to amplify your brand voice with genuine cultural resonance.",
+      card1: {
+        title: "designing meaningful experiences & content",
+        description: "Zero fluff. We rigorously vet creators for real follower engagement, niche authority, and audience alignment.",
+      },
+      card2: {
+        title: "Direction and Strategy",
+        description: "Strict creative guidelines that protect your brand guidelines while letting the creator speak naturally.",
+        imageSrc: "/images/service-template/card-glass.jpg",
+        imageAlt: "Organic sculpted glass artwork",
+      },
+      card3: {
+        metric: "250+",
+        metricLabel: "Vetted Creators",
+        title: "Partnerships Built",
+        avatars: [
+          "/avatars/avatar-1.jpg",
+          "/avatars/avatar-2.jpg",
+          "/avatars/avatar-3.jpg",
+          "/avatars/avatar-4.jpg",
+        ],
+      },
+    },
+    framework: {
+      tag: "OUR INFLUENCER WORKFLOW",
+      headline: "End-to-end talent orchestration",
+      description:
+        "From initial talent discovery to legally airtight contracts and post-campaign ROI reporting.",
+      imageSrc: "/images/service-template/framework-discs.jpg",
+      imageAlt: "Four tiered floating discs representing Discover, Define, Design, and Deliver",
+      steps: [
+        {
+          number: "01",
+          title: "Talent Scouting & Vetting",
+          description: "Filtering creator demographics, fake follower audits, comment sentiment, and historical performance.",
+        },
+        {
+          number: "02",
+          title: "Outreach & Negotiation",
+          description: "Securing competitive deliverables, content usage rights for paid ads, and strict timeline commitments.",
+        },
+        {
+          number: "03",
+          title: "Creative Direction & Briefing",
+          description: "Equipping creators with structured hook frameworks, key product USPs, and compliance guidelines.",
+        },
+        {
+          number: "04",
+          title: "Amplification & Whitelisting",
+          description: "Running Spark Ads and Meta Partnership Ads directly through creator handles for maximum conversion lift.",
+        },
+      ],
+    },
+    featuredWork: {
+      layout: "cards-inline",
+      tag: "CREATOR SPRINT HIGHLIGHTS",
+      headline: "Influencer collaborations with real impact",
+      subtitle: "See how our creator networks drive measurable awareness and localized buzz.",
+      items: [
+        {
+          id: "cm-work-1",
+          title: "Chulbul Dhaba Celebrity Launch",
+          category: "FOOD & HOSPITALITY PR",
+          imageSrc: "/why-choose-us.jpg",
+          imageAlt: "Chulbul Dhaba Launch",
+          videoSrc: videos.reel2HinjewadiChulbulSurpriseVisitFab14?.videoUrl,
+          poster: videos.reel2HinjewadiChulbulSurpriseVisitFab14?.thumbnailUrl,
+          client: "RMH Foods",
+          deliverables: ["Influencer Food Crawl", "Story Mentions", "Viral Video Sprints"],
+        },
+        {
+          id: "cm-work-2",
+          title: "Lifestyle DTC Beauty Campaign",
+          category: "SKINCARE & WELLNESS",
+          imageSrc: "/images/services/influencer-marketing.jpg",
+          imageAlt: "Lifestyle Creator Campaign",
+          videoSrc: videos.bQovaAiEditsBatch4?.videoUrl,
+          poster: videos.bQovaAiEditsBatch4?.thumbnailUrl,
+          client: "Glow Formula",
+          deliverables: ["15 Micro-Creators", "Before-After Formats", "Paid Usage Rights"],
+        },
+      ],
+    },
+    faq: {
+      tag: "FAQ",
+      headlineLine1: "Creator PR,",
+      headlineLine2: "Explained.",
+      description: "How our creator management programs deliver predictable ROI.",
+      ctaText: "LAUNCH AN INFLUENCER CAMPAIGN",
+      ctaHref: "/contact",
+      items: [
+        {
+          id: "faq-cm-1",
+          number: "01",
+          question: "Do you work with micro-influencers or mega celebrities?",
+          answer: "Both. We construct tiered rosters: hyper-trusted micro-creators (10k-50k) for cost-efficient engagement and conversions, alongside macro-creators for massive brand awareness.",
+        },
+        {
+          id: "faq-cm-2",
+          number: "02",
+          question: "Do we get ad usage rights for creator videos?",
+          answer: "Yes! Every creator agreement we negotiate includes paid advertising usage rights (whitelisting / Partnership Ads) so you can run their content as high-converting ads.",
+        },
+      ],
+    },
+  },
+
+  "meta-google-ads": {
+    slug: "meta-google-ads",
+    name: "Meta & Google Ads",
+    metaTitle: "Meta & Google Ads Management | The Digital Pillar",
+    metaDescription:
+      "Precision Meta Ads (Instagram/Facebook) and Google Search/PMax campaigns engineered for maximum return on ad spend.",
+    hero: {
+      tag: "SERVICE // PAID MEDIA",
+      titleLine1: "Meta & Google",
+      titleLine2: "Ads Dominance",
+      subtitle:
+        "We build high-converting paid media infrastructure across Meta and Google, capturing high-intent search traffic and scaling social demand with surgical precision.",
+      bannerImage: "/images/service-template/hero-discs.jpg",
+      bannerAlt: "Prismatic lenses representing high-intent targeting",
+      media: [
+        {
+          id: "mga-hero-left",
+          type: "video",
+          src: videos.productEnergy?.videoUrl || "",
+          poster: videos.productEnergy?.thumbnailUrl || "/images/services/paid-ads.jpg",
+          alt: "Targeted Product Ad",
+        },
+        {
+          id: "mga-hero-middle",
+          type: "video",
+          src: videos.gQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.gQovaAiEditsBatch4?.thumbnailUrl || "",
+          alt: "Meta High-ROAS Video Ad",
+        },
+        {
+          id: "mga-hero-right",
+          type: "video",
+          src: videos.paradisePunawale?.videoUrl || "",
+          poster: videos.paradisePunawale?.thumbnailUrl || "/images/services/branding.jpg",
+          alt: "Google & Meta Lead Acquisition Campaign",
+        },
+      ],
+    },
+    marquee: {
+      text: "META & GOOGLE ADS DOMINANCE",
+      repeat: 6,
+    },
+    valueProposition: {
+      headline:
+        "Capture bottom-of-funnel intent while scaling top-of-funnel customer acquisition profitably.",
+      card1: {
+        title: "designing meaningful experiences & content",
+        description: "Laser-focused search keyword architectures and high-CTR visual creatives for Meta.",
+      },
+      card2: {
+        title: "Direction and Strategy",
+        description: "Audience segmentation, retargeting funnels, negative keyword pruning, and day-parting.",
+        imageSrc: "/images/service-template/card-glass.jpg",
+        imageAlt: "Organic sculpted glass artwork",
+      },
+      card3: {
+        metric: "4.5X",
+        metricLabel: "Average ROAS",
+        title: "Revenue Scaled",
+        avatars: [
+          "/avatars/avatar-1.jpg",
+          "/avatars/avatar-2.jpg",
+          "/avatars/avatar-3.jpg",
+          "/avatars/avatar-4.jpg",
+        ],
+      },
+    },
+    framework: {
+      tag: "PAID MEDIA ARCHITECTURE",
+      headline: "Full-funnel cross-platform precision",
+      description:
+        "Synchronizing Meta attention with Google intent for compound acquisition compounding.",
+      imageSrc: "/images/service-template/framework-discs.jpg",
+      imageAlt: "Four tiered floating discs representing Discover, Define, Design, and Deliver",
+      steps: [
+        {
+          number: "01",
+          title: "Tracking & Conversion API",
+          description: "Configuring server-side Meta CAPI and Google Enhanced Conversions for accurate tracking.",
+        },
+        {
+          number: "02",
+          title: "Search Intent Mining",
+          description: "Structuring high-converting Google Search campaigns and Performance Max assets.",
+        },
+        {
+          number: "03",
+          title: "Social Creative Testing",
+          description: "Deploying high-retention Meta video hooks into dynamic creative optimization ad sets.",
+        },
+        {
+          number: "04",
+          title: "Bid & Budget Scaling",
+          description: "Managing target CPA and ROAS bid caps to scale media spend without margin erosion.",
+        },
+      ],
+    },
+    featuredWork: {
+      layout: "bento",
+      tag: "CAMPAIGN METRICS",
+      headline: "Cross-channel paid media performance",
+      subtitle: "Proven results across high-ticket real estate, hospitality, and luxury brands.",
+      items: [
+        {
+          id: "mga-work-1",
+          title: "High-Ticket Real Estate Lead Generation",
+          category: "GOOGLE & META ADS",
+          imageSrc: "/images/selected-work/paradise-real-estate.jpg",
+          imageAlt: "Paradise Real Estate",
+          videoSrc: videos.paradisePunawale?.videoUrl,
+          poster: videos.paradisePunawale?.thumbnailUrl,
+          href: "/services/real-estate",
+          description: "35 closed high-ticket property transactions in 90 days with qualified leads.",
+        },
+        {
+          id: "mga-work-2",
+          title: "Hospitality Multi-Location Acquisition",
+          category: "META LOCAL ADS",
+          imageSrc: "/images/selected-work/benne-bae.jpg",
+          imageAlt: "Benne Bae Dining",
+          videoSrc: videos.benneBaeFoodstudio?.videoUrl,
+          poster: videos.benneBaeFoodstudio?.thumbnailUrl,
+          href: "/services/restaurant",
+          description: "Packed dining tables and viral footfall across 5 premier Pune dining locations.",
+        },
+      ],
+    },
+    faq: {
+      tag: "FAQ",
+      headlineLine1: "Paid Media,",
+      headlineLine2: "Explained.",
+      description: "How we ensure your ad budget produces compounding returns.",
+      ctaText: "SCALE WITH PAID ADS",
+      ctaHref: "/contact",
+      items: [
+        {
+          id: "faq-mga-1",
+          number: "01",
+          question: "Should we run Meta Ads, Google Ads, or both?",
+          answer: "They complement each other perfectly: Meta generates demand and awareness, while Google captures users who are actively searching to buy right now. We build integrated funnels where Meta visitors who didn't convert immediately are captured on Google.",
+        },
+        {
+          id: "faq-mga-2",
+          number: "02",
+          question: "How do you protect against rising ad costs?",
+          answer: "Through ruthless creative iteration. High-converting creative with high engagement receives cheaper CPMs from Meta and Google algorithms, keeping your customer acquisition cost low.",
+        },
+      ],
+    },
+  },
+
+  "ai-automations": {
+    slug: "ai-automations",
+    name: "AI Automations & Systems",
+    metaTitle: "AI Automations & Intelligent Workflows | The Digital Pillar",
+    metaDescription:
+      "Custom AI automation pipelines, autonomous lead qualification, CRM integrations, and generative content workflows.",
+    hero: {
+      tag: "SERVICE // AI AUTOMATIONS",
+      titleLine1: "AI Automations",
+      titleLine2: "& Intelligent Systems",
+      subtitle:
+        "We design and deploy custom AI automation pipelines, autonomous lead qualification, smart CRM routing, and generative workflows that scale your capacity without linear headcount.",
+      bannerImage: "/why-choose-us.jpg",
+      bannerAlt: "Interconnected neural nodes representing AI automation systems",
+      media: [
+        {
+          id: "ai-hero-left",
+          type: "video",
+          src: videos.aQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.aQovaAiEditsBatch4?.thumbnailUrl || "/why-choose-us.jpg",
+          alt: "Generative AI Ad Iterations",
+        },
+        {
+          id: "ai-hero-middle",
+          type: "video",
+          src: videos.gQovaAiEditsBatch4?.videoUrl || "",
+          poster: videos.gQovaAiEditsBatch4?.thumbnailUrl || "",
+          alt: "Autonomous AI System Architecture",
+        },
+        {
+          id: "ai-hero-right",
+          type: "video",
+          src: videos.productEnergy?.videoUrl || "",
+          poster: videos.productEnergy?.thumbnailUrl || "/hero-bg.jpg",
+          alt: "Intelligent Pipeline Deployment",
+        },
+      ],
+    },
+    marquee: {
+      text: "AI AUTOMATIONS & SYSTEMS",
+      repeat: 6,
+    },
+    valueProposition: {
+      headline:
+        "Scale your revenue and operational speed without linearly scaling headcount or overhead.",
+      card1: {
+        title: "designing meaningful experiences & content",
+        description: "Convert leads the second they inquire with 24/7 intelligent agent response and automated qualification.",
+      },
+      card2: {
+        title: "Direction and Strategy",
+        description: "Seamless two-way sync between your ads, website, WhatsApp, CRM, and team communications.",
+        imageSrc: "/images/service-template/card-glass.jpg",
+        imageAlt: "Organic sculpted glass artwork",
+      },
+      card3: {
+        metric: "10X",
+        metricLabel: "Velocity Multiplier",
+        title: "Efficiency Delivered",
+        avatars: [
+          "/avatars/avatar-1.jpg",
+          "/avatars/avatar-2.jpg",
+          "/avatars/avatar-3.jpg",
+          "/avatars/avatar-4.jpg",
+        ],
+      },
+    },
+    framework: {
+      tag: "OUR AI METHODOLOGY",
+      headline: "Workflows that run on autopilot",
+      description:
+        "Our systematic 4-phase rollout integrates custom AI agents into your business operations with iron-clad safeguards.",
+      imageSrc: "/images/service-template/framework-discs.jpg",
+      imageAlt: "Four tiered floating discs representing Discover, Define, Design, and Deliver",
+      steps: [
+        {
+          number: "01",
+          title: "Audit & Bottleneck Mapping",
+          description: "Mapping manual tasks, slow lead response times, and repetitive data silos across your organization.",
+        },
+        {
+          number: "02",
+          title: "Agent Architecture & Logic",
+          description: "Configuring LLM agent prompts, knowledge retrieval systems (RAG), and conditional routing rules.",
+        },
+        {
+          number: "03",
+          title: "Integration & Testing",
+          description: "Connecting webhook endpoints, CRM databases, WhatsApp APIs, and stress-testing edge cases.",
+        },
+        {
+          number: "04",
+          title: "Live Deployment & Telemetry",
+          description: "Rolling out live automated flows with fail-safe fallbacks, human escalation, and performance dashboards.",
+        },
+      ],
+    },
+    featuredWork: {
+      layout: "cards-inline",
+      tag: "SYSTEMS DEPLOYED",
+      headline: "Automations in action",
+      subtitle: "See how our autonomous AI architectures drive compounding operational efficiency.",
+      items: [
+        {
+          id: "ai-work-1",
+          title: "Omnichannel Lead Ingestion & Qualification Engine",
+          category: "CRM AUTOMATION",
+          imageSrc: "/stichora-app.jpg",
+          imageAlt: "CRM Automation System",
+          videoSrc: videos.aQovaAiEditsBatch4?.videoUrl,
+          poster: videos.aQovaAiEditsBatch4?.thumbnailUrl,
+          client: "Enterprise Real Estate",
+          deliverables: ["Instant WhatsApp Bot", "CRM Lead Scoring", "Sales Rep Auto-Dispatch"],
+          metric: "< 15s",
+          metricLabel: "Response Speed",
+        },
+        {
+          id: "ai-work-2",
+          title: "Generative Content & Ad Iteration Pipeline",
+          category: "CREATIVE AI",
+          imageSrc: "/stichora-stone.jpg",
+          imageAlt: "Generative AI Ad Pipeline",
+          videoSrc: videos.gQovaAiEditsBatch4?.videoUrl,
+          poster: videos.gQovaAiEditsBatch4?.thumbnailUrl,
+          client: "DTC Wellness Brand",
+          deliverables: ["Automated Script Hooking", "Batch UGC Generation", "Multi-Variant Testing"],
+          metric: "50+ Ads/Mo",
+          metricLabel: "Creative Output",
+        },
+        {
+          id: "ai-work-3",
+          title: "Hospitality Reservation & Review Funnel",
+          category: "AUTONOMOUS OPS",
+          imageSrc: "/why-choose-us.jpg",
+          imageAlt: "Hospitality Automation",
+          videoSrc: videos.reelNo3?.videoUrl,
+          poster: videos.reelNo3?.thumbnailUrl,
+          client: "RMH Foods Group",
+          deliverables: ["Automated Google Review Funnel", "Table Booking Sync", "VIP Guest Tagging"],
+          metric: "+85%",
+          metricLabel: "5-Star Reviews",
+        },
+        {
+          id: "ai-work-4",
+          title: "Predictive Ad Budget & Pacing Monitor",
+          category: "MEDIA BUYING AI",
+          imageSrc: "/images/services/paid-ads.jpg",
+          imageAlt: "Ad Budget Monitor",
+          videoSrc: videos.productEnergy?.videoUrl,
+          poster: videos.productEnergy?.thumbnailUrl,
+          client: "High-Ticket E-commerce",
+          deliverables: ["ROAS Anomaly Detection", "Automated Kill-Switches", "Hourly Slack Alerts"],
+          metric: "0 wasted spend",
+          metricLabel: "Ad Efficiency",
+        },
+      ],
+    },
+    faq: {
+      tag: "FAQ",
+      headlineLine1: "AI Automations,",
+      headlineLine2: "Demystified.",
+      description: "Everything you need to know about integrating AI workflows into your business.",
+      ctaText: "DISCUSS AI INTEGRATION",
+      ctaHref: "/contact",
+      items: [
+        {
+          id: "faq-ai-1",
+          number: "01",
+          question: "What types of business processes can be automated with AI?",
+          answer: "We automate lead qualification and routing, automated WhatsApp client inquiries, dynamic proposal generation, customer onboarding, social media review collection, and creative ad variant generation.",
+        },
+        {
+          id: "faq-ai-2",
+          number: "02",
+          question: "How do AI automations integrate with our existing CRM and software stack?",
+          answer: "Our automations integrate natively with popular CRMs (HubSpot, Zoho, Salesforce, LeadSquared), WhatsApp Business API, Zapier, Make.com, Slack, Google Workspace, and custom REST APIs.",
+        },
+        {
+          id: "faq-ai-3",
+          number: "03",
+          question: "What safeguards exist to prevent AI hallucinations or errors?",
+          answer: "We build strict guardrails: deterministic routing, retrieval-augmented grounding (RAG) limited strictly to your verified knowledge base, and automated hand-off to human team members when confidence thresholds are breached.",
+        },
+        {
+          id: "faq-ai-4",
+          number: "04",
+          question: "How quickly can an automated workflow be deployed?",
+          answer: "Core lead response and qualification automations can be built, stress-tested, and deployed live within 7 to 14 days.",
+        },
+      ],
+    },
+  },
+
 };
 
 /**
@@ -3227,6 +4244,30 @@ export function getServiceBySlug(rawSlug: string): ServiceData {
   }
 
   // Handle common aliases
+
+  // 9 Core Services aliases
+  if (normalized === "performance-marketing") {
+    return SERVICES_DATA["performance-marketing"] || SERVICES_DATA["paid-ads"];
+  }
+  if (normalized === "content-creation") {
+    return SERVICES_DATA["content-creation"] || SERVICES_DATA["creator-content"];
+  }
+  if (normalized === "creator-management" || normalized === "creator-managment") {
+    return SERVICES_DATA["creator-management"] || SERVICES_DATA["influencer-marketing"];
+  }
+  if (normalized === "meta-google-ads" || normalized === "meta-and-google-ads" || normalized === "google-ads" || normalized === "meta-ads") {
+    return SERVICES_DATA["meta-google-ads"] || SERVICES_DATA["paid-ads"];
+  }
+  if (normalized === "ai-automations" || normalized === "ai-automation" || normalized === "automations") {
+    return SERVICES_DATA["ai-automations"];
+  }
+  if (normalized === "ugc-videos" || normalized === "ai-ugc" || normalized === "ugc-ai") {
+    return SERVICES_DATA["ugc"];
+  }
+  if (normalized === "social-media-marketing") {
+    return SERVICES_DATA["social-media"];
+  }
+
   if (normalized === "strategy" || normalized === "personal-branding-and-strategy") {
     return SERVICES_DATA["personal-branding"];
   }
