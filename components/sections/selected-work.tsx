@@ -61,8 +61,8 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
 
   return (
     <div className="w-1/2 h-screen">
-      <div className="flex flex-col justify-center py-12 lg:py-16 px-8 lg:px-14 xl:px-18 w-full h-full border-l border-white/10">
-        <div ref={ref} className="flex flex-col justify-center w-full max-w-xl mx-auto">
+      <div className="flex flex-col justify-center py-6 lg:py-8 px-6 lg:px-10 xl:px-14 w-full h-full border-l border-white/10">
+        <div ref={ref} className="w-full max-w-md lg:max-w-lg xl:max-w-[500px] mx-auto">
           <Link
             href={project.href}
             target={isExternal ? "_blank" : undefined}
@@ -70,8 +70,9 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
             data-cursor="view"
             data-cursor-text="View"
             aria-label={`View ${project.title} project`}
-            className="relative w-full aspect-[16/10] max-h-[50vh] overflow-hidden mb-6 rounded-2xl border border-white/10 shadow-2xl group cursor-none bg-neutral-900 group-hover:border-white/30 transition-all duration-500 block shrink-0"
+            className="group relative w-full h-[74vh] sm:h-[76vh] lg:h-[78vh] max-h-[760px] min-h-[520px] rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_25px_60px_rgba(0,0,0,0.9)] flex flex-col justify-end p-6 sm:p-8 lg:p-9 cursor-pointer block"
           >
+            {/* Background Full-Size Image */}
             <Image
               src={project.imageSrc}
               alt={project.title}
@@ -79,26 +80,35 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
               quality={95}
               unoptimized={project.imageSrc.startsWith("http")}
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
             />
+
+            {/* Subtle Gradient strictly at the bottom for text contrast */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none z-[5]"
+              aria-hidden="true"
+            />
+
+            {/* Content Overlayed at the Bottom */}
+            <div className="relative z-10 flex flex-col justify-end">
+              {project.category && (
+                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] text-[#fdbb11] uppercase mb-1.5 sm:mb-2 block drop-shadow-[0_0_12px_rgba(253,187,17,0.4)]">
+                  {project.category}
+                </span>
+              )}
+
+              <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold tracking-tight text-white font-primary leading-tight drop-shadow-md">
+                {project.title}
+              </h3>
+
+              {/* Description: smoothly expands and reveals on card hover */}
+              <div className="overflow-hidden max-h-0 opacity-0 group-hover:max-h-48 group-hover:opacity-100 group-hover:mt-3 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <p className="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed font-primary line-clamp-4 drop-shadow">
+                  {project.description}
+                </p>
+              </div>
+            </div>
           </Link>
-
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
-            <Link
-              href={project.href}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noopener noreferrer" : undefined}
-              className="hover:text-[#fdbb11] transition-colors"
-            >
-              {project.title}
-            </Link>
-          </h3>
-
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
-            <p className="sm:col-span-12 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary line-clamp-3">
-              {project.description}
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -244,14 +254,14 @@ export function SelectedWork() {
           </div>
 
           {/* Vertical List of Projects */}
-          <div className="px-6 sm:px-10 pb-16 sm:pb-24 max-w-2xl mx-auto space-y-12 sm:space-y-16">
+          <div className="px-6 sm:px-10 pb-16 sm:pb-24 max-w-2xl mx-auto space-y-10 sm:space-y-14">
             {projects.map((project, idx) => {
               const isExternal = project.href.startsWith("http");
 
               return (
                 <article
                   key={project.id || idx}
-                  className="mobile-work-card flex flex-col border-b border-white/10 pb-12 sm:pb-16 last:border-b-0 last:pb-0"
+                  className="mobile-work-card flex flex-col border-b border-white/10 pb-10 sm:pb-14 last:border-b-0 last:pb-0"
                 >
                   <Link
                     href={project.href}
@@ -260,7 +270,7 @@ export function SelectedWork() {
                     data-cursor="view"
                     data-cursor-text="View"
                     aria-label={`View ${project.title} project`}
-                    className="relative w-full aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm mb-5 sm:mb-6 group cursor-none bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-colors block"
+                    className="group relative w-full aspect-[4/5] sm:aspect-[3/4] h-[480px] sm:h-[540px] max-h-[620px] overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl cursor-pointer bg-neutral-900 border border-white/10 group-hover:border-white/30 transition-all duration-500 block flex flex-col justify-end p-6 sm:p-8"
                   >
                     <Image
                       src={project.imageSrc}
@@ -269,42 +279,32 @@ export function SelectedWork() {
                       quality={95}
                       unoptimized={project.imageSrc.startsWith("http")}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 600px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                     />
-                  </Link>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary mb-3">
-                    <Link
-                      href={project.href}
-                      target={isExternal ? "_blank" : undefined}
-                      rel={isExternal ? "noopener noreferrer" : undefined}
-                      className="hover:text-[#fdbb11] transition-colors"
-                    >
-                      {project.title}
-                    </Link>
-                  </h3>
+                    {/* Subtle Gradient strictly at the bottom */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none z-[5]"
+                      aria-hidden="true"
+                    />
 
-                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                    <p className="text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary max-w-lg">
-                      {project.description}
-                    </p>
-
-                    <div className="shrink-0 pt-2 sm:pt-0">
-                      <Link
-                        href={project.href}
-                        target={isExternal ? "_blank" : undefined}
-                        rel={isExternal ? "noopener noreferrer" : undefined}
-                        className="group inline-flex items-center gap-2 text-xs sm:text-[0.75rem] font-semibold tracking-[0.18em] text-[#fdbb11] uppercase font-primary shrink-0"
-                      >
-                        <span className="border-b border-[#fdbb11]/60 pb-0.5 group-hover:border-[#fdbb11] group-hover:text-white transition-colors">
-                          {project.ctaLabel || "VIEW CASE STUDY"}
+                    {/* Content Overlayed */}
+                    <div className="relative z-10 flex flex-col justify-end">
+                      {project.category && (
+                        <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#fdbb11] uppercase mb-1.5 block drop-shadow-[0_0_12px_rgba(253,187,17,0.4)]">
+                          {project.category}
                         </span>
-                        <span className="text-xs transition-transform duration-300 group-hover:translate-x-1 text-[#fdbb11]">
-                          &rarr;
-                        </span>
-                      </Link>
+                      )}
+
+                      <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-primary leading-tight mb-2 drop-shadow-md">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed font-primary line-clamp-3 drop-shadow">
+                        {project.description}
+                      </p>
                     </div>
-                  </div>
+                  </Link>
                 </article>
               );
             })}

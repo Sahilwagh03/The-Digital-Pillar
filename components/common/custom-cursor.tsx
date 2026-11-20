@@ -38,7 +38,6 @@ export function CustomCursor() {
   const [cursorText, setCursorText] = useState("View");
   const [isVisible, setIsVisible] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
-  const [isFooter, setIsFooter] = useState(false);
 
   // Exact pointer coordinates
   const mouseX = useMotionValue(-100);
@@ -53,12 +52,6 @@ export function CustomCursor() {
 
     const evaluateTarget = (target: HTMLElement | null) => {
       if (!target) return;
-
-      // Check whether pointer is currently inside the footer section
-      const inFooter = Boolean(
-        target.closest("footer, #contact, [data-nav-theme='light']")
-      );
-      setIsFooter(inFooter);
 
       // 1. Check for custom "view" cursor trigger (e.g. Work section image)
       const viewElement = target.closest<HTMLElement>('[data-cursor="view"]');
@@ -143,25 +136,13 @@ export function CustomCursor() {
   const size = isView ? 68 : isHover ? 28 : 13;
 
   // Background, border & shadow computed styles
-  const backgroundColor = isFooter
-    ? isGlass
-      ? isView
-        ? "rgba(0, 0, 0, 0.22)"
-        : "rgba(0, 0, 0, 0.16)"
-      : "#000000"
-    : isGlass
+  const backgroundColor = isGlass
     ? isView
       ? "rgba(18, 18, 24, 0.58)"
       : "rgba(255, 255, 255, 0.15)"
     : "#fdbb11";
 
-  const borderColor = isFooter
-    ? isGlass
-      ? isView
-        ? "rgba(0, 0, 0, 0.45)"
-        : "rgba(0, 0, 0, 0.32)"
-      : "rgba(0, 0, 0, 0)"
-    : isGlass
+  const borderColor = isGlass
     ? isView
       ? "rgba(255, 255, 255, 0.42)"
       : "rgba(255, 255, 255, 0.4)"
@@ -169,13 +150,7 @@ export function CustomCursor() {
 
   const borderWidth = isGlass ? (isView ? 1.5 : 1) : 0;
 
-  const boxShadow = isFooter
-    ? isGlass
-      ? isView
-        ? "0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.08)"
-        : "0 4px 16px rgba(0, 0, 0, 0.15), inset 0 0 6px rgba(0, 0, 0, 0.08)"
-      : "0 0 10px rgba(0, 0, 0, 0.35)"
-    : isGlass
+  const boxShadow = isGlass
     ? isView
       ? "0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 20px rgba(253, 187, 17, 0.2)"
       : "0 6px 20px rgba(0, 0, 0, 0.28), inset 0 0 8px rgba(255, 255, 255, 0.2), 0 0 12px rgba(253, 187, 17, 0.25)"
@@ -233,16 +208,10 @@ export function CustomCursor() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.5, rotate: 15 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className={`flex items-center gap-1 font-extrabold uppercase font-mono tracking-wider text-[10px] select-none ${
-                isFooter ? "text-black" : "text-white"
-              }`}
+              className="flex items-center gap-1 font-extrabold uppercase font-mono tracking-wider text-[10px] select-none text-white"
             >
               <span>{cursorText}</span>
-              <ArrowUpRight
-                className={`w-3 h-3 stroke-[2.5] ${
-                  isFooter ? "text-black" : "text-[#fdbb11]"
-                }`}
-              />
+              <ArrowUpRight className="w-3 h-3 stroke-[2.5] text-[#fdbb11]" />
             </motion.div>
           )}
         </AnimatePresence>
