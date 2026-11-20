@@ -31,18 +31,24 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      data-nav-theme="light"
-      className="relative w-full bg-[#fdbb11] text-black pt-20 sm:pt-28 lg:pt-32 pb-2 sm:pb-3 lg:pb-4 overflow-hidden select-none border-t border-black/15"
+      data-nav-theme="dark"
+      className="relative w-full bg-[#07080d] text-white pt-20 sm:pt-28 lg:pt-32 pb-4 sm:pb-6 overflow-hidden select-none border-t border-white/10"
     >
-      {/* Subtle Ambient Surface Highlight */}
+      {/* Top Atmospheric Gradient Blending seamlessly with Page */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[350px] bg-white/20 blur-[130px] rounded-full pointer-events-none -z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(28,36,61,0.55)_0%,rgba(19,25,43,0.25)_45%,transparent_100%)] pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      {/* Subtle Ambient Brand Glow */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[280px] bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(253,187,17,0.08)_0%,transparent_80%)] blur-2xl pointer-events-none -z-0"
         aria-hidden="true"
       />
 
       {/* Architectural Dot Matrix Texture */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(#00000010_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none -z-0"
+        className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none -z-0"
         aria-hidden="true"
       />
 
@@ -60,11 +66,11 @@ export function Footer() {
             <div>
               <motion.span
                 variants={footerTaglineVariants}
-                className="text-xs sm:text-sm text-black/75 font-primary block mb-5 sm:mb-7 font-bold tracking-wider uppercase"
+                className="text-xs sm:text-sm text-[#fdbb11] font-mono block mb-5 sm:mb-7 font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]"
               >
                 {tagline}
               </motion.span>
-              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-black tracking-tight leading-[1.12] sm:leading-[1.14] font-primary">
+              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-white tracking-tight leading-[1.12] sm:leading-[1.14] font-primary">
                 <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span
                     variants={footerHeadlineVariants}
@@ -89,7 +95,7 @@ export function Footer() {
               variants={footerTaglineVariants}
               className="hidden lg:block pt-16 xl:pt-24"
             >
-              <span className="text-xs sm:text-sm text-black/60 font-mono tracking-wider font-semibold">
+              <span className="text-xs sm:text-sm text-neutral-400 font-mono tracking-wider font-semibold">
                 {handle}
               </span>
             </motion.div>
@@ -107,7 +113,7 @@ export function Footer() {
             <motion.div variants={footerCtaVariants} className="mb-12 sm:mb-16 lg:mb-20">
               <Link
                 href={ctaHref}
-                className="group relative overflow-hidden inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-black text-[#fdbb11] hover:text-black text-xs sm:text-[0.8125rem] font-bold tracking-wider uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.18)] active:scale-95 isolate"
+                className="group relative overflow-hidden inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#fdbb11] text-black hover:text-black text-xs sm:text-[0.8125rem] font-bold tracking-wider uppercase transition-all duration-300 shadow-[0_0_25px_rgba(253,187,17,0.35)] hover:shadow-[0_0_35px_rgba(253,187,17,0.55)] active:scale-95 isolate"
               >
                 {/* Diagonal White Wipe Layer */}
                 <span
@@ -116,7 +122,7 @@ export function Footer() {
                 />
                 <span className="relative z-10 inline-flex items-center gap-3">
                   <span>{ctaText}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 text-[#fdbb11] group-hover:text-black" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 text-black" />
                 </span>
               </Link>
             </motion.div>
@@ -128,19 +134,19 @@ export function Footer() {
             >
               {/* Business Enquiry */}
               <div>
-                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-black/60 mb-3 sm:mb-4">
+                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-neutral-400 mb-3 sm:mb-4">
                   {businessEnquiry.title}
                 </h3>
                 <div className="space-y-1.5 sm:space-y-2">
                   <a
                     href={`mailto:${businessEnquiry.email}`}
-                    className="block text-xs sm:text-sm text-black font-semibold hover:text-black/70 transition-colors"
+                    className="block text-xs sm:text-sm text-neutral-200 font-semibold hover:text-[#fdbb11] transition-colors"
                   >
                     {businessEnquiry.email}
                   </a>
                   <a
                     href={`tel:${businessEnquiry.phone.replace(/\s+/g, "")}`}
-                    className="block text-xs sm:text-sm text-black font-semibold hover:text-black/70 transition-colors"
+                    className="block text-xs sm:text-sm text-neutral-200 font-semibold hover:text-[#fdbb11] transition-colors"
                   >
                     {businessEnquiry.phone}
                   </a>
@@ -150,15 +156,15 @@ export function Footer() {
                         href={businessEnquiry.mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium hover:text-black transition-colors"
+                        className="group block text-xs sm:text-sm text-neutral-300 pt-0.5 leading-relaxed font-medium hover:text-[#fdbb11] transition-colors"
                       >
                         <span>{businessEnquiry.address}</span>
-                        <span className="inline-block ml-1 text-black/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[11px]">
+                        <span className="inline-block ml-1 text-neutral-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[11px]">
                           ↗
                         </span>
                       </a>
                     ) : (
-                      <p className="text-xs sm:text-sm text-black/80 pt-0.5 leading-relaxed font-medium">
+                      <p className="text-xs sm:text-sm text-neutral-300 pt-0.5 leading-relaxed font-medium">
                         {businessEnquiry.address}
                       </p>
                     )
@@ -168,17 +174,17 @@ export function Footer() {
 
               {/* Social */}
               <div>
-                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-black/60 mb-3 sm:mb-4">
+                <h3 className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-neutral-400 mb-3 sm:mb-4">
                   {social.title}
                 </h3>
-                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm text-black font-semibold">
+                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm text-neutral-200 font-semibold">
                   {social.links.map((link) => (
                     <a
                       key={link.label}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-black/70 transition-colors"
+                      className="hover:text-[#fdbb11] transition-colors"
                     >
                       {link.label}
                     </a>
@@ -189,7 +195,7 @@ export function Footer() {
 
             {/* Mobile Handle */}
             <motion.div variants={footerTaglineVariants} className="block lg:hidden pt-10">
-              <span className="text-xs sm:text-sm text-black/60 font-mono tracking-wider font-semibold">
+              <span className="text-xs sm:text-sm text-neutral-400 font-mono tracking-wider font-semibold">
                 {handle}
               </span>
             </motion.div>
@@ -217,7 +223,7 @@ export function Footer() {
             x="50%"
             y="130"
             textAnchor="middle"
-            className="font-primary fill-black/[0.08] select-none uppercase"
+            className="font-primary fill-white/[0.04] select-none uppercase"
             style={{
               fontSize: "155px",
               fontWeight: 900,

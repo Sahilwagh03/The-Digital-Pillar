@@ -61,8 +61,8 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
 
   return (
     <div className="w-1/2 h-screen">
-      <div className="flex flex-col justify-center py-20 px-20 w-full h-full border-l border-white/10">
-        <div ref={ref} className="flex flex-col justify-center h-full w-full">
+      <div className="flex flex-col justify-center py-12 lg:py-16 px-8 lg:px-14 xl:px-18 w-full h-full border-l border-white/10">
+        <div ref={ref} className="flex flex-col justify-center w-full max-w-xl mx-auto">
           <Link
             href={project.href}
             target={isExternal ? "_blank" : undefined}
@@ -70,7 +70,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
             data-cursor="view"
             data-cursor-text="View"
             aria-label={`View ${project.title} project`}
-            className="relative w-full h-full overflow-hidden mb-6 rounded-xl border border-white/10 shadow-lg group cursor-none bg-neutral-900 group-hover:border-white/30 transition-colors block"
+            className="relative w-full aspect-[16/10] max-h-[50vh] overflow-hidden mb-6 rounded-2xl border border-white/10 shadow-2xl group cursor-none bg-neutral-900 group-hover:border-white/30 transition-all duration-500 block shrink-0"
           >
             <Image
               src={project.imageSrc}
@@ -79,7 +79,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
               quality={95}
               unoptimized={project.imageSrc.startsWith("http")}
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </Link>
 
@@ -95,7 +95,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(({ project }, r
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
-            <p className="sm:col-span-8 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary">
+            <p className="sm:col-span-12 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed font-primary line-clamp-3">
               {project.description}
             </p>
           </div>
