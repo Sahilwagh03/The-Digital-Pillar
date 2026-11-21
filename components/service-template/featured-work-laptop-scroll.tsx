@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -27,6 +27,9 @@ export function FeaturedWorkLaptopScroll({
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const pinnedStageRef = useRef<HTMLDivElement | null>(null);
   const laptopTrackRef = useRef<HTMLDivElement | null>(null);
+  const isPausedRef = useRef(false);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
 
   useGSAP(
     () => {
@@ -38,7 +41,7 @@ export function FeaturedWorkLaptopScroll({
 
       const mm = gsap.matchMedia();
 
-      // Desktop: Pinned Scrubbed Scroll Animation
+      // Desktop (>= 1024px): Pinned Scrubbed Scroll Animation
       mm.add("(min-width: 1024px)", () => {
         gsap.set(laptopTrack, { yPercent: 0 });
 
@@ -76,9 +79,61 @@ export function FeaturedWorkLaptopScroll({
           );
         }
       });
+
+      // Mobile & Tablet (< 1024px): Auto-advance slideshow continuously
+      mm.add("(max-width: 1023px)", () => {
+        const interval = setInterval(() => {
+          if (!isPausedRef.current) {
+            setActiveStep((prev) => (prev + 1) % items.length);
+          }
+        }, 3500);
+
+        return () => clearInterval(interval);
+      });
     },
     { scope: sectionRef, dependencies: [items] }
   );
+
+  // Smooth mobile slide transition on activeStep change
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth >= 1024) return;
+    const track = laptopTrackRef.current;
+    if (!track) return;
+    gsap.to(track, {
+      yPercent: -activeStep * 100,
+      duration: 0.7,
+      ease: "power2.inOut",
+    });
+  }, [activeStep]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isPausedRef.current = true;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current !== null && touchStartYRef.current !== null) {
+      const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+      const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+
+      if (Math.abs(deltaX) > 40 || Math.abs(deltaY) > 40) {
+        if (deltaX < -40 || deltaY < -40) {
+          // Swipe next
+          setActiveStep((prev) => (prev + 1) % items.length);
+        } else if (deltaX > 40 || deltaY > 40) {
+          // Swipe prev
+          setActiveStep((prev) => (prev - 1 + items.length) % items.length);
+        }
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+    // Resume auto-scroll after brief pause
+    setTimeout(() => {
+      isPausedRef.current = false;
+    }, 4000);
+  };
 
   if (!items || items.length === 0) return null;
 
@@ -88,8 +143,8 @@ export function FeaturedWorkLaptopScroll({
     (currentItem.href && currentItem.href.startsWith("http")
       ? currentItem.href
       : currentItem.client
-      ? `https://${currentItem.client.toLowerCase().replace(/[^a-z0-9]/g, "")}.com`
-      : "https://thedigitalpillar.com");
+        ? `https://${currentItem.client.toLowerCase().replace(/[^a-z0-9]/g, "")}.com`
+        : "https://thedigitalpillar.com");
   const isExternal = /^https?:\/\//i.test(currentUrl);
   const isWidescreenWebsite = items.some(
     (item) => item.objectFit === "contain" || item.liveUrl
@@ -99,10 +154,10 @@ export function FeaturedWorkLaptopScroll({
     <section
       ref={sectionRef}
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-16 sm:pt-20 pb-16 sm:pb-24 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white pt-8 sm:pt-12 lg:pt-20 pb-10 sm:pb-14 lg:pb-20 overflow-hidden border-t border-white/[0.06]"
     >
       {/* Header without extra pills - ample margin so it never touches the pinned stage */}
-      <Container size="lg" className="relative z-10 pb-6 sm:pb-8 border-b border-white/[0.06] mb-8 sm:mb-12">
+      <Container size="lg" className="relative z-10 pb-4 sm:pb-6 lg:pb-8 border-b border-white/[0.06] mb-4 sm:mb-6 lg:mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="block text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-2 sm:mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
@@ -122,9 +177,19 @@ export function FeaturedWorkLaptopScroll({
       {/* Pinned Stage: Perfectly Proportioned Centered Laptop */}
       <div ref={pinnedStageRef} className="w-full relative z-10">
         <Container size="full" className="max-w-[1360px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-center min-h-[460px] lg:h-[calc(100vh-140px)] py-4 lg:py-0">
+          <div className="flex flex-col items-center justify-center lg:h-[calc(100vh-140px)] py-2 lg:py-0">
             {/* Centered Laptop Mockup - Scaled generously for full website visibility */}
-            <div className="relative w-full max-w-[560px] sm:max-w-[700px] md:max-w-[840px] lg:max-w-[980px] xl:max-w-[1060px] flex flex-col items-center">
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onMouseEnter={() => {
+                isPausedRef.current = true;
+              }}
+              onMouseLeave={() => {
+                isPausedRef.current = false;
+              }}
+              className="relative w-full max-w-[560px] sm:max-w-[700px] md:max-w-[840px] lg:max-w-[980px] xl:max-w-[1060px] flex flex-col items-center"
+            >
               {/* Laptop Display Top Shell / Bezel */}
               <div className="relative w-full rounded-t-2xl sm:rounded-t-3xl bg-[#0c0d13] border-[7px] sm:border-[8px] lg:border-[10px] border-[#181a24] shadow-[0_25px_70px_-15px_rgba(0,0,0,0.95),0_0_40px_rgba(253,187,17,0.12)] ring-1 ring-white/10 overflow-hidden">
                 {/* Laptop Top Center Camera Notch */}
@@ -180,16 +245,6 @@ export function FeaturedWorkLaptopScroll({
                 >
                   <div
                     ref={laptopTrackRef}
-                    style={{
-                      transform:
-                        typeof window !== "undefined" && window.innerWidth < 1024
-                          ? `translateY(-${activeStep * 100}%)`
-                          : undefined,
-                      transition:
-                        typeof window !== "undefined" && window.innerWidth < 1024
-                          ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
-                          : undefined,
-                    }}
                     className="flex flex-col w-full h-full will-change-transform"
                   >
                     {items.map((item, idx) => {
@@ -211,8 +266,8 @@ export function FeaturedWorkLaptopScroll({
                               isWidescreenWebsite
                                 ? "object-cover object-top"
                                 : item.objectFit === "cover"
-                                ? "object-cover object-center"
-                                : "object-contain object-center"
+                                  ? "object-cover object-center"
+                                  : "object-contain object-center"
                             )}
                           />
                           {targetUrl && (
@@ -258,6 +313,30 @@ export function FeaturedWorkLaptopScroll({
 
               {/* Ambient Under-Laptop Glow */}
               <div className="w-[88%] mx-auto h-3.5 bg-gradient-to-r from-transparent via-[#fdbb11]/20 to-transparent blur-md -mt-1 pointer-events-none" />
+
+              {/* Mobile / Tablet Pagination Dots & Interactive Indicators */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-3 sm:mt-4 z-20">
+                {items.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setActiveStep(idx);
+                      isPausedRef.current = true;
+                      setTimeout(() => {
+                        isPausedRef.current = false;
+                      }, 5000);
+                    }}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                      activeStep === idx
+                        ? "w-8 bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
+                        : "w-2 bg-white/20 hover:bg-white/40"
+                    )}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </Container>

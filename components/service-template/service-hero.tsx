@@ -13,10 +13,10 @@ export function ServiceHero({ hero }: ServiceHeroProps) {
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 lg:pb-20 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-36 pb-8 sm:pb-12 lg:pb-16 overflow-hidden"
     >
       <Container size="lg" className="relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-8 sm:pb-12 lg:pb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 lg:gap-8 pb-6 sm:pb-8 lg:pb-12">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
