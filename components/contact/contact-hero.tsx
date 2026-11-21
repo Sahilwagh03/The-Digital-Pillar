@@ -134,7 +134,7 @@ function FannedCard({
           src={card.src}
           alt={card.alt}
           fill
-          priority={index < 5}
+          priority
           sizes="(max-width: 640px) 140px, (max-width: 1024px) 210px, 260px"
           className="object-cover object-center select-none pointer-events-none transition-transform duration-500 hover:scale-105"
         />

@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    qualities: [75, 95],
+    qualities: [75, 92, 95],
     remotePatterns: [
       {
         protocol: "https",
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  allowedDevOrigins: ['192.168.0.108', '192.168.1.20']
+  allowedDevOrigins: ['192.168.0.107', '192.168.1.20']
 };
 
 export default nextConfig;

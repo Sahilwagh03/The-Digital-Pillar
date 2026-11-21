@@ -110,7 +110,7 @@ export function ContactFormSection() {
                 src={teamImage}
                 alt="The Digital Pillar team gathered around creative strategy session"
                 fill
-                quality={92}
+                quality={95}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-center select-none transition-transform duration-700 group-hover:scale-[1.02]"
               />

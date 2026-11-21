@@ -23,6 +23,7 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
 
   const isSlidingRef = useRef(false);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
   const [cardWidth, setCardWidth] = useState(320);
   const [gap, setGap] = useState(24);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
@@ -36,11 +37,12 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
     const updateDimensions = () => {
       if (!viewportRef.current) return;
       const width = viewportRef.current.offsetWidth;
+      setViewportWidth(width);
       if (width < 640) {
-        // Mobile: 1 card with side peek
+        // Mobile: 1 centered card with balanced side peek
         const newGap = 16;
         setGap(newGap);
-        setCardWidth(Math.min(310, width - 32));
+        setCardWidth(Math.min(290, width - 40));
       } else if (width < 1024) {
         // Tablet: 2 cards visible
         const newGap = 20;
@@ -181,6 +183,12 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
   // Active real index for dots
   const activeDotIndex = ((currentIndex % stories.length) + stories.length) % stories.length;
 
+  // On mobile (< 640px), calculate offset to center the active card perfectly in the viewport
+  const centerOffset =
+    viewportWidth > 0 && viewportWidth < 640
+      ? Math.max(0, (viewportWidth - cardWidth) / 2)
+      : 0;
+
   return (
     <div
       className="relative w-full py-6 sm:py-10 select-none overflow-hidden"
@@ -197,23 +205,23 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
       </div>
 
       {/* Outer Carousel Container with Arrow Navigation */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-12 md:px-14">
-        {/* Navigation Button: Left Arrow (Brand Orange / Yellow Circular Button) */}
+      <div className="relative z-10 max-w-6xl mx-auto px-0 sm:px-12 md:px-14">
+        {/* Navigation Button: Left Arrow (Desktop / Tablet) */}
         <button
           type="button"
           onClick={handlePrev}
           aria-label="Previous client story"
-          className="absolute -left-2 sm:left-1 md:left-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#fdbb11] hover:bg-white text-black flex items-center justify-center shadow-[0_4px_20px_rgba(253,187,17,0.4)] transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer z-30"
+          className="hidden sm:flex absolute left-0 md:-left-2 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#fdbb11] hover:bg-white text-black items-center justify-center shadow-[0_4px_20px_rgba(253,187,17,0.4)] transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer z-30"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
         </button>
 
-        {/* Navigation Button: Right Arrow (Brand Orange / Yellow Circular Button) */}
+        {/* Navigation Button: Right Arrow (Desktop / Tablet) */}
         <button
           type="button"
           onClick={handleNext}
           aria-label="Next client story"
-          className="absolute -right-2 sm:right-1 md:right-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#fdbb11] hover:bg-white text-black flex items-center justify-center shadow-[0_4px_20px_rgba(253,187,17,0.4)] transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer z-30"
+          className="hidden sm:flex absolute right-0 md:-right-2 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#fdbb11] hover:bg-white text-black items-center justify-center shadow-[0_4px_20px_rgba(253,187,17,0.4)] transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer z-30"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
         </button>
@@ -225,7 +233,7 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
             initial={false}
             className="flex items-center will-change-transform"
             animate={{
-              x: -currentIndex * (cardWidth + gap),
+              x: -currentIndex * (cardWidth + gap) + centerOffset,
             }}
             transition={{
               duration: isTransitioning ? 0.65 : 0,
@@ -338,29 +346,52 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
           </motion.div>
         </div>
 
-        {/* Carousel Indicator Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8 sm:mt-10">
-          {stories.map((_, idx) => {
-            const isActive = idx === activeDotIndex;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => {
-                  setPlayingStoryId(null);
-                  setIsTransitioning(true);
-                  setCurrentIndex(middleOffset + idx);
-                  setTimerResetKey((prev) => prev + 1);
-                }}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? "w-8 bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
-                    : "w-2 bg-white/20 hover:bg-white/50"
-                }`}
-              />
-            );
-          })}
+        {/* Carousel Indicator Dots & Mobile Navigation Arrows */}
+        <div className="flex items-center justify-center gap-4 sm:gap-2 mt-6 sm:mt-10">
+          {/* Mobile Prev Arrow Button */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous client story"
+            className="flex sm:hidden w-10 h-10 rounded-full bg-[#fdbb11] hover:bg-white text-black items-center justify-center shadow-[0_4px_16px_rgba(253,187,17,0.4)] active:scale-90 transition-all cursor-pointer shrink-0"
+          >
+            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+          </button>
+
+          {/* Dots */}
+          <div className="flex items-center gap-2">
+            {stories.map((_, idx) => {
+              const isActive = idx === activeDotIndex;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setPlayingStoryId(null);
+                    setIsTransitioning(true);
+                    setCurrentIndex(middleOffset + idx);
+                    setTimerResetKey((prev) => prev + 1);
+                  }}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "w-8 bg-[#fdbb11] shadow-[0_0_10px_rgba(253,187,17,0.5)]"
+                      : "w-2 bg-white/20 hover:bg-white/50"
+                  }`}
+                />
+              );
+            })}
+          </div>
+
+          {/* Mobile Next Arrow Button */}
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next client story"
+            className="flex sm:hidden w-10 h-10 rounded-full bg-[#fdbb11] hover:bg-white text-black items-center justify-center shadow-[0_4px_16px_rgba(253,187,17,0.4)] active:scale-90 transition-all cursor-pointer shrink-0"
+          >
+            <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+          </button>
         </div>
       </div>
     </div>

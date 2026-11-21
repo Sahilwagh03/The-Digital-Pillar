@@ -19,7 +19,7 @@ export function ClientStories() {
     <section
       id="client-stories"
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-32 pb-16 sm:pb-24 border-t border-white/10 overflow-hidden scroll-mt-20 sm:scroll-mt-24"
+      className="relative w-full bg-transparent text-white pt-12 sm:pt-20 lg:pt-32 pb-12 sm:pb-18 lg:pb-24 border-t border-white/10 overflow-hidden scroll-mt-20 sm:scroll-mt-24"
     >
       {/* Subtle Gold Ambient Glow Accent */}
       <div
