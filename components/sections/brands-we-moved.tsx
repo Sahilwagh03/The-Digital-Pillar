@@ -7,7 +7,7 @@ export function BrandsWeMoved() {
     <section
       id="brands-we-moved"
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-12 sm:py-20 lg:py-32 overflow-hidden border-t border-white/[0.06]"
     >
       <Container size="lg">
         <div className="text-center mb-8 sm:mb-12">

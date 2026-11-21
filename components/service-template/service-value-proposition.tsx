@@ -16,18 +16,18 @@ export function ServiceValueProposition({
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 overflow-hidden border-t border-white/5"
+      className="relative w-full bg-transparent text-white pt-10 sm:pt-16 lg:pt-28 pb-10 sm:pb-16 lg:pb-28 overflow-hidden border-t border-white/5"
     >
       <Container size="lg">
-        <div className="max-w-4xl mb-12 sm:mb-16 lg:mb-20">
+        <div className="max-w-4xl mb-6 sm:mb-10 lg:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] lg:text-[3.25rem] font-medium sm:font-semibold text-white tracking-tight leading-[1.18] font-primary">
             {headline}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Card 1: Amber Glow Gradient */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-gradient-to-br from-[#fdbb11]/30 via-[#1c1404] to-[#0c0a02] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_35px_rgba(0,0,0,0.5)]">
+          <div className="group relative h-[240px] sm:h-[300px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-gradient-to-br from-[#fdbb11]/30 via-[#1c1404] to-[#0c0a02] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_35px_rgba(0,0,0,0.5)]">
             <div
               className="absolute -top-12 -left-12 w-64 h-64 bg-[#fdbb11]/35 blur-3xl rounded-full pointer-events-none transition-transform duration-700 ease-out group-hover:scale-125"
               aria-hidden="true"
@@ -50,7 +50,7 @@ export function ServiceValueProposition({
           </div>
 
           {/* Card 2: Photo with Glass Overlay */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-neutral-950 shadow-xl transition-all duration-500 hover:border-white/30">
+          <div className="group relative h-[240px] sm:h-[300px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 flex flex-col justify-end overflow-hidden border border-white/10 bg-neutral-950 shadow-xl transition-all duration-500 hover:border-white/30">
             <Image
               src={card2.imageSrc}
               alt={card2.imageAlt}
@@ -77,7 +77,7 @@ export function ServiceValueProposition({
           </div>
 
           {/* Card 3: Metrics & Avatars */}
-          <div className="group relative h-[300px] sm:h-[340px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden border border-white/10 bg-[#0e0e14] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <div className="group relative h-[240px] sm:h-[300px] lg:h-[380px] rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 flex flex-col justify-between overflow-hidden border border-white/10 bg-[#0e0e14] shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <div className="flex items-baseline gap-2.5">
               <span className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fdbb11] font-primary drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">
                 {card3.metric}

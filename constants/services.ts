@@ -942,29 +942,27 @@ export const SERVICES_DATA: Record<string, ServiceData> = {
       titleLine2: "& Experiences",
       subtitle:
         "We design and build bespoke digital flagships that captivate visitors, elevate brand perception, and convert high-value traffic.",
-      bannerImage: "/images/service-template/hero-discs.jpg",
-      bannerAlt: "Prismatic optics representing fluid digital design",
+      bannerImage:
+        "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/web-design/website-work-1.webp?tr=w-1440",
+      bannerAlt: "Bespoke digital architecture and modern web design",
       media: [
         {
           id: "web-hero-left",
-          type: "video",
-          src: videos.productEnergy?.videoUrl || "",
-          poster: videos.productEnergy?.thumbnailUrl || "/stichora-app.jpg",
-          alt: "Kinetic Interactive Showcase Video",
+          type: "image",
+          src: "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/web-design/website-work-1.webp?tr=w-1440",
+          alt: "Bespoke Portfolio & Digital Product Design",
         },
         {
           id: "web-hero-middle",
-          type: "video",
-          src: videos.projectDemo?.videoUrl || "",
-          poster: videos.projectDemo?.thumbnailUrl || "",
-          alt: "The Digital Pillar Flagship Experience",
+          type: "image",
+          src: "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/web-design/website-work-3.webp?tr=w-1440",
+          alt: "High-Conversion Digital Architecture Platform",
         },
         {
           id: "web-hero-right",
-          type: "video",
-          src: videos.marbella01?.videoUrl || "",
-          poster: videos.marbella01?.thumbnailUrl || "/stichora-dark.jpg",
-          alt: "Digital Experience Motion Video",
+          type: "image",
+          src: "https://ik.imagekit.io/bnpgvsevn/the-digital-pillar/web-design/website-work-2.webp?tr=w-1440",
+          alt: "Immersive Creative Studio Flagship",
         },
       ],
     },
@@ -4441,22 +4439,22 @@ export function getServiceBySlug(rawSlug: string): ServiceData {
     normalized.includes("fashion") || normalized.includes("couture") || normalized.includes("wear") || normalized.includes("apparel")
       ? "fashion"
       : normalized.includes("food") || normalized.includes("beverage") || normalized.includes("cafe") || normalized.includes("drink")
-      ? "food-beverage"
-      : normalized.includes("restaurant") || normalized.includes("dining") || normalized.includes("chef")
-      ? "restaurant"
-      : normalized.includes("resort") || normalized.includes("hotel") || normalized.includes("stay") || normalized.includes("vacation")
-      ? "resorts"
-      : normalized.includes("estate") || normalized.includes("property") || normalized.includes("villa") || normalized.includes("home")
-      ? "real-estate"
-      : normalized.includes("product") || normalized.includes("hardware") || normalized.includes("tech")
-      ? "products"
-      : normalized.includes("ugc") || normalized.includes("ad") || normalized.includes("creative")
-      ? "ai-ugc"
-      : normalized.includes("brand") || normalized.includes("identity")
-      ? "restaurant"
-      : normalized.includes("talk") || normalized.includes("lead") || normalized.includes("speak")
-      ? "talking-head"
-      : "showreels";
+        ? "food-beverage"
+        : normalized.includes("restaurant") || normalized.includes("dining") || normalized.includes("chef")
+          ? "restaurant"
+          : normalized.includes("resort") || normalized.includes("hotel") || normalized.includes("stay") || normalized.includes("vacation")
+            ? "resorts"
+            : normalized.includes("estate") || normalized.includes("property") || normalized.includes("villa") || normalized.includes("home")
+              ? "real-estate"
+              : normalized.includes("product") || normalized.includes("hardware") || normalized.includes("tech")
+                ? "products"
+                : normalized.includes("ugc") || normalized.includes("ad") || normalized.includes("creative")
+                  ? "ai-ugc"
+                  : normalized.includes("brand") || normalized.includes("identity")
+                    ? "restaurant"
+                    : normalized.includes("talk") || normalized.includes("lead") || normalized.includes("speak")
+                      ? "talking-head"
+                      : "showreels";
 
   const fallbackVideos = getVideosByCategory(matchedCategory);
   const v1 = fallbackVideos[0] || videos.armaniExchange;

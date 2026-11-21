@@ -17,10 +17,10 @@ export function FeaturedWorkBento({ featuredWork }: FeaturedWorkBentoProps) {
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-10 sm:py-16 lg:py-28 overflow-hidden border-t border-white/[0.06]"
     >
       <Container size="lg" className="relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 sm:pb-16 lg:pb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 sm:pb-8 lg:pb-14">
           <div>
             {featuredWork.tag && (
               <span className="block text-[11px] sm:text-xs font-semibold tracking-widest text-[#fdbb11] uppercase font-primary mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">

@@ -32,10 +32,10 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
     <section
       id="faq"
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 border-t border-white/10 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-10 sm:pt-14 lg:pt-24 pb-12 sm:pb-18 lg:pb-28 border-t border-white/10 overflow-hidden"
     >
       <Container size="lg" className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-12 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-start">
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-start">
             <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.05em] text-[#fdbb11] uppercase mb-4 sm:mb-6 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
               {tag}
@@ -60,7 +60,7 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                     key={item.id}
                     className="flex items-stretch border-b border-white/10 last:border-b-0 transition-colors"
                   >
-                    <div className="w-12 sm:w-16 lg:w-20 shrink-0 pt-5 sm:pt-6 lg:pt-7 pb-5 sm:pb-6 lg:pb-7 pr-3 sm:pr-5 lg:pr-6 border-r border-white/10 flex items-start">
+                    <div className="w-10 sm:w-16 lg:w-20 shrink-0 pt-3.5 sm:pt-5 lg:pt-7 pb-3.5 sm:pb-5 lg:pb-7 pr-2.5 sm:pr-5 lg:pr-6 border-r border-white/10 flex items-start">
                       <span
                         className={`text-sm sm:text-base lg:text-lg transition-colors duration-300 select-none ${
                           isOpen
@@ -72,7 +72,7 @@ export function ServiceFaq({ faq }: ServiceFaqProps) {
                       </span>
                     </div>
 
-                    <div className="flex-1 pl-5 sm:pl-7 lg:pl-10 pt-5 sm:pt-6 lg:pt-7 pb-5 sm:pb-6 lg:pb-7 pr-1 sm:pr-2">
+                    <div className="flex-1 pl-4 sm:pl-7 lg:pl-10 pt-3.5 sm:pt-5 lg:pt-7 pb-3.5 sm:pb-5 lg:pb-7 pr-1 sm:pr-2">
                       <button
                         id={`faq-trigger-${item.id}`}
                         type="button"

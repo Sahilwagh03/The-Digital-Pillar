@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { MediaCard } from "@/components/ui/media-card";
 import { ServiceFeaturedWorkData } from "@/constants/services";
@@ -28,6 +29,9 @@ export function FeaturedWorkPhoneScroll({
   const phoneTrackRef = useRef<HTMLDivElement | null>(null);
   const contentSlidesRef = useRef<(HTMLDivElement | null)[]>([]);
   const scrollTriggerInstanceRef = useRef<ScrollTrigger | null>(null);
+  const isPausedRef = useRef(false);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
 
   useGSAP(
     () => {
@@ -40,6 +44,7 @@ export function FeaturedWorkPhoneScroll({
 
       const mm = gsap.matchMedia();
 
+      // Desktop (>= 1024px): Pinned scrubbed scroll animation
       mm.add("(min-width: 1024px)", () => {
         contentSlides.forEach((slide, idx) => {
           if (!slide) return;
@@ -120,6 +125,17 @@ export function FeaturedWorkPhoneScroll({
         }
       });
 
+      // Mobile & Tablet (< 1024px): Continuous auto-advance slideshow
+      mm.add("(max-width: 1023px)", () => {
+        const interval = setInterval(() => {
+          if (!isPausedRef.current) {
+            setActiveStep((prev) => (prev + 1) % items.length);
+          }
+        }, 3500);
+
+        return () => clearInterval(interval);
+      });
+
       return () => {
         mm.revert();
       };
@@ -127,22 +143,59 @@ export function FeaturedWorkPhoneScroll({
     { scope: sectionRef, dependencies: [items.length] }
   );
 
+  // Smooth mobile/tablet slide transition on activeStep change
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth >= 1024) return;
+    const track = phoneTrackRef.current;
+    if (!track) return;
+    gsap.to(track, {
+      yPercent: -activeStep * 100,
+      duration: 0.6,
+      ease: "power2.inOut",
+    });
+  }, [activeStep]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isPausedRef.current = true;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current !== null && touchStartYRef.current !== null) {
+      const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+      const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+
+      if (Math.abs(deltaX) > 40 || Math.abs(deltaY) > 40) {
+        if (deltaX < -40 || deltaY < -40) {
+          // Swipe next
+          setActiveStep((prev) => (prev + 1) % items.length);
+        } else if (deltaX > 40 || deltaY > 40) {
+          // Swipe prev
+          setActiveStep((prev) => (prev - 1 + items.length) % items.length);
+        }
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+    // Resume auto-scroll after a brief pause
+    setTimeout(() => {
+      isPausedRef.current = false;
+    }, 4000);
+  };
+
   const handleStepClick = (stepIndex: number) => {
     setActiveStep(stepIndex);
+    isPausedRef.current = true;
+    setTimeout(() => {
+      isPausedRef.current = false;
+    }, 5000);
 
     if (scrollTriggerInstanceRef.current && window.innerWidth >= 1024) {
       const st = scrollTriggerInstanceRef.current;
       const targetProgress = stepIndex / Math.max(1, items.length - 1);
       const targetScroll = st.start + targetProgress * (st.end - st.start);
       window.scrollTo({ top: targetScroll, behavior: "smooth" });
-    } else {
-      if (phoneTrackRef.current) {
-        gsap.to(phoneTrackRef.current, {
-          yPercent: -stepIndex * 100,
-          duration: 0.5,
-          ease: "power2.out",
-        });
-      }
     }
   };
 
@@ -150,9 +203,9 @@ export function FeaturedWorkPhoneScroll({
     <section
       ref={sectionRef}
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 pb-16 sm:pb-24 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white pt-10 sm:pt-14 lg:pt-24 pb-10 sm:pb-14 lg:pb-24 overflow-hidden border-t border-white/[0.06]"
     >
-      <Container size="lg" className="relative z-10 pb-10 sm:pb-14 border-b border-white/[0.06]">
+      <Container size="lg" className="relative z-10 pb-5 sm:pb-8 lg:pb-12 border-b border-white/[0.06]">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <span className="block text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#fdbb11] uppercase font-primary mb-3 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
@@ -175,7 +228,17 @@ export function FeaturedWorkPhoneScroll({
       >
         <Container size="lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 xl:gap-20 items-center min-h-[520px] lg:h-[calc(100vh-100px)] py-6 lg:py-0">
-            <div className="lg:col-span-5 flex justify-center items-center">
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onMouseEnter={() => {
+                isPausedRef.current = true;
+              }}
+              onMouseLeave={() => {
+                isPausedRef.current = false;
+              }}
+              className="lg:col-span-5 flex justify-center items-center"
+            >
               <div className="relative w-[210px] sm:w-[230px] lg:w-[250px] xl:w-[265px] h-[430px] sm:h-[470px] lg:h-[510px] xl:h-[540px] rounded-[42px] bg-neutral-950 p-2 sm:p-2.5 border-[4px] border-neutral-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(253,187,17,0.15)] ring-1 ring-white/10 shrink-0">
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-black rounded-full z-20 flex items-center justify-end pr-1.5 shadow-inner">
                   <div className="w-1.5 h-1.5 rounded-full bg-neutral-900 border border-neutral-700" />
@@ -316,47 +379,55 @@ export function FeaturedWorkPhoneScroll({
                   ))}
                 </div>
 
-                {items[activeStep] && (
-                  <div>
-                    <span className="block text-xs font-mono font-semibold text-[#fdbb11] tracking-widest uppercase mb-2">
-                      0{activeStep + 1} {"//"} {items[activeStep].category}
-                    </span>
+                <AnimatePresence mode="wait">
+                  {items[activeStep] && (
+                    <motion.div
+                      key={activeStep}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                    >
+                      <span className="block text-xs font-mono font-semibold text-[#fdbb11] tracking-widest uppercase mb-2">
+                        0{activeStep + 1} {"//"} {items[activeStep].category}
+                      </span>
 
-                    {items[activeStep].metric && (
-                      <div className="flex items-baseline gap-3 my-3">
-                        <span className="text-4xl sm:text-5xl font-bold tracking-tight text-[#fdbb11] font-primary leading-none drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">
-                          {items[activeStep].metric}
-                        </span>
-                        {items[activeStep].metricLabel && (
-                          <span className="text-xs font-semibold text-neutral-200 uppercase tracking-wider font-primary">
-                            {items[activeStep].metricLabel}
+                      {items[activeStep].metric && (
+                        <div className="flex items-baseline gap-3 my-3">
+                          <span className="text-4xl sm:text-5xl font-bold tracking-tight text-[#fdbb11] font-primary leading-none drop-shadow-[0_0_12px_rgba(253,187,17,0.35)]">
+                            {items[activeStep].metric}
                           </span>
-                        )}
-                      </div>
-                    )}
+                          {items[activeStep].metricLabel && (
+                            <span className="text-xs font-semibold text-neutral-200 uppercase tracking-wider font-primary">
+                              {items[activeStep].metricLabel}
+                            </span>
+                          )}
+                        </div>
+                      )}
 
-                    <h3 className="text-2xl font-bold text-white tracking-tight leading-snug font-primary mb-3">
-                      {items[activeStep].title}
-                    </h3>
+                      <h3 className="text-2xl font-bold text-white tracking-tight leading-snug font-primary mb-3">
+                        {items[activeStep].title}
+                      </h3>
 
-                    <p className="text-sm text-neutral-400 font-normal leading-relaxed font-primary mb-5">
-                      {items[activeStep].description}
-                    </p>
+                      <p className="text-sm text-neutral-400 font-normal leading-relaxed font-primary mb-5">
+                        {items[activeStep].description}
+                      </p>
 
-                    {items[activeStep].deliverables && (
-                      <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.08] mb-5">
-                        {items[activeStep].deliverables.map((deliv, dIdx) => (
-                          <span
-                            key={dIdx}
-                            className="text-[11px] font-mono text-neutral-300 bg-white/5 px-2.5 py-1 rounded-md"
-                          >
-                            {deliv}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
+                      {items[activeStep].deliverables && (
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.08] mb-5">
+                          {items[activeStep].deliverables.map((deliv, dIdx) => (
+                            <span
+                              key={dIdx}
+                              className="text-[11px] font-mono text-neutral-300 bg-white/5 px-2.5 py-1 rounded-md"
+                            >
+                              {deliv}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>

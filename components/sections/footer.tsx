@@ -32,7 +32,7 @@ export function Footer() {
     <footer
       id="contact"
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white pt-20 sm:pt-28 lg:pt-32 pb-4 sm:pb-6 overflow-hidden select-none"
+      className="relative w-full bg-transparent text-white pt-12 sm:pt-20 lg:pt-32 pb-4 sm:pb-6 overflow-hidden select-none"
     >
       {/* Ambient Atmospheric Depth Glow centered behind Footer content for seamless blending */}
       <div
@@ -54,7 +54,7 @@ export function Footer() {
 
       <Container size="lg" className="relative z-10">
         {/* Main Content: 2-Column Desktop Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-stretch mb-16 sm:mb-24 lg:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-stretch mb-10 sm:mb-16 lg:mb-32">
           {/* Left Column: Tagline & Masked Display Headline */}
           <motion.div
             variants={footerHeaderVariants}

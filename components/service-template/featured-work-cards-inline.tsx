@@ -53,10 +53,10 @@ export function FeaturedWorkCardsInline({
   return (
     <section
       data-nav-theme="dark"
-      className="relative w-full bg-transparent text-white py-20 sm:py-28 lg:py-36 overflow-hidden border-t border-white/[0.06]"
+      className="relative w-full bg-transparent text-white py-10 sm:py-14 lg:py-28 overflow-hidden border-t border-white/[0.06]"
     >
       <Container size="lg" className="relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-5 sm:pb-8 lg:pb-12 border-b border-white/[0.06]">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fdbb11]/10 border border-[#fdbb11]/30 text-[#fdbb11] text-[11px] font-mono uppercase tracking-widest mb-3 shadow-[0_0_12px_rgba(253,187,17,0.2)]">
               <Sparkles className="w-3.5 h-3.5" />

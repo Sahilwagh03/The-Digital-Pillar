@@ -76,28 +76,28 @@ export function ServiceFramework({
       id={id || "process"}
       data-nav-theme="dark"
       className={cn(
-        "relative w-full bg-transparent text-white py-24 sm:py-32 lg:py-40 overflow-hidden select-none border-t border-white/10",
+        "relative w-full bg-transparent text-white py-10 sm:py-16 lg:py-28 xl:py-36 overflow-hidden select-none border-t border-white/10",
         className
       )}
     >
       <Container size="lg" className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
           {/* Left Column */}
           <div className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-32 lg:pt-4">
             <div>
               {activeTag ? (
-                <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-4 sm:mb-6 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
+                <span className="inline-block text-xs sm:text-[0.8125rem] font-semibold tracking-[0.2em] text-[#fdbb11] uppercase font-primary mb-3 sm:mb-4 lg:mb-6 drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]">
                   {activeTag}
                 </span>
               ) : null}
 
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-white tracking-tight leading-[1.14] font-primary mb-6 sm:mb-8 text-balance pb-1">
+              <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold text-white tracking-tight leading-[1.14] font-primary mb-4 sm:mb-6 lg:mb-8 text-balance pb-1">
                 <span className="block">{headlineLine1}</span>
                 {headlineLine2 && <span className="block text-white/90">{headlineLine2}</span>}
               </h2>
 
               {activeDescription && (
-                <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed max-w-md font-primary mb-8 sm:mb-10">
+                <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed max-w-md font-primary mb-6 sm:mb-8 lg:mb-10">
                   {activeDescription}
                 </p>
               )}
@@ -335,7 +335,7 @@ export function ServiceFramework({
             <div className="block sm:hidden w-full space-y-3">
               {steps.map((step, idx) => (
                 <div key={step.number} className="relative">
-                  <div className="bg-white text-neutral-950 p-6 flex flex-col justify-between min-h-[160px] rounded-xl shadow-xl">
+                  <div className="bg-white text-neutral-950 p-5 flex flex-col justify-between min-h-[140px] rounded-xl shadow-xl">
                     <span className="text-xs font-mono text-neutral-950 font-bold tracking-wider">
                       {step.number}
                     </span>
