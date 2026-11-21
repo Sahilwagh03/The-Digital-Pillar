@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight, TrendingUp, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { MediaCard } from "@/components/ui/media-card";
 import { ServiceFeaturedWorkData } from "@/constants/services";
@@ -15,13 +15,13 @@ interface FeaturedWorkCardsInlineProps {
 export function FeaturedWorkCardsInline({
   featuredWork,
 }: FeaturedWorkCardsInlineProps) {
-  const { headline, subtitle, items, tag = "FEATURED PROFILES" } = featuredWork;
+  const { headline, subtitle, items } = featuredWork;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentScrollIdx, setCurrentScrollIdx] = useState(0);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     if (!scrollRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
     setCanScrollLeft(scrollLeft > 20);
@@ -30,7 +30,7 @@ export function FeaturedWorkCardsInline({
     const cardWidth = 380;
     const idx = Math.min(items.length - 1, Math.max(0, Math.round(scrollLeft / cardWidth)));
     setCurrentScrollIdx(idx);
-  };
+  }, [items.length]);
 
   useEffect(() => {
     checkScroll();
@@ -39,7 +39,7 @@ export function FeaturedWorkCardsInline({
       el.addEventListener("scroll", checkScroll, { passive: true });
       return () => el.removeEventListener("scroll", checkScroll);
     }
-  }, [items.length]);
+  }, [checkScroll]);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -57,53 +57,55 @@ export function FeaturedWorkCardsInline({
     >
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-5 sm:pb-8 lg:pb-12 border-b border-white/[0.06]">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fdbb11]/10 border border-[#fdbb11]/30 text-[#fdbb11] text-[11px] font-mono uppercase tracking-widest mb-3 shadow-[0_0_12px_rgba(253,187,17,0.2)]">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{tag}</span>
-            </div>
+          <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-white tracking-tight leading-[1.14] font-primary pb-1">
               {headline}
             </h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between md:justify-end gap-6">
-            <p className="text-xs sm:text-sm text-neutral-400 font-primary max-w-xs">
-              {subtitle}
-            </p>
+          <div className="flex flex-col items-start md:items-end justify-between gap-4 max-w-md shrink-0">
+            {subtitle && (
+              <p className="text-xs sm:text-sm text-neutral-400 font-primary md:text-right leading-relaxed max-w-sm">
+                {subtitle}
+              </p>
+            )}
 
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-mono text-neutral-400 tracking-widest mr-2 select-none">
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-mono text-neutral-400 tracking-widest whitespace-nowrap select-none">
                 <span className="text-[#fdbb11] font-bold">0{currentScrollIdx + 1}</span> / 0{items.length}
               </span>
 
-              <button
-                onClick={() => scroll("left")}
-                disabled={!canScrollLeft}
-                className={cn(
-                  "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
-                  canScrollLeft
-                    ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
-                    : "opacity-30 cursor-not-allowed"
-                )}
-                aria-label="Previous card"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => scroll("left")}
+                  disabled={!canScrollLeft}
+                  className={cn(
+                    "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
+                    canScrollLeft
+                      ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
+                      : "opacity-30 cursor-not-allowed"
+                  )}
+                  aria-label="Previous card"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
 
-              <button
-                onClick={() => scroll("right")}
-                disabled={!canScrollRight}
-                className={cn(
-                  "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
-                  canScrollRight
-                    ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
-                    : "opacity-30 cursor-not-allowed"
-                )}
-                aria-label="Next card"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => scroll("right")}
+                  disabled={!canScrollRight}
+                  className={cn(
+                    "w-11 h-11 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300",
+                    canScrollRight
+                      ? "hover:bg-[#fdbb11] hover:text-black hover:border-[#fdbb11] hover:shadow-[0_0_15px_rgba(253,187,17,0.5)] cursor-pointer"
+                      : "opacity-30 cursor-not-allowed"
+                  )}
+                  aria-label="Next card"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

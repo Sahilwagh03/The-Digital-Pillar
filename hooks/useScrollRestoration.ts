@@ -21,6 +21,9 @@ export function useScrollRestoration(lenis?: Lenis) {
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
+    // Ensure ScrollTrigger plugin is registered
+    gsap.registerPlugin(ScrollTrigger);
+
     // Disable browser's automatic scroll restoration
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";

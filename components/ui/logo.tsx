@@ -23,12 +23,9 @@ export const Logo: FC<LogoProps> = ({
   className,
   imageClassName,
   iconClassName,
-  textClassName,
   priority = true,
   alt = "The Digital Pillar",
   href = "/",
-  showText = true,
-  theme = "dark",
   onClick,
 }) => {
   const logoContent = (
@@ -36,7 +33,7 @@ export const Logo: FC<LogoProps> = ({
       {/* Icon Mark */}
       <Image
         src="/logo-main.svg"
-        alt="The Digital Pillar"
+        alt={alt}
         width={56}
         height={56}
         priority={priority}

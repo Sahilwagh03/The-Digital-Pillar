@@ -289,6 +289,7 @@ export function TiltedGridHero({
                                     }}
                                 >
                                     {img ? (
+                                        /* eslint-disable-next-line @next/next/no-img-element -- Native img required for mathematical 3D cylindrical facet slicing */
                                         <img
                                             src={img.src}
                                             alt={k === 0 ? (img.alt ?? "") : ""}

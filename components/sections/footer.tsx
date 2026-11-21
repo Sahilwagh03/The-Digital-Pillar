@@ -17,7 +17,6 @@ import {
 
 export function Footer() {
   const {
-    tagline,
     headlineLine1,
     headlineLine2,
     ctaText,
@@ -64,12 +63,6 @@ export function Footer() {
             className="lg:col-span-7 flex flex-col justify-between"
           >
             <div>
-              <motion.span
-                variants={footerTaglineVariants}
-                className="text-xs sm:text-sm text-[#fdbb11] font-mono block mb-5 sm:mb-7 font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(253,187,17,0.3)]"
-              >
-                {tagline}
-              </motion.span>
               <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5rem] font-black text-white tracking-tight leading-[1.12] sm:leading-[1.14] font-primary">
                 <span className="block overflow-hidden pt-1 pb-3 sm:pb-4 -mb-3 sm:-mb-4">
                   <motion.span

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { ABOUT_HERO_CONTENT } from "@/constants/about";
@@ -18,7 +17,6 @@ export function AboutHero() {
     headlineLine1,
     headlineLine2,
     description,
-    scrollLabel,
     backgroundImage,
   } = ABOUT_HERO_CONTENT;
 

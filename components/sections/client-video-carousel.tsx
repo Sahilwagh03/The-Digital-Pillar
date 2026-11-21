@@ -294,7 +294,7 @@ export function ClientVideoCarousel({ stories }: ClientVideoCarouselProps) {
                   )}
 
                   {/* Ambient Gradient Overlays for Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/30 pointer-events-none z-15" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/30 pointer-events-none z-[15]" />
 
                   {/* Center Play Button (Visible when video is not playing) */}
                   {!isPlaying && (

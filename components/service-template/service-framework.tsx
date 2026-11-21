@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -30,7 +29,6 @@ export function ServiceFramework({
   className,
 }: ServiceFrameworkProps) {
   const { steps } = framework;
-  const [, setHoveredIndex] = useState<number | null>(null);
 
   const {
     containerRef,
@@ -213,8 +211,6 @@ export function ServiceFramework({
                   {steps[0] && (
                     <div
                       ref={registerCard(0)}
-                      onMouseEnter={() => setHoveredIndex(0)}
-                      onMouseLeave={() => setHoveredIndex(null)}
                       className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
@@ -240,8 +236,6 @@ export function ServiceFramework({
                   {steps[1] && (
                     <div
                       ref={registerCard(1)}
-                      onMouseEnter={() => setHoveredIndex(1)}
-                      onMouseLeave={() => setHoveredIndex(null)}
                       className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
@@ -273,8 +267,6 @@ export function ServiceFramework({
                   {steps[2] && (
                     <div
                       ref={registerCard(2)}
-                      onMouseEnter={() => setHoveredIndex(2)}
-                      onMouseLeave={() => setHoveredIndex(null)}
                       className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                     >
                       <span
@@ -301,8 +293,6 @@ export function ServiceFramework({
                     <>
                       <div
                         ref={registerCard(3)}
-                        onMouseEnter={() => setHoveredIndex(3)}
-                        onMouseLeave={() => setHoveredIndex(null)}
                         className="relative h-[210px] md:h-[230px] lg:h-[250px] bg-white  p-7 md:p-8 lg:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-[#f7f7f7] group cursor-pointer shadow-2xl"
                       >
                         <span

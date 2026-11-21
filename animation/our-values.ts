@@ -110,9 +110,6 @@ export function useOurValuesAnimation(itemsCount: number) {
         const dwellTime = 0.25;
         const moveTime = 0.85;
 
-        // Total duration across all steps: dwells + moves
-        const totalDuration = itemsCount * dwellTime + transitionsCount * moveTime;
-
         // Total scroll distance: 1 viewport height per transition gives natural pacing
         const totalScrollDistance = transitionsCount * window.innerHeight * 1.1;
 

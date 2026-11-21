@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
